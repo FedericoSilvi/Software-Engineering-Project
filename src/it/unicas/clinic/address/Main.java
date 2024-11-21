@@ -1,6 +1,7 @@
 package it.unicas.clinic.address;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
@@ -13,6 +14,7 @@ public class Main extends Application {
 
     public void start(Stage primaryStage){
         this.primaryStage=primaryStage;
+        primaryStage.getIcons().add(new Image("file:resources/clinic-icon-3.png"));
         this.primaryStage.setTitle("Clinic");
 
         primaryStage.show();
