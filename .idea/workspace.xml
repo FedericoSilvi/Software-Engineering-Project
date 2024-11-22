@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="package creation 4">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/clinic-icon-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/clinic-icon-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/clinic-icon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/RootLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/RootLayoutController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,32 +45,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DAOMySQLSettings.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/SceneBuilder/SceneBuilder.exe&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.24487896&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client.executor": "Run",
+    "Application.DAOMySQLSettings.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "development",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/SceneBuilder/SceneBuilder.exe",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.24487896",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="it.unicas.clinic.address.model.dao" />
       <recent name="it.unicas.clinic.address.model" />
@@ -75,7 +82,7 @@
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.Main" />
+      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.MainApp" />
       <module name="Clinic" />
       <option name="VM_PARAMETERS" value="--module-path C:\Users\fedes\Desktop\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
@@ -138,7 +145,50 @@
       <workItem from="1732213911793" duration="31000" />
       <workItem from="1732213958279" duration="76000" />
       <workItem from="1732214045515" duration="274000" />
-      <workItem from="1732214361439" duration="16000" />
+      <workItem from="1732214361439" duration="341000" />
+      <workItem from="1732265052644" duration="1594000" />
+      <workItem from="1732268895659" duration="155000" />
+      <workItem from="1732269180776" duration="36000" />
+      <workItem from="1732269274122" duration="314000" />
+      <workItem from="1732269640530" duration="1072000" />
+      <workItem from="1732270750195" duration="37000" />
+      <workItem from="1732270886260" duration="18000" />
+      <workItem from="1732271153541" duration="62000" />
+      <workItem from="1732271234017" duration="50000" />
+      <workItem from="1732271312135" duration="237000" />
+      <workItem from="1732271587207" duration="83000" />
+      <workItem from="1732271689658" duration="21000" />
+      <workItem from="1732271755293" duration="39000" />
+      <workItem from="1732271856656" duration="108000" />
+      <workItem from="1732272010982" duration="156000" />
+      <workItem from="1732272203107" duration="211000" />
+      <workItem from="1732272465040" duration="90000" />
+      <workItem from="1732272599379" duration="357000" />
+      <workItem from="1732272965406" duration="56000" />
+      <workItem from="1732273028874" duration="215000" />
+      <workItem from="1732273281241" duration="298000" />
+      <workItem from="1732273595401" duration="35000" />
+      <workItem from="1732273679866" duration="26000" />
+      <workItem from="1732273989574" duration="23000" />
+      <workItem from="1732274024523" duration="446000" />
+      <workItem from="1732274483265" duration="2847000" />
+      <workItem from="1732278637513" duration="37000" />
+      <workItem from="1732278789244" duration="515000" />
+      <workItem from="1732279483106" duration="39000" />
+      <workItem from="1732279562624" duration="53000" />
+      <workItem from="1732279831546" duration="128000" />
+      <workItem from="1732280004921" duration="92000" />
+      <workItem from="1732280128817" duration="39000" />
+      <workItem from="1732280193976" duration="705000" />
+      <workItem from="1732280959708" duration="211000" />
+      <workItem from="1732281225435" duration="8000" />
+      <workItem from="1732281257033" duration="2107000" />
+      <workItem from="1732283443714" duration="1099000" />
+      <workItem from="1732289016671" duration="2284000" />
+      <workItem from="1732291342433" duration="924000" />
+      <workItem from="1732292560988" duration="611000" />
+      <workItem from="1732293219687" duration="846000" />
+      <workItem from="1732294281882" duration="1558000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -196,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732179821756</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources">
+      <option name="closed" value="true" />
+      <created>1732214555745</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732214555745</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +278,8 @@
     <MESSAGE value="package creation 2" />
     <MESSAGE value="package creation 3" />
     <MESSAGE value="package creation 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="package creation 4" />
+    <MESSAGE value="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
