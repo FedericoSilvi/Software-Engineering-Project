@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Staff implentation and start StaffDAOMySQLImpl">
-      <change afterPath="$PROJECT_DIR$/resources/clinic-icon-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/clinic-icon-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/clinic-icon.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/ClientDAOSQLImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOSQLImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/RootLayout.fxml" afterDir="false" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="package creation 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/StaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/StaffDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +53,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging staff__management",
+    "git-widget-placeholder": "staff__management",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/SceneBuilder/SceneBuilder.exe",
     "node.js.detected.package.eslint": "true",
@@ -78,7 +75,7 @@
       <recent name="it.unicas.clinic.address" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.StaffDAOMySQLImpl">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.Main" />
       <module name="Clinic" />
@@ -102,12 +99,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StaffDAOMySQLImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl" />
+      <module name="Clinic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.unicas.clinic.address.model.dao.mysql.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Client" />
+      <item itemvalue="Application.StaffDAOMySQLImpl" />
       <item itemvalue="Application.DAOMySQLSettings" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StaffDAOMySQLImpl" />
         <item itemvalue="Application.DAOMySQLSettings" />
       </list>
     </recent_temporary>
@@ -201,7 +213,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732179821756</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="package creation 4">
+      <option name="closed" value="true" />
+      <created>1732296119434</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732296119434</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,9 +244,9 @@
     <MESSAGE value="package creation" />
     <MESSAGE value="package creation 2" />
     <MESSAGE value="package creation 3" />
-    <MESSAGE value="package creation 4" />
     <MESSAGE value="Staff implentation and start StaffDAOMySQLImpl" />
-    <option name="LAST_COMMIT_MESSAGE" value="Staff implentation and start StaffDAOMySQLImpl" />
+    <MESSAGE value="package creation 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="package creation 4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

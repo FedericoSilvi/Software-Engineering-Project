@@ -32,6 +32,17 @@ public class Staff {
         else{
             this.id = null;
         }
+    }
+    public Staff(String name, String surname, String specialties, Integer work_hours){
+        this.name = new SimpleStringProperty(name);
+        this.surname = new SimpleStringProperty(surname);
+        this.specialties = new SimpleStringProperty(specialties);
+        if(work_hours > 0){
+            this.work_hours = new SimpleIntegerProperty(work_hours);
+        }
+        else{
+            this.work_hours = new SimpleIntegerProperty(0);
+        }
 
     }
 

@@ -4,9 +4,7 @@ import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Logger;
 
 public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
@@ -16,19 +14,31 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
     private StaffDAOMySQLImpl(){}
 
+    public static StaffDAO getInstance(){
+        if (dao == null){
+            dao = new StaffDAOMySQLImpl();
+            logger = Logger.getLogger(StaffDAOMySQLImpl.class.getName());
+        }
+        return dao;
+    }
     @Override
     public void update(Staff s) throws StaffException {
     }
 
     @Override
-    public void insert(Staff s) throws StaffException {
+    public void insert(Staff s) throws StaffException, SQLException {
         //verify the object s
         verifyStaff(s);
         //create the query (String)
+        Connection con = DAOMySQLSettings.getConnection();
         String sqlInsert = "INSERT INTO staff (name, surname, specialties, work_hours) VALUES(?,?,?,?)";
-        PreparedStatement preparedStatement = null;
-
-        //call executeupdate
+        PreparedStatement preparedStatement = con.prepareStatement(sqlInsert); //asking to prepare a statement
+        preparedStatement.setString(1, s.getName());
+        preparedStatement.setString(2, s.getSurname());
+        preparedStatement.setString(3, s.getSpecialties());
+        preparedStatement.setInt(4, s.getWork_hours());
+        preparedStatement.executeUpdate();
+        con.close();
     }
 
     @Override
@@ -43,13 +53,16 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
     }
 
-    /*private void executeUpdate(String sql) throws StaffException {
-        try{
-            Statement st = DAOMySQLSettings.getStatement();
-            int n = st.executeUpdate(sql);
-            DAOMySQLSettings.closeStatement(st);
-        }catch(SQLException ex){
-            throw new StaffException("In insert(): " + ex.getMessage());
+
+    public static void main(String args[]) throws StaffException{
+        Staff s = new Staff("Marco", "Caruso", "Nessuna", 0);
+
+        // Usa il DAO per inserire il nuovo Staff nel database
+        try {
+            StaffDAOMySQLImpl.getInstance().insert(s);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-    }*/
+    }
+
 }
