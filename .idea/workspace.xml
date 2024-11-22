@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="package creation 2">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Staff implentation and start StaffDAOMySQLImpl">
+      <change afterPath="$PROJECT_DIR$/resources/clinic-icon-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/clinic-icon-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/clinic-icon.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/ClientDAOSQLImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOSQLImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/RootLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +25,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
-        <option value="Exception" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -43,16 +49,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Client.executor": "Run",
-    "Application.Staff.executor": "Run",
+    "Application.DAOMySQLSettings.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "staff__management",
+    "git-widget-placeholder": "Merging staff__management",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/fedes/Desktop/javafx-sdk-23.0.1/lib/javafx.web.jar",
+    "last_opened_file_path": "C:/SceneBuilder/SceneBuilder.exe",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -61,12 +67,14 @@
     "onboarding.tips.debug.path": "C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.17931035",
+    "project.structure.side.proportion": "0.24487896",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="it.unicas.clinic.address.model.dao" />
+      <recent name="it.unicas.clinic.address.model" />
       <recent name="it.unicas.clinic.address" />
     </key>
   </component>
@@ -74,17 +82,19 @@
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.Main" />
       <module name="Clinic" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\marco\Desktop\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\fedes\Desktop\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Staff" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.Staff" />
+    <configuration name="DAOMySQLSettings" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings" />
       <module name="Clinic" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="it.unicas.clinic.address.model.*" />
+          <option name="PATTERN" value="it.unicas.clinic.address.model.dao.mysql.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -94,11 +104,11 @@
     </configuration>
     <list>
       <item itemvalue="Application.Client" />
-      <item itemvalue="Application.Staff" />
+      <item itemvalue="Application.DAOMySQLSettings" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Staff" />
+        <item itemvalue="Application.DAOMySQLSettings" />
       </list>
     </recent_temporary>
   </component>
@@ -118,8 +128,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732176807443</updated>
-      <workItem from="1732176808518" duration="2726000" />
-      <workItem from="1732290896095" duration="4623000" />
+      <workItem from="1732176808518" duration="3457000" />
+      <workItem from="1732195445260" duration="52000" />
+      <workItem from="1732199054076" duration="1081000" />
+      <workItem from="1732200215270" duration="839000" />
+      <workItem from="1732201100720" duration="67000" />
+      <workItem from="1732201195310" duration="826000" />
+      <workItem from="1732202063655" duration="22000" />
+      <workItem from="1732202104210" duration="55000" />
+      <workItem from="1732202218122" duration="165000" />
+      <workItem from="1732202837396" duration="1213000" />
+      <workItem from="1732209770242" duration="15000" />
+      <workItem from="1732211111053" duration="1152000" />
+      <workItem from="1732213911793" duration="31000" />
+      <workItem from="1732213958279" duration="76000" />
+      <workItem from="1732214045515" duration="274000" />
+      <workItem from="1732214361439" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -153,7 +177,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732179553806</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="package creation 2">
+      <option name="closed" value="true" />
+      <created>1732179604966</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732179604966</updated>
+    </task>
+    <task id="LOCAL-00006" summary="package creation 3">
+      <option name="closed" value="true" />
+      <created>1732179627766</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732179627766</updated>
+    </task>
+    <task id="LOCAL-00007" summary="package creation 4">
+      <option name="closed" value="true" />
+      <created>1732179821756</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732179821756</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,19 +212,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="staff_management" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -187,7 +223,10 @@
     <MESSAGE value="second commit" />
     <MESSAGE value="package creation" />
     <MESSAGE value="package creation 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="package creation 2" />
+    <MESSAGE value="package creation 3" />
+    <MESSAGE value="package creation 4" />
+    <MESSAGE value="Staff implentation and start StaffDAOMySQLImpl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Staff implentation and start StaffDAOMySQLImpl" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -197,6 +236,10 @@
           <line>11</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
