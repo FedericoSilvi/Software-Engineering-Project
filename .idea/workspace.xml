@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="package creation 2" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="package creation 2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +17,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -37,9 +43,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Client.executor": "Run",
+    "Application.Staff.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "staff__management",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fedes/Desktop/javafx-sdk-23.0.1/lib/javafx.web.jar",
     "node.js.detected.package.eslint": "true",
@@ -50,7 +61,7 @@
     "onboarding.tips.debug.path": "C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.24487896",
+    "project.structure.side.proportion": "0.17931035",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -59,15 +70,37 @@
       <recent name="it.unicas.clinic.address" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.Main" />
       <module name="Clinic" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\fedes\Desktop\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\marco\Desktop\javafx-sdk-23.0.1\lib --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Staff" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.Staff" />
+      <module name="Clinic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.unicas.clinic.address.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Staff" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Staff" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -86,6 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732176807443</updated>
       <workItem from="1732176808518" duration="2726000" />
+      <workItem from="1732290896095" duration="4623000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -130,7 +164,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="staff_management" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
