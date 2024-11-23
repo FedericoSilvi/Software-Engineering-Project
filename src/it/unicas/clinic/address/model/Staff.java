@@ -14,35 +14,23 @@ public class Staff {
     private StringProperty name;
     private StringProperty surname;
     private StringProperty specialties;
-    private IntegerProperty work_hours;
     //Constructos
-    public Staff(Integer id, String name, String surname, String specialties, Integer work_hours){
+    public Staff(Integer id, String name, String surname, String specialties){
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
         this.specialties = new SimpleStringProperty(specialties);
-        if(work_hours > 0){
-            this.work_hours = new SimpleIntegerProperty(work_hours);
-        }
-        else{
-            this.work_hours = new SimpleIntegerProperty(0);
-        }
         if(id != null){
             this.id = new SimpleIntegerProperty(id);
         }
         else{
-            this.id = null;
+            this.id = new SimpleIntegerProperty(0);
         }
     }
-    public Staff(String name, String surname, String specialties, Integer work_hours){
+    public Staff(String name, String surname, String specialties){
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
         this.specialties = new SimpleStringProperty(specialties);
-        if(work_hours > 0){
-            this.work_hours = new SimpleIntegerProperty(work_hours);
-        }
-        else{
-            this.work_hours = new SimpleIntegerProperty(0);
-        }
+        //this.id= new SimpleIntegerProperty(0);
 
     }
 
@@ -96,28 +84,16 @@ public class Staff {
         this.specialties.set(specialties);
     }
 
-    public int getWork_hours() {
-        return work_hours.get();
-    }
-
-    public IntegerProperty work_hoursProperty() {
-        return work_hours;
-    }
-
-    public void setWork_hours(int work_hours) {
-        this.work_hours.set(work_hours);
-    }
 
     //Override toString
 
     @Override
     public String toString() {
-        return "Staff member \n" +
-                id.getValue()+ ", " +
-                name.getValue() + ", " +
-                surname.getValue() + ", " +
-                specialties.getValue() + ", " +
-                work_hours.getValue() ;
+        return
+                "id: "+ id.getValue()+ ", " +
+                "name: " + name.getValue() + ", " +
+                "surname: " +surname.getValue() + ", " +
+                "specialities: " +specialties.getValue() + "\n";
     }
     public static void main(String[] args){
 
