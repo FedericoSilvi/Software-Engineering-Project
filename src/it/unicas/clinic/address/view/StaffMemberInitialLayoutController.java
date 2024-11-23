@@ -9,6 +9,12 @@ import javafx.scene.image.ImageView;
 
 import java.util.Optional;
 
+/**
+ * Staff manager GUI. It provides 3 sections to select
+ * - Client section to manage clients
+ * - Appointments section to manage appointments
+ * - Calendar section to see appointments in calendar mode
+ */
 public class StaffMemberInitialLayoutController {
 
     private MainApp mainApp;
@@ -29,6 +35,8 @@ public class StaffMemberInitialLayoutController {
     }
     @FXML
     private void handleLogout(){
+
+        //Alert to go back to login GUI
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("Are you sure you want to logout?");
@@ -44,6 +52,7 @@ public class StaffMemberInitialLayoutController {
             mainApp.initLogin();
         }
     }
+    //Methods to highlight sections only when mouse passes on them
     @FXML
     private void handleClientHighlight(){
         clientBackground.setOpacity(0.50);
