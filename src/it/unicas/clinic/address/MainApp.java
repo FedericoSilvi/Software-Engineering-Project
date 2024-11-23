@@ -17,6 +17,9 @@ import java.util.Optional;
 
 import static javafx.application.Application.launch;
 
+/**
+ * Class implementing the application
+ */
 
 public class MainApp extends Application {
 
@@ -24,6 +27,10 @@ public class MainApp extends Application {
     private BorderPane loginLayout;
     private BorderPane staffInitialLayout;
 
+    /**
+     * Default method called at the start of the application.
+     * It makes the login GUI appear.
+     */
     public void start(Stage primaryStage){
         this.primaryStage=primaryStage;
         primaryStage.getIcons().add(new Image("file:src/resources/login_icons/clinic-icon.png"));
@@ -35,6 +42,9 @@ public class MainApp extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Pop up an alert for the exit operation.
+     */
     public void handleExit(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Exit");
@@ -52,6 +62,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Load the login GUI to the application window
+     */
     public void initLogin() {
         try {
             // Load root layout from fxml file.
@@ -60,7 +73,7 @@ public class MainApp extends Application {
                     .getResource("view/LoginLayout.fxml"));
             loginLayout = (BorderPane) loader.load();
 
-            // Show the scene containing the root layout.
+            // Show the scene containing the login layout.
             Scene scene = new Scene(loginLayout);
             primaryStage.setScene(scene);
 
@@ -79,10 +92,12 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Load the initial staff manager GUI to the application window
+     */
     public void initStaffManager(){
     try{
-        //Close previous scenes
-        //primaryStage.close();
+
         // Load root layout from fxml file.
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainApp.class
@@ -112,11 +127,12 @@ public class MainApp extends Application {
         e.printStackTrace();
     }
     }
-
+    /**
+     * Load the initial staff member GUI to the application window
+     */
     public void initStaff(){
         try{
-            //Close previous scenes
-            //primaryStage.close();
+
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class
@@ -147,6 +163,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Start the application
+     */
     public static void main(String[] args) {
         launch(args);
     }
