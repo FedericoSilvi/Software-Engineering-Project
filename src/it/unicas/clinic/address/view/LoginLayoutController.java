@@ -13,6 +13,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for the Login GUI, which provides text fields to be filled with username and password.
+ * It also provides buttons for exiting the application and for trying to log in with
+ * the specified credentials.
+ * Moreover, if the credentials are right it welcomes the user, else it notices the user.
+ */
 public class LoginLayoutController {
 
     private MainApp mainApp;
@@ -31,11 +37,20 @@ public class LoginLayoutController {
     @FXML
     private ImageView closedEye;
 
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * @param mainApp: application
+     */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
     @FXML
     private void initialize(){
+        /*
+        Show opened eye icon and the password field
+        Not show closed eye icon and the text field fot the password
+        Set password as an empty string
+         */
         passwordShowField.setVisible(false);
         passwordHideField.setVisible(true);
         closedEye.setVisible(false);
@@ -45,6 +60,10 @@ public class LoginLayoutController {
 
     @FXML
     private void handleShowPassword() {
+        /*
+        Show opened eye icon and the password field
+        Not show closed eye icon and the text field fot the password
+         */
         password=passwordHideField.getText();
         passwordShowField.setVisible(true);
         passwordShowField.setText(password);
@@ -54,6 +73,10 @@ public class LoginLayoutController {
     }
     @FXML
     private void handleHidePassword() {
+        /*
+        Not show opened eye icon and the password field
+        Show closed eye icon and the text field fot the password
+         */
         password=passwordShowField.getText();
         passwordShowField.setVisible(false);
         passwordHideField.setVisible(true);
@@ -63,21 +86,28 @@ public class LoginLayoutController {
     }
     @FXML
     private void handleExit(){
+        //Recall the fucntion in mainApp
         mainApp.handleExit();
     }
     @FXML
     private void handleLogin() {
+        //Get inserted username
         String username = usernameField.getText();
+        //Get inserted password
          if(closedEye.isVisible()){
              password= passwordShowField.getText();
          }
          else
              password= passwordHideField.getText();
+         //Insert username and password in the login DAO
          LoginDAOImplementation impl = new LoginDAOImplementation(username,password);
+         //Initialize data as null
         User data = null;
         try {
+            //Save in data the result of the operation on teh SQL database
             data = impl.searchUser();
         } catch (SQLException e) {
+            //Pop up an alert if something with the database operation goes wrong
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Database Error");
             error.setHeaderText("Something went wrong within database connection/operations");
@@ -92,7 +122,9 @@ public class LoginLayoutController {
                 System.exit(0);
             }
         }
-        if(data!=null){
+        if(data!=null){ //Credentials found
+
+            //Alert to welcome user
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login result");
             alert.setHeaderText("Logged in successfully");
@@ -109,7 +141,9 @@ public class LoginLayoutController {
              }
 
          }
-         else {
+         else { //Credentials not found
+
+             //Alert notices user about wrong username or password
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
              alert.setTitle("Login result");
              alert.setHeaderText("Login failed");
