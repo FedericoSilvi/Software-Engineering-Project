@@ -19,7 +19,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Logout">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Close" />
             </items>
           </Menu>
         </menus>
