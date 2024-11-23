@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/clinic-icon-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/clinic-icon-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/clinic-icon.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="FxmlFile" />
         <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -192,7 +192,7 @@
       <workItem from="1732349019206" duration="4051000" />
       <workItem from="1732353546653" duration="340000" />
       <workItem from="1732354240658" duration="1747000" />
-      <workItem from="1732356053739" duration="1795000" />
+      <workItem from="1732356053739" duration="4599000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -274,7 +274,55 @@
       <option name="project" value="LOCAL" />
       <updated>1732351686809</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="-Eliminate icone inutili">
+      <option name="closed" value="true" />
+      <created>1732357982954</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732357982954</updated>
+    </task>
+    <task id="LOCAL-00012" summary="-Aggiunte icone e file di copyright">
+      <option name="closed" value="true" />
+      <created>1732358019627</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732358019627</updated>
+    </task>
+    <task id="LOCAL-00013" summary="-Creato il file FXML per la GUI che si presenta allo staff manager dopo il login">
+      <option name="closed" value="true" />
+      <created>1732358045866</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1732358045866</updated>
+    </task>
+    <task id="LOCAL-00014" summary="-Creato il controllore della GUI iniziale dello staff manager che si occupa, per ora, di evidenziare dove le sezioni dove c'è il mouse">
+      <option name="closed" value="true" />
+      <created>1732358099344</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732358099344</updated>
+    </task>
+    <task id="LOCAL-00015" summary="-Aggiunto il metodo initStaffManager che fa comparire la schermata iniziale dello staff manager e la collega all'opportuno controllore">
+      <option name="closed" value="true" />
+      <created>1732358146898</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732358146898</updated>
+    </task>
+    <task id="LOCAL-00016" summary="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra">
+      <option name="closed" value="true" />
+      <created>1732358214694</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732358214694</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +349,13 @@
     <MESSAGE value="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources" />
     <MESSAGE value="-Modificata la GUI per il login con l'aggiunta di immagini, meccanismo vedo/non-vedo della password e tasti di 'Login' e di 'Exit'.&#10;-Eliminato RootLayout e il relativo controller&#10;-Aggiunte le immagini all'interno della cartella src&#10;-Modificata MainApp in modo da creare un'alert per la chiusura della finestra e per far sì di mostrare la schermata di login all'apertura dell'applicazione.&#10;-Aggiunto il controller di LoginLayout.fxml dal nome LoginLayoutController &#10;-Aggiunto all'interno del DAO di mySQL la classe LoginDAOImplementation che si occupa di comunicare con il db per la verifica di username e password." />
     <MESSAGE value="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database" />
+    <MESSAGE value="-Eliminate icone inutili" />
+    <MESSAGE value="-Aggiunte icone e file di copyright" />
+    <MESSAGE value="-Creato il file FXML per la GUI che si presenta allo staff manager dopo il login" />
+    <MESSAGE value="-Creato il controllore della GUI iniziale dello staff manager che si occupa, per ora, di evidenziare dove le sezioni dove c'è il mouse" />
+    <MESSAGE value="-Aggiunto il metodo initStaffManager che fa comparire la schermata iniziale dello staff manager e la collega all'opportuno controllore" />
+    <MESSAGE value="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
