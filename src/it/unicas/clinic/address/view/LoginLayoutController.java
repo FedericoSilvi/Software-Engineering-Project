@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view;
 
 import it.unicas.clinic.address.MainApp;
 import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
+import it.unicas.clinic.address.utils.DataUtil.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -73,7 +74,7 @@ public class LoginLayoutController {
          else
              password= passwordHideField.getText();
          LoginDAOImplementation impl = new LoginDAOImplementation(username,password);
-        List<String> data = null;
+        User data = null;
         try {
             data = impl.searchUser();
         } catch (SQLException e) {
@@ -95,13 +96,16 @@ public class LoginLayoutController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login result");
             alert.setHeaderText("Logged in successfully");
-            alert.setContentText("Welcome back "+data.get(0)+" "+data.get(1));
+            alert.setContentText("Welcome back "+data.getName()+" "+data.getSurname());
              ButtonType button = new ButtonType("Ok");
              alert.getButtonTypes().setAll(button);
              Optional<ButtonType> r = alert.showAndWait();
              if (r.get() == button){
                  alert.close();
-                 mainApp.initStaffManager();
+                 if(data.getManager())
+                     mainApp.initStaffManager();
+                 else
+                     mainApp.initStaff();
              }
 
          }
