@@ -22,7 +22,7 @@ public class DataUtil {
         }
         /**
          * Setter of name, setting it equal to the one passed by argument
-         * @param name
+         * @param name: wanted name
          */
         public void setName(String name) {
             this.name = name;
@@ -35,7 +35,7 @@ public class DataUtil {
         }
         /**
          * Setter of surname, setting it equal to the one passed by argument
-         * @param surname
+         * @param surname: wanted surname
          */
         public void setSurname(String surname) {
             this.surname = surname;
@@ -49,7 +49,7 @@ public class DataUtil {
         /**
          * Setter of the info about being a manager or not,
          * setting it equal to the one passed by argument
-         * @param manager
+         * @param manager: wanted info
          */
         public void setManager(boolean manager) {
             isManager = manager;
