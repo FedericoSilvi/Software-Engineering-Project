@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Commit">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Nessun commento">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +189,9 @@
       <workItem from="1732349019206" duration="4051000" />
       <workItem from="1732353546653" duration="340000" />
       <workItem from="1732354240658" duration="1747000" />
-      <workItem from="1732356053739" duration="5895000" />
+      <workItem from="1732356053739" duration="6608000" />
+      <workItem from="1732370878847" duration="302000" />
+      <workItem from="1732371269491" duration="1167000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -397,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732361580035</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Nessun commento">
+      <option name="closed" value="true" />
+      <created>1732362132108</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732362132108</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,7 +427,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first commit" />
     <MESSAGE value="second commit" />
     <MESSAGE value="package creation" />
     <MESSAGE value="package creation 2" />
@@ -440,7 +451,8 @@
     <MESSAGE value="Controller della GUI per lo staff member che ha le stesse funzionalità della sua controparte per lo staff manager" />
     <MESSAGE value="Aggiunto initStaff per far comparire la schermata iniziale del membro dello staff" />
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Nessun commento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nessun commento" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
