@@ -101,7 +101,9 @@ public class LoginLayoutController {
              Optional<ButtonType> r = alert.showAndWait();
              if (r.get() == button){
                  alert.close();
+                 mainApp.initStaffManager();
              }
+
          }
          else {
              Alert alert = new Alert(Alert.AlertType.INFORMATION);

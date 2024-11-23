@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="-Modificata la GUI per il login con l'aggiunta di immagini, meccanismo vedo/non-vedo della password e tasti di 'Login' e di 'Exit'.&#10;-Eliminato RootLayout e il relativo controller&#10;-Aggiunte le immagini all'interno della cartella src&#10;-Modificata MainApp in modo da creare un'alert per la chiusura della finestra e per far sì di mostrare la schermata di login all'apertura dell'applicazione.&#10;-Aggiunto il controller di LoginLayout.fxml dal nome LoginLayoutController &#10;-Aggiunto all'interno del DAO di mySQL la classe LoginDAOImplementation che si occupa di comunicare con il db per la verifica di username e password.">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/clinic-icon-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/clinic-icon-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/clinic-icon.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +23,7 @@
       <list>
         <option value="Interface" />
         <option value="FxmlFile" />
+        <option value="JavaFXApplication" />
         <option value="Class" />
       </list>
     </option>
@@ -184,7 +189,10 @@
       <workItem from="1732292560988" duration="611000" />
       <workItem from="1732293219687" duration="846000" />
       <workItem from="1732294281882" duration="3833000" />
-      <workItem from="1732349019206" duration="2229000" />
+      <workItem from="1732349019206" duration="4051000" />
+      <workItem from="1732353546653" duration="340000" />
+      <workItem from="1732354240658" duration="1747000" />
+      <workItem from="1732356053739" duration="1795000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -258,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732296264161</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database">
+      <option name="closed" value="true" />
+      <created>1732351686809</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732351686809</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +300,8 @@
     <MESSAGE value="package creation 4" />
     <MESSAGE value="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources" />
     <MESSAGE value="-Modificata la GUI per il login con l'aggiunta di immagini, meccanismo vedo/non-vedo della password e tasti di 'Login' e di 'Exit'.&#10;-Eliminato RootLayout e il relativo controller&#10;-Aggiunte le immagini all'interno della cartella src&#10;-Modificata MainApp in modo da creare un'alert per la chiusura della finestra e per far sì di mostrare la schermata di login all'apertura dell'applicazione.&#10;-Aggiunto il controller di LoginLayout.fxml dal nome LoginLayoutController &#10;-Aggiunto all'interno del DAO di mySQL la classe LoginDAOImplementation che si occupa di comunicare con il db per la verifica di username e password." />
-    <option name="LAST_COMMIT_MESSAGE" value="-Modificata la GUI per il login con l'aggiunta di immagini, meccanismo vedo/non-vedo della password e tasti di 'Login' e di 'Exit'.&#10;-Eliminato RootLayout e il relativo controller&#10;-Aggiunte le immagini all'interno della cartella src&#10;-Modificata MainApp in modo da creare un'alert per la chiusura della finestra e per far sì di mostrare la schermata di login all'apertura dell'applicazione.&#10;-Aggiunto il controller di LoginLayout.fxml dal nome LoginLayoutController &#10;-Aggiunto all'interno del DAO di mySQL la classe LoginDAOImplementation che si occupa di comunicare con il db per la verifica di username e password." />
+    <MESSAGE value="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
