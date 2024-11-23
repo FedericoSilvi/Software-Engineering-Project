@@ -42,11 +42,9 @@ public class LoginDAOImplementation {
         command.setString(2,this.password);
         ResultSet result = command.executeQuery();
 
-        if(result!=null){
+        if(result.next()){
             String staff_id="";
-            while(result.next()) {
-                 staff_id = result.getString("staff_id");
-            }
+            staff_id = result.getString("staff_id");
             String staffSearch = "select * from staff where id=?";
             PreparedStatement staff = connection.prepareStatement(staffSearch);
             staff.setString(1,staff_id);

@@ -65,7 +65,7 @@ public class LoginLayoutController {
         mainApp.handleExit();
     }
     @FXML
-    private void handleLogin() throws SQLException {
+    private void handleLogin() {
         String username = usernameField.getText();
          if(closedEye.isVisible()){
              password= passwordShowField.getText();
@@ -73,11 +73,28 @@ public class LoginLayoutController {
          else
              password= passwordHideField.getText();
          LoginDAOImplementation impl = new LoginDAOImplementation(username,password);
-         List<String> data = impl.searchUser();
-         if(data!=null){
+        List<String> data = null;
+        try {
+            data = impl.searchUser();
+        } catch (SQLException e) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Database Error");
+            error.setHeaderText("Something went wrong within database connection/operations");
+            error.setContentText("Please contact the database assistance");
+
+            ButtonType buttonTypeOne = new ButtonType("Ok");
+
+            error.getButtonTypes().setAll(buttonTypeOne);
+
+            Optional<ButtonType> result = error.showAndWait();
+            if (result.get() == buttonTypeOne){
+                System.exit(0);
+            }
+        }
+        if(data!=null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login result");
-            alert.setHeaderText("Logged in succesfully");
+            alert.setHeaderText("Logged in successfully");
             alert.setContentText("Welcome back "+data.get(0)+" "+data.get(1));
              ButtonType button = new ButtonType("Ok");
              alert.getButtonTypes().setAll(button);
