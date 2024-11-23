@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -23,16 +22,16 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane loginLayout;
+    private BorderPane staffInitialLayout;
 
     public void start(Stage primaryStage){
         this.primaryStage=primaryStage;
-        primaryStage.getIcons().add(new Image("file:resources/clinic-icon-3.png"));
+        primaryStage.getIcons().add(new Image("file:src/resources/login_icons/clinic-icon.png"));
         this.primaryStage.setTitle("Clinic");
-
 
         initLogin();
         primaryStage.centerOnScreen();
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -65,7 +64,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(loginLayout);
             primaryStage.setScene(scene);
 
-
+            //Implementing alert when you click on the 'X' of the window
             primaryStage.setOnCloseRequest(event -> {
                 event.consume();
                 handleExit();
@@ -79,6 +78,41 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+    public void initStaffManager(){
+    try{
+        //Close previous scenes
+        //primaryStage.close();
+        // Load root layout from fxml file.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApp.class
+                .getResource("view/StaffManagerInitialLayout.fxml"));
+        staffInitialLayout = (BorderPane) loader.load();
+
+        // Show the scene containing the root layout.
+        Scene scene = new Scene(staffInitialLayout);
+        primaryStage.setScene(scene);
+
+        //Implementing alert when you click on the 'X' of the window
+        primaryStage.setOnCloseRequest(event -> {
+            event.consume();
+            handleExit();
+        });
+
+
+        // Give the controller access to the main app.
+        StaffManagerInitialLayoutController controller = loader.getController();
+        controller.setMainApp(this);
+
+        //Set and show primary stage
+        primaryStage.centerOnScreen();
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
