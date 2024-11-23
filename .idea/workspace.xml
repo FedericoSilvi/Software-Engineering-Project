@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/MainApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/LoginLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +187,7 @@
       <workItem from="1732349019206" duration="4051000" />
       <workItem from="1732353546653" duration="340000" />
       <workItem from="1732354240658" duration="1747000" />
-      <workItem from="1732356053739" duration="4599000" />
+      <workItem from="1732356053739" duration="5895000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -322,7 +317,87 @@
       <option name="project" value="LOCAL" />
       <updated>1732358214694</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Creata la classe User per agevolare le operazioni di login e ilk riconoscimento della giusta schermata da far comparire.">
+      <option name="closed" value="true" />
+      <created>1732361118797</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361118797</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Cambiato data da List&lt;String&gt; a User in modo da poter contenere anche un boolean per controllare se l'utente è staff manager">
+      <option name="closed" value="true" />
+      <created>1732361190906</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361190906</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Si sceglie opportunamente la schermata da far comparire in base all'opportuno attributo di data">
+      <option name="closed" value="true" />
+      <created>1732361233110</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361233110</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Sostituita handleExit con handleLogout in modo da rimandare l'utilizzatore dell'app alla schermata di login">
+      <option name="closed" value="true" />
+      <created>1732361327185</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361327185</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Rinominati opportunamente i file per distringuere membro dello staff e staff manager">
+      <option name="closed" value="true" />
+      <created>1732361383376</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361383376</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Eliminato per la coerenza dei nomi">
+      <option name="closed" value="true" />
+      <created>1732361436220</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361436220</updated>
+    </task>
+    <task id="LOCAL-00023" summary="File FXML per la GUI del membro dello staff che differisce da quella dello staff manager per l'assenza della sezione relativa alla gestione dello staff">
+      <option name="closed" value="true" />
+      <created>1732361485380</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361485380</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Controller della GUI per lo staff member che ha le stesse funzionalità della sua controparte per lo staff manager">
+      <option name="closed" value="true" />
+      <created>1732361537899</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361537899</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Aggiunto initStaff per far comparire la schermata iniziale del membro dello staff">
+      <option name="closed" value="true" />
+      <created>1732361572827</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361572827</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1732361580035</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732361580035</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +430,17 @@
     <MESSAGE value="-Creato il controllore della GUI iniziale dello staff manager che si occupa, per ora, di evidenziare dove le sezioni dove c'è il mouse" />
     <MESSAGE value="-Aggiunto il metodo initStaffManager che fa comparire la schermata iniziale dello staff manager e la collega all'opportuno controllore" />
     <MESSAGE value="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra" />
+    <MESSAGE value="Creata la classe User per agevolare le operazioni di login e ilk riconoscimento della giusta schermata da far comparire." />
+    <MESSAGE value="Cambiato data da List&lt;String&gt; a User in modo da poter contenere anche un boolean per controllare se l'utente è staff manager" />
+    <MESSAGE value="Si sceglie opportunamente la schermata da far comparire in base all'opportuno attributo di data" />
+    <MESSAGE value="Sostituita handleExit con handleLogout in modo da rimandare l'utilizzatore dell'app alla schermata di login" />
+    <MESSAGE value="Rinominati opportunamente i file per distringuere membro dello staff e staff manager" />
+    <MESSAGE value="Eliminato per la coerenza dei nomi" />
+    <MESSAGE value="File FXML per la GUI del membro dello staff che differisce da quella dello staff manager per l'assenza della sezione relativa alla gestione dello staff" />
+    <MESSAGE value="Controller della GUI per lo staff member che ha le stesse funzionalità della sua controparte per lo staff manager" />
+    <MESSAGE value="Aggiunto initStaff per far comparire la schermata iniziale del membro dello staff" />
+    <MESSAGE value="Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

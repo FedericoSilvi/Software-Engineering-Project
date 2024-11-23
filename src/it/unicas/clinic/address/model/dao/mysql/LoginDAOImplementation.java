@@ -51,7 +51,6 @@ public class LoginDAOImplementation {
             PreparedStatement staff = connection.prepareStatement(staffSearch);
             staff.setString(1,staff_id);
             ResultSet staff_data = staff.executeQuery();
-
             User user = new User();
             while(staff_data.next()) {
                 user.setName(staff_data.getString("name"));
