@@ -113,6 +113,40 @@ public class MainApp extends Application {
     }
     }
 
+    public void initStaff(){
+        try{
+            //Close previous scenes
+            //primaryStage.close();
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class
+                    .getResource("view/StaffMemberInitialLayout.fxml"));
+            staffInitialLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(staffInitialLayout);
+            primaryStage.setScene(scene);
+
+            //Implementing alert when you click on the 'X' of the window
+            primaryStage.setOnCloseRequest(event -> {
+                event.consume();
+                handleExit();
+            });
+
+
+            // Give the controller access to the main app.
+            StaffMemberInitialLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
+            //Set and show primary stage
+            primaryStage.centerOnScreen();
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
