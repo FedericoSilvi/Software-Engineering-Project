@@ -21,8 +21,8 @@ public class LoginDAOImplementation {
 
     /**
      * Constructor with passed arguments
-     * @param us
-     * @param pass
+     * @param us: username
+     * @param pass: password
      */
     public LoginDAOImplementation(String us, String pass) {
         this.username = us;
@@ -37,7 +37,7 @@ public class LoginDAOImplementation {
     }
     /**
      * Getter of username
-     * @param username
+     * @param username: wanted username
      */
     public void setUsername(String username) {
         this.username = username;
@@ -49,8 +49,8 @@ public class LoginDAOImplementation {
         return password;
     }
     /**
-     * Getter of username
-     * @param password
+     * Setter of password
+     * @param password: wanted password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -59,7 +59,7 @@ public class LoginDAOImplementation {
     /**
      * Search for the credentials contained in the Class. If found, search for the
      * corresponding user and return it, else return null
-     * @throws SQLException
+     * @throws SQLException: cannot execute the wanted queries
      */
     public User searchUser() throws SQLException {
         //Open connection

@@ -60,7 +60,7 @@ public class DAOMySQLSettings {
     /**
      * Setter of host:
      * it makes it equal to the one passed by argument
-     * @param host
+     * @param host: wanted database host
      */
     public void setHost(String host) {
         this.host = host;
@@ -69,7 +69,7 @@ public class DAOMySQLSettings {
     /**
      * Setter of userName:
      * it makes it equal to the one passed by argument
-     * @param userName
+     * @param userName: wanted username
      */
     public void setUserName(String userName) {
         this.userName = userName;
@@ -77,7 +77,7 @@ public class DAOMySQLSettings {
     /**
      * Setter of pwd:
      * it makes it equal to the one passed by argument
-     * @param pwd
+     * @param pwd: wanted database password
      */
     public void setPwd(String pwd) {
         this.pwd = pwd;
@@ -85,7 +85,7 @@ public class DAOMySQLSettings {
     /**
      * Setter of schema:
      * it makes it equal to the one passed by argument
-     * @param schema
+     * @param schema: wanted schema
      */
     public void setSchema(String schema) {
         this.schema = schema;
@@ -132,7 +132,7 @@ public class DAOMySQLSettings {
 
     /**
      * Establish a connection to the server based on the default settings.
-     * @throws SQLException
+     * @throws SQLException: can't get the connection
      */
     public static Connection getConnection() throws SQLException {
         if (currentDAOMySQLSettings == null) {
@@ -143,8 +143,8 @@ public class DAOMySQLSettings {
 
     /**
      * Close the connection passed by argument.
-     * @param connection
-     * @throws SQLException
+     * @param connection: connection to be closed
+     * @throws SQLException: can't close the connection
      */
     public static void closeConnection(Connection connection) throws SQLException {
         connection.close();

@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Nessun commento">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Commenti per documentazione di DataUtil e User v.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +188,7 @@
       <workItem from="1732354240658" duration="1747000" />
       <workItem from="1732356053739" duration="6608000" />
       <workItem from="1732370878847" duration="302000" />
-      <workItem from="1732371269491" duration="1167000" />
+      <workItem from="1732371269491" duration="2075000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -409,7 +406,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732362132108</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Commenti sia per documentazione che infra-codice per le classi DAO">
+      <option name="closed" value="true" />
+      <created>1732372913633</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732372913633</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Commenti per documentazione di DataUtil e User">
+      <option name="closed" value="true" />
+      <created>1732373278647</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732373278647</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Commenti per documentazione di DataUtil e User v.2">
+      <option name="closed" value="true" />
+      <created>1732373345677</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732373345677</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -427,9 +448,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="second commit" />
-    <MESSAGE value="package creation" />
-    <MESSAGE value="package creation 2" />
     <MESSAGE value="package creation 3" />
     <MESSAGE value="package creation 4" />
     <MESSAGE value="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources" />
@@ -452,7 +470,10 @@
     <MESSAGE value="Aggiunto initStaff per far comparire la schermata iniziale del membro dello staff" />
     <MESSAGE value="Commit" />
     <MESSAGE value="Nessun commento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nessun commento" />
+    <MESSAGE value="Commenti sia per documentazione che infra-codice per le classi DAO" />
+    <MESSAGE value="Commenti per documentazione di DataUtil e User" />
+    <MESSAGE value="Commenti per documentazione di DataUtil e User v.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commenti per documentazione di DataUtil e User v.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
