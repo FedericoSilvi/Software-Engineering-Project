@@ -1,6 +1,7 @@
 package it.unicas.clinic.address.model.dao.mysql;
 
 import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
+import it.unicas.clinic.address.utils.DataUtil.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,29 +35,31 @@ public class LoginDAOImplementation {
     public void setPassword(String password) {
         this.password = password;
     }
-    public List<String> searchUser() throws SQLException {
+    public User searchUser() throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
         String searchUser = "select * from credential where username=? and password=?";
         PreparedStatement command = connection.prepareStatement(searchUser);
         command.setString(1,this.username);
         command.setString(2,this.password);
         ResultSet result = command.executeQuery();
-
+        boolean isManager = false;
         if(result.next()){
             String staff_id="";
+            isManager = result.getBoolean("owner");
             staff_id = result.getString("staff_id");
             String staffSearch = "select * from staff where id=?";
             PreparedStatement staff = connection.prepareStatement(staffSearch);
             staff.setString(1,staff_id);
             ResultSet staff_data = staff.executeQuery();
 
-            List<String> list = new ArrayList<>();
+            User user = new User();
             while(staff_data.next()) {
-                list.add(staff_data.getString("name"));
-                list.add(staff_data.getString("surname"));
+                user.setName(staff_data.getString("name"));
+                user.setSurname(staff_data.getString("surname"));
+                user.setManager(isManager);
             }
             DAOMySQLSettings.closeConnection(connection);
-            return list;
+            return user;
         }
 
         else {
