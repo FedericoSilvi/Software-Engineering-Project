@@ -43,7 +43,7 @@
                                 <Image url="@../../../../../resources/login_icons/client_icon.jpg" />
                             </image>
                         </ImageView>
-                        <Label layoutX="120.0" layoutY="77.0" opacity="0.75" text="Client">
+                        <Label layoutX="120.0" layoutY="77.0" onMouseEntered="#handleClientHighlight" opacity="0.75" text="Client">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -57,7 +57,7 @@
                                 <Image url="@../../../../../resources/login_icons/appointment_icon.jpg" />
                             </image>
                         </ImageView>
-                        <Label layoutX="75.0" layoutY="77.0" opacity="0.75" text="Appointments">
+                        <Label layoutX="75.0" layoutY="77.0" onMouseEntered="#handleAppointmentsHighlight" opacity="0.75" text="Appointments">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -71,7 +71,7 @@
                                 <Image url="@../../../../../resources/login_icons/calendar-icon.jpg" />
                             </image>
                         </ImageView>
-                        <Label layoutX="-47.0" layoutY="77.0" opacity="0.75" text="Calendar">
+                        <Label layoutX="-47.0" layoutY="77.0" onMouseEntered="#handleCalendarHighlight" opacity="0.75" text="Calendar">
                             <font>
                                 <Font size="24.0" />
                             </font>
