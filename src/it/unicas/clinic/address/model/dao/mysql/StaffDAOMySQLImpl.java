@@ -60,13 +60,11 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         try (Connection con = DAOMySQLSettings.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(sqlInsertStaff, Statement.RETURN_GENERATED_KEYS)) {
 
-            // Inserisci i dati dello staff
             preparedStatement.setString(1, s.getName());
             preparedStatement.setString(2, s.getSurname());
             preparedStatement.setString(3, s.getSpecialties());
 
-            preparedStatement.executeUpdate();  // Esegui l'aggiornamento per inserire lo staff
-
+            preparedStatement.executeUpdate();
 
             logger.info("Query executed successfully: " + sqlInsertStaff);
 
@@ -206,5 +204,27 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         List<Staff> selectAll = dao.select(new Staff(0, null, null, null));
         System.out.println(selectAll);
     }
+
+    public Staff getLastStaff() throws SQLException {
+        Staff s = new Staff(0, null, null, null);
+        Connection connection = DAOMySQLSettings.getConnection();
+        //Define command
+        String searchUser = "select * from staff order by id desc limit 1";
+        PreparedStatement command = connection.prepareStatement(searchUser);
+        //Execute command
+        ResultSet result = command.executeQuery();
+
+        if(result.next()){
+            s.setName(result.getString("name"));
+            s.setSurname(result.getString("surname"));
+            s.setSpecialties(result.getString("specialties"));
+            s.setId(result.getInt("id"));
+        }
+        connection.close();
+        return s;
+    }
+
+
+
 
 }

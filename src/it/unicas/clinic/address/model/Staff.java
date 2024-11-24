@@ -1,5 +1,6 @@
 package it.unicas.clinic.address.model;
 
+import it.unicas.clinic.address.model.dao.StaffException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,6 +33,12 @@ public class Staff {
         this.specialties = new SimpleStringProperty(specialties);
         //this.id= new SimpleIntegerProperty(0);
 
+    }
+
+    public Staff() {
+        this.name = new SimpleStringProperty("");
+        this.surname = new SimpleStringProperty("");
+        this.specialties = new SimpleStringProperty("");
     }
 
     //gets and sets
@@ -84,6 +91,14 @@ public class Staff {
         this.specialties.set(specialties);
     }
 
+    public boolean verifyStaff(Staff s){
+        if (s.getName().equals("") || s.getSurname().equals("")
+                || s.getSpecialties().equals("")) {
+            return false;
+        }
+        else
+            return true;
+    }
 
     //Override toString
 
