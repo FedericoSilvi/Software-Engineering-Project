@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.ChooseOwnerLayoutController">
+   <top>
+      <SplitMenuButton alignment="TOP_LEFT" mnemonicParsing="false" text="SplitMenuButton" BorderPane.alignment="CENTER">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#handleChooseStaff" text="Staff" />
+          <MenuItem mnemonicParsing="false" onAction="#handleChooseSchedule" text="Schedules" />
+        </items>
+      </SplitMenuButton>
+   </top>
+</BorderPane>

@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="implementation of staff, schedule, and DAOs">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/StaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/StaffDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ScheduleAddingLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ScheduleAddingLayout.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +19,8 @@
       <list>
         <option value="Interface" />
         <option value="Exception" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -131,9 +127,9 @@
     </configuration>
     <list>
       <item itemvalue="Application.Client" />
+      <item itemvalue="Application.DAOMySQLSettings" />
       <item itemvalue="Application.ScheduleDAOMySQLImpl" />
       <item itemvalue="Application.StaffDAOMySQLImpl" />
-      <item itemvalue="Application.DAOMySQLSettings" />
     </list>
     <recent_temporary>
       <list>
@@ -183,6 +179,13 @@
       <workItem from="1732428277808" duration="6546000" />
       <workItem from="1732436229136" duration="17685000" />
       <workItem from="1732460249270" duration="59000" />
+      <workItem from="1732460333484" duration="285000" />
+      <workItem from="1732461382853" duration="391000" />
+      <workItem from="1732520172482" duration="715000" />
+      <workItem from="1732533251125" duration="35000" />
+      <workItem from="1732615859174" duration="6715000" />
+      <workItem from="1732622589433" duration="1864000" />
+      <workItem from="1732630068750" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -264,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732369534183</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control">
+      <option name="closed" value="true" />
+      <created>1732460561321</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732460561321</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +302,8 @@
     <MESSAGE value="package creation 4" />
     <MESSAGE value="staff insert implementation completed" />
     <MESSAGE value="implementation of staff, schedule, and DAOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementation of staff, schedule, and DAOs" />
+    <MESSAGE value="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
