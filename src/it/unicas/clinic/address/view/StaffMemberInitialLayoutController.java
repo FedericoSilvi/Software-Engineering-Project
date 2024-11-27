@@ -1,6 +1,6 @@
 package it.unicas.clinic.address.view;
 
-import it.unicas.clinic.address.MainApp;
+import it.unicas.clinic.address.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -17,7 +17,7 @@ import java.util.Optional;
  */
 public class StaffMemberInitialLayoutController {
 
-    private MainApp mainApp;
+    private Main main;
 
     @FXML
     private ImageView clientBackground;
@@ -26,8 +26,8 @@ public class StaffMemberInitialLayoutController {
     @FXML
     private ImageView calendarBackground;
 
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public void setMainApp(Main main) {
+        this.main = main;
     }
 
     @FXML
@@ -49,7 +49,7 @@ public class StaffMemberInitialLayoutController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            mainApp.initLogin();
+            main.initLogin();
         }
     }
     //Methods to highlight sections only when mouse passes on them

@@ -21,7 +21,7 @@ import static javafx.application.Application.launch;
  * Class implementing the application
  */
 
-public class MainApp extends Application {
+public class Main extends Application {
 
     private Stage primaryStage;
     private BorderPane loginLayout;
@@ -69,7 +69,7 @@ public class MainApp extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class
+            loader.setLocation(Main.class
                     .getResource("view/LoginLayout.fxml"));
             loginLayout = (BorderPane) loader.load();
 
@@ -100,7 +100,7 @@ public class MainApp extends Application {
 
         // Load root layout from fxml file.
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainApp.class
+        loader.setLocation(Main.class
                 .getResource("view/StaffManagerInitialLayout.fxml"));
         staffInitialLayout = (BorderPane) loader.load();
 
@@ -135,7 +135,7 @@ public class MainApp extends Application {
 
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class
+            loader.setLocation(Main.class
                     .getResource("view/StaffMemberInitialLayout.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 

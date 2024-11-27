@@ -1,6 +1,6 @@
 package it.unicas.clinic.address.view;
 
-import it.unicas.clinic.address.MainApp;
+import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
 import it.unicas.clinic.address.utils.DataUtil.User;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,7 @@ import java.util.Optional;
  */
 public class LoginLayoutController {
 
-    private MainApp mainApp;
+    private Main main;
 
 
     private String password;
@@ -39,10 +38,10 @@ public class LoginLayoutController {
 
     /**
      * Is called by the main application to give a reference back to itself.
-     * @param mainApp: application
+     * @param main: application
      */
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
+    public void setMainApp(Main main) {
+        this.main = main;
     }
     @FXML
     private void initialize(){
@@ -87,7 +86,7 @@ public class LoginLayoutController {
     @FXML
     private void handleExit(){
         //Recall the fucntion in mainApp
-        mainApp.handleExit();
+        main.handleExit();
     }
     @FXML
     private void handleLogin() {
@@ -135,9 +134,9 @@ public class LoginLayoutController {
              if (r.get() == button){
                  alert.close();
                  if(data.getManager())
-                     mainApp.initStaffManager();
+                     main.initStaffManager();
                  else
-                     mainApp.initStaff();
+                     main.initStaff();
              }
 
          }
