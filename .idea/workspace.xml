@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Merge Sprint 1" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Boh7" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +196,7 @@
       <workItem from="1732533145831" duration="150000" />
       <workItem from="1732619750176" duration="688000" />
       <workItem from="1732706042381" duration="53000" />
-      <workItem from="1732706100965" duration="835000" />
+      <workItem from="1732706100965" duration="1174000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -494,7 +494,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732706937593</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Boh7">
+      <option name="closed" value="true" />
+      <created>1732707284386</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1732707284386</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +520,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambiato data da List&lt;String&gt; a User in modo da poter contenere anche un boolean per controllare se l'utente è staff manager" />
     <MESSAGE value="Si sceglie opportunamente la schermata da far comparire in base all'opportuno attributo di data" />
     <MESSAGE value="Sostituita handleExit con handleLogout in modo da rimandare l'utilizzatore dell'app alla schermata di login" />
     <MESSAGE value="Rinominati opportunamente i file per distringuere membro dello staff e staff manager" />
@@ -537,7 +544,8 @@
     <MESSAGE value="DAO fix" />
     <MESSAGE value="Boh 6" />
     <MESSAGE value="Merge Sprint 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge Sprint 1" />
+    <MESSAGE value="Boh7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boh7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
