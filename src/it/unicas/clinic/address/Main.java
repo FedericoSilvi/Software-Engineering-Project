@@ -287,20 +287,22 @@ public class Main extends Application {
         controller.setMain(this);
     }
     public void loadStaffManagement() throws IOException{
-        FXMLLoader loader2 = new FXMLLoader();
-        loader2.setLocation(Main.class.getResource("view/StaffManagementLayout2.fxml"));
-        page.setCenter(loader2.load());
-        StaffManagementLayoutController controller2 = loader2.getController();
-        controller2.setMainApp(this);
+        staffData.clear();
+        loadStaffManagementChoose();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/StaffManagementLayout2.fxml"));
+        page.setCenter(loader.load());
+        StaffManagementLayoutController controller = loader.getController();
+        controller.setMainApp(this);
         primaryStage.show();
 }
 
     public void loadScheduleManagement() throws IOException{
-        FXMLLoader loader2 = new FXMLLoader();
-        loader2.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
-        page.setCenter(loader2.load());
-        ScheduleAddingLayoutController controller2 = loader2.getController();
-        controller2.setMainApp(this);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+        page.setCenter(loader.load());
+        ScheduleAddingLayoutController controller = loader.getController();
+        controller.setMainApp(this);
         primaryStage.show();
     }
         public static void main(String[] args) {

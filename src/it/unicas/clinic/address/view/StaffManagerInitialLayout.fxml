@@ -52,12 +52,12 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fx:id="staffBackground" fitHeight="200.0" fitWidth="301.0" layoutX="-1.0" onMouseEntered="#handleStaffHighlight" onMouseExited="#handleStaffDownlight" opacity="0.25" pickOnBounds="true">
+                  <ImageView fx:id="staffBackground" fitHeight="200.0" fitWidth="301.0" layoutX="-1.0" onMouseClicked="#handleStaffManagerView" onMouseEntered="#handleStaffHighlight" onMouseExited="#handleStaffDownlight" opacity="0.25" pickOnBounds="true">
                      <image>
                         <Image url="@../../../../../resources/login_icons/staff_icon.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="126.0" layoutY="77.0" onMouseEntered="#handleStaffHighlight" text="Staff">
+                  <Label layoutX="126.0" layoutY="77.0" onMouseClicked="#handleStaffManagerView" onMouseEntered="#handleStaffHighlight" text="Staff">
                      <font>
                         <Font size="24.0" />
                      </font>

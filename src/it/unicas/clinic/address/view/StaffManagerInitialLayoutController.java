@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -86,5 +87,9 @@ public class StaffManagerInitialLayoutController {
     @FXML
     private void handleCalendarDownlight(){
         calendarBackground.setOpacity(0.25);
+    }
+    @FXML
+    private void handleStaffManagerView() throws IOException {
+        main.loadStaffManagement();
     }
 }
