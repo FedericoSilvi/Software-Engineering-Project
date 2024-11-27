@@ -1,6 +1,7 @@
 package it.unicas.clinic.address;
 
 import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import it.unicas.clinic.address.view.AddClientController;
 import it.unicas.clinic.address.view.ClientOverviewController;
@@ -32,14 +33,14 @@ public class Main extends Application {
 
 
         try{
-            DAOMySQLSettings.check();
+            DAOClient.check();
           //  client = DAOMySQLSettings.getClient(1);
 
             System.out.println("");
 
-            list =DAOMySQLSettings.getClientsList();
+            list =DAOClient.getClientsList();
 
-            DAOMySQLSettings.checkSchedule();
+            DAOClient.checkSchedule();
 
          /*   for(int i = 0; i < list.size(); i++){
                 System.out.println(list.get(i));

@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import javafx.fxml.FXML;
 
@@ -56,7 +57,7 @@ public class SearchClientController {
            String surname = surnameText.getText();
            String email = emailText.getText();
 
-           list = DAOMySQLSettings.filterClient(name, surname, email);
+           list = DAOClient.filterClient(name, surname, email);
 
            clientOverviewController.updateTable(list);
            stage.close();

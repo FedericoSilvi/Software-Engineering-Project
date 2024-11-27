@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,7 +66,7 @@ public class ClientOverviewController {
 
     @FXML
     private void OnClickShowAllClients(ActionEvent event) throws SQLException {
-        ArrayList<Client> clients = DAOMySQLSettings.getClientsList();
+        ArrayList<Client> clients = DAOClient.getClientsList();
 
         clientData.clear();
         clientData.addAll(clients);
@@ -115,7 +116,7 @@ public class ClientOverviewController {
                 Client client = table.getSelectionModel().getSelectedItem();
 
                 //Inserire finestra con conferma sull'eliminazione
-                DAOMySQLSettings.delete(client.getId());
+                DAOClient.delete(client.getId());
             }
 
 
@@ -123,7 +124,7 @@ public class ClientOverviewController {
 
         }
 
-        ArrayList<Client> list= DAOMySQLSettings.getClientsList();
+        ArrayList<Client> list= DAOClient.getClientsList();
         updateTable(list);
 
     }
@@ -137,7 +138,7 @@ public class ClientOverviewController {
     }
 
     public void ShowAllClients() throws SQLException {
-        ArrayList<Client> clients = DAOMySQLSettings.getClientsList();
+        ArrayList<Client> clients = DAOClient.getClientsList();
 
         clientData.clear();
         clientData.addAll(clients);

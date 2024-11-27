@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of search &amp; add of client">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of update, delete and allert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/AddClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/AddClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverview.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverviewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/SearchClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/SearchClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/UpdateClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/UpdateClientController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,8 @@
       <workItem from="1732520168821" duration="1362000" />
       <workItem from="1732615995809" duration="7329000" />
       <workItem from="1732632827137" duration="8036000" />
-      <workItem from="1732692145359" duration="828000" />
+      <workItem from="1732692145359" duration="1775000" />
+      <workItem from="1732702391202" duration="1696000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -152,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732521044934</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implementation of update, delete and allert">
+      <option name="closed" value="true" />
+      <created>1732693377778</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732693377778</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +185,8 @@
     <MESSAGE value="package creation 2" />
     <MESSAGE value="package creation 3" />
     <MESSAGE value="Implementation of search &amp; add of client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation of search &amp; add of client" />
+    <MESSAGE value="Implementation of update, delete and allert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation of update, delete and allert" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
