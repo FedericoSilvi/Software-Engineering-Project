@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Risoluzione bug grafici">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Refactor di MainApp in Main" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -496,7 +494,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database" />
     <MESSAGE value="-Eliminate icone inutili" />
     <MESSAGE value="-Aggiunte icone e file di copyright" />
     <MESSAGE value="-Creato il file FXML per la GUI che si presenta allo staff manager dopo il login" />
@@ -521,7 +518,8 @@
     <MESSAGE value="Commenti documentazione e codice per LoginLayoutController" />
     <MESSAGE value="Commenti documentazione e codice per i controller delle GUI iniziali dello staff manager e di un membro generico dello staff" />
     <MESSAGE value="Risoluzione bug grafici" />
-    <option name="LAST_COMMIT_MESSAGE" value="Risoluzione bug grafici" />
+    <MESSAGE value="Refactor di MainApp in Main" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor di MainApp in Main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
