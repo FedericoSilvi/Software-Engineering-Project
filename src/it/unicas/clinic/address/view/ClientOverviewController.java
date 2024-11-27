@@ -1,5 +1,6 @@
 package it.unicas.clinic.address.view;
 
+import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import javafx.collections.FXCollections;
@@ -7,18 +8,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ClientOverviewController {
 
@@ -41,7 +43,7 @@ public class ClientOverviewController {
 
     //Buttons
     @FXML
-    private Button button;
+    private Button updateButton;
 
     @FXML
     private Button searchButton;
@@ -56,6 +58,11 @@ public class ClientOverviewController {
 
     private ObservableList<Client> clientData = FXCollections.observableArrayList();
 
+    private Main mainApp;
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+
     @FXML
     private void OnClickShowAllClients(ActionEvent event) throws SQLException {
         ArrayList<Client> clients = DAOMySQLSettings.getClientsList();
@@ -69,39 +76,91 @@ public class ClientOverviewController {
 
     @FXML
     private void OnClickSearchClient(ActionEvent event) throws IOException {
-        Stage searchWindow = new Stage();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/SearchClient.fxml"));
-        AnchorPane layout = loader.load();
-
-        SearchClientController controller = loader.getController();
-        controller.SetClientOverviewController(this);
-
-
-
-        searchWindow.setScene(new Scene(layout));
-        searchWindow.show();
+        mainApp.searchClientLayout(this);
     }
 
     @FXML
     private void OnClickAddClient(ActionEvent event) throws IOException {
-        Stage addClientWindow = new Stage();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/AddClient.fxml"));
-        AnchorPane layout = loader.load();
+        mainApp.AddClientLayout(this);
+    }
 
-        AddClientController controller = loader.getController();
-        controller.SetClientOverviewController(this);
+    @FXML
+    private void OnClickUpdateClient(ActionEvent event) throws IOException {
+        if(isAvailable()){
+            Client client = table.getSelectionModel().getSelectedItem();
 
-        addClientWindow.setScene(new Scene(layout));
-        addClientWindow.show();
+            mainApp.UpdateClientLayout(this, client);
+        }
 
     }
 
-  //  @FXML non so se serve
+    @FXML
+    private void OnClickDeleteClient(ActionEvent event) throws SQLException {
+        if(isAvailable()){
+            //Genero un aller per chiedere conferma
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Client");
+            alert.setContentText("Are you sure you want to delete this client?");
+            alert.setHeaderText("Are you sure you want to delete this client?");
+
+            ButtonType buttonYes = new ButtonType("Yes");
+            ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonYes, buttonCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == buttonYes){
+
+                Client client = table.getSelectionModel().getSelectedItem();
+
+                //Inserire finestra con conferma sull'eliminazione
+                DAOMySQLSettings.delete(client.getId());
+            }
+
+
+
+
+        }
+
+        ArrayList<Client> list= DAOMySQLSettings.getClientsList();
+        updateTable(list);
+
+    }
+
+
+
     public void updateTable(ArrayList<Client> clients) {
         clientData.clear();
         clientData.addAll(clients);
         table.setItems(clientData);
     }
+
+    public void ShowAllClients() throws SQLException {
+        ArrayList<Client> clients = DAOMySQLSettings.getClientsList();
+
+        clientData.clear();
+        clientData.addAll(clients);
+
+        table.setItems(clientData);
+    }
+
+    private boolean isAvailable() {
+        String errorMessage = "";
+        if(table.getSelectionModel().getSelectedItem() == null) {
+            errorMessage = "Select a client first!";
+            // Show the error message.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+        //    alert.initOwner();
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+
+            alert.showAndWait();
+
+            return false;
+        }
+        return true;
+    }
+
 }

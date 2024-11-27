@@ -3,6 +3,7 @@ package it.unicas.clinic.address.view;
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -12,11 +13,26 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AddClientController {
-    public ClientOverviewController clientOverviewController;
+public class UpdateClientController {
 
+    private Main mainApp;
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+
+    public ClientOverviewController clientOverviewController;
     public void SetClientOverviewController(ClientOverviewController clientOverviewController) {
         this.clientOverviewController = clientOverviewController;
+    }
+
+    private int id;
+    public void getClient(Client client) {
+
+        id = client.getId();
+        nameText.setText(client.getName());
+        surnameText.setText(client.getSurname());
+        emailText.setText(client.getEmail());
+        numberText.setText(client.getNumber());
     }
 
     private Stage stage;
@@ -24,12 +40,6 @@ public class AddClientController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
-    private Main mainApp;
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-    }
-
     @FXML
     private TextField nameText;
 
@@ -40,47 +50,49 @@ public class AddClientController {
     private TextField emailText;
 
     @FXML
-    private TextField phoneNumberText;
+    private TextField numberText;
+
 
     @FXML
-    private void OnClickAddClient() throws SQLException {
+    public void OnClickUpdate(ActionEvent event) throws SQLException {
 
         if(isInputValid())
         {
             String name = nameText.getText();
             String surname = surnameText.getText();
             String email = emailText.getText();
-            String phoneNumber = phoneNumberText.getText();
+            String number = numberText.getText();
 
-            DAOMySQLSettings.insert(name, surname, email, phoneNumber);
-            ArrayList<Client> list = DAOMySQLSettings.getClientsList();
+            DAOMySQLSettings.update(id, name, surname, email, number);
 
-            clientOverviewController.updateTable(list);
+            ArrayList<Client> clients = DAOMySQLSettings.getClientsList();
+
+            clientOverviewController.updateTable(clients);
 
             stage.close();
         }
 
-
     }
 
-    private boolean isInputValid() {
+    private boolean isInputValid(){
         String errorMessage = "";
-        if (nameText.getText() == null || nameText.getText().length() == 0) {
+        if(nameText.getText() == null || nameText.getText().length() == 0) {
             errorMessage += "Name cannot be empty!\n";
         }
-        if (surnameText.getText() == null || surnameText.getText().length() == 0) {
+        if(surnameText.getText() == null || surnameText.getText().length() == 0) {
             errorMessage += "Surname cannot be empty!\n";
         }
-        if (emailText.getText() == null || emailText.getText().length() == 0) {
+        if(emailText.getText() == null || emailText.getText().length() == 0) {
             errorMessage += "Email cannot be empty!\n";
         }
-        if (phoneNumberText.getText() == null || phoneNumberText.getText().length() == 0) {
-            errorMessage += "Phone number cannot be empty!\n";
+        if(numberText.getText() == null || numberText.getText().length() == 0) {
+            errorMessage += "Number cannot be empty!\n";
         }
-        if (errorMessage.length() == 0) {
+        if(errorMessage.length() == 0) {
             return true;
         }
         else {
+            // Show the error message.
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(stage);
             alert.setTitle("Invalid Fields");
@@ -92,4 +104,5 @@ public class AddClientController {
             return false;
         }
     }
+
 }

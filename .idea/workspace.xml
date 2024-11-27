@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_30.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-java-8.0.30.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/protobuf-java-3.19.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverview.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/RootLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of search &amp; add of client">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/AddClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/AddClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/SearchClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/SearchClientController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +52,7 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;client__management&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/giaco/OneDrive/Desktop/University 2.0/Software Engineering/progettino_uwu&quot;,
@@ -112,7 +107,10 @@
       <workItem from="1732436353291" duration="19839000" />
       <workItem from="1732468451486" duration="19000" />
       <workItem from="1732468603558" duration="3430000" />
-      <workItem from="1732520168821" duration="742000" />
+      <workItem from="1732520168821" duration="1362000" />
+      <workItem from="1732615995809" duration="7329000" />
+      <workItem from="1732632827137" duration="8036000" />
+      <workItem from="1732692145359" duration="828000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -146,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732179553806</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implementation of search &amp; add of client">
+      <option name="closed" value="true" />
+      <created>1732521044934</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732521044934</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +175,8 @@
     <MESSAGE value="package creation" />
     <MESSAGE value="package creation 2" />
     <MESSAGE value="package creation 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="package creation 3" />
+    <MESSAGE value="Implementation of search &amp; add of client" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation of search &amp; add of client" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

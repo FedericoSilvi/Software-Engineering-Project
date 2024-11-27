@@ -51,14 +51,14 @@ public class DAOMySQLSettings {
         connection.close();
     }
 
-    public static void update(int id) throws SQLException {
+    public static void update(int id, String name, String surname, String email, String number) throws SQLException {
         Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         String sqlUpdate = "UPDATE clinic.client SET name=?, surname=?, email=?, number=? WHERE id = ?";
         PreparedStatement preparedstatment = connection.prepareStatement(sqlUpdate);
-        preparedstatment.setString(1, "Mickey");
-        preparedstatment.setString(2, "Mouse");
-        preparedstatment.setString(3, "mickey@gmail.com");
-        preparedstatment.setInt(4, 458961);
+        preparedstatment.setString(1, name);
+        preparedstatment.setString(2, surname);
+        preparedstatment.setString(3, email);
+        preparedstatment.setString(4, number);
         preparedstatment.setInt(5, id);
         preparedstatment.execute();
         connection.close();

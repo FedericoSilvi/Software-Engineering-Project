@@ -21,9 +21,9 @@
         <buttons>
           <Button mnemonicParsing="false" onAction="#OnClickAddClient" text="Add Client" />
             <Button fx:id="searchButton" mnemonicParsing="false" onAction="#OnClickSearchClient" text="Search Client" />
-            <Button fx:id="button" mnemonicParsing="false" onAction="#OnClickShowAllClients" text="Show All Clients" />
-            <Button mnemonicParsing="false" text="Delete Client" />
-            <Button mnemonicParsing="false" text="Update Client" />
+            <Button mnemonicParsing="false" onAction="#OnClickShowAllClients" text="Show All Clients" />
+            <Button mnemonicParsing="false" onAction="#OnClickDeleteClient" text="Delete Client" />
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#OnClickUpdateClient" text="Update Client" />
         </buttons>
          <padding>
             <Insets right="20.0" />
