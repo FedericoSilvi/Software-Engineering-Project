@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of Owner Layout: possibility to choose what to do with a SplitMenu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ScheduleAddingLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ScheduleAddingLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,6 +185,8 @@
       <workItem from="1732615859174" duration="6715000" />
       <workItem from="1732622589433" duration="1864000" />
       <workItem from="1732630068750" duration="5000" />
+      <workItem from="1732631732781" duration="747000" />
+      <workItem from="1732692169382" duration="1766000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -275,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732460561321</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Implementation of Owner Layout: possibility to choose what to do with a SplitMenu">
+      <option name="closed" value="true" />
+      <created>1732631799003</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732631799003</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +312,8 @@
     <MESSAGE value="staff insert implementation completed" />
     <MESSAGE value="implementation of staff, schedule, and DAOs" />
     <MESSAGE value="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation of Staff FXML and Controls. Creation of Schedule FXML and Control" />
+    <MESSAGE value="Implementation of Owner Layout: possibility to choose what to do with a SplitMenu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation of Owner Layout: possibility to choose what to do with a SplitMenu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -105,7 +105,7 @@ public class StaffManagementLayoutController {
         int selectedIndex = staffTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0){
             Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Delete a Staff Member");
             alert.setHeaderText("Do you want to delete this member?");
