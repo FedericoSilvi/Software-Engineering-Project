@@ -1,8 +1,10 @@
 package it.unicas.clinic.address;
 
-
+import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.view.*;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -10,10 +12,15 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
+
+import java.io.IOException;
 
 import static javafx.application.Application.launch;
 
@@ -26,13 +33,30 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane loginLayout;
     private BorderPane staffInitialLayout;
+    private ObservableList<Staff> staffData = FXCollections.observableArrayList();
+    private BorderPane page;
+    public ObservableList<Staff> getStaffData() {
+        return staffData;
+    }
+
+
+    public Main() {
+    }
+
+    /**
+     * Returns the main stage.
+     * @return
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 
     /**
      * Default method called at the start of the application.
      * It makes the login GUI appear.
      */
     public void start(Stage primaryStage){
-        this.primaryStage=primaryStage;
+        this.primaryStage = primaryStage;
         primaryStage.getIcons().add(new Image("file:src/resources/login_icons/clinic-icon.png"));
         this.primaryStage.setTitle("Clinic");
 
@@ -45,11 +69,11 @@ public class Main extends Application {
     /**
      * Pop up an alert for the exit operation.
      */
-    public void handleExit(){
+    public void handleExit() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Exit");
         alert.setHeaderText("Are you sure you want to quit the app?");
-        alert.setContentText("Click "+"\n"+"'Yes' to exit"+"\n"+"'Back' to close the window");
+        alert.setContentText("Click " + "\n" + "'Yes' to exit" + "\n" + "'Back' to close the window");
 
         ButtonType buttonTypeOne = new ButtonType("Yes");
         ButtonType buttonTypeCancel = new ButtonType("Back", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -91,42 +115,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Load the initial staff manager GUI to the application window
-     */
-    public void initStaffManager(){
-    try{
-
-        // Load root layout from fxml file.
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class
-                .getResource("view/StaffManagerInitialLayout.fxml"));
-        staffInitialLayout = (BorderPane) loader.load();
-
-        // Show the scene containing the root layout.
-        Scene scene = new Scene(staffInitialLayout);
-        primaryStage.setScene(scene);
-
-        //Implementing alert when you click on the 'X' of the window
-        primaryStage.setOnCloseRequest(event -> {
-            event.consume();
-            handleExit();
-        });
-
-
-        // Give the controller access to the main app.
-        StaffManagerInitialLayoutController controller = loader.getController();
-        controller.setMainApp(this);
-
-        //Set and show primary stage
-        primaryStage.centerOnScreen();
-        primaryStage.setResizable(false);
-        primaryStage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    }
     /**
      * Load the initial staff member GUI to the application window
      */
@@ -163,10 +151,159 @@ public class Main extends Application {
         }
     }
 
+
     /**
-     * Start the application
+     * Load the initial staff manager GUI to the application window
      */
-    public static void main(String[] args) {
+    public void initStaffManager(){
+        try{
+
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class
+                    .getResource("view/StaffManagerInitialLayout.fxml"));
+            staffInitialLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(staffInitialLayout);
+            primaryStage.setScene(scene);
+
+            //Implementing alert when you click on the 'X' of the window
+            primaryStage.setOnCloseRequest(event -> {
+                event.consume();
+                handleExit();
+            });
+
+
+            // Give the controller access to the main app.
+            StaffManagerInitialLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
+            //Set and show primary stage
+            primaryStage.centerOnScreen();
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showStaffInsertDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/StaffAddingLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Staff");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            StaffAddingLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDialogStage(dialogStage);
+            //controller.setStaff();
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    public void addSchedule() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Schedule");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            ScheduleAddingLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDialogStage(dialogStage);
+            //controller.setStaff();
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void showStaffUpdateDialog(Staff s){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/StaffUpdateLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Update Stuff");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            StaffUpdateLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDialogStage(dialogStage);
+            controller.setField(s);
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void loadStaffManagementChoose() throws IOException{
+        primaryStage.getIcons().add(new Image("file:resources/clinic-icon-3.png"));
+        this.primaryStage.setTitle("Clinic");
+        FXMLLoader loader = new FXMLLoader();
+        this.primaryStage.setTitle("Clinic");
+        loader.setLocation(Main.class.getResource("view/ChooseOwnerLayout.fxml"));
+        page =  loader.load();
+        Scene scene = new Scene(page);
+        primaryStage.setScene(scene);
+        ChooseOwnerLayoutController controller = loader.getController();
+        controller.setMain(this);
+    }
+    public void loadStaffManagement() throws IOException{
+        FXMLLoader loader2 = new FXMLLoader();
+        loader2.setLocation(Main.class.getResource("view/StaffManagementLayout2.fxml"));
+        page.setCenter(loader2.load());
+        StaffManagementLayoutController controller2 = loader2.getController();
+        controller2.setMainApp(this);
+        primaryStage.show();
+}
+
+    public void loadScheduleManagement() throws IOException{
+        FXMLLoader loader2 = new FXMLLoader();
+        loader2.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+        page.setCenter(loader2.load());
+        ScheduleAddingLayoutController controller2 = loader2.getController();
+        controller2.setMainApp(this);
+        primaryStage.show();
+    }
+        public static void main(String[] args) {
         launch(args);
     }
 }

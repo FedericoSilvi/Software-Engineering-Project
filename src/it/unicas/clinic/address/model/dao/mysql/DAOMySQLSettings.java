@@ -149,8 +149,16 @@ public class DAOMySQLSettings {
     public static void closeConnection(Connection connection) throws SQLException {
         connection.close();
     }
+    public static Statement getStatement() throws SQLException{
+        if (currentDAOMySQLSettings == null){
+            currentDAOMySQLSettings = getDefaultDAOSettings();
+        }
+        return DriverManager.getConnection("jdbc:mysql://" + currentDAOMySQLSettings.host  + "/" + currentDAOMySQLSettings.schema
+                + PARAMETERS, currentDAOMySQLSettings.userName, currentDAOMySQLSettings.pwd).createStatement();
+    }
+
+    public static void closeStatement(Statement st) throws SQLException{
+        st.getConnection().close();
+        st.close();
+    }
 }
-
-
-
-
