@@ -38,12 +38,12 @@
          <children>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <ImageView fx:id="clientBackground" fitHeight="188.0" fitWidth="300.0" onMouseEntered="#handleClientHighlight" onMouseExited="#handleClientDownlight" opacity="0.25" pickOnBounds="true">
+                        <ImageView fx:id="clientBackground" fitHeight="188.0" fitWidth="300.0" onMouseClicked="#handleClientView" onMouseEntered="#handleClientHighlight" onMouseExited="#handleClientDownlight" opacity="0.25" pickOnBounds="true">
                             <image>
                                 <Image url="@../../../../../resources/login_icons/client_icon.jpg" />
                             </image>
                         </ImageView>
-                        <Label layoutX="120.0" layoutY="77.0" onMouseEntered="#handleClientHighlight" opacity="0.75" text="Client">
+                        <Label layoutX="120.0" layoutY="77.0" onMouseClicked="#handleClientView" onMouseEntered="#handleClientHighlight" opacity="0.75" text="Client">
                             <font>
                                 <Font size="24.0" />
                             </font>

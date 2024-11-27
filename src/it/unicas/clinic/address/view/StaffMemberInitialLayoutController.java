@@ -7,6 +7,8 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -76,5 +78,9 @@ public class StaffMemberInitialLayoutController {
     @FXML
     private void handleCalendarDownlight(){
         calendarBackground.setOpacity(0.25);
+    }
+    @FXML
+    private void handleClientView() throws SQLException, IOException {
+        main.showClientView();
     }
 }

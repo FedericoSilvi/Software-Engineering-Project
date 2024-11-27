@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="DAO fix" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="DAO fix">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_30.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-java-8.0.30.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/protobuf-java-3.19.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/AddClient.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/AddClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverview.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ClientOverviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/RootLayout.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/SearchClient.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/SearchClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/UpdateClient.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/UpdateClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffMemberInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffMemberInitialLayout.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +70,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;login&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fedes/Desktop/javafx-sdk-23.0.1/lib/javafx.web.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -195,6 +216,8 @@
       <workItem from="1732445813869" duration="151000" />
       <workItem from="1732533145831" duration="150000" />
       <workItem from="1732619750176" duration="688000" />
+      <workItem from="1732706042381" duration="53000" />
+      <workItem from="1732706100965" duration="464000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -502,7 +525,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra" />
     <MESSAGE value="Creata la classe User per agevolare le operazioni di login e ilk riconoscimento della giusta schermata da far comparire." />
     <MESSAGE value="Cambiato data da List&lt;String&gt; a User in modo da poter contenere anche un boolean per controllare se l'utente è staff manager" />
     <MESSAGE value="Si sceglie opportunamente la schermata da far comparire in base all'opportuno attributo di data" />
@@ -527,7 +549,8 @@
     <MESSAGE value="Boh 2" />
     <MESSAGE value="Boh 3" />
     <MESSAGE value="DAO fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="DAO fix" />
+    <MESSAGE value="Boh 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boh 6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

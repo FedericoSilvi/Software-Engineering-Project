@@ -13,15 +13,18 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
+import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.view.AddClientController;
+import it.unicas.clinic.address.view.ClientOverviewController;
+import it.unicas.clinic.address.view.SearchClientController;
+import it.unicas.clinic.address.view.UpdateClientController;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
 
-import java.io.IOException;
-
-import static javafx.application.Application.launch;
+import java.sql.SQLException;
 
 /**
  * Class implementing the application
@@ -54,10 +57,19 @@ public class Main extends Application {
      * Default method called at the start of the application.
      * It makes the login GUI appear.
      */
-    public void start(Stage primaryStage){
-        this.primaryStage = primaryStage;
-        primaryStage.getIcons().add(new Image("file:src/resources/login_icons/clinic-icon.png"));
+
+
+
+
+
+    @Override
+    public void start(Stage primaryStage) throws IOException, SQLException {
+        this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Clinic");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/ClientOverview.fxml"));
+     //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
+        AnchorPane root = loader.load();
 
         initLogin();
         primaryStage.centerOnScreen();
@@ -306,5 +318,72 @@ public class Main extends Application {
     }
         public static void main(String[] args) {
         launch(args);
+    }
+
+
+    public void searchClientLayout(ClientOverviewController clientController) throws IOException {
+        Stage searchWindow = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/SearchClient.fxml"));
+        AnchorPane layout = loader.load();
+
+
+        SearchClientController controller = loader.getController();
+        controller.setStage(searchWindow);
+        controller.setMainApp(this);
+        controller.SetClientOverviewController(clientController);
+
+        searchWindow.initModality(Modality.WINDOW_MODAL);
+        searchWindow.initOwner(primaryStage);
+
+
+        searchWindow.setScene(new Scene(layout));
+        searchWindow.showAndWait();
+    }
+
+    public void addClientLayout(ClientOverviewController clientController) throws IOException {
+        Stage addWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/AddClient.fxml"));
+        AnchorPane layout = loader.load();
+        AddClientController controller = loader.getController();
+        controller.setStage(addWindow);
+        controller.setMainApp(this);
+        controller.SetClientOverviewController(clientController);
+
+        addWindow.initModality(Modality.WINDOW_MODAL);
+        addWindow.initOwner(primaryStage);
+
+        addWindow.setScene(new Scene(layout));
+        addWindow.show();
+    }
+
+    public void updateClientLayout(ClientOverviewController clientController, Client client) throws IOException {
+        Stage updateWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/UpdateClient.fxml"));
+        AnchorPane layout = (AnchorPane) loader.load();
+        UpdateClientController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(updateWindow);
+        controller.SetClientOverviewController(clientController);
+        controller.getClient(client);
+
+        //definisco suo padre (x forza)
+        updateWindow.initModality(Modality.WINDOW_MODAL);
+        updateWindow.initOwner(primaryStage);
+
+        updateWindow.setScene(new Scene(layout));
+        updateWindow.showAndWait();
+    }
+    public void showClientView() throws IOException, SQLException {
+            this.primaryStage.setTitle("Clinic");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
+            AnchorPane root = loader.load();
+            ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
+            controller.ShowAllClients();
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+
     }
 }

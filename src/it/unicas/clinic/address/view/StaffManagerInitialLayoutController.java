@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -91,5 +92,9 @@ public class StaffManagerInitialLayoutController {
     @FXML
     private void handleStaffManagerView() throws IOException {
         main.loadStaffManagement();
+    }
+    @FXML
+    private void handleClientView() throws SQLException, IOException {
+        main.showClientView();
     }
 }
