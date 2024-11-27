@@ -58,10 +58,6 @@ public class Main extends Application {
      * It makes the login GUI appear.
      */
 
-
-
-
-
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
         this.primaryStage=primaryStage;
@@ -297,6 +293,7 @@ public class Main extends Application {
         ChooseOwnerLayoutController controller = loader.getController();
         controller.setMain(this);
     }
+
     public void loadStaffManagement() throws IOException{
         staffData.clear();
         loadStaffManagementChoose();

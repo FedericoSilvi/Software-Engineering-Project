@@ -25,14 +25,6 @@ public class StaffManagementLayoutController {
     private TableColumn<Staff, Integer> idColumn;
 
 
-    /*@FXML
-    private Label nameLabel;
-    @FXML
-    private Label surnameLabel;
-    @FXML
-    private Label specialityLabel;
-    @FXML
-    private Label idLabel;*/
     // Reference to the main application.
     private Main mainApp;
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
@@ -52,27 +44,10 @@ public class StaffManagementLayoutController {
         specColumn.setCellValueFactory(cellData -> cellData.getValue().specialtiesProperty());
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject()); // IntegerProperty richiede asObject()
 
-        // Listener per selezione nella tabella
-        //staffTable.getSelectionModel().selectedItemProperty().addListener(
-         //       (observable, oldValue, newValue) -> showStaffDetails(newValue));
+
     }
 
-    /*private void showStaffDetails(Staff staff) {
-        if (staff != null) {
-            // Fill the labels with info from the colleghi object.
-            nameLabel.setText(staff.getName());
-            surnameLabel.setText(staff.getSurname());
-            specialityLabel.setText(staff.getSpecialties());
-            idLabel.setText(String.valueOf(staff.getId()));
 
-        } else {
-            // Amici is null, remove all the text.
-            nameLabel.setText("");
-            surnameLabel.setText("");
-            specialityLabel.setText("");
-            idLabel.setText("");
-        }
-    }*/
     @FXML
     private void showStaff(){
         //StaffDAOMySQLImpl.getInstance().select(new Staff(0,null, null, null));
