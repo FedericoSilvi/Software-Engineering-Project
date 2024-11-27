@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Merge login+staff_management">
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Boh 2">
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -504,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-Creato il file FXML per la GUI che si presenta allo staff manager dopo il login" />
     <MESSAGE value="-Creato il controllore della GUI iniziale dello staff manager che si occupa, per ora, di evidenziare dove le sezioni dove c'è il mouse" />
     <MESSAGE value="-Aggiunto il metodo initStaffManager che fa comparire la schermata iniziale dello staff manager e la collega all'opportuno controllore" />
     <MESSAGE value="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra" />
@@ -529,7 +528,8 @@
     <MESSAGE value="Refactor di MainApp in Main" />
     <MESSAGE value="Boh" />
     <MESSAGE value="Merge login+staff_management" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge login+staff_management" />
+    <MESSAGE value="Boh 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boh 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
