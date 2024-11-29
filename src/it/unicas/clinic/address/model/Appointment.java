@@ -137,6 +137,13 @@ public class Appointment {
         this.clientId.set(clientId);
     }
 
+    public boolean verifyAppointment(Appointment a){
+        if (a.getService()==null) {
+            return false;
+        }
+        else
+            return true;
+    }
     @Override
     public String toString() {
         return
