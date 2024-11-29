@@ -52,12 +52,12 @@
                 </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <children>
-                        <ImageView fx:id="appointmentBackground" fitHeight="176.0" fitWidth="300.0" layoutY="12.0" onMouseEntered="#handleAppointmentsHighlight" onMouseExited="#handleAppointmentsDownlight" opacity="0.25" pickOnBounds="true">
+                        <ImageView fx:id="appointmentBackground" fitHeight="176.0" fitWidth="300.0" layoutY="12.0" onMouseClicked="#handleAppView" onMouseEntered="#handleAppointmentsHighlight" onMouseExited="#handleAppointmentsDownlight" opacity="0.25" pickOnBounds="true">
                             <image>
                                 <Image url="@../../../../../resources/login_icons/appointment_icon.jpg" />
                             </image>
                         </ImageView>
-                        <Label layoutX="75.0" layoutY="77.0" onMouseEntered="#handleAppointmentsHighlight" opacity="0.75" text="Appointments">
+                        <Label layoutX="75.0" layoutY="77.0" onMouseClicked="#handleAppView" onMouseEntered="#handleAppointmentsHighlight" opacity="0.75" text="Appointments">
                             <font>
                                 <Font size="24.0" />
                             </font>
