@@ -14,6 +14,7 @@ import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.dao.ScheduleException;
 import it.unicas.clinic.address.model.dao.StaffDAO;
+import it.unicas.clinic.address.utils.DataUtil;
 
 
 public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
@@ -185,6 +186,27 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         }
         else
             logger.severe("Id is invalid");
+    }
+
+    public Appointment getLastApp() throws SQLException {
+        Appointment a = new Appointment(0, null, null, null,0,0);
+        Connection connection = DAOMySQLSettings.getConnection();
+        //Define command
+        String searchUser = "select * from appointment order by id desc limit 1";
+        PreparedStatement command = connection.prepareStatement(searchUser);
+        //Execute command
+        ResultSet result = command.executeQuery();
+
+        if(result.next()){
+            a.setService(result.getString("service"));
+            a.setDate(DataUtil.parseToDate(result.getString("date")));
+            a.setTime(DataUtil.parseToTime(result.getString("time"),false));
+            a.setId(result.getInt("id"));
+            a.setStaffId(result.getInt("staff_id"));
+            a.setClientId(result.getInt("client_id"));
+        }
+        connection.close();
+        return a;
     }
     public static void main(String[] args){
         dao = getInstance();
