@@ -213,6 +213,21 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
     }
 
+    @Override
+    public  boolean isAvailable(LocalDate day, LocalTime time, int staff_id){
+        if(day==null || time==null || staff_id==0){
+            throw new IllegalArgumentException("Day, time or staff id are not valid!");
+        }
+        List<Schedule> schedulesOfDay = select(new Schedule(0,day,null,null,staff_id));
+        if(schedulesOfDay.isEmpty())
+            return false;
+        for(Schedule s: schedulesOfDay){
+            if(time.isAfter(s.getStopTime()) || time.isBefore(s.getStartTime())){
+                return false;
+            }
+        }
+        return true;
+    }
     //method to check if a staffId exists (needs for CRUD on Schedule). Return false if not exists.
     private boolean staffExists(int staffId) throws ScheduleException {
         String sqlCheckStaff = "SELECT COUNT(*) FROM staff WHERE id = ?";
@@ -229,6 +244,8 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
         return false;
     }
+
+
 
     public static void main(String args[]) throws StaffException, SQLException{
         dao=ScheduleDAOMySQLImpl.getInstance();
