@@ -1,8 +1,10 @@
 package it.unicas.clinic.address;
 
+import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.view.*;
 import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
+import it.unicas.clinic.address.view.schedule.ScheduleManagementLayoutController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +43,11 @@ public class Main extends Application {
     public ObservableList<Staff> getStaffData() {
         return staffData;
     }
+    private ObservableList<Schedule> scheduleData = FXCollections.observableArrayList();
+    public ObservableList<Schedule> getScheduleData() {
+        return scheduleData;
+    }
+
 
 
     public Main() {
@@ -226,32 +233,7 @@ public class Main extends Application {
 
     }
 
-    public void addSchedule() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Add Schedule");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
 
-            //Controller
-            ScheduleAddingLayoutController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.setDialogStage(dialogStage);
-            //controller.setStaff();
-
-            // Set the dialog icon.
-            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
     public void showStaffUpdateDialog(Staff s){
@@ -306,15 +288,8 @@ public class Main extends Application {
         primaryStage.show();
 }
 
-    public void loadScheduleManagement() throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
-        page.setCenter(loader.load());
-        ScheduleAddingLayoutController controller = loader.getController();
-        controller.setMainApp(this);
-        primaryStage.show();
-    }
-        public static void main(String[] args) {
+
+    public static void main(String[] args) {
         launch(args);
     }
 
@@ -383,5 +358,61 @@ public class Main extends Application {
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
 
+    }
+
+    //schedule mangament
+    public void showScheduleManagmentLayout(Staff s) throws IOException {
+        //System.out.println(s);
+        Stage updateWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/schedule/ScheduleManagementLayout.fxml"));
+        AnchorPane layout = (AnchorPane) loader.load();
+        ScheduleManagementLayoutController controller = loader.getController();
+        controller.setMainApp(this, s);
+        //controller.setStage(updateWindow);
+
+        updateWindow.initModality(Modality.WINDOW_MODAL);
+        updateWindow.initOwner(primaryStage);
+
+        updateWindow.setScene(new Scene(layout));
+        // Aggiungi un listener per la chiusura della finestra. Quando si chiude devo svuotare la lista degli schedule
+        updateWindow.setOnCloseRequest(event -> {
+            scheduleData.clear();
+        });
+        updateWindow.showAndWait();
+    }
+    public void showScheduleInsertDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Schedule");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            ScheduleAddingLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDialogStage(dialogStage);
+            //controller.setStaff();
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void loadScheduleManagement() throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+        page.setCenter(loader.load());
+        ScheduleAddingLayoutController controller = loader.getController();
+        controller.setMainApp(this);
+        primaryStage.show();
     }
 }

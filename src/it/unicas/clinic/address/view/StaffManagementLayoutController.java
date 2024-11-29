@@ -8,6 +8,7 @@ import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.util.Optional;
 
 
@@ -109,6 +110,26 @@ public class StaffManagementLayoutController {
             }
         }
 
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Staff Selected");
+            alert.setContentText("Please select a Staff into the table.");
+
+            alert.showAndWait();
+        }
+    }
+    //handle Schedule button
+    @FXML
+    private void handleSchedule() throws IOException {
+        //take the staff del quale dovrò mostrare gli schedule
+        Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
+        if(selectedStaff != null){
+            //System.out.println("HO preso lo staff x lo schedule");
+            //System.out.println(selectedStaff);
+            mainApp.showScheduleManagmentLayout(selectedStaff);
+        }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());

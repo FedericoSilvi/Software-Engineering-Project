@@ -76,7 +76,7 @@ public class StaffAddingLayoutController {
                 try {
                     dao.insert(this.staff);
                     mainApp.getStaffData().add(dao.getLastStaff());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.initOwner(mainApp.getPrimaryStage());
                     alert.setTitle("Schedule");
                     alert.setHeaderText("Do you want to add a schedule?");
@@ -88,7 +88,7 @@ public class StaffAddingLayoutController {
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == buttonTypeOne){
                         mainApp.addSchedule();
-                    }
+                    }*/
                 }catch (StaffException e){
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("Database Error");
