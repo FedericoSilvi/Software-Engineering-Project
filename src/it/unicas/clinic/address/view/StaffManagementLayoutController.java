@@ -62,7 +62,7 @@ public class StaffManagementLayoutController {
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
         if(selectedStaff != null){
             mainApp.showStaffUpdateDialog(selectedStaff);
-            mainApp.getStaffData().remove(selectedStaff);
+            //mainApp.getStaffData().remove(selectedStaff);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
