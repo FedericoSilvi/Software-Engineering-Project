@@ -58,7 +58,7 @@ public class ScheduleManagementLayoutController {
     }
     @FXML
     private void handleInsertSchedule() {
-        //mainApp.showScheduleInsertDialog();
+        mainApp.showScheduleInsertDialog(staff);
 
     }
     @FXML

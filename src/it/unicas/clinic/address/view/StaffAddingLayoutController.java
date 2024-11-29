@@ -76,6 +76,7 @@ public class StaffAddingLayoutController {
                 try {
                     dao.insert(this.staff);
                     mainApp.getStaffData().add(dao.getLastStaff());
+                    dialogStage.close();
                     /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.initOwner(mainApp.getPrimaryStage());
                     alert.setTitle("Schedule");
@@ -84,7 +85,7 @@ public class StaffAddingLayoutController {
                     ButtonType buttonTypeOne = new ButtonType("Yes");
                     ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
                     alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
-                    dialogStage.close();
+
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == buttonTypeOne){
                         mainApp.addSchedule();

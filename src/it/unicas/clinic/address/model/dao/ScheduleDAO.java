@@ -10,4 +10,5 @@ public interface ScheduleDAO <T>{
     void update(T s) throws StaffException;
     void insert(T s) throws StaffException;
     void delete(T s) throws StaffException;
+    public Schedule getLastSchedule() throws SQLException;
 }

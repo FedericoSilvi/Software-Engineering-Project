@@ -230,6 +230,28 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         return false;
     }
 
+    public Schedule getLastSchedule() throws SQLException {
+        Schedule s = new Schedule(-1, LocalDate.now(), null, null,-1);
+        Connection connection = DAOMySQLSettings.getConnection();
+        //Define command
+        String searchSchedule = "select * from schedule order by id desc limit 1";
+        PreparedStatement command = connection.prepareStatement(searchSchedule);
+        //Execute command
+        ResultSet result = command.executeQuery();
+
+        if(result.next()){
+            s.setId(result.getInt("id"));
+            s.setDay(result.getDate("day").toLocalDate());
+            s.setStartTime(result.getTime("start_time").toLocalTime());
+            s.setStopTime(result.getTime("stop_time").toLocalTime());
+            s.setStaffId(result.getInt("staff_id"));
+        }
+        System.out.println(s);
+        connection.close();
+        return s;
+    }
+
+
     public static void main(String args[]) throws StaffException, SQLException{
         dao=ScheduleDAOMySQLImpl.getInstance();
 
@@ -250,4 +272,6 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         //List<Schedule> schedulesall = dao.select(new Schedule(0, null, null, null,0));
         //System.out.println(schedulesall);
     }
+
+
 }

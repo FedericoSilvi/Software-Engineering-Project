@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Start working on schedule_management">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Implementation of scheduleManagementLayout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffAddingLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffAddingLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayout2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayout2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Schedule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/ScheduleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/ScheduleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/ScheduleDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/ScheduleDAOMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ChooseOwnerLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ChooseOwnerLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ChooseOwnerLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/ChooseOwnerLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleAddingLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleAddingLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleAddingLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleAddingLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleManagementLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleManagementLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +204,7 @@
       <workItem from="1732778641100" duration="437000" />
       <workItem from="1732787190037" duration="543000" />
       <workItem from="1732886255436" duration="18000" />
-      <workItem from="1732886306261" duration="7176000" />
+      <workItem from="1732886306261" duration="16872000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -312,7 +318,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732887193786</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implementation of scheduleManagementLayout">
+      <option name="closed" value="true" />
+      <created>1732893590671</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732893590671</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +357,8 @@
     <MESSAGE value="Implementation of Owner Layout: possibility to choose what to do with a SplitMenu" />
     <MESSAGE value="Implementation of Owner Layout: possibility to choose what to do with a SplitMenu x2" />
     <MESSAGE value="Start working on schedule_management" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start working on schedule_management" />
+    <MESSAGE value="Implementation of scheduleManagementLayout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation of scheduleManagementLayout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -352,6 +367,11 @@
           <url>file://$PROJECT_DIR$/src/it/unicas/clinic/model/src/Main.java</url>
           <line>11</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/unicas/clinic/address/view/schedule/ScheduleAddingLayoutController.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ClassNotFoundException" package="java.lang" />

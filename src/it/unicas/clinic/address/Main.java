@@ -381,10 +381,11 @@ public class Main extends Application {
         });
         updateWindow.showAndWait();
     }
-    public void showScheduleInsertDialog() {
+
+    public void showScheduleInsertDialog(Staff s) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/schedule/ScheduleAddingLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Schedule");
@@ -395,9 +396,8 @@ public class Main extends Application {
 
             //Controller
             ScheduleAddingLayoutController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, s);
             controller.setDialogStage(dialogStage);
-            //controller.setStaff();
 
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
@@ -407,12 +407,5 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
-    public void loadScheduleManagement() throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
-        page.setCenter(loader.load());
-        ScheduleAddingLayoutController controller = loader.getController();
-        controller.setMainApp(this);
-        primaryStage.show();
-    }
+
 }

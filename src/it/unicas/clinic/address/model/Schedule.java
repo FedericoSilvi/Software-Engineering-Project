@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Schedule {
-    private final IntegerProperty id;
-    private final ObjectProperty<LocalDate> day;
-    private final ObjectProperty<LocalTime> startTime;
-    private final ObjectProperty<LocalTime> stopTime;
-    private final IntegerProperty staffId;
+    private  IntegerProperty id;
+    private  ObjectProperty<LocalDate> day;
+    private  ObjectProperty<LocalTime> startTime;
+    private  ObjectProperty<LocalTime> stopTime;
+    private  IntegerProperty staffId;
 
 
     public Schedule(int id, LocalDate day, LocalTime startTime, LocalTime stopTime, int staffId) {
@@ -28,12 +28,20 @@ public class Schedule {
         this.startTime = new SimpleObjectProperty<>(null); // Start time not set
         this.stopTime = new SimpleObjectProperty<>(null); // Stop time not set
     }
+    public Schedule(LocalDate day, LocalTime startTime, LocalTime stopTime, int staffId) {
+        this.day = new SimpleObjectProperty<>(day);
+        this.startTime = new SimpleObjectProperty<>(startTime);
+        this.stopTime = new SimpleObjectProperty<>(stopTime);
+        this.staffId = new SimpleIntegerProperty(staffId);
+        //this.id = new SimpleIntegerProperty(-1);
+
+    }
 
 
     @Override
     public String toString() {
         return
-                "id=" + id.get() +
+                "id=" + idProperty() +
                 ", day=" + day.get() +
                 ", startTime=" + startTime.get() +
                 ", stopTime=" + stopTime.get() +

@@ -7,13 +7,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController">
    <children>
-      <TextField layoutX="300.0" layoutY="78.0" />
-      <TextField layoutX="300.0" layoutY="145.0" />
-      <TextField layoutX="300.0" layoutY="209.0" />
+      <TextField fx:id="dayField" layoutX="300.0" layoutY="78.0" />
+      <TextField fx:id="startHourField" layoutX="300.0" layoutY="145.0" />
+      <TextField fx:id="endHourField" layoutX="300.0" layoutY="209.0" />
       <Label layoutX="158.0" layoutY="82.0" text="Day" />
       <Label layoutX="154.0" layoutY="149.0" text="Start hour" />
       <Label layoutX="154.0" layoutY="213.0" text="End hour" />
-      <Button layoutX="113.0" layoutY="315.0" mnemonicParsing="false" text="Add Schedule" />
-      <Button layoutX="408.0" layoutY="315.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="113.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleSave" text="Add Schedule" />
+      <Button layoutX="408.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </AnchorPane>
