@@ -108,4 +108,36 @@ public class Schedule {
     public void setStaffId(int staffId) {
         this.staffId.set(staffId);
     }
+
+    public static boolean verifySchedule(Schedule schedule) {
+        //controlla se l'ora di inzio viene prima di quella di fine, e se il giorno è futuro (le eccezioni sul formato sono prese prima)
+
+        if (schedule == null) {
+            return false; // Oggetto null non è valido
+        }
+
+        // Verifica che la data sia valida (deve essere una data futura)
+        LocalDate day = schedule.getDay();
+        if (day.isBefore(LocalDate.now())) {
+            return false; // La data non può essere nel passato
+        }
+        LocalTime startTime = schedule.getStartTime();
+        LocalTime endTime = schedule.getStopTime();
+        // Controlla che l'ora di inizio sia prima dell'ora di fine
+        if (!startTime.isBefore(endTime)) {
+            return false; // L'ora di inizio deve essere precedente all'ora di fine
+        }
+
+        // Se tutti i controlli sono passati, l'oggetto Schedule è valido
+        return true;
+    }
+    public static boolean isEmpty(Schedule schedule) {
+
+        if (schedule.getDay() == null || schedule.getStartTime() == null || schedule.getStopTime() == null) {
+            return true;
+        }
+        else
+            return false;
+    }
+
 }

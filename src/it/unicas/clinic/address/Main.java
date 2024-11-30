@@ -5,6 +5,7 @@ import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.view.*;
 import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleManagementLayoutController;
+import it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -397,6 +398,33 @@ public class Main extends Application {
             //Controller
             ScheduleAddingLayoutController controller = loader.getController();
             controller.setMainApp(this, s);
+            controller.setDialogStage(dialogStage);
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void showScheduleUpdateDialog(Schedule s, Staff staff){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/schedule/ScheduleUpdateLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Update Schedule");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            ScheduleUpdateLayoutController controller = loader.getController();
+            controller.setMainApp(this, staff);
+            controller.setField(s);
             controller.setDialogStage(dialogStage);
 
             // Set the dialog icon.

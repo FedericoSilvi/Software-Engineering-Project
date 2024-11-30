@@ -4,16 +4,17 @@ import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.ScheduleDAO;
+import it.unicas.clinic.address.model.dao.ScheduleException;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
 
 public class ScheduleManagementLayoutController {
     @FXML
@@ -63,10 +64,59 @@ public class ScheduleManagementLayoutController {
     }
     @FXML
     private void handleDeleteSchedule() {
-
+        //check se ho selezionato uno schedule da cancellare
+        int selectedIndex = scheduleTable.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >= 0){
+            Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Delete a Staff Member");
+            alert.setHeaderText("Do you want to delete this schedule?");
+            alert.setContentText("Do you want to delete this schedule?");
+            ButtonType buttonTypeOne = new ButtonType("Yes");
+            ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOne) {
+                try{
+                    dao.delete(selectedSchedule);
+                    mainApp.getScheduleData().remove(selectedSchedule);
+                }catch(ScheduleException e){
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Database Error");
+                    errorAlert.setHeaderText("Could not delete schedule");
+                    errorAlert.setContentText(e.getMessage());
+                    errorAlert.showAndWait();
+                }
+            }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Schedule Selected");
+            alert.setContentText("Please select a Schedule into the table.");
+            alert.showAndWait();
+        }
     }
     @FXML
     private void handleUpdateSchedule() {
+        //take the staff del quale dovrò mostrare gli schedule
+        Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
+        if(selectedSchedule != null){
+            //System.out.println("HO preso lo staff x lo schedule");
+            //System.out.println(selectedStaff);
+            mainApp.showScheduleUpdateDialog(selectedSchedule, staff);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Schedule Selected");
+            alert.setContentText("Please select a Schedule into the table.");
+
+            alert.showAndWait();
+        }
 
     }
 

@@ -2,8 +2,10 @@ package it.unicas.clinic.address.view;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.dao.ScheduleDAO;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
+import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -29,7 +31,7 @@ public class StaffManagementLayoutController {
     // Reference to the main application.
     private Main mainApp;
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
-
+    private ScheduleDAO daoSchedule= ScheduleDAOMySQLImpl.getInstance();
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -85,15 +87,17 @@ public class StaffManagementLayoutController {
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Delete a Staff Member");
             alert.setHeaderText("Do you want to delete this member?");
-            alert.setContentText("Do you want to delete this member?");
+            alert.setContentText("Do you want to delete this member? This operation will delete also all the schedules of this staff member");
             ButtonType buttonTypeOne = new ButtonType("Yes");
             ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne){
                 try{
+                    System.out.println(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
                     dao.delete(selectedStaff);
+                    //daoSchedule.delete(selectedStaff);
                     mainApp.getStaffData().remove(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
 
@@ -104,6 +108,7 @@ public class StaffManagementLayoutController {
                     errorAlert.setHeaderText("Could not delete staff");
                     errorAlert.setContentText("An error occurred while trying to delete the staff member.");
                     errorAlert.showAndWait();
+
 
                 }
 

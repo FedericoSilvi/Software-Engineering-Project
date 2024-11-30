@@ -122,13 +122,13 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         if (s == null || !(staffExists(s.getStaffId())) || s.getDay() == null) {
             throw new StaffException("SQL: In update(): Schedule object cannot be null, invalid staffId or day.");
         }
-        String sqlUpdateSchedule = "UPDATE schedule SET day = ?, start_time = ?, stop_time = ? WHERE staff_id = ?";
+        String sqlUpdateSchedule = "UPDATE schedule SET day = ?, start_time = ?, stop_time = ? WHERE id = ?";
         try (Connection con = DAOMySQLSettings.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(sqlUpdateSchedule)) {
             preparedStatement.setDate(1, Date.valueOf(s.getDay()));
             preparedStatement.setTime(2, Time.valueOf(s.getStartTime()));
             preparedStatement.setTime(3, Time.valueOf(s.getStopTime()));
-            preparedStatement.setInt(4, s.getStaffId());
+            preparedStatement.setInt(4, s.getId());
 
             int rowAffected=preparedStatement.executeUpdate();
             logger.info("Query executed successfully: " + sqlUpdateSchedule);
@@ -230,24 +230,28 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         return false;
     }
 
-    public Schedule getLastSchedule() throws SQLException {
-        Schedule s = new Schedule(-1, LocalDate.now(), null, null,-1);
-        Connection connection = DAOMySQLSettings.getConnection();
-        //Define command
-        String searchSchedule = "select * from schedule order by id desc limit 1";
-        PreparedStatement command = connection.prepareStatement(searchSchedule);
-        //Execute command
-        ResultSet result = command.executeQuery();
+    public Schedule getLastSchedule() throws ScheduleException  {
+        Schedule s = new Schedule(-1, LocalDate.now(), null, null, -1);
+        try {
+            Connection connection = DAOMySQLSettings.getConnection();
+            //Define command
+            String searchSchedule = "select * from schedule order by id desc limit 1";
+            PreparedStatement command = connection.prepareStatement(searchSchedule);
+            //Execute command
+            ResultSet result = command.executeQuery();
 
-        if(result.next()){
-            s.setId(result.getInt("id"));
-            s.setDay(result.getDate("day").toLocalDate());
-            s.setStartTime(result.getTime("start_time").toLocalTime());
-            s.setStopTime(result.getTime("stop_time").toLocalTime());
-            s.setStaffId(result.getInt("staff_id"));
+            if (result.next()) {
+                s.setId(result.getInt("id"));
+                s.setDay(result.getDate("day").toLocalDate());
+                s.setStartTime(result.getTime("start_time").toLocalTime());
+                s.setStopTime(result.getTime("stop_time").toLocalTime());
+                s.setStaffId(result.getInt("staff_id"));
+            }
+            System.out.println(s);
+            connection.close();
+        }catch(SQLException e){
+            throw new ScheduleException("SQL: In getLastSchedule(): An error occurred while getting lastSchedule");
         }
-        System.out.println(s);
-        connection.close();
         return s;
     }
 

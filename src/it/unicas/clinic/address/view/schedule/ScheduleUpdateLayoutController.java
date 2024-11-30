@@ -5,71 +5,69 @@ import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.ScheduleDAO;
 import it.unicas.clinic.address.model.dao.ScheduleException;
-import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
+import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class ScheduleAddingLayoutController {
+public class ScheduleUpdateLayoutController {
     @FXML
     private TextField dayField;
     @FXML
-    private TextField startHourField;
+    private TextField startTimeField;
     @FXML
-    private TextField endHourField;
+    private TextField stopTimeField;
 
 
-    private Main mainApp;
     private Stage dialogStage;
-    private Schedule schedule;
+    private Main mainApp;
     private Staff staff;
+    private Schedule schedule;
     private ScheduleDAO dao= ScheduleDAOMySQLImpl.getInstance();
-
+    public void setMainApp(Main mainApp, Staff staff) {
+        this.staff = staff;
+        this.mainApp = mainApp;
+    }
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
         // Set the dialog icon.
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
-    public void setMainApp(Main main, Staff s) {
-        this.staff = s;
-        this.staff.setId(s.getId());//in questo modo ho l'id dello staff che ho selezionato nella finestra precedente
-        this.mainApp = main;
-    }
 
     @FXML
-    private void handleSave(){
+    private void handleUpdate(){
         try {
-            LocalDate d = LocalDate.parse(dayField.getText());
-            LocalTime st = LocalTime.parse(startHourField.getText());
-            LocalTime et = LocalTime.parse(endHourField.getText());
-            this.schedule = new Schedule(d, st, et, staff.getId());
-            if(Schedule.verifySchedule(this.schedule) /*&& !Schedule.isEmpty(this.schedule)*/) {
-                //aggiungo nel db e nalla lista
+            LocalDate d = DataUtil.parseToDate(dayField.getText());
+            LocalTime startTime = DataUtil.parseToTime(startTimeField.getText(), true);
+            LocalTime stopTime = DataUtil.parseToTime(stopTimeField.getText(), true);
+            schedule.setDay(d);
+            schedule.setStartTime(startTime);
+            schedule.setStopTime(stopTime);
+            System.out.println(!Schedule.isEmpty(schedule));
+            if(Schedule.verifySchedule(schedule) /*&& !Schedule.isEmpty(schedule)*/) {
                 try {
-                    dao.insert(this.schedule);
-                    //devo recuperare l'id associato a questo schedule, quindi recupero l'ultimo
-                    //System.out.println(dao.getLastSchedule());
-                    mainApp.getScheduleData().add(dao.getLastSchedule());
+                    //update in the list
+                    dao.update(schedule);
+                    //update in the list (ricarico)
+                    mainApp.getScheduleData().clear();
+                    mainApp.getScheduleData().addAll(dao.select(new Schedule(0, null, null, null, staff.getId())));
                     dialogStage.close();
                 } catch (ScheduleException e) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("Database Error");
-                    errorAlert.setHeaderText("Could not insert schedule");
-                    errorAlert.setContentText("An error occurred while trying to insert schedule-");
+                    errorAlert.setHeaderText("Could not update schedule");
+                    errorAlert.setContentText("An error occurred while trying to update schedule-");
                     errorAlert.showAndWait();
                 }
-            }
-            else{
+
+            }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error-logic");
                 alert.setHeaderText("Error");
@@ -84,11 +82,16 @@ public class ScheduleAddingLayoutController {
             alert.showAndWait();
         }
     }
-
     @FXML
     private void handleCancel(){
         dialogStage.close();
     }
 
 
+    public void setField(Schedule s) {
+        schedule = s;
+        dayField.setText(s.getDay().toString());
+        startTimeField.setText(s.getStartTime().toString());
+        stopTimeField.setText(s.getStopTime().toString());
+    }
 }

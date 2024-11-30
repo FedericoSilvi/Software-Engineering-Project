@@ -91,6 +91,8 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
             }
         }catch(SQLException e){
             logger.severe(("SQL: In delete(): An error occurred while deleting staff data"));
+            //logger.severe("SQL: In delete(): Error - " + e.getMessage() + " | SQLState: " + e.getSQLState() + " | ErrorCode: " + e.getErrorCode());
+
             throw new StaffException("SQL: In delete(): An error occurred while deleting staff data");
         }
     }
