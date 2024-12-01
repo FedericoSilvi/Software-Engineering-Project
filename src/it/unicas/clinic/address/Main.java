@@ -512,7 +512,11 @@ public class Main extends Application {
     public void showAppUpdateDialog(Appointment a){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/appointment/AppUpdateLayout.fxml"));
+            if(isManager)
+                loader.setLocation(Main.class.getResource("view/appointment/AppUpdateLayout2.fxml"));
+            else
+                loader.setLocation(Main.class.getResource("view/appointment/AppUpdateLayout3.fxml"));
+
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Update Stuff");
@@ -522,16 +526,25 @@ public class Main extends Application {
             dialogStage.setScene(scene);
 
             //Controller
-            AppUpdateLayoutController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.setDialogStage(dialogStage);
-            controller.setField(a);
-
+            if(isManager) {
+                AppUpdateLayoutController2 controller = loader.getController();
+                controller.setMainApp(this);
+                controller.setDialogStage(dialogStage);
+                controller.setField(a);
+            }
+            else{
+                AppUpdateLayoutController3 controller = loader.getController();
+                controller.setMainApp(this);
+                controller.setDialogStage(dialogStage);
+                controller.setField(a);
+            }
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
             dialogStage.showAndWait();
 
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -544,6 +557,14 @@ public class Main extends Application {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    public void warningAlert(String title, String header, String content){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     public void showAppStaff() throws IOException {
         appointmentData.clear();
         FXMLLoader loader = new FXMLLoader();
@@ -600,6 +621,17 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         AppSelectViewController controller = loader.getController();
         controller.setMainApp(this,schedules,list);
+        primaryStage.show();
+    }
+    public void showAvailableAppUp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException {
+        appSchedData.clear();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/AppSelectView2.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        Scene scene = new Scene(page);
+        primaryStage.setScene(scene);
+        AppSelectViewController2 controller = loader.getController();
+        controller.setMainApp(this,schedules,list,a);
         primaryStage.show();
     }
     public static void main(String[] args) {

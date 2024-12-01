@@ -39,7 +39,10 @@ public class AppointmentViewController {
         this.mainApp = mainApp;
         // Add observable list data to the table
         appointmentTable.setItems(mainApp.getAppointmentData());
-        mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, null, null,null,0,0)));
+        if(mainApp.getIsManager())
+            mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, null, null,null,0,0)));
+        else
+            mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, null, null,null, mainApp.getUser_id(), 0)));
 
     }
     @FXML

@@ -25,7 +25,7 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class AppAddingLayoutController2 {
+public class AppUpdateLayoutController2 {
     @FXML
     private TextField serviceField;
     @FXML
@@ -62,7 +62,13 @@ public class AppAddingLayoutController2 {
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
-
+    public void setField(Appointment a){
+        app=a;
+        serviceField.setText(a.getService());
+        timeField.setText(a.getDuration().toString());
+        mainApp.saveStaff(app.getStaffId());
+        mainApp.saveClient(app.getClientId());
+    }
     @FXML
     private void handleStaffSelect() throws IOException, SQLException {
         mainApp.showAppStaff();
@@ -70,9 +76,11 @@ public class AppAddingLayoutController2 {
             selectedStaff = staffDao.select(mainApp.getSavedStaff());
         }
     }
+
     @FXML
     private void handleSave() throws SQLException, IOException {
         mainApp.saveService(serviceField.getText());
+        dao.delete(app.getId());
         try {
             mainApp.saveDuration(DataUtil.parseToDuration(timeField.getText(), true));
         } catch (DateTimeException e) {
@@ -90,6 +98,8 @@ public class AppAddingLayoutController2 {
                     "Module error",
                     "Please fill all the fields");
         } else {
+
+
             System.out.println(mainApp.getSavedService());
             System.out.println(mainApp.getSavedStaff());
             System.out.println(mainApp.getSavedClient());
@@ -97,6 +107,7 @@ public class AppAddingLayoutController2 {
 
             //Each element of arrayList is linked to a single schedule of scheduleList
             ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
+            System.out.println(mainApp.getSavedStaff());
             ArrayList<Schedule> scheduleList = scheduleDao.futureSchedule(mainApp.getSavedStaff());
             //Boolean translation from schedule list
             for (Schedule schedule : scheduleList) {
@@ -120,7 +131,7 @@ public class AppAddingLayoutController2 {
             }
             System.out.println(arrayList);
             dialogStage.close();
-            mainApp.showAvailableApp(scheduleList, arrayList);
+            mainApp.showAvailableAppUp(scheduleList, arrayList,app);
         }
     }
 

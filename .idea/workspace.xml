@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="methods to manage appointment management">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="new icons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppAddingLayoutController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppAddingLayoutController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,55 +280,8 @@
       <workItem from="1732899114243" duration="1275000" />
       <workItem from="1732948456780" duration="13332000" />
       <workItem from="1732972396735" duration="11243000" />
-      <workItem from="1733035270614" duration="30585000" />
-    </task>
-    <task id="LOCAL-00022" summary="Eliminato per la coerenza dei nomi">
-      <option name="closed" value="true" />
-      <created>1732361436220</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361436220</updated>
-    </task>
-    <task id="LOCAL-00023" summary="File FXML per la GUI del membro dello staff che differisce da quella dello staff manager per l'assenza della sezione relativa alla gestione dello staff">
-      <option name="closed" value="true" />
-      <created>1732361485380</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361485380</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Controller della GUI per lo staff member che ha le stesse funzionalità della sua controparte per lo staff manager">
-      <option name="closed" value="true" />
-      <created>1732361537899</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361537899</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Aggiunto initStaff per far comparire la schermata iniziale del membro dello staff">
-      <option name="closed" value="true" />
-      <created>1732361572827</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361572827</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Commit">
-      <option name="closed" value="true" />
-      <created>1732361580035</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361580035</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Nessun commento">
-      <option name="closed" value="true" />
-      <created>1732362132108</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1732362132108</updated>
+      <workItem from="1733035270614" duration="37401000" />
+      <workItem from="1733080382982" duration="652000" />
     </task>
     <task id="LOCAL-00028" summary="Commenti sia per documentazione che infra-codice per le classi DAO">
       <option name="closed" value="true" />
@@ -671,7 +627,55 @@
       <option name="project" value="LOCAL" />
       <updated>1733070437188</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="fields and methods to manage appointment management">
+      <option name="closed" value="true" />
+      <created>1733070531480</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070531480</updated>
+    </task>
+    <task id="LOCAL-00072" summary="preliminary information GUIs">
+      <option name="closed" value="true" />
+      <created>1733070651948</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070651948</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Client choice GUI">
+      <option name="closed" value="true" />
+      <created>1733070686260</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070686260</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Staff choice GUI">
+      <option name="closed" value="true" />
+      <created>1733070699245</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070699245</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Final appointment GUI">
+      <option name="closed" value="true" />
+      <created>1733070715551</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070715551</updated>
+    </task>
+    <task id="LOCAL-00076" summary="new icons">
+      <option name="closed" value="true" />
+      <created>1733070728475</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070728477</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,12 +693,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="DAO interface and exception" />
-    <MESSAGE value="CRUD with db" />
-    <MESSAGE value="verifyAppointment modified" />
-    <MESSAGE value="getLastApp added" />
-    <MESSAGE value="setId added&#10;empty constructor added" />
-    <MESSAGE value="select with id added" />
     <MESSAGE value="bug fixes" />
     <MESSAGE value="initAppView, showAppInsertDialog, showAppUpdateDialog and errorAlert added" />
     <MESSAGE value="isAvailable added" />
@@ -714,7 +712,13 @@
     <MESSAGE value="fixes" />
     <MESSAGE value="fixes to save user infos" />
     <MESSAGE value="methods to manage appointment management" />
-    <option name="LAST_COMMIT_MESSAGE" value="methods to manage appointment management" />
+    <MESSAGE value="fields and methods to manage appointment management" />
+    <MESSAGE value="preliminary information GUIs" />
+    <MESSAGE value="Client choice GUI" />
+    <MESSAGE value="Staff choice GUI" />
+    <MESSAGE value="Final appointment GUI" />
+    <MESSAGE value="new icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="new icons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

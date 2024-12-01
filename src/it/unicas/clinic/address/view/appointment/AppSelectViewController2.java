@@ -28,7 +28,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class AppSelectViewController {
+public class AppSelectViewController2 {
 
     @FXML
     private TableView<Schedule> dateTable;
@@ -55,15 +55,17 @@ public class AppSelectViewController {
 
     private Main mainApp;
     private ArrayList<ArrayList<Boolean>> boolList=new ArrayList<>();
-    private LocalDate date;
-    private LocalTime time;
+    private LocalDate date=null;
+    private LocalTime time=null;
     private StaffDAO staffDAO = StaffDAOMySQLImpl.getInstance();
     private AppointmentDAO appDAO = AppointmentDAOMySQLImpl.getInstance();
+    Appointment app;
 
 
 
-    public void setMainApp(Main main,ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list){
+    public void setMainApp(Main main,ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a){
         this.mainApp = main;
+        app=a;
         //sched has both null and not null schedules available for that appointment
         ObservableList<Schedule> sched = FXCollections.observableArrayList(schedules);
         /*for(Schedule schedule : schedules){
@@ -136,7 +138,7 @@ public class AppSelectViewController {
         durationL.setText(mainApp.getSavedDuration().toString());
         if(mainApp.getIsManager())
             staffL.setText(staffDAO.select(mainApp.getSavedStaff()).getName()+"\n"+
-                 staffDAO.select(mainApp.getSavedStaff()).getSurname());
+                    staffDAO.select(mainApp.getSavedStaff()).getSurname());
         else
             staffL.setText(staffDAO.select(mainApp.getUser_id()).getName()+"\n"+
                     staffDAO.select(mainApp.getUser_id()).getSurname());
@@ -145,22 +147,22 @@ public class AppSelectViewController {
     }
     @FXML
     public void handleAddApp() throws SQLException, IOException {
-        if(date==null||time==null){
+        if(app.getId()==0||date==null||time==null){
             mainApp.warningAlert("Warning",
                     "Information warning",
                     "Please select date and time for the appointment");
             return;
         }
         if(mainApp.getIsManager()) {
-            appDAO.insert(new Appointment(mainApp.getSavedService(), date, time, mainApp.getSavedDuration(),
+            appDAO.insert(new Appointment(app.getId(),mainApp.getSavedService(), date, time, mainApp.getSavedDuration(),
                     mainApp.getSavedStaff(), mainApp.getSavedClient()));
-            mainApp.getAppointmentData().add(new Appointment(appDAO.getLastApp().getId(),mainApp.getSavedService(), date,time,mainApp.getSavedDuration(),
+            mainApp.getAppointmentData().add(new Appointment(app.getId(),mainApp.getSavedService(), date,time,mainApp.getSavedDuration(),
                     mainApp.getSavedStaff(), mainApp.getSavedClient()));
         }
         else {
-            appDAO.insert(new Appointment(mainApp.getSavedService(), date, time, mainApp.getSavedDuration(),
+            appDAO.insert(new Appointment(app.getId(),mainApp.getSavedService(), date, time, mainApp.getSavedDuration(),
                     mainApp.getUser_id(), mainApp.getSavedClient()));
-            mainApp.getAppointmentData().add(new Appointment(appDAO.getLastApp().getId(),mainApp.getSavedService(), date,time,mainApp.getSavedDuration(),
+            mainApp.getAppointmentData().add(new Appointment(app.getId(),mainApp.getSavedService(), date,time,mainApp.getSavedDuration(),
                     mainApp.getUser_id(), mainApp.getSavedClient()));
         }
 
@@ -168,6 +170,7 @@ public class AppSelectViewController {
     }
     @FXML
     public void handleCancel(){
+        appDAO.insert(app);
         mainApp.showAppInsertDialog();
         mainApp.initAppView();
     }
@@ -183,7 +186,7 @@ public class AppSelectViewController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            mainApp.showAppInsertDialog();
+            mainApp.showAppUpdateDialog(app);
             mainApp.initAppView();
         }
     }
