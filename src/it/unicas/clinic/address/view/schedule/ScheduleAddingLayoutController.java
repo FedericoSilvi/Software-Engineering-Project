@@ -48,42 +48,52 @@ public class ScheduleAddingLayoutController {
 
     @FXML
     private void handleSave(){
-        try {
-            LocalDate d = LocalDate.parse(dayField.getText());
-            LocalTime st = LocalTime.parse(startHourField.getText());
-            LocalTime et = LocalTime.parse(endHourField.getText());
-            this.schedule = new Schedule(d, st, et, staff.getId());
-            if(Schedule.verifySchedule(this.schedule) /*&& !Schedule.isEmpty(this.schedule)*/) {
-                //aggiungo nel db e nalla lista
-                try {
-                    dao.insert(this.schedule);
-                    //devo recuperare l'id associato a questo schedule, quindi recupero l'ultimo
-                    //System.out.println(dao.getLastSchedule());
-                    mainApp.getScheduleData().add(dao.getLastSchedule());
-                    dialogStage.close();
-                } catch (ScheduleException e) {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Database Error");
-                    errorAlert.setHeaderText("Could not insert schedule");
-                    errorAlert.setContentText("An error occurred while trying to insert schedule-");
-                    errorAlert.showAndWait();
+            try {
+                if(dayField.getText().equals("") || startHourField.getText().equals("") || endHourField.getText().equals("")){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error");
+                    alert.setContentText("Fill all the fields!!!!!");
+                    alert.showAndWait();
+                    return;
                 }
-            }
-            else{
+                LocalDate d = LocalDate.parse(dayField.getText());
+                LocalTime st = LocalTime.parse(startHourField.getText());
+                LocalTime et = LocalTime.parse(endHourField.getText());
+                this.schedule = new Schedule(d, st, et, staff.getId());
+
+                if (Schedule.verifySchedule(this.schedule) /*&& !Schedule.isEmpty(this.schedule)*/) {
+                    //aggiungo nel db e nalla lista
+                    try {
+                        dao.insert(this.schedule);
+                        //devo recuperare l'id associato a questo schedule, quindi recupero l'ultimo
+                        //System.out.println(dao.getLastSchedule());
+                        mainApp.getScheduleData().add(dao.getLastSchedule());
+                        dialogStage.close();
+                    } catch (ScheduleException e) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Database Error");
+                        errorAlert.setHeaderText("Could not insert schedule");
+                        errorAlert.setContentText("An error occurred while trying to insert schedule-");
+                        errorAlert.showAndWait();
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error-logic");
+                    alert.setHeaderText("Error");
+                    alert.setContentText("Errore logico nelle ore");
+                    alert.showAndWait();
+                }
+            } catch (IllegalArgumentException | DateTimeException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error-logic");
-                alert.setHeaderText("Error");
-                alert.setContentText("Errore logico nelle ore");
+                alert.setTitle("Error-Format");
+                alert.setHeaderText("Error"); //argomenti passati
+                alert.setContentText("Format");
                 alert.showAndWait();
             }
-        }catch(IllegalArgumentException | DateTimeException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error-Format");
-            alert.setHeaderText("Error"); //argomenti passati
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-        }
+
     }
+
 
     @FXML
     private void handleCancel(){

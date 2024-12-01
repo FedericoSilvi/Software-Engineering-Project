@@ -47,19 +47,27 @@ public class StaffUpdateLayoutController {
         staff.setSurname(surnameField.getText());
         staff.setSpecialties(specField.getText());
         try {
-            dao.update(staff);
-            Staff updatedStaff = new Staff(staff.getId(), staff.getName(), staff.getSurname(), staff.getSpecialties());
-            int index = mainApp.getStaffData().indexOf(staff);
-            if (index >= 0) {
-                mainApp.getStaffData().set(index, updatedStaff); // Sostituisce l'oggetto nella lista
+            if(!(staff.getName().equals("") &&  staff.getSurname().equals("") &&  staff.getSpecialties().equals(""))) {
+                dao.update(staff);
+                Staff updatedStaff = new Staff(staff.getId(), staff.getName(), staff.getSurname(), staff.getSpecialties());
+                int index = mainApp.getStaffData().indexOf(staff);
+                if (index >= 0) {
+                    mainApp.getStaffData().set(index, updatedStaff); // Sostituisce l'oggetto nella lista
+                }
+                dialogStage.close();
             }
-
-            dialogStage.close();
+            else{
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Module error");
+                errorAlert.setContentText("You have to fill all the fields!!!!");
+                errorAlert.showAndWait();
+            }
         } catch (StaffException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Database Error");
-            errorAlert.setHeaderText("Could not delete staff");
-            errorAlert.setContentText("An error occurred while trying to delete the staff member.");
+            errorAlert.setHeaderText("Could not update staff");
+            errorAlert.setContentText("An error occurred while trying to update the staff member.");
             errorAlert.showAndWait();
         }
     }

@@ -103,7 +103,7 @@ public class StaffAddingLayoutController {
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("ERror");
+                alert.setHeaderText("Module error");
                 alert.setContentText("You have to fill all the fields!!");
                 alert.showAndWait();
             }
