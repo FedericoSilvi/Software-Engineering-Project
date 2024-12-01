@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
@@ -27,9 +27,12 @@ public class AppAddingLayoutController {
     @FXML
     private TextField timeField;
     @FXML
+    private TextField durationField;
+    @FXML
     private TextField staffIdField;
     @FXML
     private TextField clientIdField;
+
 
 
     private Main mainApp;
@@ -82,20 +85,20 @@ public class AppAddingLayoutController {
         }
         else {
             try {
-                app = new Appointment(serviceField.getText(), DataUtil.parseToDate(dateField.getText()), DataUtil.parseToTime(timeField.getText(), true), Integer.parseInt(staffIdField.getText()), Integer.parseInt(clientIdField.getText()));
+                app = new Appointment(serviceField.getText(), DataUtil.parseToDate(dateField.getText()), DataUtil.parseToTime(timeField.getText(), true), DataUtil.parseToDuration(durationField.getText(), true),Integer.parseInt(staffIdField.getText()), Integer.parseInt(clientIdField.getText()));
             }
             //DateTimeException catches errors in LocalDate and LocalTime values
             catch (DateTimeException e) {
                 mainApp.errorAlert("Error",
                         "Date/Time Error",
                         "You have to enter valid date and time");
-                app = new Appointment(0,null,null,null,0,0);
+                app = new Appointment(0,null,null,null,null,0,0);
             }
             catch(IllegalArgumentException e){
                 mainApp.errorAlert("Format Error",
                         "Format Error",
                         "You have to enter valid date/time format");
-                app.setService(null);
+                app = new Appointment(0,null,null,null,null,0,0);
             }
             if(staffDao.select(app.getStaffId()) == null) {
                 mainApp.errorAlert("Module Error",
