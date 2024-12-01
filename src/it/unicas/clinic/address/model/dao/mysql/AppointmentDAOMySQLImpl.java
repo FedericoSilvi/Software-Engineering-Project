@@ -22,7 +22,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     private static AppointmentDAO dao = null;
     private static Logger logger = null;
 
-    private AppointmentDAOMySQLImpl(){}
+    public AppointmentDAOMySQLImpl(){}
 
     public static AppointmentDAO getInstance(){
         if (dao == null){
@@ -36,12 +36,12 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     public List<Appointment> select(Appointment s) throws AppointmentException {
         // If passed appointment is null create new one with null fields
         if(s==null)
-            s = new Appointment(0,null,null,null,0,0);
+            s = new Appointment(0,null,null, null,null,0,0);
 
         ArrayList<Appointment> list = new ArrayList<>();
 
         if(s.getId()<=0 && s.getService()==null && s.getDate()==null && s.getTime()==null & s.getStaffId()==0 && s.getClientId()==0){
-            s= new Appointment(0,null,null,null,0,0);
+            s= new Appointment(0,null,null,null,null,0,0);
         }
         String sqlSelect = "SELECT * FROM appointment WHERE 1=1";
 
@@ -102,6 +102,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                             rs.getString("service"),
                             rs.getDate("date").toLocalDate(),
                             rs.getTime("time").toLocalTime(),
+                            rs.getTime("duration").toLocalTime(),
                             rs.getInt("staff_id"),
                             rs.getInt("client_id")
                     );
@@ -153,13 +154,14 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         if(s!=null) {
             try {
                 Connection connection = DAOMySQLSettings.getConnection();
-                String sqlInsert = "insert into appointment (service, date, time, staff_id, client_id) VALUES (?,?,?,?,?)";
+                String sqlInsert = "insert into appointment (service, date, time, duration, staff_id, client_id) VALUES (?,?,?,?,?,?)";
                 PreparedStatement preparedstatement = connection.prepareStatement(sqlInsert);
                 preparedstatement.setString(1, s.getService());
                 preparedstatement.setDate(2, Date.valueOf(s.getDate()));
                 preparedstatement.setTime(3, Time.valueOf(s.getTime()));
-                preparedstatement.setInt(4, s.getStaffId());
-                preparedstatement.setInt(5, s.getClientId());
+                preparedstatement.setTime(4, Time.valueOf(s.getDuration()));
+                preparedstatement.setInt(5, s.getStaffId());
+                preparedstatement.setInt(6, s.getClientId());
                 preparedstatement.execute();
                 connection.close();
             } catch (SQLException e) {
@@ -189,7 +191,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     }
 
     public Appointment getLastApp() throws SQLException {
-        Appointment a = new Appointment(0, null, null, null,0,0);
+        Appointment a = new Appointment(0, null, null,null, null,0,0);
         Connection connection = DAOMySQLSettings.getConnection();
         //Define command
         String searchUser = "select * from appointment order by id desc limit 1";
@@ -201,6 +203,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             a.setService(result.getString("service"));
             a.setDate(DataUtil.parseToDate(result.getString("date")));
             a.setTime(DataUtil.parseToTime(result.getString("time"),false));
+            a.setDuration(DataUtil.parseToDuration(result.getString("duration"),false));
             a.setId(result.getInt("id"));
             a.setStaffId(result.getInt("staff_id"));
             a.setClientId(result.getInt("client_id"));

@@ -11,8 +11,10 @@ public class Appointment {
     private StringProperty service;
     private ObjectProperty<LocalDate> date;
     private ObjectProperty<LocalTime> time;
+    private ObjectProperty<LocalTime> duration;
     private IntegerProperty staffId;
     private IntegerProperty clientId;
+
 
     /**
      * Constructor to build an appointment passing all its attributes
@@ -23,7 +25,7 @@ public class Appointment {
      * @param staffId: id of corresponding staff member
      * @param clientId: id of corresponding client
      */
-    public Appointment(Integer id, String service, LocalDate date, LocalTime time, Integer staffId, Integer clientId) {
+    public Appointment(Integer id, String service, LocalDate date, LocalTime time, LocalTime duration,Integer staffId, Integer clientId) {
         if(id!=null)
             this.id = new SimpleIntegerProperty(id);
         else
@@ -31,6 +33,7 @@ public class Appointment {
         this.service = new SimpleStringProperty(service);
         this.date = new SimpleObjectProperty<>(date);
         this.time = new SimpleObjectProperty<>(time);
+        this.duration = new SimpleObjectProperty<>(duration);
         if(staffId!=null)
             this.staffId = new SimpleIntegerProperty(staffId);
         else
@@ -49,10 +52,11 @@ public class Appointment {
      * @param staffId: id of corresponding staff member
      * @param clientId: id of corresponding client
      */
-    public Appointment(String service, LocalDate date, LocalTime time, Integer staffId, Integer clientId) {
+    public Appointment(String service, LocalDate date, LocalTime time, LocalTime duration, Integer staffId, Integer clientId) {
         this.service = new SimpleStringProperty(service);
         this.date = new SimpleObjectProperty<>(date);
         this.time = new SimpleObjectProperty<>(time);
+        this.duration = new SimpleObjectProperty<>(duration);
         if(staffId!=null)
             this.staffId = new SimpleIntegerProperty(staffId);
         else
@@ -111,6 +115,16 @@ public class Appointment {
 
     public void setTime(LocalTime time) {
         this.time.set(time);
+    }
+
+    public LocalTime getDuration() {
+        return duration.get();
+    }
+    public ObjectProperty<LocalTime> durationProperty() {
+        return duration;
+    }
+    public void setDuration(LocalTime duration) {
+        this.duration.set(duration);
     }
 
     public int getStaffId() {
