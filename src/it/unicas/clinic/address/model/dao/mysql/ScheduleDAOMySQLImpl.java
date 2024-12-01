@@ -228,6 +228,24 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
         return true;
     }
+
+    public ArrayList<Schedule> futureSchedule(int staff_id) throws SQLException {
+        if(staff_id<=0)
+            return null;
+        ArrayList<Schedule> list = new ArrayList<>();
+        Connection connection = DAOMySQLSettings.getConnection();
+        String sql="select * from schedule where staff_id=? and day>=?";
+        PreparedStatement command = connection.prepareStatement(sql);
+        command.setInt(1, staff_id);
+        command.setDate(2, Date.valueOf(LocalDate.now()));
+        ResultSet rs = command.executeQuery();
+        while(rs.next()){
+            list.add(new Schedule(rs.getInt(1),rs.getDate(2).toLocalDate()
+                    ,rs.getTime(3).toLocalTime(),rs.getTime(4).toLocalTime()
+                    ,rs.getInt(5)));
+        }
+        return list;
+    }
     //method to check if a staffId exists (needs for CRUD on Schedule). Return false if not exists.
     private boolean staffExists(int staffId) throws ScheduleException {
         String sqlCheckStaff = "SELECT COUNT(*) FROM staff WHERE id = ?";
@@ -249,22 +267,5 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
 
     public static void main(String args[]) throws StaffException, SQLException{
         dao=ScheduleDAOMySQLImpl.getInstance();
-
-        //dao.insert(new Schedule(1, LocalDate.of(2024, 11, 24), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-        //dao.insert(new Schedule(2, LocalDate.of(2024, 11, 25), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-
-        // Inserisci il nuovo staff con i suoi orari di lavoro
-        //dao.insert(newStaff, scheduleList);
-        //dao.delete(new Schedule(2, LocalDate.of(2024, 11, 25), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-        //dao.update(new Schedule(1, LocalDate.of(2024, 12, 24), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-        //dao.insert(new Schedule(4, LocalDate.of(2024, 11, 24), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-        //dao.insert(new Schedule(5, LocalDate.of(2024, 11, 25), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-        //dao.insert(new Schedule(6, LocalDate.of(2023, 11, 25), LocalTime.of(9, 0), LocalTime.of(17, 0), 11));
-
-        // Cerca orari per il 2023-11-25 gennaio 2023 e staff con ID 101
-        Schedule scheduleFilter = new Schedule(LocalDate.of(2023,1,1), 11);
-        System.out.println(scheduleFilter);
-        //List<Schedule> schedulesall = dao.select(new Schedule(0, null, null, null,0));
-        //System.out.println(schedulesall);
     }
 }

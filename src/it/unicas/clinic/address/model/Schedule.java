@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Schedule {
     private final IntegerProperty id;
@@ -11,6 +12,7 @@ public class Schedule {
     private final ObjectProperty<LocalTime> startTime;
     private final ObjectProperty<LocalTime> stopTime;
     private final IntegerProperty staffId;
+    private ArrayList<Boolean> availability;
 
 
     public Schedule(int id, LocalDate day, LocalTime startTime, LocalTime stopTime, int staffId) {
@@ -27,6 +29,13 @@ public class Schedule {
         this.staffId = new SimpleIntegerProperty(staffId);
         this.startTime = new SimpleObjectProperty<>(null); // Start time not set
         this.stopTime = new SimpleObjectProperty<>(null); // Stop time not set
+    }
+    public Schedule(LocalDate day, LocalTime startTime, LocalTime stopTime, int staffId) {
+        this.id = new SimpleIntegerProperty(0);
+        this.day = new SimpleObjectProperty<>(day);
+        this.startTime = new SimpleObjectProperty<>(startTime);
+        this.stopTime = new SimpleObjectProperty<>(stopTime);
+        this.staffId = new SimpleIntegerProperty(staffId);
     }
 
 
@@ -99,5 +108,12 @@ public class Schedule {
 
     public void setStaffId(int staffId) {
         this.staffId.set(staffId);
+    }
+
+    public ArrayList<Boolean> getAvailability() {
+        return availability;
+    }
+    public void setAvailability(ArrayList<Boolean> availability) {
+        this.availability = availability;
     }
 }

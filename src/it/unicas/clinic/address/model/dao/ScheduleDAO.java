@@ -5,6 +5,7 @@ import it.unicas.clinic.address.model.Schedule;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ScheduleDAO <T>{
@@ -13,4 +14,5 @@ public interface ScheduleDAO <T>{
     void insert(T s) throws StaffException;
     void delete(T s) throws StaffException;
     boolean isAvailable(LocalDate day, LocalTime time, int staff_id);
+    ArrayList<T> futureSchedule(int staff_id) throws SQLException;
 }
