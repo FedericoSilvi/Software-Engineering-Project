@@ -1,9 +1,8 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.client;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
-import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Alert;
