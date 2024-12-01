@@ -1,8 +1,7 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.dao.ScheduleDAO;
@@ -27,6 +26,8 @@ public class AppUpdateLayoutController {
     private TextField dateField;
     @FXML
     private TextField timeField;
+    @FXML
+    private TextField durationField;
     @FXML
     private TextField staffIdField;
     @FXML
@@ -54,6 +55,7 @@ public class AppUpdateLayoutController {
         serviceField.setText(a.getService());
         dateField.setText(a.getDate().toString());
         timeField.setText(a.getTime().toString());
+        durationField.setText(a.getDuration().toString());
         staffIdField.setText(Integer.toString(a.getStaffId()));
         clientIdField.setText(Integer.toString(a.getClientId()));
     }
@@ -71,6 +73,7 @@ public class AppUpdateLayoutController {
                 app.setService(serviceField.getText());
                 app.setDate(DataUtil.parseToDate(dateField.getText()));
                 app.setTime(DataUtil.parseToTime(timeField.getText(), true));
+                app.setDuration(DataUtil.parseToDuration(durationField.getText(), true));
                 app.setStaffId(Integer.parseInt(staffIdField.getText()));
                 app.setClientId(Integer.parseInt(clientIdField.getText()));
             }
@@ -109,7 +112,7 @@ public class AppUpdateLayoutController {
                 // Verify if app is an effective appointment
                 if (app.verifyAppointment(app)) {
                     dao.update(app);
-                    Appointment updatedApp = new Appointment(app.getId(), app.getService(), app.getDate(), app.getTime(), app.getStaffId(), app.getClientId());
+                    Appointment updatedApp = new Appointment(app.getId(), app.getService(), app.getDate(), app.getTime(),app.getDuration(), app.getStaffId(), app.getClientId());
                     int index = mainApp.getAppointmentData().indexOf(app);
                     if (index >= 0) {
                         // Substitute object in list
