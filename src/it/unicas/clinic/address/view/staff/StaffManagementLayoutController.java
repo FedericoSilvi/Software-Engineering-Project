@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.staff;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Staff;
@@ -62,7 +62,7 @@ public class StaffManagementLayoutController {
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
         if(selectedStaff != null){
             mainApp.showStaffUpdateDialog(selectedStaff);
-            //mainApp.getStaffData().remove(selectedStaff);
+            // mainApp.getStaffData().remove(selectedStaff);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

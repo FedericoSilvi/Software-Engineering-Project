@@ -1,9 +1,8 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.client;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
-import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -157,5 +156,10 @@ public class ClientOverviewController {
         }
         return true;
     }
-
+    public void handleHome(){
+        if(mainApp.getIsManager())
+            mainApp.initStaffManager();
+        else
+            mainApp.initStaff();
+    }
 }

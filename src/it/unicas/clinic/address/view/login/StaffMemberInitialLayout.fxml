@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.StaffMemberInitialLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -40,7 +40,7 @@
                     <children>
                         <ImageView fx:id="clientBackground" fitHeight="188.0" fitWidth="300.0" onMouseClicked="#handleClientView" onMouseEntered="#handleClientHighlight" onMouseExited="#handleClientDownlight" opacity="0.25" pickOnBounds="true">
                             <image>
-                                <Image url="@../../../../../resources/login_icons/client_icon.jpg" />
+                                <Image url="@../../../../../../resources/login_icons/client_icon.jpg" />
                             </image>
                         </ImageView>
                         <Label layoutX="120.0" layoutY="77.0" onMouseClicked="#handleClientView" onMouseEntered="#handleClientHighlight" opacity="0.75" text="Client">
@@ -54,7 +54,7 @@
                     <children>
                         <ImageView fx:id="appointmentBackground" fitHeight="176.0" fitWidth="300.0" layoutY="12.0" onMouseClicked="#handleAppView" onMouseEntered="#handleAppointmentsHighlight" onMouseExited="#handleAppointmentsDownlight" opacity="0.25" pickOnBounds="true">
                             <image>
-                                <Image url="@../../../../../resources/login_icons/appointment_icon.jpg" />
+                                <Image url="@../../../../../../resources/login_icons/appointment_icon.jpg" />
                             </image>
                         </ImageView>
                         <Label layoutX="75.0" layoutY="77.0" onMouseClicked="#handleAppView" onMouseEntered="#handleAppointmentsHighlight" opacity="0.75" text="Appointments">
@@ -68,7 +68,7 @@
                     <children>
                         <ImageView fx:id="calendarBackground" fitHeight="189.0" fitWidth="600.0" layoutX="-301.0" onMouseEntered="#handleCalendarHighlight" onMouseExited="#handleCalendarDownlight" opacity="0.25" pickOnBounds="true">
                             <image>
-                                <Image url="@../../../../../resources/login_icons/calendar-icon.jpg" />
+                                <Image url="@../../../../../../resources/login_icons/calendar-icon.jpg" />
                             </image>
                         </ImageView>
                         <Label layoutX="-47.0" layoutY="77.0" onMouseEntered="#handleCalendarHighlight" opacity="0.75" text="Calendar">

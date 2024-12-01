@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.staff;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Staff;
@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 
 public class StaffUpdateLayoutController {
