@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="CRUD with db">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="methods to manage appointment management">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/AppointmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/AppointmentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/ScheduleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/ScheduleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/StaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/StaffDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/AppointmentDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/AppointmentDAOMySQLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/ScheduleDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/ScheduleDAOMySQLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagementLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffManagerInitialLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffMemberInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffMemberInitialLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffMemberInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/StaffMemberInitialLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +19,8 @@
         <option value="JavaFXApplication" />
         <option value="Interface" />
         <option value="Exception" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,6 +47,8 @@
     &quot;Application.Client.executor&quot;: &quot;Run&quot;,
     &quot;Application.DAOClient.executor&quot;: &quot;Run&quot;,
     &quot;Application.DAOMySQLSettings.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DataUtil.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ScheduleDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
     &quot;Application.StaffDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
@@ -87,12 +73,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view" />
+      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\schedule" />
+      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\appointment" />
+      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\staff" />
+      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\login" />
+      <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\client" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="it.unicas.clinic.address.model.dao" />
-      <recent name="it.unicas.clinic.address.model" />
-      <recent name="it.unicas.clinic.address" />
+      <recent name="it.unicas.clinic.address.view.schedule" />
+      <recent name="it.unicas.clinic.address.view.appointment" />
+      <recent name="it.unicas.clinic.address.view.staff" />
+      <recent name="it.unicas.clinic.address.view.login" />
+      <recent name="it.unicas.clinic.address.view.client" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Client">
@@ -130,10 +122,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOMySQLSettings" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings" />
+    <configuration name="DataUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.utils.DataUtil" />
+      <module name="Clinic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="it.unicas.clinic.address.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScheduleDAOMySQLImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl" />
       <module name="Clinic" />
       <extension name="coverage">
         <pattern>
@@ -160,17 +163,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Client" />
+      <item itemvalue="Application.DataUtil" />
+      <item itemvalue="Application.ScheduleDAOMySQLImpl" />
       <item itemvalue="Application.DAOClient" />
       <item itemvalue="Application.StaffDAOMySQLImpl" />
       <item itemvalue="Application.AppointmentDAOMySQLImpl" />
-      <item itemvalue="Application.DAOMySQLSettings" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScheduleDAOMySQLImpl" />
+        <item itemvalue="Application.DataUtil" />
         <item itemvalue="Application.DAOClient" />
         <item itemvalue="Application.StaffDAOMySQLImpl" />
         <item itemvalue="Application.AppointmentDAOMySQLImpl" />
-        <item itemvalue="Application.DAOMySQLSettings" />
       </list>
     </recent_temporary>
   </component>
@@ -269,175 +274,10 @@
       <workItem from="1732727889738" duration="4647000" />
       <workItem from="1732781000637" duration="6688000" />
       <workItem from="1732872622172" duration="11821000" />
-      <workItem from="1732899114243" duration="587000" />
-    </task>
-    <task id="LOCAL-00001" summary="first commit">
-      <option name="closed" value="true" />
-      <created>1732177000247</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1732177000247</updated>
-    </task>
-    <task id="LOCAL-00002" summary="second commit">
-      <option name="closed" value="true" />
-      <created>1732177031510</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732177031510</updated>
-    </task>
-    <task id="LOCAL-00003" summary="package creation">
-      <option name="closed" value="true" />
-      <created>1732179068675</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732179068675</updated>
-    </task>
-    <task id="LOCAL-00004" summary="package creation 2">
-      <option name="closed" value="true" />
-      <created>1732179553806</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1732179553806</updated>
-    </task>
-    <task id="LOCAL-00005" summary="package creation 2">
-      <option name="closed" value="true" />
-      <created>1732179604966</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1732179604966</updated>
-    </task>
-    <task id="LOCAL-00006" summary="package creation 3">
-      <option name="closed" value="true" />
-      <created>1732179627766</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1732179627766</updated>
-    </task>
-    <task id="LOCAL-00007" summary="package creation 4">
-      <option name="closed" value="true" />
-      <created>1732179821756</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1732179821756</updated>
-    </task>
-    <task id="LOCAL-00008" summary="-Create le impostazioni SQL per la connessione al database attraverso l'user staff_manager &#10;-Create le classi SQL di CLient e Staff&#10;-Creata la finestra dell'applicazione in Main.java&#10;-Creato il file FXML per la schermata di log in &#10;-Aggiunte eventuali icone da utilizzare nella cartella resources">
-      <option name="closed" value="true" />
-      <created>1732214555745</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1732214555745</updated>
-    </task>
-    <task id="LOCAL-00009" summary="-Modificata la GUI per il login con l'aggiunta di immagini, meccanismo vedo/non-vedo della password e tasti di 'Login' e di 'Exit'.&#10;-Eliminato RootLayout e il relativo controller&#10;-Aggiunte le immagini all'interno della cartella src&#10;-Modificata MainApp in modo da creare un'alert per la chiusura della finestra e per far sì di mostrare la schermata di login all'apertura dell'applicazione.&#10;-Aggiunto il controller di LoginLayout.fxml dal nome LoginLayoutController &#10;-Aggiunto all'interno del DAO di mySQL la classe LoginDAOImplementation che si occupa di comunicare con il db per la verifica di username e password.">
-      <option name="closed" value="true" />
-      <created>1732296264161</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1732296264161</updated>
-    </task>
-    <task id="LOCAL-00010" summary="-Modificato LoginLayoutController.java per mostrare un Alert in caso ci siano problemi su operazioni relative al database">
-      <option name="closed" value="true" />
-      <created>1732351686809</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1732351686809</updated>
-    </task>
-    <task id="LOCAL-00011" summary="-Eliminate icone inutili">
-      <option name="closed" value="true" />
-      <created>1732357982954</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1732357982954</updated>
-    </task>
-    <task id="LOCAL-00012" summary="-Aggiunte icone e file di copyright">
-      <option name="closed" value="true" />
-      <created>1732358019627</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1732358019627</updated>
-    </task>
-    <task id="LOCAL-00013" summary="-Creato il file FXML per la GUI che si presenta allo staff manager dopo il login">
-      <option name="closed" value="true" />
-      <created>1732358045866</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1732358045866</updated>
-    </task>
-    <task id="LOCAL-00014" summary="-Creato il controllore della GUI iniziale dello staff manager che si occupa, per ora, di evidenziare dove le sezioni dove c'è il mouse">
-      <option name="closed" value="true" />
-      <created>1732358099344</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1732358099344</updated>
-    </task>
-    <task id="LOCAL-00015" summary="-Aggiunto il metodo initStaffManager che fa comparire la schermata iniziale dello staff manager e la collega all'opportuno controllore">
-      <option name="closed" value="true" />
-      <created>1732358146898</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1732358146898</updated>
-    </task>
-    <task id="LOCAL-00016" summary="-Aggiunto il comando mainApp.initStaffManager() al pulsante 'Ok' dell'Alert che notifica il successo del login in modo da rendere fluido il passaggio da una schermata all'altra">
-      <option name="closed" value="true" />
-      <created>1732358214694</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1732358214694</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Creata la classe User per agevolare le operazioni di login e ilk riconoscimento della giusta schermata da far comparire.">
-      <option name="closed" value="true" />
-      <created>1732361118797</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361118797</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Cambiato data da List&lt;String&gt; a User in modo da poter contenere anche un boolean per controllare se l'utente è staff manager">
-      <option name="closed" value="true" />
-      <created>1732361190906</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361190906</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Si sceglie opportunamente la schermata da far comparire in base all'opportuno attributo di data">
-      <option name="closed" value="true" />
-      <created>1732361233110</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361233110</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Sostituita handleExit con handleLogout in modo da rimandare l'utilizzatore dell'app alla schermata di login">
-      <option name="closed" value="true" />
-      <created>1732361327185</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361327185</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Rinominati opportunamente i file per distringuere membro dello staff e staff manager">
-      <option name="closed" value="true" />
-      <created>1732361383376</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1732361383376</updated>
+      <workItem from="1732899114243" duration="1275000" />
+      <workItem from="1732948456780" duration="13332000" />
+      <workItem from="1732972396735" duration="11243000" />
+      <workItem from="1733035270614" duration="30585000" />
     </task>
     <task id="LOCAL-00022" summary="Eliminato per la coerenza dei nomi">
       <option name="closed" value="true" />
@@ -623,7 +463,215 @@
       <option name="project" value="LOCAL" />
       <updated>1732733368341</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="verifyAppointment modified">
+      <option name="closed" value="true" />
+      <created>1732899985213</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1732899985213</updated>
+    </task>
+    <task id="LOCAL-00046" summary="getLastApp added">
+      <option name="closed" value="true" />
+      <created>1732900007661</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900007661</updated>
+    </task>
+    <task id="LOCAL-00047" summary="setId added&#10;empty constructor added">
+      <option name="closed" value="true" />
+      <created>1732900038659</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900038659</updated>
+    </task>
+    <task id="LOCAL-00048" summary="select with id added">
+      <option name="closed" value="true" />
+      <created>1732900068639</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900068639</updated>
+    </task>
+    <task id="LOCAL-00049" summary="bug fixes">
+      <option name="closed" value="true" />
+      <created>1732900076500</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900076500</updated>
+    </task>
+    <task id="LOCAL-00050" summary="initAppView, showAppInsertDialog, showAppUpdateDialog and errorAlert added">
+      <option name="closed" value="true" />
+      <created>1732900121903</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900121903</updated>
+    </task>
+    <task id="LOCAL-00051" summary="isAvailable added">
+      <option name="closed" value="true" />
+      <created>1732900143932</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900143932</updated>
+    </task>
+    <task id="LOCAL-00052" summary="id initialized in empty constructor">
+      <option name="closed" value="true" />
+      <created>1732900194510</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900194510</updated>
+    </task>
+    <task id="LOCAL-00053" summary="select with id addeed">
+      <option name="closed" value="true" />
+      <created>1732900226906</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900226906</updated>
+    </task>
+    <task id="LOCAL-00054" summary="appointment window activated">
+      <option name="closed" value="true" />
+      <created>1732900275438</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900275438</updated>
+    </task>
+    <task id="LOCAL-00055" summary="update bug fix">
+      <option name="closed" value="true" />
+      <created>1732900304797</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900304797</updated>
+    </task>
+    <task id="LOCAL-00056" summary="general appointment layout GUI+controller">
+      <option name="closed" value="true" />
+      <created>1732900325291</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900325291</updated>
+    </task>
+    <task id="LOCAL-00057" summary="add appointment layout GUI+controller">
+      <option name="closed" value="true" />
+      <created>1732900334613</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900334613</updated>
+    </task>
+    <task id="LOCAL-00058" summary="update appointment layout GUI+controller">
+      <option name="closed" value="true" />
+      <created>1732900344854</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900344854</updated>
+    </task>
+    <task id="LOCAL-00059" summary="boh^2">
+      <option name="closed" value="true" />
+      <created>1732900362425</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1732900362425</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Home button">
+      <option name="closed" value="true" />
+      <created>1733069965238</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1733069965238</updated>
+    </task>
+    <task id="LOCAL-00061" summary="BOH">
+      <option name="closed" value="true" />
+      <created>1733070020299</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070020299</updated>
+    </task>
+    <task id="LOCAL-00062" summary="duration add">
+      <option name="closed" value="true" />
+      <created>1733070087076</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070087076</updated>
+    </task>
+    <task id="LOCAL-00063" summary="home button">
+      <option name="closed" value="true" />
+      <created>1733070121564</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070121564</updated>
+    </task>
+    <task id="LOCAL-00064" summary="duration add">
+      <option name="closed" value="true" />
+      <created>1733070144720</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070144720</updated>
+    </task>
+    <task id="LOCAL-00065" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1733070214471</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070214471</updated>
+    </task>
+    <task id="LOCAL-00066" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1733070222856</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070222856</updated>
+    </task>
+    <task id="LOCAL-00067" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1733070251522</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070251522</updated>
+    </task>
+    <task id="LOCAL-00068" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1733070271012</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070271012</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fixes to save user infos">
+      <option name="closed" value="true" />
+      <created>1733070293030</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070293030</updated>
+    </task>
+    <task id="LOCAL-00070" summary="methods to manage appointment management">
+      <option name="closed" value="true" />
+      <created>1733070437188</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070437188</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,32 +689,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Aggiunto initStaff per far comparire la schermata iniziale del membro dello staff" />
-    <MESSAGE value="Commit" />
-    <MESSAGE value="Nessun commento" />
-    <MESSAGE value="Commenti sia per documentazione che infra-codice per le classi DAO" />
-    <MESSAGE value="Commenti per documentazione di DataUtil e User" />
-    <MESSAGE value="Commenti per documentazione di DataUtil e User v.2" />
-    <MESSAGE value="Correzione commenti DAO" />
-    <MESSAGE value="Commenti documentazione e codice per LoginLayoutController" />
-    <MESSAGE value="Commenti documentazione e codice per i controller delle GUI iniziali dello staff manager e di un membro generico dello staff" />
-    <MESSAGE value="Risoluzione bug grafici" />
-    <MESSAGE value="Refactor di MainApp in Main" />
-    <MESSAGE value="Boh" />
-    <MESSAGE value="Merge login+staff_management" />
-    <MESSAGE value="Boh 2" />
-    <MESSAGE value="Boh 3" />
-    <MESSAGE value="DAO fix" />
-    <MESSAGE value="Boh 6" />
-    <MESSAGE value="Merge Sprint 1" />
-    <MESSAGE value="Boh7" />
-    <MESSAGE value="Boh 8" />
-    <MESSAGE value="Boh 9" />
-    <MESSAGE value="Menu bar" />
-    <MESSAGE value="Class reflecting the db table and with fields in order to interact with GUI" />
     <MESSAGE value="DAO interface and exception" />
     <MESSAGE value="CRUD with db" />
-    <option name="LAST_COMMIT_MESSAGE" value="CRUD with db" />
+    <MESSAGE value="verifyAppointment modified" />
+    <MESSAGE value="getLastApp added" />
+    <MESSAGE value="setId added&#10;empty constructor added" />
+    <MESSAGE value="select with id added" />
+    <MESSAGE value="bug fixes" />
+    <MESSAGE value="initAppView, showAppInsertDialog, showAppUpdateDialog and errorAlert added" />
+    <MESSAGE value="isAvailable added" />
+    <MESSAGE value="id initialized in empty constructor" />
+    <MESSAGE value="select with id addeed" />
+    <MESSAGE value="appointment window activated" />
+    <MESSAGE value="update bug fix" />
+    <MESSAGE value="general appointment layout GUI+controller" />
+    <MESSAGE value="add appointment layout GUI+controller" />
+    <MESSAGE value="update appointment layout GUI+controller" />
+    <MESSAGE value="boh^2" />
+    <MESSAGE value="Home button" />
+    <MESSAGE value="BOH" />
+    <MESSAGE value="home button" />
+    <MESSAGE value="duration add" />
+    <MESSAGE value="refactor" />
+    <MESSAGE value="fixes" />
+    <MESSAGE value="fixes to save user infos" />
+    <MESSAGE value="methods to manage appointment management" />
+    <option name="LAST_COMMIT_MESSAGE" value="methods to manage appointment management" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -678,22 +726,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java</url>
-          <line>171</line>
+          <line>202</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ClassNotFoundException" package="java.lang" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java</url>
-          <line>302</line>
-          <properties class="it.unicas.clinic.address.Main" method="loadStaffManagement">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
