@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.login;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;

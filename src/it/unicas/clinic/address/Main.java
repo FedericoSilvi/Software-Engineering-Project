@@ -2,10 +2,16 @@ package it.unicas.clinic.address;
 
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
-import it.unicas.clinic.address.view.*;
+import it.unicas.clinic.address.view.login.LoginLayoutController;
+import it.unicas.clinic.address.view.login.StaffManagerInitialLayoutController;
+import it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleManagementLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController;
+import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
+import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
+import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
+import it.unicas.clinic.address.view.staff.StaffUpdateLayoutController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,10 +24,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import it.unicas.clinic.address.model.Client;
-import it.unicas.clinic.address.view.AddClientController;
-import it.unicas.clinic.address.view.ClientOverviewController;
-import it.unicas.clinic.address.view.SearchClientController;
-import it.unicas.clinic.address.view.UpdateClientController;
+import it.unicas.clinic.address.view.client.AddClientController;
+import it.unicas.clinic.address.view.client.ClientOverviewController;
+import it.unicas.clinic.address.view.client.SearchClientController;
+import it.unicas.clinic.address.view.client.UpdateClientController;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -72,7 +78,7 @@ public class Main extends Application {
         this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/ClientOverview.fxml"));
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml"));
      //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
         AnchorPane root = loader.load();
 
@@ -110,7 +116,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/LoginLayout.fxml"));
+                    .getResource("view/login/LoginLayout.fxml"));
             loginLayout = (BorderPane) loader.load();
 
             // Show the scene containing the login layout.
@@ -140,7 +146,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/StaffMemberInitialLayout.fxml"));
+                    .getResource("view/login/StaffMemberInitialLayout.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -177,7 +183,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/StaffManagerInitialLayout.fxml"));
+                    .getResource("view/login/StaffManagerInitialLayout.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -207,7 +213,7 @@ public class Main extends Application {
     public void showStaffInsertDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/StaffAddingLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/staff/StaffAddingLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Staff");
@@ -240,7 +246,7 @@ public class Main extends Application {
     public void showStaffUpdateDialog(Staff s){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/StaffUpdateLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/staff/StaffUpdateLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Update Stuff");
@@ -270,7 +276,7 @@ public class Main extends Application {
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
         this.primaryStage.setTitle("Clinic");
-        loader.setLocation(Main.class.getResource("view/ChooseOwnerLayout.fxml"));
+        loader.setLocation(Main.class.getResource("view/staff/ChooseOwnerLayout.fxml"));
         page =  loader.load();
         Scene scene = new Scene(page);
         primaryStage.setScene(scene);
@@ -282,7 +288,7 @@ public class Main extends Application {
         staffData.clear();
         loadStaffManagementChoose();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/StaffManagementLayout2.fxml"));
+        loader.setLocation(Main.class.getResource("view/staff/StaffManagementLayout2.fxml"));
         page.setCenter(loader.load());
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
@@ -298,7 +304,7 @@ public class Main extends Application {
     public void searchClientLayout(ClientOverviewController clientController) throws IOException {
         Stage searchWindow = new Stage();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/SearchClient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/SearchClient.fxml"));
         AnchorPane layout = loader.load();
 
 
@@ -317,7 +323,7 @@ public class Main extends Application {
 
     public void addClientLayout(ClientOverviewController clientController) throws IOException {
         Stage addWindow = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/AddClient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/AddClient.fxml"));
         AnchorPane layout = loader.load();
         AddClientController controller = loader.getController();
         controller.setStage(addWindow);
@@ -334,7 +340,7 @@ public class Main extends Application {
     public void updateClientLayout(ClientOverviewController clientController, Client client) throws IOException {
         Stage updateWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/UpdateClient.fxml"));
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/UpdateClient.fxml"));
         AnchorPane layout = (AnchorPane) loader.load();
         UpdateClientController controller = loader.getController();
         controller.setMainApp(this);
@@ -352,7 +358,7 @@ public class Main extends Application {
     public void showClientView() throws IOException, SQLException {
             this.primaryStage.setTitle("Clinic");
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
             AnchorPane root = loader.load();
             ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
             controller.ShowAllClients();

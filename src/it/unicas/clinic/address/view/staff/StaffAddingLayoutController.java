@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.staff;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Staff;
@@ -7,13 +7,10 @@ import it.unicas.clinic.address.model.dao.StaffException;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class StaffAddingLayoutController {
 

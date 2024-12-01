@@ -11,13 +11,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.LoginLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.login.LoginLayoutController">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="556.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/login_icons/background.jpg" />
+                  <Image url="@../../../../../../resources/login_icons/background.jpg" />
                </image>
             </ImageView>
             <Pane layoutX="193.0" layoutY="132.0" opacity="0.75" prefHeight="202.0" prefWidth="314.0" style="-fx-background-color: white; -fx-background-radius: 40;">
@@ -42,13 +42,13 @@
                   </TextField>
                   <ImageView fx:id="openedEye" fitHeight="24.0" fitWidth="23.0" layoutX="260.0" layoutY="89.0" onMouseClicked="#handleShowPassword" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/login_icons/eye-icon.png" />
+                        <Image url="@../../../../../../resources/login_icons/eye-icon.png" />
                      </image>
                   </ImageView>
                   <Text layoutX="28.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
                   <ImageView fx:id="closedEye" fitHeight="24.0" fitWidth="23.0" layoutX="260.0" layoutY="89.0" onMouseClicked="#handleHidePassword" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/login_icons/closed-eye.png" />
+                        <Image url="@../../../../../../resources/login_icons/closed-eye.png" />
                      </image>
                   </ImageView>
                   <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />

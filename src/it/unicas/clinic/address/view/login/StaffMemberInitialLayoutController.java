@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.login;
 
 import it.unicas.clinic.address.Main;
 import javafx.fxml.FXML;
@@ -12,20 +12,17 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 /**
- * Staff manager GUI. It provides 4 sections to select
+ * Staff manager GUI. It provides 3 sections to select
  * - Client section to manage clients
- * - Staff section to manage staff members
  * - Appointments section to manage appointments
  * - Calendar section to see appointments in calendar mode
  */
-public class StaffManagerInitialLayoutController {
+public class StaffMemberInitialLayoutController {
 
     private Main main;
 
     @FXML
     private ImageView clientBackground;
-    @FXML
-    private ImageView staffBackground;
     @FXML
     private ImageView appointmentBackground;
     @FXML
@@ -40,7 +37,8 @@ public class StaffManagerInitialLayoutController {
     }
     @FXML
     private void handleLogout(){
-        //Alert to return in the login GUI
+
+        //Alert to go back to login GUI
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("Are you sure you want to logout?");
@@ -56,14 +54,10 @@ public class StaffManagerInitialLayoutController {
             main.initLogin();
         }
     }
-    //Methods to highlight the section only when mouse passes on them
+    //Methods to highlight sections only when mouse passes on them
     @FXML
     private void handleClientHighlight(){
         clientBackground.setOpacity(0.50);
-    }
-    @FXML
-    private void handleStaffHighlight(){
-        staffBackground.setOpacity(0.50);
     }
     @FXML
     private void handleAppointmentsHighlight(){
@@ -78,20 +72,12 @@ public class StaffManagerInitialLayoutController {
         clientBackground.setOpacity(0.25);
     }
     @FXML
-    private void handleStaffDownlight(){
-        staffBackground.setOpacity(0.25);
-    }
-    @FXML
     private void handleAppointmentsDownlight(){
         appointmentBackground.setOpacity(0.25);
     }
     @FXML
     private void handleCalendarDownlight(){
         calendarBackground.setOpacity(0.25);
-    }
-    @FXML
-    private void handleStaffManagerView() throws IOException {
-        main.loadStaffManagement();
     }
     @FXML
     private void handleClientView() throws SQLException, IOException {
