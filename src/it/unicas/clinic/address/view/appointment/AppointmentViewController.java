@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
@@ -21,6 +22,8 @@ public class AppointmentViewController {
     private TableColumn<Appointment, LocalDate> dateColumn;
     @FXML
     private TableColumn<Appointment, LocalTime> timeColumn;
+    @FXML
+    private TableColumn<Appointment, LocalTime> durationColumn;
     @FXML
     private TableColumn<Appointment, Integer> idColumn;
     @FXML
@@ -36,7 +39,7 @@ public class AppointmentViewController {
         this.mainApp = mainApp;
         // Add observable list data to the table
         appointmentTable.setItems(mainApp.getAppointmentData());
-        mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, null, null,0,0)));
+        mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, null, null,null,0,0)));
 
     }
     @FXML
@@ -45,17 +48,18 @@ public class AppointmentViewController {
         serviceColumn.setCellValueFactory(cellData -> cellData.getValue().serviceProperty());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
         timeColumn.setCellValueFactory(cellData -> cellData.getValue().timeProperty());
+        durationColumn.setCellValueFactory(cellData -> cellData.getValue().durationProperty());
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject()); // IntegerProperty richiede asObject()
         staffIdColumn.setCellValueFactory(cellData -> cellData.getValue().staffIdProperty().asObject());
         clientIdColumn.setCellValueFactory(cellData -> cellData.getValue().clientIdProperty().asObject());
     }
 
 
-
     @FXML
     private void handleInsertApp() {
         mainApp.showAppInsertDialog();
     }
+
     @FXML
     private void handleUpdateApp(){
         Appointment selectedApp = appointmentTable.getSelectionModel().getSelectedItem();
@@ -117,5 +121,11 @@ public class AppointmentViewController {
 
             alert.showAndWait();
         }
+    }
+    public void handleHome(){
+       if(mainApp.getIsManager())
+           mainApp.initStaffManager();
+       else
+           mainApp.initStaff();
     }
 }
