@@ -1,23 +1,16 @@
-package it.unicas.clinic.address.view;
+package it.unicas.clinic.address.view.client;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
-import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -83,7 +76,7 @@ public class ClientOverviewController {
     @FXML
     private void OnClickAddClient(ActionEvent event) throws IOException {
 
-        mainApp.AddClientLayout(this);
+        mainApp.addClientLayout(this);
     }
 
     @FXML
@@ -91,7 +84,7 @@ public class ClientOverviewController {
         if(isAvailable()){
             Client client = table.getSelectionModel().getSelectedItem();
 
-            mainApp.UpdateClientLayout(this, client);
+            mainApp.updateClientLayout(this, client);
         }
 
     }
