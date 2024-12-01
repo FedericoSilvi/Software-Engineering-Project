@@ -1,8 +1,19 @@
 package it.unicas.clinic.address;
 
 import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
-import it.unicas.clinic.address.view.*;
+import it.unicas.clinic.address.utils.DataUtil.AppInfo;
+import it.unicas.clinic.address.view.appointment.*;
+import it.unicas.clinic.address.view.client.*;
+import it.unicas.clinic.address.view.login.LoginLayoutController;
+import it.unicas.clinic.address.view.login.StaffManagerInitialLayoutController;
+import it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController;
+import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
+import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
+import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
+import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
+import it.unicas.clinic.address.view.staff.StaffUpdateLayoutController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,14 +26,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import it.unicas.clinic.address.model.Client;
-import it.unicas.clinic.address.view.AddClientController;
-import it.unicas.clinic.address.view.ClientOverviewController;
-import it.unicas.clinic.address.view.SearchClientController;
-import it.unicas.clinic.address.view.UpdateClientController;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import java.sql.SQLException;
@@ -39,14 +49,35 @@ public class Main extends Application {
     private AnchorPane appInitialLayout;
     private ObservableList<Staff> staffData = FXCollections.observableArrayList();
     private ObservableList<Appointment> appointmentData = FXCollections.observableArrayList();
+    //private ObservableList<LocalDate> dateData = FXCollections.observableArrayList();
+    //private ObservableList<LocalTime> timeData = FXCollections.observableArrayList();
+    private ObservableList<Schedule> appSchedData = FXCollections.observableArrayList();
     private BorderPane page;
+    private AppInfo appInfo = new AppInfo();
+    private Boolean isManager;
+    private int userId;
+
+    public int getUser_id() {
+        return userId;
+    }
+
+    public void setUser_id(int user_id) {
+        this.userId = user_id;
+    }
+
+
+    public ObservableList<Schedule> getAppSchedData() {
+        return appSchedData;
+    }
+    public void saveAppSchedData(ObservableList<Schedule> list){appSchedData=list;}
     public ObservableList<Staff> getStaffData() {
         return staffData;
     }
     public ObservableList<Appointment> getAppointmentData() {
         return appointmentData;
     }
-
+    public Boolean getIsManager(){return isManager;}
+    public void setIsManager(Boolean isManager){this.isManager=isManager;}
 
     public Main() {
     }
@@ -69,7 +100,7 @@ public class Main extends Application {
         this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/ClientOverview.fxml"));
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml"));
      //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
         AnchorPane root = loader.load();
 
@@ -107,7 +138,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/LoginLayout.fxml"));
+                    .getResource("view/login/LoginLayout.fxml"));
             loginLayout = (BorderPane) loader.load();
 
             // Show the scene containing the login layout.
@@ -137,7 +168,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/StaffMemberInitialLayout.fxml"));
+                    .getResource("view/login/StaffMemberInitialLayout.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -174,7 +205,7 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/StaffManagerInitialLayout.fxml"));
+                    .getResource("view/login/StaffManagerInitialLayout.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -204,7 +235,7 @@ public class Main extends Application {
     public void showStaffInsertDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/StaffAddingLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/staff/StaffAddingLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Staff");
@@ -234,7 +265,7 @@ public class Main extends Application {
     public void addSchedule() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/staff/ScheduleAddingLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Schedule");
@@ -262,10 +293,10 @@ public class Main extends Application {
     public void showStaffUpdateDialog(Staff s){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/StaffUpdateLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/staff/StaffUpdateLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Update Stuff");
+            dialogStage.setTitle("Update Staff");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -292,7 +323,7 @@ public class Main extends Application {
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
         this.primaryStage.setTitle("Clinic");
-        loader.setLocation(Main.class.getResource("view/ChooseOwnerLayout.fxml"));
+        loader.setLocation(Main.class.getResource("view/staff/ChooseOwnerLayout.fxml"));
         page =  loader.load();
         Scene scene = new Scene(page);
         primaryStage.setScene(scene);
@@ -304,7 +335,7 @@ public class Main extends Application {
         staffData.clear();
         loadStaffManagementChoose();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/StaffManagementLayout2.fxml"));
+        loader.setLocation(Main.class.getResource("view/staff/StaffManagementLayout2.fxml"));
         page.setCenter(loader.load());
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
@@ -313,7 +344,7 @@ public class Main extends Application {
 
     public void loadScheduleManagement() throws IOException{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/ScheduleAddingLayout.fxml"));
+        loader.setLocation(Main.class.getResource("view/schedule/ScheduleAddingLayout.fxml"));
         page.setCenter(loader.load());
         ScheduleAddingLayoutController controller = loader.getController();
         controller.setMainApp(this);
@@ -324,7 +355,7 @@ public class Main extends Application {
     public void searchClientLayout(ClientOverviewController clientController) throws IOException {
         Stage searchWindow = new Stage();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/SearchClient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/SearchClient.fxml"));
         AnchorPane layout = loader.load();
 
 
@@ -343,7 +374,7 @@ public class Main extends Application {
 
     public void addClientLayout(ClientOverviewController clientController) throws IOException {
         Stage addWindow = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/AddClient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/AddClient.fxml"));
         AnchorPane layout = loader.load();
         AddClientController controller = loader.getController();
         controller.setStage(addWindow);
@@ -360,7 +391,7 @@ public class Main extends Application {
     public void updateClientLayout(ClientOverviewController clientController, Client client) throws IOException {
         Stage updateWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/UpdateClient.fxml"));
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/UpdateClient.fxml"));
         AnchorPane layout = (AnchorPane) loader.load();
         UpdateClientController controller = loader.getController();
         controller.setMainApp(this);
@@ -379,7 +410,7 @@ public class Main extends Application {
     public void showClientView() throws IOException, SQLException {
             this.primaryStage.setTitle("Clinic");
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
             AnchorPane root = loader.load();
             ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
             controller.ShowAllClients();
@@ -390,11 +421,11 @@ public class Main extends Application {
 
     public void initAppView(){
         try{
-
+            appointmentData.clear();
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
-                    .getResource("view/AppointmentView.fxml"));
+                    .getResource("view/appointment/AppointmentView.fxml"));
             appInitialLayout = (AnchorPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -421,37 +452,67 @@ public class Main extends Application {
         }
     }
     public void showAppInsertDialog() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/AppAddingLayout.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Add Appointment");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
+        if(isManager) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("view/appointment/AppAddingLayout2.fxml"));
+                AnchorPane page = (AnchorPane) loader.load();
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Add Appointment");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(primaryStage);
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
 
-            //Controller
-            AppAddingLayoutController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.setDialogStage(dialogStage);
-            //controller.setStaff();
+                //Controller
+                AppAddingLayoutController2 controller = loader.getController();
+                controller.setMainApp(this);
+                controller.setDialogStage(dialogStage);
+                //controller.setStaff();
 
-            // Set the dialog icon.
-            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
-            dialogStage.showAndWait();
+                // Set the dialog icon.
+                //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+                dialogStage.showAndWait();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+        else{
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("view/appointment/AppAddingLayout3.fxml"));
+                AnchorPane page = (AnchorPane) loader.load();
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Add Appointment");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(primaryStage);
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
 
+                //Controller
+                AppAddingLayoutController3 controller = loader.getController();
+                controller.setMainApp(this);
+                controller.setDialogStage(dialogStage);
+                //controller.setStaff();
+
+                // Set the dialog icon.
+                //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+                dialogStage.showAndWait();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+        }
 
     }
     public void showAppUpdateDialog(Appointment a){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/AppUpdateLayout.fxml"));
+            loader.setLocation(Main.class.getResource("view/appointment/AppUpdateLayout.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Update Stuff");
@@ -482,6 +543,64 @@ public class Main extends Application {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+    public void showAppStaff() throws IOException {
+        appointmentData.clear();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/AppStaffView.fxml"));
+        AnchorPane p = (AnchorPane) loader.load();
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Add Appointment");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+        Scene scene = new Scene(p);
+        dialogStage.setScene(scene);
+        AppStaffViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setDialogStage(dialogStage);
+
+        dialogStage.show();
+    }
+    public void showAppClient() throws IOException, SQLException {
+        appointmentData.clear();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/AppClientView.fxml"));
+        AnchorPane p = (AnchorPane) loader.load();
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Add Appointment");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+        Scene scene = new Scene(p);
+        dialogStage.setScene(scene);
+        AppClientViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.ShowAllClients();
+        controller.setDialogStage(dialogStage);
+
+        dialogStage.show();
+    }
+    public void saveStaff(int id){
+        appInfo.setStaff(id);
+    }
+    public int getSavedStaff(){
+        return appInfo.getStaff();
+    }
+    public void saveClient(int id){appInfo.setClient(id);}
+    public int getSavedClient(){return appInfo.getClient();}
+    public void saveService(String service){appInfo.setService(service);}
+    public String getSavedService(){return appInfo.getService();}
+    public void saveDuration(LocalTime duration){appInfo.setDuration(duration);}
+    public LocalTime getSavedDuration(){return appInfo.getDuration();}
+    public void showAvailableApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list) throws IOException {
+        appSchedData.clear();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/AppSelectView.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        Scene scene = new Scene(page);
+        primaryStage.setScene(scene);
+        AppSelectViewController controller = loader.getController();
+        controller.setMainApp(this,schedules,list);
+        primaryStage.show();
     }
     public static void main(String[] args) {
         launch(args);
