@@ -221,36 +221,36 @@ public class ChangePasswordController {
     private boolean isInputValid() {
         String errorMessage = "";
         if(openedEye3.isVisible()){
-            if (oldPasswordVisible.getText() == null || oldPasswordVisible.getText().length() == 0) {
+            if (oldPasswordVisible.getText() == null || oldPasswordVisible.getText()=="") {
                 errorMessage += "Insert the old password!\n";
             }
         } else {
-            if (oldPasswordHidden.getText() == null || oldPasswordHidden.getText().length() == 0) {
+            if (oldPasswordHidden.getText() == null || oldPasswordHidden.getText()=="") {
                 errorMessage += "Insert the old password!\n";
             }
         }
 
         if(openedEye1.isVisible()){
-            if (newPasswordVisible.getText() == null || newPasswordVisible.getText().length() == 0) {
+            if (newPasswordVisible.getText() == null || newPasswordVisible.getText()=="") {
                 errorMessage += "Insert the new password!\n";
             }
         } else {
-            if (newPasswordHidden.getText() == null || newPasswordHidden.getText().length() == 0) {
+            if (newPasswordHidden.getText() == null || newPasswordHidden.getText()=="") {
                 errorMessage += "Insert the new password!\n";
             }
         }
 
         if(openedEye2.isVisible()){
-            if (confirmPasswordVisible.getText() == null || confirmPasswordVisible.getText().length() == 0) {
+            if (confirmPasswordVisible.getText() == null || confirmPasswordVisible.getText()=="") {
                 errorMessage += "Confirm password!\n";
             }
         } else {
-            if (confirmPasswordHidden.getText() == null || confirmPasswordHidden.getText().length() == 0) {
+            if (confirmPasswordHidden.getText() == null || confirmPasswordHidden.getText()=="") {
                 errorMessage += "Confirm password!\n";
             }
         }
 
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

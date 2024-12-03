@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge2_2">
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/ChangePasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/ChangePasswordController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -400,7 +400,8 @@
     <MESSAGE value="Fix error in Schedule management" />
     <MESSAGE value="Refactor view packages" />
     <MESSAGE value="merge2" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge2" />
+    <MESSAGE value="merge2_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge2_2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
