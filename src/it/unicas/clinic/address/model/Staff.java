@@ -36,6 +36,7 @@ public class Staff {
     }
 
     public Staff() {
+        this.id = new SimpleIntegerProperty(0);
         this.name = new SimpleStringProperty("");
         this.surname = new SimpleStringProperty("");
         this.specialties = new SimpleStringProperty("");

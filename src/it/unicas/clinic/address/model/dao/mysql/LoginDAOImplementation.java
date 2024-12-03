@@ -74,7 +74,6 @@ public class LoginDAOImplementation {
         ResultSet result = command.executeQuery();
         boolean isManager = false;
         if(result.next()){  //If command has found something
-           // staff_id="";
             //Save the info about user being manager or not
             isManager = result.getBoolean("owner");
             //Get the staff id from credential table
@@ -82,7 +81,6 @@ public class LoginDAOImplementation {
             //Command for searching in staff table
             String staffSearch = "select * from staff where id=?";
             PreparedStatement staff = connection.prepareStatement(staffSearch);
-            staff.setInt(1,staff_id);
             //Execute command
             ResultSet staff_data = staff.executeQuery();
             //Define user to store staff member if found
@@ -92,6 +90,7 @@ public class LoginDAOImplementation {
                 user.setName(staff_data.getString("name"));
                 user.setSurname(staff_data.getString("surname"));
                 user.setManager(isManager);
+                user.setId(staff_id);
             }
             //Close connection
             DAOMySQLSettings.closeConnection(connection);

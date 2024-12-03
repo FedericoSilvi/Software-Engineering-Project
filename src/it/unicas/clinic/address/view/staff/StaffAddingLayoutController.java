@@ -7,13 +7,10 @@ import it.unicas.clinic.address.model.dao.StaffException;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class StaffAddingLayoutController {
 
@@ -76,7 +73,8 @@ public class StaffAddingLayoutController {
                 try {
                     dao.insert(this.staff);
                     mainApp.getStaffData().add(dao.getLastStaff());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    dialogStage.close();
+                    /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.initOwner(mainApp.getPrimaryStage());
                     alert.setTitle("Schedule");
                     alert.setHeaderText("Do you want to add a schedule?");
@@ -84,11 +82,11 @@ public class StaffAddingLayoutController {
                     ButtonType buttonTypeOne = new ButtonType("Yes");
                     ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
                     alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
-                    dialogStage.close();
+
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == buttonTypeOne){
                         mainApp.addSchedule();
-                    }
+                    }*/
                 }catch (StaffException e){
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("Database Error");
@@ -102,7 +100,7 @@ public class StaffAddingLayoutController {
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("ERror");
+                alert.setHeaderText("Module error");
                 alert.setContentText("You have to fill all the fields!!");
                 alert.showAndWait();
             }

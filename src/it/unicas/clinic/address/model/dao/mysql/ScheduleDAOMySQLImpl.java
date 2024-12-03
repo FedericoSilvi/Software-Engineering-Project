@@ -122,13 +122,13 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         if (s == null || !(staffExists(s.getStaffId())) || s.getDay() == null) {
             throw new StaffException("SQL: In update(): Schedule object cannot be null, invalid staffId or day.");
         }
-        String sqlUpdateSchedule = "UPDATE schedule SET day = ?, start_time = ?, stop_time = ? WHERE staff_id = ?";
+        String sqlUpdateSchedule = "UPDATE schedule SET day = ?, start_time = ?, stop_time = ? WHERE id = ?";
         try (Connection con = DAOMySQLSettings.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(sqlUpdateSchedule)) {
             preparedStatement.setDate(1, Date.valueOf(s.getDay()));
             preparedStatement.setTime(2, Time.valueOf(s.getStartTime()));
             preparedStatement.setTime(3, Time.valueOf(s.getStopTime()));
-            preparedStatement.setInt(4, s.getStaffId());
+            preparedStatement.setInt(4, s.getId());
 
             int rowAffected=preparedStatement.executeUpdate();
             logger.info("Query executed successfully: " + sqlUpdateSchedule);
@@ -230,6 +230,65 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         return false;
     }
 
+    public Schedule getLastSchedule() throws ScheduleException  {
+        Schedule s = new Schedule(-1, LocalDate.now(), null, null, -1);
+        try {
+            Connection connection = DAOMySQLSettings.getConnection();
+            //Define command
+            String searchSchedule = "select * from schedule order by id desc limit 1";
+            PreparedStatement command = connection.prepareStatement(searchSchedule);
+            //Execute command
+            ResultSet result = command.executeQuery();
+
+            if (result.next()) {
+                s.setId(result.getInt("id"));
+                s.setDay(result.getDate("day").toLocalDate());
+                s.setStartTime(result.getTime("start_time").toLocalTime());
+                s.setStopTime(result.getTime("stop_time").toLocalTime());
+                s.setStaffId(result.getInt("staff_id"));
+            }
+            System.out.println(s);
+            connection.close();
+        }catch(SQLException e){
+            throw new ScheduleException("SQL: In getLastSchedule(): An error occurred while getting lastSchedule");
+        }
+        return s;
+    }
+
+    @Override
+    public  boolean isAvailable(LocalDate day, LocalTime time, int staff_id){
+        if(day==null || time==null || staff_id==0){
+            throw new IllegalArgumentException("Day, time or staff id are not valid!");
+        }
+        List<Schedule> schedulesOfDay = select(new Schedule(0,day,null,null,staff_id));
+        if(schedulesOfDay.isEmpty())
+            return false;
+        for(Schedule s: schedulesOfDay){
+            if(time.isAfter(s.getStopTime()) || time.isBefore(s.getStartTime())){
+                return false;
+            }
+        }
+        return true;
+    }
+    @Override
+    public ArrayList<Schedule> futureSchedule(int staff_id) throws SQLException {
+        if(staff_id<=0)
+            return null;
+        ArrayList<Schedule> list = new ArrayList<>();
+        Connection connection = DAOMySQLSettings.getConnection();
+        String sql="select * from schedule where staff_id=? and day>=?";
+        PreparedStatement command = connection.prepareStatement(sql);
+        command.setInt(1, staff_id);
+        command.setDate(2, Date.valueOf(LocalDate.now()));
+        ResultSet rs = command.executeQuery();
+        while(rs.next()){
+            list.add(new Schedule(rs.getInt(1),rs.getDate(2).toLocalDate()
+                    ,rs.getTime(3).toLocalTime(),rs.getTime(4).toLocalTime()
+                    ,rs.getInt(5)));
+        }
+        return list;
+    }
+
     public static void main(String args[]) throws StaffException, SQLException{
         dao=ScheduleDAOMySQLImpl.getInstance();
 
@@ -250,4 +309,6 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         //List<Schedule> schedulesall = dao.select(new Schedule(0, null, null, null,0));
         //System.out.println(schedulesall);
     }
+
+
 }
