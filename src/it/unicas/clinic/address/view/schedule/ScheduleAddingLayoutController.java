@@ -8,6 +8,7 @@ import it.unicas.clinic.address.model.dao.ScheduleException;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
+import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -58,8 +59,8 @@ public class ScheduleAddingLayoutController {
                     return;
                 }
                 LocalDate d = LocalDate.parse(dayField.getText());
-                LocalTime st = LocalTime.parse(startHourField.getText());
-                LocalTime et = LocalTime.parse(endHourField.getText());
+                LocalTime st = DataUtil.parseToTime(startHourField.getText(),true);
+                LocalTime et = DataUtil.parseToTime(endHourField.getText(),true);
                 this.schedule = new Schedule(d, st, et, staff.getId());
 
                 if (Schedule.verifySchedule(this.schedule) /*&& !Schedule.isEmpty(this.schedule)*/) {

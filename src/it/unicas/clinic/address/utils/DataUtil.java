@@ -1,13 +1,27 @@
 package it.unicas.clinic.address.utils;
 
+import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.Schedule;
+import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.dao.AppointmentDAO;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.TemporalAmount;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contain useful classes for data manipulation
  */
 public class DataUtil {
+
+    private static AppointmentDAO appDAO= new AppointmentDAOMySQLImpl().getInstance();
     /**
      * Class containing name, surname and whether the user is a manager or not, useful for login operations
      */
@@ -16,6 +30,7 @@ public class DataUtil {
         private String name;
         private String surname;
         private boolean isManager;
+        int id;
 
         /**
          * Getter of name
@@ -58,7 +73,12 @@ public class DataUtil {
         public void setManager(boolean manager) {
             isManager = manager;
         }
-
+        public int getId() {
+            return id;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
         /**
          * Constructor: sets name and surname as empty strings and info about
          * being a manager false
@@ -67,6 +87,7 @@ public class DataUtil {
             this.name = "";
             this.surname = "";
             this.isManager = false;
+            this.id=0;
         }
     }
 
@@ -136,4 +157,231 @@ public class DataUtil {
             return LocalTime.of(hour, minute, second);
         }
     }
+
+    public static LocalTime parseToDuration (String timeString,boolean modify){
+        //We are building LocalTime from TextField ("hh:mm" format)
+        if (modify) {
+            //Format control
+            if (timeString == null || !timeString.matches("\\d{1,2}|\\d{1,2}:\\d{2}")) {                System.out.println("Salve");
+                throw new IllegalArgumentException("Invalid duration format. Expected hh:mm or mm");
+            }
+            if(timeString.matches("\\d{1,2}")) {
+                // Split the string into components
+
+                int hour = 0;
+                int minute = Integer.parseInt(timeString);
+                int second = 0;
+
+
+                // Construct and return the LocalTime object
+                return LocalTime.of(hour, minute, second);
+            }
+            else{
+                // Split the string into components
+                String[] parts = timeString.split(":");
+                int hour = Integer.parseInt(parts[0]);
+                int minute = Integer.parseInt(parts[1]);
+                int second = 0;
+
+                // Construct and return the LocalTime object
+                return LocalTime.of(hour, minute, second);
+            }
+
+        }
+        //We already have "hh:mm:ss" format
+        else {
+            if (timeString == null || !timeString.matches("\\d{1,2}:\\d{2}:\\d{2}")) {
+                throw new IllegalArgumentException("Invalid time format. Expected HH:mm:ss");
+            }
+            // Split the string into components
+            String[] parts = timeString.split(":");
+            int hour = Integer.parseInt(parts[0]);
+            int minute = Integer.parseInt(parts[1]);
+            int second = Integer.parseInt(parts[2]);
+
+            // Construct and return the LocalTime object
+            return LocalTime.of(hour, minute, second);
+        }
+    }
+
+    /**
+     * Create a Boolean ArrayList representing time slots for the schedule passed by argument.
+     * The element is true if the slot is available, false if not.
+     * @param s: Schedule
+     * @return
+     */
+    public static ArrayList<Boolean> avApp(Schedule s) {
+        ArrayList<Boolean> list= new ArrayList<>();
+        int temp = (int)Math.ceil((s.getStopTime().getHour()*60+s.getStopTime().getMinute()
+                -(s.getStartTime().getHour()*60+s.getStartTime().getMinute()))/30.0);
+        for(int i=0;i<temp;i++){
+            list.add(true);
+        }
+        List<Appointment> appList = appDAO.select(new Appointment(
+         0,null,s.getDay(),null,null,s.getStaffId(),0
+        ));
+        //Check for existing appointment
+        for(Appointment el : appList){
+            int start =(int)Math.ceil((el.getTime().getHour()*60+el.getTime().getMinute()
+                    -(s.getStartTime().getHour()*60+s.getStartTime().getMinute()))/30.0);
+            int end = (int) Math.ceil((el.getDuration().getHour() * 60
+                    + el.getDuration().getMinute()) / 30.0) + start;
+            for(int j=start;j<end;j++){
+                list.set(j,false);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Filter the Boolean ArrayList in order to only consider lists capable of allocating the requested time slots.
+     * @param list: Boolean ArrayList
+     * @param time: Duration
+     * @return
+     */
+    public static ArrayList<Boolean> avFilter(ArrayList<Boolean> list, LocalTime time){
+        boolean ok=false;
+        int count=0;
+        int slots = (int)Math.ceil((time.getHour()*60+time.getMinute())/30.0);
+        for(int i=0;i< list.size() && count<slots;i++){
+            if(list.get(i))
+                count++;
+            else
+                count=0;
+            System.out.println(count);
+        }
+        if(count==slots)
+            ok=true;
+        if(ok)
+            return list;
+        else
+            return null;
+    }
+
+    /**
+     * Class to store preliminary Appointment information.
+     */
+    public static class AppInfo{
+
+        private String service;
+        private int staff_id;
+        private int client_id;
+        private LocalTime duration;
+
+        public String getService() {
+            return service;
+        }
+
+        public void setService(String service) {
+            this.service = service;
+        }
+
+        public int getStaff() {
+            return staff_id;
+        }
+
+        public void setStaff(int staff_id) {
+            this.staff_id = staff_id;
+        }
+
+        public int getClient() {
+            return client_id;
+        }
+
+        public void setClient(int client_id) {
+            this.client_id = client_id;
+        }
+
+        public LocalTime getDuration() {
+            return duration;
+        }
+
+        public void setDuration(LocalTime duration) {
+            this.duration = duration;
+        }
+        public AppInfo(){
+            this.service="";
+            this.staff_id=0;
+            this.client_id=0;
+            this.duration=null;
+        }
+    }
+
+    /**
+     * Create an ObservableList of LocalTime in order to display all available starting times
+     * of the appointment respecting the specified duration
+     * @param s
+     * @param boolList
+     * @param duration
+     * @return
+     */
+    public static ObservableList<LocalTime> timeSlots(Schedule s,ArrayList<Boolean> boolList,int duration){
+        ObservableList<LocalTime> list = FXCollections.observableArrayList();
+        //Consecutive available time slots
+        int count=0;
+        //Position in the boolean list
+        int index=0;
+        for (Boolean el : boolList) {
+            if(el && count<duration) {
+                System.out.println("Primo");
+                count++;
+            }
+            else if(el && count==duration){
+                System.out.println("Secondo");
+                int index_time=(index-count)*30;
+                int hours = index_time / 60;
+                int minutes = index_time % 60;
+
+                LocalTime timePassed = LocalTime.of(hours,minutes);
+                System.out.println(timePassed);
+                LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
+                        .plusMinutes(timePassed.getMinute());
+                System.out.println(timeStartApp);
+                list.add(timeStartApp);
+            }
+            else if(!el && count==duration) {
+                System.out.println("Terzo");
+                int index_time = (index - count) * 30;
+                int hours = index_time / 60;
+                int minutes = index_time % 60;
+
+                LocalTime timePassed = LocalTime.of(hours, minutes);
+                LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
+                        .plusMinutes(timePassed.getMinute());
+                list.add(timeStartApp);
+                count = 0;
+            }
+            else {
+                System.out.println("Quarto");
+                count = 0;
+            }
+
+            index++;
+            //To consider last available time slot
+            int last = (int)Math.ceil((s.getStopTime().getHour()*60+s.getStopTime().getMinute()
+                    -(s.getStartTime().getHour()*60+s.getStartTime().getMinute()))/30.0);
+            if(index==last && el && count==duration){
+                int index_time=(index-count)*30;
+                int hours = index_time / 60;
+                int minutes = index_time % 60;
+
+                LocalTime timePassed = LocalTime.of(hours,minutes);
+                System.out.println(timePassed);
+                LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
+                        .plusMinutes(timePassed.getMinute());
+                System.out.println(timeStartApp);
+                list.add(timeStartApp);
+            }
+        }
+        return list;
+    }
+    public static void main(String[] args) {
+        LocalDate date=LocalDate.of(2024,12,25);
+        LocalTime start_time=LocalTime.of(8,0,0);
+        LocalTime stop_time=LocalTime.of(16,0,0);
+
+        avApp(new Schedule(date,start_time,stop_time,3));
+    }
 }
+
+

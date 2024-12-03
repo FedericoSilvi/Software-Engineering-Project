@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Refactor view packages">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +201,7 @@
       <workItem from="1732949167145" duration="12293000" />
       <workItem from="1733042728553" duration="5036000" />
       <workItem from="1733058516364" duration="8601000" />
-      <workItem from="1733219933312" duration="638000" />
+      <workItem from="1733219933312" duration="3757000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -355,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733071005942</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="merge2">
+      <option name="closed" value="true" />
+      <created>1733220753026</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733220753026</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +399,8 @@
     <MESSAGE value="Implementation of updateSchedule and deleteSchedule" />
     <MESSAGE value="Fix error in Schedule management" />
     <MESSAGE value="Refactor view packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor view packages" />
+    <MESSAGE value="merge2" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

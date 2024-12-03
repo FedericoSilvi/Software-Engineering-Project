@@ -1,6 +1,7 @@
 package it.unicas.clinic.address.model.dao.mysql;
 
 import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.Staff;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -139,5 +140,33 @@ public class DAOClient {
 
         }
 
+    }
+
+    public static Client select(int id) throws SQLException {
+        if(id<=0){
+            return null;
+        }
+        else{
+            Connection connection = DAOMySQLSettings.getConnection();
+            String searchStaff = "select * from client where id = ?";
+            PreparedStatement command = connection.prepareStatement(searchStaff);
+            command.setInt(1, id);
+            ResultSet result = command.executeQuery();
+            if(result.next()){
+                Client c = new Client();
+                c.setId(result.getInt("id"));
+                c.setName(result.getString("name"));
+                c.setSurname(result.getString("surname"));
+                c.setEmail(result.getString("email"));
+                c.setNumber(result.getString("number"));
+                return c;
+            }
+            else
+                return null;
+        }
+    }
+    public static void main(String[] args) throws SQLException {
+        Client c = select(1);
+        System.out.println(c);
     }
 }

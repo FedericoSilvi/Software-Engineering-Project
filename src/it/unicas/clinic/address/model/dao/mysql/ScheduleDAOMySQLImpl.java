@@ -255,6 +255,39 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         return s;
     }
 
+    @Override
+    public  boolean isAvailable(LocalDate day, LocalTime time, int staff_id){
+        if(day==null || time==null || staff_id==0){
+            throw new IllegalArgumentException("Day, time or staff id are not valid!");
+        }
+        List<Schedule> schedulesOfDay = select(new Schedule(0,day,null,null,staff_id));
+        if(schedulesOfDay.isEmpty())
+            return false;
+        for(Schedule s: schedulesOfDay){
+            if(time.isAfter(s.getStopTime()) || time.isBefore(s.getStartTime())){
+                return false;
+            }
+        }
+        return true;
+    }
+    @Override
+    public ArrayList<Schedule> futureSchedule(int staff_id) throws SQLException {
+        if(staff_id<=0)
+            return null;
+        ArrayList<Schedule> list = new ArrayList<>();
+        Connection connection = DAOMySQLSettings.getConnection();
+        String sql="select * from schedule where staff_id=? and day>=?";
+        PreparedStatement command = connection.prepareStatement(sql);
+        command.setInt(1, staff_id);
+        command.setDate(2, Date.valueOf(LocalDate.now()));
+        ResultSet rs = command.executeQuery();
+        while(rs.next()){
+            list.add(new Schedule(rs.getInt(1),rs.getDate(2).toLocalDate()
+                    ,rs.getTime(3).toLocalTime(),rs.getTime(4).toLocalTime()
+                    ,rs.getInt(5)));
+        }
+        return list;
+    }
 
     public static void main(String args[]) throws StaffException, SQLException{
         dao=ScheduleDAOMySQLImpl.getInstance();

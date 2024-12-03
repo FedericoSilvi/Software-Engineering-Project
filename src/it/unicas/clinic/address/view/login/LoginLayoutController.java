@@ -85,7 +85,7 @@ public class LoginLayoutController {
     }
     @FXML
     private void handleExit(){
-        //Recall the fucntion in mainApp
+        //Recall the function in mainApp
         main.handleExit();
     }
     @FXML
@@ -133,10 +133,16 @@ public class LoginLayoutController {
              Optional<ButtonType> r = alert.showAndWait();
              if (r.get() == button){
                  alert.close();
-                 if(data.getManager())
+                 if(data.getManager()) {
                      main.initStaffManager();
-                 else
+                     main.setIsManager(true);
+                     main.setUser_id(data.getId());
+                 }
+                 else {
                      main.initStaff();
+                     main.setIsManager(false);
+                     main.setUser_id(data.getId());
+                 }
              }
 
          }
