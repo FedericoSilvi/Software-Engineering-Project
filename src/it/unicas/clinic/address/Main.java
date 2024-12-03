@@ -268,32 +268,6 @@ public class Main extends Application {
 
     }
 
-    public void addSchedule() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/staff/ScheduleAddingLayout.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Add Schedule");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            //Controller
-            ScheduleAddingLayoutController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.setDialogStage(dialogStage);
-            //controller.setStaff();
-
-            // Set the dialog icon.
-            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
     public void showStaffUpdateDialog(Staff s){
@@ -348,14 +322,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void loadScheduleManagement() throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/schedule/ScheduleAddingLayout.fxml"));
-        page.setCenter(loader.load());
-        ScheduleAddingLayoutController controller = loader.getController();
-        controller.setMainApp(this);
-        primaryStage.show();
-    }
 
 
     public void searchClientLayout(ClientOverviewController clientController) throws IOException {
