@@ -66,7 +66,7 @@ public class LoginDAOImplementation {
         //Open connection
         Connection connection = DAOMySQLSettings.getConnection();
         //Define command
-        String searchUser = "select * from credential where username=? and password=?";
+        String searchUser = "select * from clinic.credential where username=? and password=?";
         PreparedStatement command = connection.prepareStatement(searchUser);
         command.setString(1,this.username);
         command.setString(2,this.password);
