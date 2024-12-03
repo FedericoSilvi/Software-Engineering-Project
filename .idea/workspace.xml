@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="bug fixes" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge numero due 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -689,7 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="appointment window activated" />
     <MESSAGE value="update bug fix" />
     <MESSAGE value="general appointment layout GUI+controller" />
     <MESSAGE value="add appointment layout GUI+controller" />
@@ -714,7 +713,8 @@
     <MESSAGE value="merge 2" />
     <MESSAGE value="merge 3" />
     <MESSAGE value="bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fixes" />
+    <MESSAGE value="merge numero due 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge numero due 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
