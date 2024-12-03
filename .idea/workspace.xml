@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="new icons">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="update right implementation with bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppAddingLayoutController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppAddingLayoutController2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,15 +277,8 @@
       <workItem from="1732948456780" duration="13332000" />
       <workItem from="1732972396735" duration="11243000" />
       <workItem from="1733035270614" duration="37401000" />
-      <workItem from="1733080382982" duration="652000" />
-    </task>
-    <task id="LOCAL-00028" summary="Commenti sia per documentazione che infra-codice per le classi DAO">
-      <option name="closed" value="true" />
-      <created>1732372913633</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1732372913633</updated>
+      <workItem from="1733080382982" duration="1008000" />
+      <workItem from="1733147110628" duration="697000" />
     </task>
     <task id="LOCAL-00029" summary="Commenti per documentazione di DataUtil e User">
       <option name="closed" value="true" />
@@ -675,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733070728477</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="update right implementation with bug fixes">
+      <option name="closed" value="true" />
+      <created>1733081365725</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1733081365725</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bug fixes" />
     <MESSAGE value="initAppView, showAppInsertDialog, showAppUpdateDialog and errorAlert added" />
     <MESSAGE value="isAvailable added" />
     <MESSAGE value="id initialized in empty constructor" />
@@ -718,7 +714,8 @@
     <MESSAGE value="Staff choice GUI" />
     <MESSAGE value="Final appointment GUI" />
     <MESSAGE value="new icons" />
-    <option name="LAST_COMMIT_MESSAGE" value="new icons" />
+    <MESSAGE value="update right implementation with bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="update right implementation with bug fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
