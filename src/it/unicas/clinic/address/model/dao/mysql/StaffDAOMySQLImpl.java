@@ -1,6 +1,5 @@
 package it.unicas.clinic.address.model.dao.mysql;
 
-import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.ScheduleException;
@@ -92,8 +91,6 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
             }
         }catch(SQLException e){
             logger.severe(("SQL: In delete(): An error occurred while deleting staff data"));
-            //logger.severe("SQL: In delete(): Error - " + e.getMessage() + " | SQLState: " + e.getSQLState() + " | ErrorCode: " + e.getErrorCode());
-
             throw new StaffException("SQL: In delete(): An error occurred while deleting staff data");
         }
     }
@@ -167,10 +164,8 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
             if (!list.isEmpty()) {
                 logger.info("Query executed successfully: " + sqlSelect + " | Number of records found: " + list.size());
-
             } else {
                 logger.info("Query executed successfully: " + sqlSelect + " | No records found.");
-                return null;
             }
         } catch (SQLException e) {
             logger.severe("SQL Error: " + e.getMessage());
@@ -179,6 +174,10 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
         return list;  // Ritorna la lista di risultati
     }
+
+
+
+
 
     private void verifyStaff(Staff s) throws StaffException {
         //we want all not null and with a "meaning"
@@ -200,10 +199,10 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
         //dao.insert(new Staff("Marco", "Caruso", "Nessuna"));
         //dao.insert(new Staff("Federico", "Silvi", "massaggi"));
-        List<Staff> selectStuffMassage = dao.select(new Staff(1, null, null, null));
+        //List<Staff> selectStuffMassage = dao.select(new Staff(null, "F", null, null));
         //System.out.println(selectStuffMassage);
-
-
+        List<Staff> selectAll = dao.select(new Staff(0, null, null, null));
+        System.out.println(selectAll);
     }
 
     public Staff getLastStaff() throws SQLException {
@@ -224,27 +223,8 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         connection.close();
         return s;
     }
-    @Override
-    public  Staff select(int id) throws SQLException {
-        if(id<=0){
-            return null;
-        }
-        else{
-            Connection connection = DAOMySQLSettings.getConnection();
-            String searchStaff = "select * from staff where id = ?";
-            PreparedStatement command = connection.prepareStatement(searchStaff);
-            command.setInt(1, id);
-            ResultSet result = command.executeQuery();
-            if(result.next()){
-                Staff s = new Staff();
-                s.setId(result.getInt("id"));
-                s.setName(result.getString("name"));
-                s.setSurname(result.getString("surname"));
-                s.setSpecialties(result.getString("specialties"));
-                return s;
-            }
-            else
-                return null;
-        }
-    }
+
+
+
+
 }

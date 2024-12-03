@@ -6,6 +6,9 @@ import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.client.*;
+import it.unicas.clinic.address.view.credential.EditStaffCredentialController;
+import it.unicas.clinic.address.view.login.ChangePasswordController;
+import it.unicas.clinic.address.view.login.ChangeUsernameController;
 import it.unicas.clinic.address.view.login.LoginLayoutController;
 import it.unicas.clinic.address.view.login.StaffManagerInitialLayoutController;
 import it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController;
@@ -57,19 +60,20 @@ public class Main extends Application {
     private BorderPane page;
     private AppInfo appInfo = new AppInfo();
     private Boolean isManager;
-    private int userId;
+    private int user_id;
     private ObservableList<Schedule> scheduleData = FXCollections.observableArrayList();
     public ObservableList<Schedule> getScheduleData() {
         return scheduleData;
     }
 
     public int getUser_id() {
-        return userId;
+        return user_id;
     }
 
     public void setUser_id(int user_id) {
-        this.userId = user_id;
+        this.user_id = user_id;
     }
+
 
 
     public ObservableList<Schedule> getAppSchedData() {
@@ -681,6 +685,66 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
+
+    public void changePassword() throws IOException, SQLException {
+        Stage changePasswordWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/login/ChangePassword.fxml"));
+
+        AnchorPane anchorPane = loader.load();
+        ChangePasswordController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(changePasswordWindow);
+        controller.setId(user_id);
+
+        changePasswordWindow.initModality(Modality.WINDOW_MODAL);
+        changePasswordWindow.initOwner(primaryStage);
+
+        changePasswordWindow.setScene(new Scene(anchorPane));
+        changePasswordWindow.showAndWait();
+
+    }
+
+    public void changeUsername() throws IOException{
+        Stage changeUsernameWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/login/ChangeUsername.fxml"));
+
+        AnchorPane anchorPane = loader.load();
+        ChangeUsernameController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(changeUsernameWindow);
+        controller.setId(user_id);
+
+        changeUsernameWindow.initModality(Modality.WINDOW_MODAL);
+        changeUsernameWindow.initOwner(primaryStage);
+
+        changeUsernameWindow.setScene(new Scene(anchorPane));
+        changeUsernameWindow.showAndWait();
+
+
+    }
+
+    public void setId(int id) {user_id = id;}
+
+    public void EditStaffCredential(int id) throws IOException {
+        Stage editStaffWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/credential/EditStaffCredential.fxml"));
+        AnchorPane anchorPane = loader.load();
+        EditStaffCredentialController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(editStaffWindow);
+        controller.setManagerId(user_id);
+        controller.setId(id);
+
+        editStaffWindow.initModality(Modality.WINDOW_MODAL);
+        editStaffWindow.initOwner(primaryStage);
+
+        editStaffWindow.setScene(new Scene(anchorPane));
+        editStaffWindow.showAndWait();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

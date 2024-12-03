@@ -2,10 +2,8 @@ package it.unicas.clinic.address.view.staff;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Staff;
-import it.unicas.clinic.address.model.dao.ScheduleDAO;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
-import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -28,10 +26,18 @@ public class StaffManagementLayoutController {
     private TableColumn<Staff, Integer> idColumn;
 
 
+    /*@FXML
+    private Label nameLabel;
+    @FXML
+    private Label surnameLabel;
+    @FXML
+    private Label specialityLabel;
+    @FXML
+    private Label idLabel;*/
     // Reference to the main application.
     private Main mainApp;
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
-    private ScheduleDAO daoSchedule= ScheduleDAOMySQLImpl.getInstance();
+
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -47,10 +53,27 @@ public class StaffManagementLayoutController {
         specColumn.setCellValueFactory(cellData -> cellData.getValue().specialtiesProperty());
         idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject()); // IntegerProperty richiede asObject()
 
-
+        // Listener per selezione nella tabella
+        //staffTable.getSelectionModel().selectedItemProperty().addListener(
+         //       (observable, oldValue, newValue) -> showStaffDetails(newValue));
     }
 
+    /*private void showStaffDetails(Staff staff) {
+        if (staff != null) {
+            // Fill the labels with info from the colleghi object.
+            nameLabel.setText(staff.getName());
+            surnameLabel.setText(staff.getSurname());
+            specialityLabel.setText(staff.getSpecialties());
+            idLabel.setText(String.valueOf(staff.getId()));
 
+        } else {
+            // Amici is null, remove all the text.
+            nameLabel.setText("");
+            surnameLabel.setText("");
+            specialityLabel.setText("");
+            idLabel.setText("");
+        }
+    }*/
     @FXML
     private void showStaff(){
         //StaffDAOMySQLImpl.getInstance().select(new Staff(0,null, null, null));
@@ -65,7 +88,7 @@ public class StaffManagementLayoutController {
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
         if(selectedStaff != null){
             mainApp.showStaffUpdateDialog(selectedStaff);
-            // mainApp.getStaffData().remove(selectedStaff);
+            mainApp.getStaffData().remove(selectedStaff);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -87,17 +110,15 @@ public class StaffManagementLayoutController {
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Delete a Staff Member");
             alert.setHeaderText("Do you want to delete this member?");
-            alert.setContentText("Do you want to delete this member? This operation will delete also all the schedules of this staff member");
+            alert.setContentText("Do you want to delete this member?");
             ButtonType buttonTypeOne = new ButtonType("Yes");
             ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne){
                 try{
-                    System.out.println(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
                     dao.delete(selectedStaff);
-                    //daoSchedule.delete(selectedStaff);
                     mainApp.getStaffData().remove(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
 
@@ -108,7 +129,6 @@ public class StaffManagementLayoutController {
                     errorAlert.setHeaderText("Could not delete staff");
                     errorAlert.setContentText("An error occurred while trying to delete the staff member.");
                     errorAlert.showAndWait();
-
 
                 }
 
@@ -125,24 +145,32 @@ public class StaffManagementLayoutController {
             alert.showAndWait();
         }
     }
-    //handle Schedule button
+
     @FXML
-    private void handleSchedule() throws IOException {
-        //take the staff del quale dovrò mostrare gli schedule
+    private void handleEditCredential() throws IOException {
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
-        if(selectedStaff != null){
-            //System.out.println("HO preso lo staff x lo schedule");
-            //System.out.println(selectedStaff);
-            mainApp.showScheduleManagmentLayout(selectedStaff);
+
+        if(isAvailable()){
+            mainApp.EditStaffCredential(selectedStaff.getId());
+
         }
-        else{
+
+    }
+
+    private boolean isAvailable(){
+        if(staffTable.getSelectionModel().getSelectedItem() == null){
+            String errorMessage = "Select a Staff member first!";
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Staff Selected");
-            alert.setContentText("Please select a Staff into the table.");
-
+            alert.setContentText(errorMessage);
             alert.showAndWait();
+
+            return false;
+        }
+        else {
+            return true;
         }
     }
 }

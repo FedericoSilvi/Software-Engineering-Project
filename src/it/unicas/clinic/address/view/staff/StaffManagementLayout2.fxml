@@ -24,7 +24,8 @@
           <Button mnemonicParsing="false" onAction="#handleInsertStaff" text="Insert New Staff Member" />
             <Button mnemonicParsing="false" onAction="#handleUpdateStaff" prefHeight="26.0" prefWidth="408.0" text="Update a Staff Member" />
             <Button mnemonicParsing="false" onAction="#handleDeleteStaff" prefHeight="26.0" text="Delete a Staff Member" />
-            <Button mnemonicParsing="false" onAction="#handleSchedule" text="Schedule" />
+            <Button mnemonicParsing="false" text="Show Staff's Schedule" />
+            <Button mnemonicParsing="false" onAction="#handleEditCredential" text="Edit Staff's Credential" />
         </buttons>
       </ButtonBar>
    </children>

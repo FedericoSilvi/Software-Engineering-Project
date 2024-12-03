@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface StaffDAO <T>{
     List<T> select(T s);
-    Staff select(int id) throws SQLException;
     void update(T s) throws StaffException;
     void insert(T s) throws StaffException, SQLException;
     void delete(T s) throws StaffException;
