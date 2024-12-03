@@ -83,8 +83,14 @@ public class StaffMemberInitialLayoutController {
     private void handleClientView() throws SQLException, IOException {
         main.showClientView();
     }
+
     @FXML
-    private void handleApp(){
-        main.initAppView();
+    private void handleChangePassword() throws SQLException, IOException {
+        main.changePassword();
+    }
+
+    @FXML
+    private void handleChangeUsername() throws IOException {
+        main.changeUsername();
     }
 }

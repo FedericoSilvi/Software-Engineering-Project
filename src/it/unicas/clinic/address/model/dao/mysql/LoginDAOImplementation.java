@@ -18,6 +18,7 @@ public class LoginDAOImplementation {
 
     private String username;
     private String password;
+    private int staff_id;
 
     /**
      * Constructor with passed arguments
@@ -73,7 +74,6 @@ public class LoginDAOImplementation {
         ResultSet result = command.executeQuery();
         boolean isManager = false;
         if(result.next()){  //If command has found something
-            int staff_id=0;
             //Save the info about user being manager or not
             isManager = result.getBoolean("owner");
             //Get the staff id from credential table
@@ -81,7 +81,7 @@ public class LoginDAOImplementation {
             //Command for searching in staff table
             String staffSearch = "select * from staff where id=?";
             PreparedStatement staff = connection.prepareStatement(staffSearch);
-            staff.setString(1,Integer.toString(staff_id));
+            staff.setInt(1,staff_id);
             //Execute command
             ResultSet staff_data = staff.executeQuery();
             //Define user to store staff member if found
@@ -104,5 +104,50 @@ public class LoginDAOImplementation {
             return null;
         }
     }
+
+    public static String getPassword(int id) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+
+        String password = "";
+
+        String sqlSelect = "SELECT password FROM clinic.credential WHERE staff_id=?";
+        PreparedStatement statement = connection.prepareStatement(sqlSelect);
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            password = resultSet.getString("password");
+        }
+        connection.close();
+
+        return password;
+    }
+
+    public static void changePassword(int id, String password) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+
+        String sqlUpdate = "UPDATE clinic.credential SET password = ? WHERE staff_id = ?";
+        PreparedStatement ps = DAOMySQLSettings.getConnection().prepareStatement(sqlUpdate);
+        ps.setString(1, password);
+        ps.setInt(2, id);
+        ps.executeUpdate();
+
+        connection.close();
+
+    }
+
+    public static void changeUsername(int id, String username) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+
+        String sqlUpdate = "UPDATE clinic.credential SET username = ? WHERE staff_id = ?";
+        PreparedStatement ps = DAOMySQLSettings.getConnection().prepareStatement(sqlUpdate);
+        ps.setString(1, username);
+        ps.setInt(2, id);
+        ps.executeUpdate();
+
+        connection.close();
+    }
+
+    public int getId(){return this.staff_id;}
+
 
 }
