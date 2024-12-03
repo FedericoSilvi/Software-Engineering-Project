@@ -156,10 +156,5 @@ public class ClientOverviewController {
         }
         return true;
     }
-    public void handleHome(){
-        if(mainApp.getIsManager())
-            mainApp.initStaffManager();
-        else
-            mainApp.initStaff();
-    }
+
 }

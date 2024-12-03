@@ -10,6 +10,8 @@ import it.unicas.clinic.address.view.login.LoginLayoutController;
 import it.unicas.clinic.address.view.login.StaffManagerInitialLayoutController;
 import it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
+import it.unicas.clinic.address.view.schedule.ScheduleManagementLayoutController;
+import it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController;
 import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
 import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
 import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
@@ -56,6 +58,10 @@ public class Main extends Application {
     private AppInfo appInfo = new AppInfo();
     private Boolean isManager;
     private int userId;
+    private ObservableList<Schedule> scheduleData = FXCollections.observableArrayList();
+    public ObservableList<Schedule> getScheduleData() {
+        return scheduleData;
+    }
 
     public int getUser_id() {
         return userId;
@@ -101,7 +107,7 @@ public class Main extends Application {
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml"));
-     //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
+        //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
         AnchorPane root = loader.load();
 
         initLogin();
@@ -340,7 +346,7 @@ public class Main extends Application {
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
         primaryStage.show();
-}
+    }
 
     public void loadScheduleManagement() throws IOException{
         FXMLLoader loader = new FXMLLoader();
@@ -408,14 +414,14 @@ public class Main extends Application {
     }
 
     public void showClientView() throws IOException, SQLException {
-            this.primaryStage.setTitle("Clinic");
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
-            AnchorPane root = loader.load();
-            ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
-            controller.ShowAllClients();
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+        this.primaryStage.setTitle("Clinic");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
+        AnchorPane root = loader.load();
+        ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
+        controller.ShowAllClients();
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
 
     }
 
@@ -634,8 +640,86 @@ public class Main extends Application {
         controller.setMainApp(this,schedules,list,a);
         primaryStage.show();
     }
+
+    //schedule mangament
+    public void showScheduleManagmentLayout(Staff s) throws IOException {
+        //System.out.println(s);
+        Stage updateWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/schedule/ScheduleManagementLayout.fxml"));
+        AnchorPane layout = (AnchorPane) loader.load();
+        ScheduleManagementLayoutController controller = loader.getController();
+        controller.setMainApp(this, s);
+        //controller.setStage(updateWindow);
+
+        updateWindow.initModality(Modality.WINDOW_MODAL);
+        updateWindow.initOwner(primaryStage);
+
+        updateWindow.setScene(new Scene(layout));
+        // Aggiungi un listener per la chiusura della finestra. Quando si chiude devo svuotare la lista degli schedule
+        updateWindow.setOnCloseRequest(event -> {
+            scheduleData.clear();
+        });
+        updateWindow.showAndWait();
+    }
+
+    public void showScheduleInsertDialog(Staff s) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/schedule/ScheduleAddingLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Schedule");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            ScheduleAddingLayoutController controller = loader.getController();
+            controller.setMainApp(this, s);
+            controller.setDialogStage(dialogStage);
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void showScheduleUpdateDialog(Schedule s, Staff staff){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/schedule/ScheduleUpdateLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Update Schedule");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            ScheduleUpdateLayoutController controller = loader.getController();
+            controller.setMainApp(this, staff);
+            controller.setField(s);
+            controller.setDialogStage(dialogStage);
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
 
 }

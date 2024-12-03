@@ -4,15 +4,13 @@ import javafx.beans.property.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Schedule {
-    private final IntegerProperty id;
-    private final ObjectProperty<LocalDate> day;
-    private final ObjectProperty<LocalTime> startTime;
-    private final ObjectProperty<LocalTime> stopTime;
-    private final IntegerProperty staffId;
-    private ArrayList<Boolean> availability;
+    private  IntegerProperty id;
+    private  ObjectProperty<LocalDate> day;
+    private  ObjectProperty<LocalTime> startTime;
+    private  ObjectProperty<LocalTime> stopTime;
+    private  IntegerProperty staffId;
 
 
     public Schedule(int id, LocalDate day, LocalTime startTime, LocalTime stopTime, int staffId) {
@@ -31,18 +29,19 @@ public class Schedule {
         this.stopTime = new SimpleObjectProperty<>(null); // Stop time not set
     }
     public Schedule(LocalDate day, LocalTime startTime, LocalTime stopTime, int staffId) {
-        this.id = new SimpleIntegerProperty(0);
         this.day = new SimpleObjectProperty<>(day);
         this.startTime = new SimpleObjectProperty<>(startTime);
         this.stopTime = new SimpleObjectProperty<>(stopTime);
         this.staffId = new SimpleIntegerProperty(staffId);
+        //this.id = new SimpleIntegerProperty(-1);
+
     }
 
 
     @Override
     public String toString() {
         return
-                "id=" + id.get() +
+                "id=" + idProperty() +
                 ", day=" + day.get() +
                 ", startTime=" + startTime.get() +
                 ", stopTime=" + stopTime.get() +
@@ -110,10 +109,35 @@ public class Schedule {
         this.staffId.set(staffId);
     }
 
-    public ArrayList<Boolean> getAvailability() {
-        return availability;
+    public static boolean verifySchedule(Schedule schedule) {
+        //controlla se l'ora di inzio viene prima di quella di fine, e se il giorno è futuro (le eccezioni sul formato sono prese prima)
+
+        if (schedule == null) {
+            return false; // Oggetto null non è valido
+        }
+
+        // Verifica che la data sia valida (deve essere una data futura)
+        LocalDate day = schedule.getDay();
+        if (day.isBefore(LocalDate.now())) {
+            return false; // La data non può essere nel passato
+        }
+        LocalTime startTime = schedule.getStartTime();
+        LocalTime endTime = schedule.getStopTime();
+        // Controlla che l'ora di inizio sia prima dell'ora di fine
+        if (!startTime.isBefore(endTime)) {
+            return false; // L'ora di inizio deve essere precedente all'ora di fine
+        }
+
+        // Se tutti i controlli sono passati, l'oggetto Schedule è valido
+        return true;
     }
-    public void setAvailability(ArrayList<Boolean> availability) {
-        this.availability = availability;
+    public static boolean isEmpty(Schedule schedule) {
+
+        if (schedule.getDay() == null || schedule.getStartTime() == null || schedule.getStopTime() == null) {
+            return true;
+        }
+        else
+            return false;
     }
+
 }

@@ -83,8 +83,4 @@ public class StaffMemberInitialLayoutController {
     private void handleClientView() throws SQLException, IOException {
         main.showClientView();
     }
-    @FXML
-    private void handleAppView(){
-        main.initAppView();
-    }
 }
