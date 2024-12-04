@@ -22,6 +22,12 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleLogout" text="Close" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleChangePassword" text="Change Password" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleChangeUsername" text="Change Username" />
+              </items>
+            </Menu>
             </menus>
         </MenuBar>
     </top>

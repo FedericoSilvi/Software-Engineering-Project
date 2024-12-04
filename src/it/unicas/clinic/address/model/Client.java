@@ -1,5 +1,7 @@
 package it.unicas.clinic.address.model;
 
+import java.time.LocalDate;
+
 public class Client {
 
     private int id;
@@ -8,12 +10,22 @@ public class Client {
     private String email;
     private String number;
 
+    public LocalDate getCancellationDate() {
+        return cancellationDate;
+    }
+
+    public void setCancellationDate(LocalDate cancellationDate) {
+        this.cancellationDate = cancellationDate;
+    }
+
+    private LocalDate cancellationDate;
     public Client(){
         this.id=0;
         this.name="";
         this.surname="";
         this.email="";
         this.number="";
+        this.cancellationDate=null;
     }
     public Client(int id, String name, String surname, String email, String number) {
         this.id = id;
@@ -21,6 +33,7 @@ public class Client {
         this.surname = surname;
         this.email = email;
         this.number = number;
+        this.cancellationDate=null;
     }
 
     // getters

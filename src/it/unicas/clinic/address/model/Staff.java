@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.LocalDate;
+
 /**
  * Model class for Staff
  */
@@ -15,6 +17,16 @@ public class Staff {
     private StringProperty name;
     private StringProperty surname;
     private StringProperty specialties;
+
+    public LocalDate getFiredDate() {
+        return firedDate;
+    }
+
+    public void setFiredDate(LocalDate firedDate) {
+        this.firedDate = firedDate;
+    }
+
+    private LocalDate firedDate;
     //Constructos
     public Staff(Integer id, String name, String surname, String specialties){
         this.name = new SimpleStringProperty(name);
@@ -26,11 +38,13 @@ public class Staff {
         else{
             this.id = new SimpleIntegerProperty(0);
         }
+        firedDate=null;
     }
     public Staff(String name, String surname, String specialties){
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
         this.specialties = new SimpleStringProperty(specialties);
+        firedDate=null;
         //this.id= new SimpleIntegerProperty(0);
 
     }
@@ -40,6 +54,7 @@ public class Staff {
         this.name = new SimpleStringProperty("");
         this.surname = new SimpleStringProperty("");
         this.specialties = new SimpleStringProperty("");
+        firedDate=null;
     }
 
     //gets and sets

@@ -35,6 +35,8 @@ public class LoginLayoutController {
     private ImageView openedEye;
     @FXML
     private ImageView closedEye;
+    @FXML
+    private Label forgottenPassword;
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -85,7 +87,7 @@ public class LoginLayoutController {
     }
     @FXML
     private void handleExit(){
-        //Recall the function in mainApp
+        //Recall the fucntion in mainApp
         main.handleExit();
     }
     @FXML
@@ -100,6 +102,9 @@ public class LoginLayoutController {
              password= passwordHideField.getText();
          //Insert username and password in the login DAO
          LoginDAOImplementation impl = new LoginDAOImplementation(username,password);
+         //PROVO A PRENDERE LO STAFF ID
+
+
          //Initialize data as null
         User data = null;
         try {
@@ -123,6 +128,8 @@ public class LoginLayoutController {
         }
         if(data!=null){ //Credentials found
 
+            main.setId(impl.getId());
+            main.setIsManager(data.getManager());
             //Alert to welcome user
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login result");
@@ -133,17 +140,13 @@ public class LoginLayoutController {
              Optional<ButtonType> r = alert.showAndWait();
              if (r.get() == button){
                  alert.close();
-                 if(data.getManager()) {
+                 if(data.getManager())
                      main.initStaffManager();
-                     main.setIsManager(true);
-                     main.setUser_id(data.getId());
-                 }
-                 else {
+                 else
                      main.initStaff();
-                     main.setIsManager(false);
-                     main.setUser_id(data.getId());
-                 }
              }
+
+           //  main.getId(StaffDAO.);
 
          }
          else { //Credentials not found
@@ -166,5 +169,16 @@ public class LoginLayoutController {
         if(event.getCode()==KeyCode.ENTER){
             handleLogin();
         }
+    }
+
+    @FXML
+    private void handleForgottenPassword() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Forgotten Password");
+        alert.setHeaderText("Please, contact the staff manager to restore you password");
+        alert.setContentText("If the problem persists, please contact the database assistance");
+        ButtonType button = new ButtonType("Ok");
+        alert.getButtonTypes().setAll(button);
+        Optional<ButtonType> r = alert.showAndWait();
     }
 }
