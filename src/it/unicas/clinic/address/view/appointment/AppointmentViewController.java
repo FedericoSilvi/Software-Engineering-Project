@@ -37,6 +37,9 @@ public class AppointmentViewController {
     private Main mainApp;
     private AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
 
+    public AppointmentViewController() throws SQLException {
+    }
+
 
     public void setMainApp(Main mainApp) throws SQLException {
         this.mainApp = mainApp;

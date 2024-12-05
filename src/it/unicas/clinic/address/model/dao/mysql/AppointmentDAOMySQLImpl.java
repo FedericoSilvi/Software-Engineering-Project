@@ -22,9 +22,9 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     private static AppointmentDAO dao = null;
     private static Logger logger = null;
 
-    public AppointmentDAOMySQLImpl(){}
+    public AppointmentDAOMySQLImpl() {}
 
-    public static AppointmentDAO getInstance(){
+    public static AppointmentDAO getInstance() {
         if (dao == null){
             dao = new AppointmentDAOMySQLImpl();
             logger = Logger.getLogger(AppointmentDAOMySQLImpl.class.getName());
@@ -211,16 +211,37 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         connection.close();
         return a;
     }
-    public static void main(String[] args){
-        dao = getInstance();
-        //LocalDate date = LocalDate.of(2024,11,30);
-        //L0ocalTime time = LocalTime.of(8,0);
-        //Appointment a = new Appointment("service",date,time,1,1);
-        //dao.insert(a);
-        List<Appointment> list=dao.select(null);
-        for(Appointment el:list){
-            logger.info(el.toString());
+
+    public ArrayList<Appointment> getSchedApp(Schedule s) throws SQLException {
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        Connection connection = DAOMySQLSettings.getConnection();
+        //Define command
+        String searchApp="select * from appointment where staff_id=? and date=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(searchApp);
+        preparedStatement.setInt(1, s.getStaffId());
+        preparedStatement.setDate(2,Date.valueOf(s.getDay()));
+        ResultSet result = preparedStatement.executeQuery();
+        while(result.next()){
+            // create an object with the result
+            Appointment a1 = new Appointment(
+                    result.getInt("id"),
+                    result.getString("service"),
+                    result.getDate("date").toLocalDate(),
+                    result.getTime("time").toLocalTime(),
+                    result.getTime("duration").toLocalTime(),
+                    result.getInt("staff_id"),
+                    result.getInt("client_id")
+            );
+            appointments.add(a1);  // add the object in the list
         }
+        connection.close();
+        if(appointments.isEmpty())
+            return null;
+        else
+            return appointments;
+    }
+    public static void main(String[] args) throws SQLException {
+
     }
 
 }

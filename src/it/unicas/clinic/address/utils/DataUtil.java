@@ -9,6 +9,7 @@ import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,7 +22,12 @@ import java.util.List;
  */
 public class DataUtil {
 
-    private static AppointmentDAO appDAO= new AppointmentDAOMySQLImpl().getInstance();
+    private static AppointmentDAO appDAO;
+
+    static {
+        appDAO = new AppointmentDAOMySQLImpl().getInstance();
+    }
+
     /**
      * Class containing name, surname and whether the user is a manager or not, useful for login operations
      */
