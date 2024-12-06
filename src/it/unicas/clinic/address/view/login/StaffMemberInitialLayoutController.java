@@ -93,4 +93,8 @@ public class StaffMemberInitialLayoutController {
     private void handleChangeUsername() throws IOException {
         main.changeUsername();
     }
+    @FXML
+    private void handleApp(){
+        main.initAppView();
+    }
 }

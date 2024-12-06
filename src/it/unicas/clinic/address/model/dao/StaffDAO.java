@@ -4,6 +4,7 @@ import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface StaffDAO <T>{
@@ -13,4 +14,6 @@ public interface StaffDAO <T>{
     void insert(T s) throws StaffException, SQLException;
     void delete(T s) throws StaffException;
     Staff getLastStaff() throws SQLException;
+    public void softDelete(Staff s) throws StaffException;
+    List<Staff> selectFiredBefore(LocalDate date);
 }

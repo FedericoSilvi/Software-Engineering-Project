@@ -129,6 +129,7 @@ public class LoginLayoutController {
         if(data!=null){ //Credentials found
 
             main.setId(impl.getId());
+            main.setIsManager(data.getManager());
             //Alert to welcome user
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login result");

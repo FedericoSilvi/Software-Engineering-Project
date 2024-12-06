@@ -15,6 +15,16 @@ public class Appointment {
     private IntegerProperty staffId;
     private IntegerProperty clientId;
 
+    public Boolean getCancellation() {
+        return cancellation;
+    }
+
+    public void setCancellation(Boolean cancellation) {
+        this.cancellation = cancellation;
+    }
+
+    private Boolean cancellation;
+
 
     /**
      * Constructor to build an appointment passing all its attributes
@@ -42,6 +52,7 @@ public class Appointment {
             this.clientId = new SimpleIntegerProperty(clientId);
         else
             this.clientId = new SimpleIntegerProperty(0);
+        cancellation=null;
     }
 
     /**
@@ -65,6 +76,7 @@ public class Appointment {
             this.clientId = new SimpleIntegerProperty(clientId);
         else
             this.clientId = new SimpleIntegerProperty(0);
+        cancellation=null;
     }
 
     //getters and setters

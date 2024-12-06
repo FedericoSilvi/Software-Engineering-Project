@@ -110,7 +110,7 @@ public class LoginDAOImplementation {
 
         String password = "";
 
-        String sqlSelect = "SELECT password FROM clinic.credential WHERE staff_id=?";
+        String sqlSelect = "SELECT password FROM credential WHERE staff_id=?";
         PreparedStatement statement = connection.prepareStatement(sqlSelect);
         statement.setInt(1, id);
         ResultSet resultSet = statement.executeQuery();
@@ -125,7 +125,7 @@ public class LoginDAOImplementation {
     public static void changePassword(int id, String password) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
 
-        String sqlUpdate = "UPDATE clinic.credential SET password = ? WHERE staff_id = ?";
+        String sqlUpdate = "UPDATE credential SET password = ? WHERE staff_id = ?";
         PreparedStatement ps = DAOMySQLSettings.getConnection().prepareStatement(sqlUpdate);
         ps.setString(1, password);
         ps.setInt(2, id);
@@ -138,7 +138,7 @@ public class LoginDAOImplementation {
     public static void changeUsername(int id, String username) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
 
-        String sqlUpdate = "UPDATE clinic.credential SET username = ? WHERE staff_id = ?";
+        String sqlUpdate = "UPDATE credential SET username = ? WHERE staff_id = ?";
         PreparedStatement ps = DAOMySQLSettings.getConnection().prepareStatement(sqlUpdate);
         ps.setString(1, username);
         ps.setInt(2, id);

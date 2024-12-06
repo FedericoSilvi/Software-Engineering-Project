@@ -106,4 +106,8 @@ public class StaffManagerInitialLayoutController {
     private void handleChangeUsername() throws SQLException, IOException {
         main.changeUsername();
     }
+    @FXML
+    private void handleApp(){
+        main.initAppView();
+    }
 }

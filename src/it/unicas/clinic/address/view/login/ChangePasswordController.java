@@ -88,29 +88,29 @@ public class ChangePasswordController {
 
     @FXML
     private void changePassword(ActionEvent event) throws SQLException {
-     //   System.out.println("Vado a cambiare la password dello staff con id: " + staff_id);
+        //   System.out.println("Vado a cambiare la password dello staff con id: " + staff_id);
 
         String oldPasswordText;
         String newPasswordText;
         String confirmPasswordText;
 
         if(openedEye1.isVisible()){
-            newPasswordText = newPasswordVisible.getText();
+            newPasswordText = newPasswordHidden.getText();
         }
         else {
-            newPasswordText = newPasswordHidden.getText();
+            newPasswordText = newPasswordVisible.getText();
         }
 
         if(openedEye2.isVisible()){
-            confirmPasswordText = confirmPasswordVisible.getText();
-        } else {
             confirmPasswordText = confirmPasswordHidden.getText();
+        } else {
+            confirmPasswordText = confirmPasswordVisible.getText();
         }
 
         if(openedEye3.isVisible()){
-            oldPasswordText = oldPasswordVisible.getText();
-        } else {
             oldPasswordText = oldPasswordHidden.getText();
+        } else {
+            oldPasswordText = oldPasswordVisible.getText();
         }
 
 
@@ -218,34 +218,40 @@ public class ChangePasswordController {
         oldPasswordHidden.setText(oldPasswordVisible.getText());
     }
 
+    @FXML
+    private void onClickCloseWindow()
+    {
+        stage.close();
+    }
+
     private boolean isInputValid() {
         String errorMessage = "";
         if(openedEye3.isVisible()){
-            if (oldPasswordVisible.getText() == null || oldPasswordVisible.getText()=="") {
+            if (oldPasswordHidden.getText() == null || oldPasswordHidden.getText().length() == 0) {
                 errorMessage += "Insert the old password!\n";
             }
         } else {
-            if (oldPasswordHidden.getText() == null || oldPasswordHidden.getText()=="") {
+            if (oldPasswordVisible.getText() == null || oldPasswordVisible.getText().length() == 0) {
                 errorMessage += "Insert the old password!\n";
             }
         }
 
         if(openedEye1.isVisible()){
-            if (newPasswordVisible.getText() == null || newPasswordVisible.getText()=="") {
+            if (newPasswordHidden.getText() == null || newPasswordHidden.getText().length() == 0) {
                 errorMessage += "Insert the new password!\n";
             }
         } else {
-            if (newPasswordHidden.getText() == null || newPasswordHidden.getText()=="") {
+            if (newPasswordVisible.getText() == null || newPasswordVisible.getText().length() == 0) {
                 errorMessage += "Insert the new password!\n";
             }
         }
 
         if(openedEye2.isVisible()){
-            if (confirmPasswordVisible.getText() == null || confirmPasswordVisible.getText()=="") {
+            if (confirmPasswordHidden.getText() == null || confirmPasswordHidden.getText().length() == 0) {
                 errorMessage += "Confirm password!\n";
             }
         } else {
-            if (confirmPasswordHidden.getText() == null || confirmPasswordHidden.getText()=="") {
+            if (confirmPasswordVisible.getText() == null || confirmPasswordVisible.getText().length() == 0) {
                 errorMessage += "Confirm password!\n";
             }
         }

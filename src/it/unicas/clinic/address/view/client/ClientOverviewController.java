@@ -109,7 +109,8 @@ public class ClientOverviewController {
                 Client client = table.getSelectionModel().getSelectedItem();
 
                 //Inserire finestra con conferma sull'eliminazione
-                DAOClient.delete(client.getId());
+                //DAOClient.delete(client.getId());
+                DAOClient.softDelete(client);
             }
 
 

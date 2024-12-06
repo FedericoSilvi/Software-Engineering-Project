@@ -96,7 +96,8 @@ public class StaffManagementLayoutController {
                 try{
                     System.out.println(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
-                    dao.delete(selectedStaff);
+                    //dao.delete(selectedStaff);
+                    dao.softDelete(selectedStaff);
                     //daoSchedule.delete(selectedStaff);
                     mainApp.getStaffData().remove(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);

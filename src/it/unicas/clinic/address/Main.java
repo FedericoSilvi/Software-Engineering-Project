@@ -3,6 +3,7 @@ package it.unicas.clinic.address;
 import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.utils.DataUtil;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.client.*;
@@ -106,6 +107,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
+        //check for staff or client to delete from the db.
+        DataUtil.cleanUpRecord();
+
         this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
@@ -424,6 +428,8 @@ public class Main extends Application {
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
     public void showAppInsertDialog() {

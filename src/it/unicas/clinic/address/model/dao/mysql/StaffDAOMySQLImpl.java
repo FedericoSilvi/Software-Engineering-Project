@@ -1,15 +1,11 @@
 package it.unicas.clinic.address.model.dao.mysql;
 
-import it.unicas.clinic.address.model.Client;
-import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
-import it.unicas.clinic.address.model.dao.ScheduleException;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -75,7 +71,12 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         }
     }
 
-
+    /**
+     * "Hard delete" of a staff member. This will delete the staff from the db.
+     * Also delete all the appointments linked with him.
+     * @param s
+     * @throws StaffException
+     */
     @Override
     public void delete(Staff s) throws StaffException {
         if(s == null || s.getId() <= 0){
@@ -98,23 +99,62 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         }
     }
 
+    /**
+     * "Soft delete" of a staff member. Just set the firedData
+     * @param s
+     * @throws StaffException
+     */
+    @Override
+    public void softDelete(Staff s) throws StaffException {
+        if (s.getId() <= 0) {
+            throw new StaffException("Invalid staff ID.");
+        }
+        String sqlUpdateFiredDate = "UPDATE staff SET firedDate = ? WHERE id = ?";
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(sqlUpdateFiredDate)) {
+
+            // Set the firing data
+            LocalDate today = LocalDate.now();
+            preparedStatement.setDate(1, Date.valueOf(today));
+            preparedStatement.setInt(2, s.getId());
+
+            // to the update
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new StaffException("No staff found with ID " + s.getId());
+            }
+
+            logger.info("Successfully set firedDate for staff with ID: " + s.getId());
+        } catch (SQLException e) {
+            logger.severe("SQL: Error setting firedDate for staff with ID: " + s.getId() + ". " +
+                    "Error: " + e.getMessage());
+            throw new StaffException("SQL: Error setting firedDate for staff with ID: " + s.getId());
+        }
+    }
+
+    /**
+     * Select all the staff not fired yet
+     * @param s
+     * @return
+     */
     @Override
     public List<Staff> select(Staff s) {
-        // if the object is null, create a Stuff with default value (0, null, null, null, null)
+        // if the object is null, create a Staff with default values
         if (s == null) {
-            s = new Staff(0, "", "", ""); //select all
+            s = new Staff(0, "", "", "", null); // select all
         }
 
         ArrayList<Staff> list = new ArrayList<>();
 
-        // If all the fields are null o 0 => select all
-        if (s.getId() <= 0 && s.getName() == null && s.getSurname() == null && s.getSpecialties() == null) {
-            s = new Staff(0, null, null, null);
+        // If all the fields are null or 0 => select all
+        if (s.getId() <= 0 && s.getName() == null && s.getSurname() == null && s.getSpecialties() == null && s.getFiredDate() == null) {
+            s = new Staff(0, null, null, null, null);
         }
 
-        String sqlSelect = "SELECT * FROM staff WHERE 1=1";
+        String sqlSelect = "SELECT * FROM staff WHERE firedDate IS NULL";
 
-        // Add dynamicly the condition of the fields not null
+        // Add conditions dynamically based on the fields not null
         if (s.getId() > 0) {
             sqlSelect += " AND id = ?";
         }
@@ -127,6 +167,9 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         if (s.getSpecialties() != null && !s.getSpecialties().isEmpty()) {
             sqlSelect += " AND specialties LIKE ?";
         }
+        if (s.getFiredDate() != null) {
+            sqlSelect += " AND firedDate = ?"; // Exact match for firedDate
+        }
 
         // Log final query
         logger.info("SQL Query: " + sqlSelect);
@@ -135,33 +178,37 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         try (Connection con = DAOMySQLSettings.getConnection();
              PreparedStatement stmt = con.prepareStatement(sqlSelect)) {
 
-            // Set the params dinamicly
-            int index = 1; // index of the parms of the preparedStatement
+            // Set the parameters dynamically
+            int index = 1;
 
             if (s.getId() > 0) {
-                stmt.setInt(index++, s.getId());  //set l'ID
+                stmt.setInt(index++, s.getId());
             }
             if (s.getName() != null && !s.getName().isEmpty()) {
-                stmt.setString(index++, "%" + s.getName() + "%");  // set name
+                stmt.setString(index++, "%" + s.getName() + "%");
             }
             if (s.getSurname() != null && !s.getSurname().isEmpty()) {
-                stmt.setString(index++, "%" + s.getSurname() + "%");  // set surname
+                stmt.setString(index++, "%" + s.getSurname() + "%");
             }
             if (s.getSpecialties() != null && !s.getSpecialties().isEmpty()) {
-                stmt.setString(index++, "%" + s.getSpecialties() + "%");  // set speciality
+                stmt.setString(index++, "%" + s.getSpecialties() + "%");
+            }
+            if (s.getFiredDate() != null) {
+                stmt.setDate(index++, Date.valueOf(s.getFiredDate())); // Set the firedDate
             }
 
-            //  execute the query
+            // Execute the query
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    // create an object with the result
+                    // Create an object with the result
                     Staff s1 = new Staff(
                             rs.getInt("id"),
                             rs.getString("name"),
                             rs.getString("surname"),
-                            rs.getString("specialties")
+                            rs.getString("specialties"),
+                            rs.getDate("firedDate") != null ? rs.getDate("firedDate").toLocalDate() : null
                     );
-                    list.add(s1);  // add the object in the list
+                    list.add(s1); // Add the object to the list
                 }
             }
 
@@ -177,8 +224,9 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
             throw new StaffException("SQL: In select(): An error occurred while fetching staff data");
         }
 
-        return list;  // Ritorna la lista di risultati
+        return list; // Return the list of results
     }
+
 
     private void verifyStaff(Staff s) throws StaffException {
         //we want all not null and with a "meaning"
@@ -202,7 +250,7 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         //dao.insert(new Staff("Federico", "Silvi", "massaggi"));
         List<Staff> selectStuffMassage = dao.select(new Staff(1, null, null, null));
         //System.out.println(selectStuffMassage);
-
+        //dao.softDelete(new Staff(1, "Marco", "Caruso", ""));
 
     }
 
@@ -247,4 +295,33 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
                 return null;
         }
     }
+
+
+
+    @Override
+    public List<Staff> selectFiredBefore(LocalDate date) {
+        String query = "SELECT * FROM staff WHERE firedDate IS NOT NULL AND firedDate <= ?";
+        List<Staff> staffList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(date));
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Staff staff = new Staff(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getString("specialties"),
+                            rs.getDate("firedDate").toLocalDate()
+                    );
+                    staffList.add(staff);
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Error selecting old staff: " + e.getMessage());
+            throw new RuntimeException("Error selecting old staff", e);
+        }
+        return staffList;
+    }
+
 }

@@ -5,9 +5,11 @@ import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
+import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -35,7 +37,8 @@ public class AppointmentViewController {
     private Main mainApp;
     private AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
 
-    public void setMainApp(Main mainApp) {
+
+    public void setMainApp(Main mainApp) throws SQLException {
         this.mainApp = mainApp;
         // Add observable list data to the table
         appointmentTable.setItems(mainApp.getAppointmentData());

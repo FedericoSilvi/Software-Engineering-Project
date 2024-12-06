@@ -2,9 +2,12 @@ package it.unicas.clinic.address.model.dao.mysql;
 
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.dao.StaffException;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DAOClient {
 
@@ -38,6 +41,12 @@ public class DAOClient {
         preparedstatement.execute();
         connection.close();
     }
+
+    /**
+     * "Hard delete"
+     * @param id
+     * @throws SQLException
+     */
     public static void delete(int id) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
         String sqlDelete = "DELETE FROM clinic.client WHERE id = ?";
@@ -45,6 +54,30 @@ public class DAOClient {
         preparedstatement.setInt(1, id);
         preparedstatement.execute();
         connection.close();
+    }
+    public static void softDelete(Client c) throws SQLException {
+        if (c.getId() <= 0) {
+            throw new StaffException("Invalid client ID.");
+        }
+        String sqlUpdateFiredDate = "UPDATE client SET cancellationDate = ? WHERE id = ?";
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(sqlUpdateFiredDate)) {
+
+            // Set the firing data
+            LocalDate today = LocalDate.now();
+            preparedStatement.setDate(1, Date.valueOf(today));
+            preparedStatement.setInt(2, c.getId());
+
+            // to the update
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new StaffException("No staff found with ID " + c.getId());
+            }
+
+        } catch (SQLException e) {
+            throw new StaffException("SQL: Error setting firedDate for staff with ID: " );
+        }
     }
 
     public static void update(int id, String name, String surname, String email, String number) throws SQLException {
@@ -104,7 +137,7 @@ public class DAOClient {
         ArrayList<Client> list = new ArrayList<>();
 
         Connection connection = DAOMySQLSettings.getConnection();
-        String sqlSelect = "SELECT * FROM clinic.client ORDER BY id ASC";
+        String sqlSelect = "SELECT * FROM clinic.client WHERE cancellationDate IS NULL ORDER BY id ASC";
         PreparedStatement preparedstatement = connection.prepareStatement(sqlSelect);
         ResultSet resultset = preparedstatement.executeQuery();
         while (resultset.next()) {
@@ -148,7 +181,7 @@ public class DAOClient {
         }
         else{
             Connection connection = DAOMySQLSettings.getConnection();
-            String searchStaff = "select * from client where id = ?";
+            String searchStaff = "select * from client where id = ? AND cancellationDate IS NULL";
             PreparedStatement command = connection.prepareStatement(searchStaff);
             command.setInt(1, id);
             ResultSet result = command.executeQuery();
@@ -166,7 +199,38 @@ public class DAOClient {
         }
     }
     public static void main(String[] args) throws SQLException {
-        Client c = select(1);
-        System.out.println(c);
+        //Client c = select(1);
+        //System.out.println(c);
+        //softDelete(new Client(1, "Joe", "Smith", "joesmith@gmail.com", "123456789"));
+    }
+
+    /**
+     * Select of the client with cancellationDate greater than date
+     * @param date
+     * @return
+     */
+    public static List<Client> select(LocalDate date){
+        String query = "SELECT * FROM client WHERE cancellationDate IS NOT NULL AND cancellationDate <= ?";
+        List<Client> clientList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(date));
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Client client = new Client(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getString("email"),
+                            rs.getString("number"),
+                            rs.getDate("cancellationDate").toLocalDate()
+                    );
+                    clientList.add(client);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error selecting old clients", e);
+        }
+        return clientList;
     }
 }
