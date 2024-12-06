@@ -54,8 +54,6 @@ public class Main extends Application {
     private AnchorPane appInitialLayout;
     private ObservableList<Staff> staffData = FXCollections.observableArrayList();
     private ObservableList<Appointment> appointmentData = FXCollections.observableArrayList();
-    //private ObservableList<LocalDate> dateData = FXCollections.observableArrayList();
-    //private ObservableList<LocalTime> timeData = FXCollections.observableArrayList();
     private ObservableList<Schedule> appSchedData = FXCollections.observableArrayList();
     private BorderPane page;
     private AppInfo appInfo = new AppInfo();
@@ -615,6 +613,7 @@ public class Main extends Application {
     //schedule mangament
     public void showScheduleManagmentLayout(Staff s) throws IOException {
         //System.out.println(s);
+        scheduleData.clear();
         Stage updateWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/schedule/ScheduleManagementLayout.fxml"));
@@ -686,6 +685,22 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
+
+    public void showRescheduleApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException {
+        appSchedData.clear();
+        Stage rescheduleWindow = new Stage();
+        rescheduleWindow.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/AppSelectView3.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+        Scene scene = new Scene(page);
+        rescheduleWindow.setScene(scene);
+        AppSelectViewController3 controller = loader.getController();
+        controller.setMainApp(this,schedules,list,a,rescheduleWindow);
+        rescheduleWindow.showAndWait();
+    }
+
+
     public void changePassword() throws IOException, SQLException {
         Stage changePasswordWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -745,6 +760,40 @@ public class Main extends Application {
         editStaffWindow.showAndWait();
     }
 
+    public void showClientHistory(int id){
+        try{
+            appointmentData.clear();
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class
+                    .getResource("view/client/ClientHistoryView.fxml"));
+            appInitialLayout = (AnchorPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(appInitialLayout);
+            primaryStage.setScene(scene);
+
+            //Implementing alert when you click on the 'X' of the window
+            primaryStage.setOnCloseRequest(event -> {
+                event.consume();
+                handleExit();
+            });
+
+
+            // Give the controller access to the main app.
+            ClientHistoryViewController controller = loader.getController();
+            controller.setMainApp(this,id);
+
+            //Set and show primary stage
+            primaryStage.centerOnScreen();
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);

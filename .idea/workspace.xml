@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/AppointmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/AppointmentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/AppointmentDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/AppointmentDAOMySQLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" afterDir="false" />
-    </list>
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Added functions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +84,7 @@
       <recent name="it.unicas.clinic.address.view.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AppointmentDAOMySQLImpl">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="AppointmentDAOMySQLImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl" />
       <module name="Clinic" />
@@ -288,71 +283,9 @@
       <workItem from="1733228985496" duration="1015000" />
       <workItem from="1733243872943" duration="186000" />
       <workItem from="1733317658264" duration="4616000" />
-      <workItem from="1733392853502" duration="1629000" />
-    </task>
-    <task id="LOCAL-00037" summary="Merge Sprint 1">
-      <option name="closed" value="true" />
-      <created>1732706937593</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1732706937593</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Boh7">
-      <option name="closed" value="true" />
-      <created>1732707284386</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1732707284386</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Boh 8">
-      <option name="closed" value="true" />
-      <created>1732707302184</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1732707302184</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Boh 9">
-      <option name="closed" value="true" />
-      <created>1732708199108</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1732708199108</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Menu bar">
-      <option name="closed" value="true" />
-      <created>1732718924085</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1732718924085</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Class reflecting the db table and with fields in order to interact with GUI">
-      <option name="closed" value="true" />
-      <created>1732733334512</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1732733334512</updated>
-    </task>
-    <task id="LOCAL-00043" summary="DAO interface and exception">
-      <option name="closed" value="true" />
-      <created>1732733357111</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1732733357111</updated>
-    </task>
-    <task id="LOCAL-00044" summary="CRUD with db">
-      <option name="closed" value="true" />
-      <created>1732733368341</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1732733368341</updated>
+      <workItem from="1733392853502" duration="5057000" />
+      <workItem from="1733473642234" duration="16637000" />
+      <workItem from="1733497057076" duration="2517000" />
     </task>
     <task id="LOCAL-00045" summary="verifyAppointment modified">
       <option name="closed" value="true" />
@@ -682,7 +615,71 @@
       <option name="project" value="LOCAL" />
       <updated>1733323772405</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Function to find corresponding appointments given a schedule">
+      <option name="closed" value="true" />
+      <created>1733396372770</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1733396372771</updated>
+    </task>
+    <task id="LOCAL-00087" summary="New icons">
+      <option name="closed" value="true" />
+      <created>1733499709951</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1733499709951</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Button removing and icon adding">
+      <option name="closed" value="true" />
+      <created>1733499822122</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1733499822122</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Gui and controller for client's history">
+      <option name="closed" value="true" />
+      <created>1733499838933</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1733499838933</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Gui and controller for client's history">
+      <option name="closed" value="true" />
+      <created>1733499841495</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1733499841495</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Fixes for client's history">
+      <option name="closed" value="true" />
+      <created>1733499969016</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1733499969016</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Fixes to manage deleting schedules correctly">
+      <option name="closed" value="true" />
+      <created>1733500006758</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1733500006758</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Added functions">
+      <option name="closed" value="true" />
+      <created>1733500015680</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1733500015680</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,13 +697,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update bug fix" />
-    <MESSAGE value="general appointment layout GUI+controller" />
-    <MESSAGE value="add appointment layout GUI+controller" />
-    <MESSAGE value="update appointment layout GUI+controller" />
-    <MESSAGE value="boh^2" />
-    <MESSAGE value="Home button" />
-    <MESSAGE value="BOH" />
     <MESSAGE value="home button" />
     <MESSAGE value="duration add" />
     <MESSAGE value="refactor" />
@@ -725,7 +715,14 @@
     <MESSAGE value="merge numero due 2" />
     <MESSAGE value="bug fixes" />
     <MESSAGE value="merge 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge 2" />
+    <MESSAGE value="Function to find corresponding appointments given a schedule" />
+    <MESSAGE value="New icons" />
+    <MESSAGE value="Button removing and icon adding" />
+    <MESSAGE value="Gui and controller for client's history" />
+    <MESSAGE value="Fixes for client's history" />
+    <MESSAGE value="Fixes to manage deleting schedules correctly" />
+    <MESSAGE value="Added functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -737,7 +734,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java</url>
-          <line>205</line>
+          <line>203</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
