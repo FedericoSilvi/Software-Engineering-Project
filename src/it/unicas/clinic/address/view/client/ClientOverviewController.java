@@ -2,6 +2,8 @@ package it.unicas.clinic.address.view.client;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.dao.AppointmentDAO;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -41,6 +44,8 @@ public class ClientOverviewController {
 
     @FXML
     private Button searchButton;
+
+    private AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
 
     @FXML
     private void initialize() {
@@ -75,7 +80,11 @@ public class ClientOverviewController {
 
     @FXML
     private void OnClickAddClient(ActionEvent event) throws IOException {
+        mainApp.addClientLayout(this);
+    }
 
+    @FXML
+    private void OnClickAddClientV2(MouseEvent event) throws IOException {
         mainApp.addClientLayout(this);
     }
 
@@ -122,7 +131,66 @@ public class ClientOverviewController {
 
     }
 
+    @FXML
+    private void OnClickDeleteClientV2(MouseEvent event) throws SQLException {
+        if(isAvailable()){
+            //Genero un aller per chiedere conferma
 
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Client");
+            alert.setContentText("Are you sure you want to delete this client?");
+            alert.setHeaderText("Are you sure you want to delete this client?");
+
+            ButtonType buttonYes = new ButtonType("Yes");
+            ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonYes, buttonCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == buttonYes){
+
+                Client client = table.getSelectionModel().getSelectedItem();
+
+                //Inserire finestra con conferma sull'eliminazione
+                DAOClient.delete(client.getId());
+            }
+
+
+
+
+        }
+
+        ArrayList<Client> list= DAOClient.getClientsList();
+        updateTable(list);
+
+    }
+
+    @FXML
+    private void handleExit(){
+        if(mainApp.getIsManager())
+            mainApp.initStaffManager();
+        else
+            mainApp.initStaff();
+    }
+
+    @FXML
+    private void onClickShowHistory(){
+        if(isAvailable()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Client");
+            alert.setContentText("You want to view this client's history?");
+            alert.setHeaderText("Yes: view history"+"\n"+"No: go back");
+
+            ButtonType buttonYes = new ButtonType("Yes");
+            ButtonType buttonCancel = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonYes, buttonCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == buttonYes){
+                Client c = table.getSelectionModel().getSelectedItem();
+                mainApp.showClientHistory(c.getId());
+            }
+        }
+    }
 
     public void updateTable(ArrayList<Client> clients) {
         clientData.clear();

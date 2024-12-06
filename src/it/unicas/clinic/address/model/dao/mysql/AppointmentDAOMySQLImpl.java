@@ -235,13 +235,45 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             appointments.add(a1);  // add the object in the list
         }
         connection.close();
+        System.out.println(appointments);
+        System.out.println("\n");
+        if(appointments.isEmpty())
+            return null;
+        else
+            return appointments;
+    }
+
+    public List<Appointment> getHistoryApp(int client_id) throws SQLException {
+        List<Appointment> appointments = new ArrayList<>();
+        if(client_id<=0)
+            return null;
+        Connection connection = DAOMySQLSettings.getConnection();
+        String searchApp="select * from appointment where client_id=? and date<=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(searchApp);
+        preparedStatement.setInt(1, client_id);
+        preparedStatement.setDate(2, Date.valueOf(LocalDate.now()));
+        ResultSet result = preparedStatement.executeQuery();
+        while(result.next()){
+            Appointment a = new Appointment(
+                    result.getInt("id"),
+                    result.getString("service"),
+                    result.getDate("date").toLocalDate(),
+                    result.getTime("time").toLocalTime(),
+                    result.getTime("duration").toLocalTime(),
+                    result.getInt("staff_id"),
+                    result.getInt("client_id")
+            );
+            appointments.add(a);
+        }
         if(appointments.isEmpty())
             return null;
         else
             return appointments;
     }
     public static void main(String[] args) throws SQLException {
-
+        /*dao=new AppointmentDAOMySQLImpl();
+        List<Appointment> a = dao.getHistoryApp(1);
+        System.out.println(a);*/
     }
 
 }

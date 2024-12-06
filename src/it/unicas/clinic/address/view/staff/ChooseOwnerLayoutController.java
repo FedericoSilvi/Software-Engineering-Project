@@ -23,4 +23,8 @@ public class ChooseOwnerLayoutController {
     private void handleChooseSchedule()throws IOException {
         //main.loadScheduleManagement();
     }
+    @FXML
+    private void handleBack(){
+        main.initStaffManager();
+    }
 }

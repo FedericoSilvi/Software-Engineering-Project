@@ -14,4 +14,5 @@ public interface AppointmentDAO <T>{
     void delete(int s) throws AppointmentException;
     Appointment getLastApp() throws SQLException;
     ArrayList<T> getSchedApp(Schedule s) throws SQLException;
+    List<T> getHistoryApp(int client_id) throws SQLException;
 }

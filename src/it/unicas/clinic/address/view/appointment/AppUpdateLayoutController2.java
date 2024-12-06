@@ -105,33 +105,7 @@ public class AppUpdateLayoutController2 {
             System.out.println(mainApp.getSavedClient());
             System.out.println(mainApp.getSavedDuration());
 
-            //Each element of arrayList is linked to a single schedule of scheduleList
-            ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
-            System.out.println(mainApp.getSavedStaff());
-            ArrayList<Schedule> scheduleList = scheduleDao.futureSchedule(mainApp.getSavedStaff());
-            //Boolean translation from schedule list
-            for (Schedule schedule : scheduleList) {
-                arrayList.add(DataUtil.avApp(schedule));
-            }
-            System.out.println(arrayList);
-            //dim saves the position of unavailable schedules
-            ArrayList<Integer> dim = new ArrayList<Integer>();
-            for (int i = 0; i < arrayList.size(); i++) {
-                System.out.println("Ci sono!!!");
-                ArrayList<Boolean> temp = DataUtil.avFilter(arrayList.get(i), mainApp.getSavedDuration());
-                if (temp == null) {
-                    dim.add(i);
-                }
-            }
-            System.out.println(dim);
-            //Set null unavailable schedules using dim to find
-            //unavailable schedules
-            for (int i = 0; i < dim.size(); i++) {
-                arrayList.set((int) dim.get(i), null);
-            }
-            System.out.println(arrayList);
-            dialogStage.close();
-            mainApp.showAvailableAppUp(scheduleList, arrayList,app);
+            appInsert();
         }
     }
 
@@ -144,6 +118,34 @@ public class AppUpdateLayoutController2 {
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();
     }
-
+    private void appInsert() throws IOException, SQLException {
+        //Each element of arrayList is linked to a single schedule of scheduleList
+        ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
+        System.out.println(mainApp.getSavedStaff());
+        ArrayList<Schedule> scheduleList = scheduleDao.futureSchedule(mainApp.getSavedStaff());
+        //Boolean translation from schedule list
+        for (Schedule schedule : scheduleList) {
+            arrayList.add(DataUtil.avApp(schedule));
+        }
+        System.out.println(arrayList);
+        //dim saves the position of unavailable schedules
+        ArrayList<Integer> dim = new ArrayList<Integer>();
+        for (int i = 0; i < arrayList.size(); i++) {
+            System.out.println("Ci sono!!!");
+            ArrayList<Boolean> temp = DataUtil.avFilter(arrayList.get(i), mainApp.getSavedDuration());
+            if (temp == null) {
+                dim.add(i);
+            }
+        }
+        System.out.println(dim);
+        //Set null unavailable schedules using dim to find
+        //unavailable schedules
+        for (int i = 0; i < dim.size(); i++) {
+            arrayList.set((int) dim.get(i), null);
+        }
+        System.out.println(arrayList);
+        dialogStage.close();
+        mainApp.showAvailableAppUp(scheduleList, arrayList,app);
+    }
 
 }
