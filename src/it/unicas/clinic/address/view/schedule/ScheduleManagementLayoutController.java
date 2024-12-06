@@ -1,19 +1,24 @@
 package it.unicas.clinic.address.view.schedule;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
-import it.unicas.clinic.address.model.dao.ScheduleDAO;
-import it.unicas.clinic.address.model.dao.ScheduleException;
-import it.unicas.clinic.address.model.dao.StaffDAO;
+import it.unicas.clinic.address.model.dao.*;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
+import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class ScheduleManagementLayoutController {
@@ -32,6 +37,7 @@ public class ScheduleManagementLayoutController {
 
     private Main mainApp;
     private ScheduleDAO dao= ScheduleDAOMySQLImpl.getInstance();
+    private AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
     private Schedule schedule;
     private Staff staff; //staff selezionato nella StaffManagementLayout, del quale mostrare gli schedule
 
@@ -64,7 +70,7 @@ public class ScheduleManagementLayoutController {
     }
     @FXML
     private void handleDeleteSchedule() {
-        //check se ho selezionato uno schedule da cancellare
+        //check if there is a selected schedule
         int selectedIndex = scheduleTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0){
             Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
@@ -79,14 +85,37 @@ public class ScheduleManagementLayoutController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne) {
                 try{
-                    dao.delete(selectedSchedule);
+                    System.out.println(selectedSchedule);
                     mainApp.getScheduleData().remove(selectedSchedule);
+                    ArrayList<Appointment> schedApp = appDao.getSchedApp(selectedSchedule);
+                    dao.delete(selectedSchedule);
+                    System.out.println("DIMENSIONE: "+schedApp.size());
+                    boolean empty=false;
+                    if(schedApp!=null) {
+                        //mainApp.getPrimaryStage().close();
+                        for (Appointment app : schedApp) {
+                            System.out.println("DENTRO IL FOR");
+                            rescheduleApp(app);
+                        }
+                        dao.delete(selectedSchedule);
+                    }
+
+                    Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
+                    errorAlert.setTitle("Success");
+                    errorAlert.setHeaderText("Schedule deleted successfully");
+                    errorAlert.showAndWait();
+
+
                 }catch(ScheduleException e){
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("Database Error");
                     errorAlert.setHeaderText("Could not delete schedule");
                     errorAlert.setContentText(e.getMessage());
                     errorAlert.showAndWait();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }
@@ -120,7 +149,53 @@ public class ScheduleManagementLayoutController {
 
     }
 
+    private void rescheduleApp(Appointment app) throws IOException, SQLException {
+            appDao.delete(app.getId());
+            //Each element of arrayList is linked to a single schedule of scheduleList
+            ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
+            ArrayList<Schedule> scheduleList = dao.futureSchedule(app.getStaffId());
+            //Boolean translation from schedule list
+            for (Schedule schedule : scheduleList) {
+                arrayList.add(DataUtil.avApp(schedule));
+            }
+            //dim saves the position of unavailable schedules
+            ArrayList<Integer> dim = new ArrayList<Integer>();
+            for (int i = 0; i < arrayList.size(); i++) {
+                ArrayList<Boolean> temp = DataUtil.avFilter(arrayList.get(i), app.getDuration());
+                if (temp == null) {
+                    dim.add(i);
+                }
+            }
+            //Set null unavailable schedules using dim to find
+            //unavailable schedules
+            for (int i = 0; i < dim.size(); i++) {
+                arrayList.set((int) dim.get(i), null);
+            }
+            mainApp.saveService(app.getService());
+            mainApp.saveDuration(app.getDuration());
+            mainApp.saveClient(app.getClientId());
+            mainApp.saveStaff(app.getStaffId());
+            if(scheduleList.isEmpty() || arrayList.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("No schedules found");
+                alert.setHeaderText("The following appointment will be deleted");
+
+                alert.setContentText("Service: "+app.getService()+"\n"+ "Client: "
+                        +DAOClient.select(app.getClientId()).getName()+" "+DAOClient.select(app.getClientId()).getSurname());
+
+                ButtonType buttonTypeOne = new ButtonType("Ok");
+
+                alert.getButtonTypes().setAll(buttonTypeOne);
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == buttonTypeOne){
+
+                }
+            }
+            else
+                mainApp.showRescheduleApp(scheduleList, arrayList, app);
+        }
+    }
 
 
-}
 
