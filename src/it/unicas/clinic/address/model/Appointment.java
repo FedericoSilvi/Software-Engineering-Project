@@ -54,6 +54,28 @@ public class Appointment {
             this.clientId = new SimpleIntegerProperty(0);
         cancellation=null;
     }
+    public Appointment(Integer id, String service, LocalDate date, LocalTime time, LocalTime duration,Integer staffId, Integer clientId, Boolean cancellation) {
+        if(id!=null)
+            this.id = new SimpleIntegerProperty(id);
+        else
+            this.id = new SimpleIntegerProperty(0);
+        this.service = new SimpleStringProperty(service);
+        this.date = new SimpleObjectProperty<>(date);
+        this.time = new SimpleObjectProperty<>(time);
+        this.duration = new SimpleObjectProperty<>(duration);
+        if(staffId!=null)
+            this.staffId = new SimpleIntegerProperty(staffId);
+        else
+            this.staffId = new SimpleIntegerProperty(0);
+        if(clientId!=null)
+            this.clientId = new SimpleIntegerProperty(clientId);
+        else
+            this.clientId = new SimpleIntegerProperty(0);
+        if(cancellation!=null)
+            this.cancellation = cancellation;
+        else
+            this.cancellation = null;
+    }
 
     /**
      * Constructor to build an appointment passing all its attributes except the appointment id
@@ -180,4 +202,5 @@ public class Appointment {
                 +"staffId: "+staffId.get()+"\n"
                 +"clientId: "+clientId.get()+"\n";
     }
+
 }

@@ -561,7 +561,7 @@ public class Main extends Application {
         controller.setMainApp(this);
         controller.setDialogStage(dialogStage);
 
-        dialogStage.show();
+        dialogStage.showAndWait();
     }
     public void showAppClient() throws IOException, SQLException {
         appointmentData.clear();
@@ -755,6 +755,21 @@ public class Main extends Application {
     }
 
 
+    public void openReport() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/ReportLayout.fxml"));
+        AnchorPane p = (AnchorPane) loader.load();
 
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Generate a report");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+        Scene scene = new Scene(p);
+        dialogStage.setScene(scene);
+        ReportLayoutController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setDialogStage(dialogStage);
 
+        dialogStage.show();
+    }
 }

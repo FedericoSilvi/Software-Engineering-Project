@@ -2,18 +2,13 @@ package it.unicas.clinic.address.model.dao.mysql;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import it.unicas.clinic.address.model.Schedule;
-import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.dao.ScheduleException;
-import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.utils.DataUtil;
 
 
@@ -43,7 +38,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         if(s.getId()<=0 && s.getService()==null && s.getDate()==null && s.getTime()==null & s.getStaffId()==0 && s.getClientId()==0){
             s= new Appointment(0,null,null,null,null,0,0);
         }
-        String sqlSelect = "SELECT * FROM appointment WHERE 1=1";
+        String sqlSelect = "SELECT * FROM appointment WHERE cancellation IS NULL";
 
         // Add dynamicly the condition of the fields not null
         if (s.getId() > 0) {
@@ -177,7 +172,8 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         if(s>0) {
             try {
                 Connection connection = DAOMySQLSettings.getConnection();
-                String sqlInsert = "delete from appointment where id=?";
+                //String sqlInsert = "delete from appointment where id=?";
+                String sqlInsert = "UPDATE appointment SET cancellation = 1 WHERE id = ?";
                 PreparedStatement preparedstatement = connection.prepareStatement(sqlInsert);
                 preparedstatement.setInt(1, s);
                 preparedstatement.executeUpdate();
@@ -211,6 +207,120 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         connection.close();
         return a;
     }
+
+    //select app also in a period
+    @Override
+    public List<Appointment> select(Appointment s, LocalDate startDate, LocalDate endDate) throws AppointmentException {
+        // If passed appointment is null, create a new one with null fields
+        if (s == null)
+            s = new Appointment(0, null, null, null, null, 0, 0);
+
+        ArrayList<Appointment> list = new ArrayList<>();
+
+        if (s.getId() <= 0 && s.getService() == null && s.getDate() == null && s.getTime() == null && s.getStaffId() == 0 && s.getClientId() == 0) {
+            s = new Appointment(0, null, null, null, null, 0, 0);
+        }
+
+        String sqlSelect = "SELECT * FROM appointment WHERE 1=1";
+
+        // Add dynamically the condition of the fields not null
+        if (s.getId() > 0) {
+            sqlSelect += " AND id = ?";
+        }
+        if (s.getService() != null && !s.getService().isEmpty()) {
+            sqlSelect += " AND service LIKE ?";
+        }
+        if (s.getDate() != null) {
+            sqlSelect += " AND date LIKE ?";
+        }
+        if (s.getTime() != null) {
+            sqlSelect += " AND time LIKE ?";
+        }
+        if (s.getStaffId() > 0) {
+            sqlSelect += " AND staff_id = ?";
+        }
+        if (s.getClientId() > 0) {
+            sqlSelect += " AND client_id = ?";
+        }
+        if (startDate != null) {
+            sqlSelect += " AND date >= ?";
+        }
+        if (endDate != null) {
+            sqlSelect += " AND date <= ?";
+        }
+
+        // Log final query
+        logger.info("SQL Query: " + sqlSelect);
+
+        // Prepare PreparedStatement
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sqlSelect)) {
+
+            // Set the params dynamically
+            int index = 1; // index of the params of the preparedStatement
+
+            if (s.getId() > 0) {
+                stmt.setInt(index++, s.getId()); // set ID
+            }
+            if (s.getService() != null && !s.getService().isEmpty()) {
+                stmt.setString(index++, s.getService());
+            }
+            if (s.getDate() != null) {
+                stmt.setDate(index++, Date.valueOf(s.getDate())); // set the day
+            }
+            if (s.getTime() != null) {
+                stmt.setTime(index++, Time.valueOf(s.getTime())); // set start time
+            }
+            if (s.getStaffId() > 0) {
+                stmt.setInt(index++, s.getStaffId()); // set staffId
+            }
+            if (s.getClientId() > 0) {
+                stmt.setInt(index++, s.getClientId()); // set clientId
+            }
+            if (startDate != null) {
+                stmt.setDate(index++, Date.valueOf(startDate)); // set startDate
+            }
+            if (endDate != null) {
+                stmt.setDate(index++, Date.valueOf(endDate)); // set endDate
+            }
+
+            // execute the query
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    // create an object with the result
+                    Appointment a1 = new Appointment(
+                            rs.getInt("id"),
+                            rs.getString("service"),
+                            rs.getDate("date").toLocalDate(),
+                            rs.getTime("time").toLocalTime(),
+                            rs.getTime("duration").toLocalTime(),
+                            rs.getInt("staff_id"),
+                            rs.getInt("client_id"),
+                            rs.getBoolean("cancellation")
+                    );
+                    //System.out.println(a1);
+                    list.add(a1); // add the object in the list
+                }
+            }
+
+            if (!list.isEmpty()) {
+                logger.info("Query executed successfully: " + sqlSelect + " | Number of records found: " + list.size());
+            } else {
+                logger.info("Query executed successfully: " + sqlSelect + " | No records found.");
+            }
+        } catch (SQLException e) {
+            logger.severe("SQL Error: " + e.getMessage());
+            throw new AppointmentException("SQL: In select(): An error occurred while fetching appointment data");
+        }
+
+        return list;
+    }
+
+
+
+
+
+
     public static void main(String[] args){
         dao = getInstance();
         //LocalDate date = LocalDate.of(2024,11,30);

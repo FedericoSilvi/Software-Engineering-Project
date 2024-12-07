@@ -3,6 +3,7 @@ package it.unicas.clinic.address.model.dao;
 import it.unicas.clinic.address.model.Appointment;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface AppointmentDAO <T>{
@@ -11,4 +12,7 @@ public interface AppointmentDAO <T>{
     void insert(T s) throws AppointmentException;
     void delete(int s) throws AppointmentException;
     Appointment getLastApp() throws SQLException;
+
+    //select app also in a period
+    List<Appointment> select(Appointment s, LocalDate startDate, LocalDate endDate) throws AppointmentException;
 }
