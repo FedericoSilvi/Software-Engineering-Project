@@ -11,5 +11,6 @@
     <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
     <orderEntry type="library" name="javafx.media" level="project" />
+    <orderEntry type="library" name="fasterxml.jackson.jakarta.rs.base" level="project" />
   </component>
 </module>

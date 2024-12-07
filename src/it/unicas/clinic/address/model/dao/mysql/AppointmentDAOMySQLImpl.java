@@ -272,7 +272,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     }
     public static void main(String[] args) throws SQLException {
         /*dao=new AppointmentDAOMySQLImpl();
-        List<Appointment> a = dao.getHistoryApp(1);
+        List<Appointment> a = dao.getHistoryApp();
         System.out.println(a);*/
     }
 

@@ -72,7 +72,11 @@ public class ClientHistoryViewController {
         });
     }
 
-
+    /**
+     * Return to the client list view
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
     public void handleClose() throws SQLException, IOException {
         mainApp.showClientView();

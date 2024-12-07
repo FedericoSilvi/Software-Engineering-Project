@@ -1,8 +1,9 @@
 package it.unicas.clinic.address;
 
-import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.Schedule;
-import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.*;
+import it.unicas.clinic.address.model.dao.AppointmentDAO;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.client.*;
@@ -30,7 +31,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
-import it.unicas.clinic.address.model.Client;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

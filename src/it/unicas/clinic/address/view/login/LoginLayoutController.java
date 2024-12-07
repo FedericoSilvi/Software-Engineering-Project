@@ -91,7 +91,7 @@ public class LoginLayoutController {
         main.handleExit();
     }
     @FXML
-    private void handleLogin() {
+    private void handleLogin() throws SQLException {
         //Get inserted username
         String username = usernameField.getText();
         //Get inserted password
@@ -140,10 +140,12 @@ public class LoginLayoutController {
              Optional<ButtonType> r = alert.showAndWait();
              if (r.get() == button){
                  alert.close();
-                 if(data.getManager())
+                 if(data.getManager()) {
                      main.initStaffManager();
-                 else
+                 }
+                 else {
                      main.initStaff();
+                 }
              }
 
            //  main.getId(StaffDAO.);

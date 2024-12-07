@@ -149,6 +149,12 @@ public class AppSelectViewController3 {
         clientL.setText(DAOClient.getClient(mainApp.getSavedClient()).getName()+"\n"+
                 DAOClient.getClient(mainApp.getSavedClient()).getSurname());
     }
+
+    /**
+     * Effectively adds the specified appointment
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
     public void handleAddApp() throws SQLException, IOException {
         if(app.getId()==0||date==null||time==null){
@@ -174,6 +180,10 @@ public class AppSelectViewController3 {
         dialogue.close();
     }
 
+    /**
+     * Manage the case where the table is empty
+     * @throws IOException
+     */
     private void handleEmpty() throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
