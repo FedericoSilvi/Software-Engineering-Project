@@ -97,4 +97,9 @@ public class StaffMemberInitialLayoutController {
     private void handleApp(){
         main.initAppView();
     }
+
+    @FXML
+    private void handleShowWeeklyView() throws IOException {
+        main.showWeeklyView();
+    }
 }

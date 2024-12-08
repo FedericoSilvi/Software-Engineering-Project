@@ -77,7 +77,18 @@ public class DAOClient {
     public static ArrayList<Client> filterClient(String name, String surname, String email) throws SQLException {
         ArrayList<Client> clients = new ArrayList<>();
         Connection connection = DAOMySQLSettings.getConnection();
-        String sqlSelect = "SELECT * FROM clinic.client WHERE name = ? OR surname = ? OR email = ?";
+        String sqlSelect = "SELECT * FROM clinic.client WHERE name LIKE ? OR surname LIKE ? OR email = ?";
+        if(name.equals("") || name == null) {
+            name = "";
+        } else {
+            name = name + "%";
+        }
+        if(surname.equals("") || surname == null) {
+            surname = "";
+        } else {
+            surname = surname + "%";
+        }
+        
         PreparedStatement preparedstatement = connection.prepareStatement(sqlSelect);
         preparedstatement.setString(1, name);
         preparedstatement.setString(2, surname);

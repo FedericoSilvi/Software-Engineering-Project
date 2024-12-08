@@ -7,13 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import it.unicas.clinic.address.model.Schedule;
-import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.dao.ScheduleException;
-import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.utils.DataUtil;
 
 
@@ -211,6 +207,144 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         connection.close();
         return a;
     }
+
+    public static boolean filterByDate(LocalDate date, int clientId, int staffId, String service) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+        String sqlSelect;
+        PreparedStatement preparedStatement;
+        if(clientId != 0){
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND client_id = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setInt(2, clientId);
+        } else if(staffId != 0){
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND staff_id = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setInt(2, staffId);
+        } else if(service != null){
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND service = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setString(2, service);
+        }
+        else{
+            sqlSelect = "select * from appointment where date = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+        }
+
+        ResultSet result = preparedStatement.executeQuery();
+
+        boolean flag;
+
+        if(result.next()){
+            flag = true;
+        }
+        else {
+            flag = false;
+        }
+
+        connection.close();
+
+        return flag;
+
+    }
+
+   /* public static ArrayList<Appointment> searchAppointment(String client, String staff, String date) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+        ArrayList<Integer> clientId = new ArrayList<>();
+        ArrayList<Integer> staffId = null;
+        ArrayList<Appointment> appointments = null;
+        int i = 0;
+        int z = 0;
+        boolean first = true;
+        
+        if(client != null || client.length() > 0){
+            String sqlSelect1 = "SELECT id FROM client WHERE surname =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlSelect1);
+            preparedStatement.setString(1, client);
+            ResultSet result = preparedStatement.executeQuery();
+            i = 0;
+
+            while(result.next()){
+                if(i == 0){
+                    clientId.add(result.getInt("id"));
+                }
+                else if(clientId.get(i) != result.getInt("id")){
+                    i++;
+                    clientId.add(result.getInt("id"));
+                }
+            }
+        }
+        
+        if(staff != null || staff.length() > 0){
+            String sqlSelect2 = "SELECT id FROM staff WHERE surname =?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sqlSelect2);
+            preparedStatement2.setString(1, staff);
+            ResultSet result2 = preparedStatement2.executeQuery();
+            i = 0;
+
+            while(result2.next()){
+                if(i == 0){
+                    staffId.add(result2.getInt("id"));
+                } else if(staffId.get(i) != result2.getInt("id")){
+                    staffId.add(result2.getInt("id"));
+                }
+            }
+        }
+        
+        if(date != null || date.length() > 0)
+        {
+            String sqlSelect3 = "SELECT * FROM appointment WHERE client_id=? and staff_id=? and date=?";
+            PreparedStatement preparedStatement3 = connection.prepareStatement(sqlSelect3);
+            for(int j = 0; j < clientId.size(); j++){
+                for(int k = 0; k < staffId.size(); k++){
+                    preparedStatement3.setInt(1, clientId.get(j));
+                    preparedStatement3.setInt(2, staffId.get(k));
+                    preparedStatement3.setDate(3, Date.valueOf(date));
+                    preparedStatement3.executeUpdate();
+
+                    ResultSet result3 = preparedStatement3.executeQuery();
+                    while(result3.next()){
+                        if(first) {
+                            first = false;
+                            z++;
+
+                            int appId = result3.getInt("id");
+                            String service = result3.getString("service");
+                            LocalDate dateTime = result3.getDate("date").toLocalDate();
+                            LocalTime time = result3.getTime("time").toLocalTime();
+                            LocalTime duration = result3.getTime("duration").toLocalTime();
+                            Integer staff_id = result3.getInt("staff_id");
+                            Integer client_id = result3.getInt("client_id");
+
+                            Appointment appointment = new Appointment(appId, service, dateTime, time, duration, staff_id, client_id);
+
+                            appointments.add(appointment);
+                        }
+                        else if(appointments.get(z).getId() != result3.getInt("id")){
+                            z++;
+
+                            int appId = result3.getInt("id");
+                            String service = result3.getString("service");
+                            LocalDate dateTime = result3.getDate("date").toLocalDate();
+                            LocalTime time = result3.getTime("time").toLocalTime();
+                            LocalTime duration = result3.getTime("duration").toLocalTime();
+                            Integer staff_id = result3.getInt("staff_id");
+                            Integer client_id = result3.getInt("client_id");
+
+                            Appointment appointment = new Appointment(appId, service, dateTime, time, duration, staff_id, client_id);
+
+                            appointments.add(appointment);
+                        }
+                    }
+                }
+            }
+        }
+        return appointments;
+    }*/
+
     public static void main(String[] args){
         dao = getInstance();
         //LocalDate date = LocalDate.of(2024,11,30);

@@ -9,6 +9,7 @@ import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -128,6 +129,12 @@ public class AppointmentViewController {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void handleSearchAppointment() throws IOException {
+        mainApp.searchAppointment();
+    }
+
     public void handleHome(){
        if(mainApp.getIsManager())
            mainApp.initStaffManager();

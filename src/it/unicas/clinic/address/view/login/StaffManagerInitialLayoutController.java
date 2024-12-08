@@ -110,4 +110,10 @@ public class StaffManagerInitialLayoutController {
     private void handleApp(){
         main.initAppView();
     }
+
+    @FXML
+    private void handleCalendarView() throws IOException {
+        //main.showMonthlyView();
+        main.showMonthlyView();
+    }
 }

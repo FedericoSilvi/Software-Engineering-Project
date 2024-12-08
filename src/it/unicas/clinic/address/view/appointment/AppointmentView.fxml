@@ -29,6 +29,7 @@
                 <Button mnemonicParsing="false" onAction="#handleInsertApp" text="Insert New Appointment" />
                 <Button mnemonicParsing="false" onAction="#handleDeleteApp" prefHeight="26.0" text="Delete an Appointment" />
                 <Button mnemonicParsing="false" onAction="#handleUpdateApp" prefHeight="26.0" prefWidth="408.0" text="Update an Appointment" />
+            <Button mnemonicParsing="false" onAction="#handleSearchAppointment" text="Search Appointment" />
             </buttons>
         </ButtonBar>
       <ImageView fx:id="homeButton" fitHeight="26.0" fitWidth="25.0" layoutX="14.0" layoutY="2.0" onMouseClicked="#handleHome" opacity="0.8" pickOnBounds="true" preserveRatio="true">

@@ -5,6 +5,10 @@ import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
+import it.unicas.clinic.address.view.appointment.calendarView.DailyViewController;
+import it.unicas.clinic.address.view.appointment.calendarView.FilterByController;
+import it.unicas.clinic.address.view.appointment.calendarView.MonthlyViewController;
+import it.unicas.clinic.address.view.appointment.calendarView.WeeklyViewController;
 import it.unicas.clinic.address.view.client.*;
 import it.unicas.clinic.address.view.credential.EditStaffCredentialController;
 import it.unicas.clinic.address.view.login.ChangePasswordController;
@@ -34,6 +38,7 @@ import it.unicas.clinic.address.model.Client;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -743,6 +748,95 @@ public class Main extends Application {
 
         editStaffWindow.setScene(new Scene(anchorPane));
         editStaffWindow.showAndWait();
+    }
+
+    public void showMonthlyView() throws IOException {
+        Stage monthlyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/MonthlyView.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        MonthlyViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(monthlyViewWindow);
+
+        monthlyViewWindow.initModality(Modality.WINDOW_MODAL);
+        monthlyViewWindow.initOwner(primaryStage);
+
+        monthlyViewWindow.setScene(new Scene(anchorPane));
+        monthlyViewWindow.show();
+    }
+
+    public void showWeeklyView() throws IOException {
+        Stage weeklyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/WeeklyView2.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        WeeklyViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(weeklyViewWindow);
+
+        weeklyViewWindow.initModality(Modality.WINDOW_MODAL);
+        weeklyViewWindow.initOwner(primaryStage);
+        weeklyViewWindow.setScene(new Scene(anchorPane));
+        weeklyViewWindow.show();
+
+    }
+
+    public void showDailyView() throws IOException {
+        Stage dailyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/DailyView.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        DailyViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(dailyViewWindow);
+
+        dailyViewWindow.initModality(Modality.WINDOW_MODAL);
+        dailyViewWindow.initOwner(primaryStage);
+        dailyViewWindow.setScene(new Scene(anchorPane));
+        dailyViewWindow.show();
+    }
+
+    public void searchAppointment() throws IOException {
+        Stage searchAppointmentWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/SearchAppointment.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        SearchAppointmentController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(searchAppointmentWindow);
+
+        searchAppointmentWindow.initModality(Modality.WINDOW_MODAL);
+        searchAppointmentWindow.initOwner(primaryStage);
+
+        searchAppointmentWindow.setScene(new Scene(anchorPane));
+        searchAppointmentWindow.showAndWait();
+
+    }
+
+    public void filterCalendarView(MonthlyViewController con) throws IOException {
+        Stage filterCalendarWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/FilterBy.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        FilterByController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(filterCalendarWindow);
+        controller.setMonthlyViewController(con);
+
+
+        filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
+        filterCalendarWindow.initOwner(primaryStage);
+        filterCalendarWindow.setScene(new Scene(anchorPane));
+        filterCalendarWindow.showAndWait();
     }
 
 

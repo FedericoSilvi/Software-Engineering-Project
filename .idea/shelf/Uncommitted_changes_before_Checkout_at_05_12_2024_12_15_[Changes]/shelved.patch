@@ -1,0 +1,1479 @@
+Index: src/it/unicas/clinic/address/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package it.unicas.clinic.address;\r\n\r\nimport javafx.application.Application;\r\nimport javafx.stage.Stage;\r\n\r\nimport static javafx.application.Application.launch;\r\n\r\n//TIP To <b>Run</b> code, press <shortcut actionId=\"Run\"/> or\r\n// click the <icon src=\"AllIcons.Actions.Execute\"/> icon in the gutter.\r\npublic class Main extends Application {\r\n\r\n    private Stage primaryStage;\r\n\r\n    public void start(Stage primaryStage){\r\n        this.primaryStage=primaryStage;\r\n        this.primaryStage.setTitle(\"Clinic\");\r\n\r\n        primaryStage.show();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        launch(args);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/it/unicas/clinic/address/Main.java b/src/it/unicas/clinic/address/Main.java
+--- a/src/it/unicas/clinic/address/Main.java	(revision 617620debcbc1782b1661217cafdf1c72c4a7fd5)
++++ b/src/it/unicas/clinic/address/Main.java	(date 1733397173237)
+@@ -1,24 +1,756 @@
+ package it.unicas.clinic.address;
+ 
++import it.unicas.clinic.address.model.Appointment;
++import it.unicas.clinic.address.model.Schedule;
++import it.unicas.clinic.address.model.Staff;
++import it.unicas.clinic.address.utils.DataUtil.AppInfo;
++import it.unicas.clinic.address.view.appointment.*;
++import it.unicas.clinic.address.view.client.*;
++import it.unicas.clinic.address.view.credential.EditStaffCredentialController;
++import it.unicas.clinic.address.view.login.ChangePasswordController;
++import it.unicas.clinic.address.view.login.ChangeUsernameController;
++import it.unicas.clinic.address.view.login.LoginLayoutController;
++import it.unicas.clinic.address.view.login.StaffManagerInitialLayoutController;
++import it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController;
++import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
++import it.unicas.clinic.address.view.schedule.ScheduleManagementLayoutController;
++import it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController;
++import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
++import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
++import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
++import it.unicas.clinic.address.view.staff.StaffUpdateLayoutController;
+ import javafx.application.Application;
++import javafx.collections.FXCollections;
++import javafx.collections.ObservableList;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Scene;
++import javafx.scene.control.Alert;
++import javafx.scene.control.ButtonBar;
++import javafx.scene.control.ButtonType;
++import javafx.scene.image.Image;
++import javafx.scene.layout.BorderPane;
++import javafx.scene.layout.AnchorPane;
++import it.unicas.clinic.address.model.Client;
++import javafx.stage.Modality;
+ import javafx.stage.Stage;
+ 
+-import static javafx.application.Application.launch;
++import java.io.IOException;
++import java.time.LocalDate;
++import java.time.LocalTime;
++import java.util.ArrayList;
++import java.util.Optional;
++
++import java.sql.SQLException;
+ 
+-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
++/**
++ * Class implementing the application
++ */
++
+ public class Main extends Application {
+ 
+     private Stage primaryStage;
++    private BorderPane loginLayout;
++    private BorderPane staffInitialLayout;
++    private AnchorPane appInitialLayout;
++    private ObservableList<Staff> staffData = FXCollections.observableArrayList();
++    private ObservableList<Appointment> appointmentData = FXCollections.observableArrayList();
++    //private ObservableList<LocalDate> dateData = FXCollections.observableArrayList();
++    //private ObservableList<LocalTime> timeData = FXCollections.observableArrayList();
++    private ObservableList<Schedule> appSchedData = FXCollections.observableArrayList();
++    private BorderPane page;
++    private AppInfo appInfo = new AppInfo();
++    private Boolean isManager;
++    private int user_id;
++    private ObservableList<Schedule> scheduleData = FXCollections.observableArrayList();
++    public ObservableList<Schedule> getScheduleData() {
++        return scheduleData;
++    }
++
++    public int getUser_id() {
++        return user_id;
++    }
++
++    public void setUser_id(int user_id) {
++        this.user_id = user_id;
++    }
++
+ 
+-    public void start(Stage primaryStage){
++    public ObservableList<Schedule> getAppSchedData() {
++        return appSchedData;
++    }
++    public void saveAppSchedData(ObservableList<Schedule> list){appSchedData=list;}
++    public ObservableList<Staff> getStaffData() {
++        return staffData;
++    }
++    public ObservableList<Appointment> getAppointmentData() {
++        return appointmentData;
++    }
++    public Boolean getIsManager(){return isManager;}
++    public void setIsManager(Boolean isManager){this.isManager=isManager;}
++
++    public Main() {
++    }
++
++    /**
++     * Returns the main stage.
++     * @return
++     */
++    public Stage getPrimaryStage() {
++        return primaryStage;
++    }
++
++    /**
++     * Default method called at the start of the application.
++     * It makes the login GUI appear.
++     */
++
++    @Override
++    public void start(Stage primaryStage) throws IOException, SQLException {
+         this.primaryStage=primaryStage;
+         this.primaryStage.setTitle("Clinic");
+-
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml"));
++        //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
++        AnchorPane root = loader.load();
++
++        initLogin();
++        primaryStage.centerOnScreen();
++        primaryStage.setResizable(false);
++        primaryStage.show();
++    }
++
++    /**
++     * Pop up an alert for the exit operation.
++     */
++    public void handleExit() {
++        Alert alert = new Alert(Alert.AlertType.ERROR);
++        alert.setTitle("Exit");
++        alert.setHeaderText("Are you sure you want to quit the app?");
++        alert.setContentText("Click " + "\n" + "'Yes' to exit" + "\n" + "'Back' to close the window");
++
++        ButtonType buttonTypeOne = new ButtonType("Yes");
++        ButtonType buttonTypeCancel = new ButtonType("Back", ButtonBar.ButtonData.CANCEL_CLOSE);
++
++        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
++
++        Optional<ButtonType> result = alert.showAndWait();
++        if (result.get() == buttonTypeOne){
++            System.exit(0);
++        }
++    }
++
++    /**
++     * Load the login GUI to the application window
++     */
++    public void initLogin() {
++        try {
++            // Load root layout from fxml file.
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class
++                    .getResource("view/login/LoginLayout.fxml"));
++            loginLayout = (BorderPane) loader.load();
++
++            // Show the scene containing the login layout.
++            Scene scene = new Scene(loginLayout);
++            primaryStage.setScene(scene);
++
++            //Implementing alert when you click on the 'X' of the window
++            primaryStage.setOnCloseRequest(event -> {
++                event.consume();
++                handleExit();
++            });
++
++
++            // Give the controller access to the main app.
++            LoginLayoutController controller = loader.getController();
++            controller.setMainApp(this);
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++    /**
++     * Load the initial staff member GUI to the application window
++     */
++    public void initStaff(){
++        try{
++
++            // Load root layout from fxml file.
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class
++                    .getResource("view/login/StaffMemberInitialLayout.fxml"));
++            staffInitialLayout = (BorderPane) loader.load();
++
++            // Show the scene containing the root layout.
++            Scene scene = new Scene(staffInitialLayout);
++            primaryStage.setScene(scene);
++
++            //Implementing alert when you click on the 'X' of the window
++            primaryStage.setOnCloseRequest(event -> {
++                event.consume();
++                handleExit();
++            });
++
++
++            // Give the controller access to the main app.
++            StaffMemberInitialLayoutController controller = loader.getController();
++            controller.setMainApp(this);
++
++            //Set and show primary stage
++            primaryStage.centerOnScreen();
++            primaryStage.setResizable(false);
++            primaryStage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++
++    /**
++     * Load the initial staff manager GUI to the application window
++     */
++    public void initStaffManager(){
++        try{
++
++            // Load root layout from fxml file.
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class
++                    .getResource("view/login/StaffManagerInitialLayout.fxml"));
++            staffInitialLayout = (BorderPane) loader.load();
++
++            // Show the scene containing the root layout.
++            Scene scene = new Scene(staffInitialLayout);
++            primaryStage.setScene(scene);
++
++            //Implementing alert when you click on the 'X' of the window
++            primaryStage.setOnCloseRequest(event -> {
++                event.consume();
++                handleExit();
++            });
++
++
++            // Give the controller access to the main app.
++            StaffManagerInitialLayoutController controller = loader.getController();
++            controller.setMainApp(this);
++
++            //Set and show primary stage
++            primaryStage.centerOnScreen();
++            primaryStage.setResizable(false);
++            primaryStage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    public void showStaffInsertDialog() {
++        try {
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class.getResource("view/staff/StaffAddingLayout.fxml"));
++            AnchorPane page = (AnchorPane) loader.load();
++            Stage dialogStage = new Stage();
++            dialogStage.setTitle("Add Staff");
++            dialogStage.initModality(Modality.WINDOW_MODAL);
++            dialogStage.initOwner(primaryStage);
++            Scene scene = new Scene(page);
++            dialogStage.setScene(scene);
++
++            //Controller
++            StaffAddingLayoutController controller = loader.getController();
++            controller.setMainApp(this);
++            controller.setDialogStage(dialogStage);
++            //controller.setStaff();
++
++            // Set the dialog icon.
++            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++            dialogStage.showAndWait();
++
++
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        }
++
++
++    }
++
++
++
++    public void showStaffUpdateDialog(Staff s){
++        try {
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class.getResource("view/staff/StaffUpdateLayout.fxml"));
++            AnchorPane page = (AnchorPane) loader.load();
++            Stage dialogStage = new Stage();
++            dialogStage.setTitle("Update Staff");
++            dialogStage.initModality(Modality.WINDOW_MODAL);
++            dialogStage.initOwner(primaryStage);
++            Scene scene = new Scene(page);
++            dialogStage.setScene(scene);
++
++            //Controller
++            StaffUpdateLayoutController controller = loader.getController();
++            controller.setMainApp(this);
++            controller.setDialogStage(dialogStage);
++            controller.setField(s);
++
++            // Set the dialog icon.
++            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++            dialogStage.showAndWait();
++
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        }
++
++    }
++
++    public void loadStaffManagementChoose() throws IOException{
++        primaryStage.getIcons().add(new Image("file:resources/clinic-icon-3.png"));
++        this.primaryStage.setTitle("Clinic");
++        FXMLLoader loader = new FXMLLoader();
++        this.primaryStage.setTitle("Clinic");
++        loader.setLocation(Main.class.getResource("view/staff/ChooseOwnerLayout.fxml"));
++        page =  loader.load();
++        Scene scene = new Scene(page);
++        primaryStage.setScene(scene);
++        ChooseOwnerLayoutController controller = loader.getController();
++        controller.setMain(this);
++    }
++
++    public void loadStaffManagement() throws IOException{
++        staffData.clear();
++        loadStaffManagementChoose();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/staff/StaffManagementLayout2.fxml"));
++        page.setCenter(loader.load());
++        StaffManagementLayoutController controller = loader.getController();
++        controller.setMainApp(this);
++        primaryStage.show();
++    }
++
++
++
++    public void searchClientLayout(ClientOverviewController clientController) throws IOException {
++        Stage searchWindow = new Stage();
++
++        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/SearchClient.fxml"));
++        AnchorPane layout = loader.load();
++
++
++        SearchClientController controller = loader.getController();
++        controller.setStage(searchWindow);
++        controller.setMainApp(this);
++        controller.SetClientOverviewController(clientController);
++
++        searchWindow.initModality(Modality.WINDOW_MODAL);
++        searchWindow.initOwner(primaryStage);
++
++
++        searchWindow.setScene(new Scene(layout));
++        searchWindow.showAndWait();
++    }
++
++    public void addClientLayout(ClientOverviewController clientController) throws IOException {
++        Stage addWindow = new Stage();
++        FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/AddClient.fxml"));
++        AnchorPane layout = loader.load();
++        AddClientController controller = loader.getController();
++        controller.setStage(addWindow);
++        controller.setMainApp(this);
++        controller.SetClientOverviewController(clientController);
++
++        addWindow.initModality(Modality.WINDOW_MODAL);
++        addWindow.initOwner(primaryStage);
++
++        addWindow.setScene(new Scene(layout));
++        addWindow.show();
++    }
++
++    public void updateClientLayout(ClientOverviewController clientController, Client client) throws IOException {
++        Stage updateWindow = new Stage();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/UpdateClient.fxml"));
++        AnchorPane layout = (AnchorPane) loader.load();
++        UpdateClientController controller = loader.getController();
++        controller.setMainApp(this);
++        controller.setStage(updateWindow);
++        controller.SetClientOverviewController(clientController);
++        controller.getClient(client);
++
++        //definisco suo padre (x forza)
++        updateWindow.initModality(Modality.WINDOW_MODAL);
++        updateWindow.initOwner(primaryStage);
++
++        updateWindow.setScene(new Scene(layout));
++        updateWindow.showAndWait();
++    }
++
++    public void showClientView() throws IOException, SQLException {
++        this.primaryStage.setTitle("Clinic");
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/client/ClientOverview.fxml")); //   BorderPane root = FXMLLoader.load(getClass().getResource("/it/unicas/clinic/address/view/RootLayout.fxml"));
++        AnchorPane root = loader.load();
++        ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
++        controller.ShowAllClients();
++        primaryStage.setScene(new Scene(root));
+         primaryStage.show();
++
+     }
++
++    public void initAppView(){
++        try{
++            appointmentData.clear();
++            // Load root layout from fxml file.
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class
++                    .getResource("view/appointment/AppointmentView.fxml"));
++            appInitialLayout = (AnchorPane) loader.load();
++
++            // Show the scene containing the root layout.
++            Scene scene = new Scene(appInitialLayout);
++            primaryStage.setScene(scene);
++
++            //Implementing alert when you click on the 'X' of the window
++            primaryStage.setOnCloseRequest(event -> {
++                event.consume();
++                handleExit();
++            });
++
++
++            // Give the controller access to the main app.
++            AppointmentViewController controller = loader.getController();
++            controller.setMainApp(this);
++
++            //Set and show primary stage
++            primaryStage.centerOnScreen();
++            primaryStage.setResizable(false);
++            primaryStage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
++        }
++    }
++    public void showAppInsertDialog() {
++        if(isManager) {
++            try {
++                FXMLLoader loader = new FXMLLoader();
++                loader.setLocation(Main.class.getResource("view/appointment/AppAddingLayout2.fxml"));
++                AnchorPane page = (AnchorPane) loader.load();
++                Stage dialogStage = new Stage();
++                dialogStage.setTitle("Add Appointment");
++                dialogStage.initModality(Modality.WINDOW_MODAL);
++                dialogStage.initOwner(primaryStage);
++                Scene scene = new Scene(page);
++                dialogStage.setScene(scene);
++
++                //Controller
++                AppAddingLayoutController2 controller = loader.getController();
++                controller.setMainApp(this);
++                controller.setDialogStage(dialogStage);
++                //controller.setStaff();
++
++                // Set the dialog icon.
++                //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++                dialogStage.showAndWait();
++
++            } catch (IOException e) {
++                throw new RuntimeException(e);
++            }
++        }
++        else{
++            try {
++                FXMLLoader loader = new FXMLLoader();
++                loader.setLocation(Main.class.getResource("view/appointment/AppAddingLayout3.fxml"));
++                AnchorPane page = (AnchorPane) loader.load();
++                Stage dialogStage = new Stage();
++                dialogStage.setTitle("Add Appointment");
++                dialogStage.initModality(Modality.WINDOW_MODAL);
++                dialogStage.initOwner(primaryStage);
++                Scene scene = new Scene(page);
++                dialogStage.setScene(scene);
++
++                //Controller
++                AppAddingLayoutController3 controller = loader.getController();
++                controller.setMainApp(this);
++                controller.setDialogStage(dialogStage);
++                //controller.setStaff();
++
++                // Set the dialog icon.
++                //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++                dialogStage.showAndWait();
++
++            } catch (IOException e) {
++                throw new RuntimeException(e);
++            }
++            catch (SQLException e){
++                throw new RuntimeException(e);
++            }
++        }
++
++    }
++    public void showAppUpdateDialog(Appointment a){
++        try {
++            FXMLLoader loader = new FXMLLoader();
++            if(isManager)
++                loader.setLocation(Main.class.getResource("view/appointment/AppUpdateLayout2.fxml"));
++            else
++                loader.setLocation(Main.class.getResource("view/appointment/AppUpdateLayout3.fxml"));
++
++            AnchorPane page = (AnchorPane) loader.load();
++            Stage dialogStage = new Stage();
++            dialogStage.setTitle("Update Stuff");
++            dialogStage.initModality(Modality.WINDOW_MODAL);
++            dialogStage.initOwner(primaryStage);
++            Scene scene = new Scene(page);
++            dialogStage.setScene(scene);
++
++            //Controller
++            if(isManager) {
++                AppUpdateLayoutController2 controller = loader.getController();
++                controller.setMainApp(this);
++                controller.setDialogStage(dialogStage);
++                controller.setField(a);
++            }
++            else{
++                AppUpdateLayoutController3 controller = loader.getController();
++                controller.setMainApp(this);
++                controller.setDialogStage(dialogStage);
++                controller.setField(a);
++            }
++            // Set the dialog icon.
++            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++            dialogStage.showAndWait();
++
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
++        }
++
++    }
++
++    public void errorAlert(String title, String header, String content){
++        Alert alert = new Alert(Alert.AlertType.ERROR);
++        alert.setTitle(title);
++        alert.setHeaderText(header);
++        alert.setContentText(content);
++        alert.showAndWait();
++    }
++    public void warningAlert(String title, String header, String content){
++        Alert alert = new Alert(Alert.AlertType.WARNING);
++        alert.setTitle(title);
++        alert.setHeaderText(header);
++        alert.setContentText(content);
++        alert.showAndWait();
++    }
++
++    public void showAppStaff() throws IOException {
++        appointmentData.clear();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/appointment/AppStaffView.fxml"));
++        AnchorPane p = (AnchorPane) loader.load();
++        Stage dialogStage = new Stage();
++        dialogStage.setTitle("Add Appointment");
++        dialogStage.initModality(Modality.WINDOW_MODAL);
++        dialogStage.initOwner(primaryStage);
++        Scene scene = new Scene(p);
++        dialogStage.setScene(scene);
++        AppStaffViewController controller = loader.getController();
++        controller.setMainApp(this);
++        controller.setDialogStage(dialogStage);
++
++        dialogStage.show();
++    }
++    public void showAppClient() throws IOException, SQLException {
++        appointmentData.clear();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/appointment/AppClientView.fxml"));
++        AnchorPane p = (AnchorPane) loader.load();
++        Stage dialogStage = new Stage();
++        dialogStage.setTitle("Add Appointment");
++        dialogStage.initModality(Modality.WINDOW_MODAL);
++        dialogStage.initOwner(primaryStage);
++        Scene scene = new Scene(p);
++        dialogStage.setScene(scene);
++        AppClientViewController controller = loader.getController();
++        controller.setMainApp(this);
++        controller.ShowAllClients();
++        controller.setDialogStage(dialogStage);
++
++        dialogStage.show();
++    }
++    public void saveStaff(int id){
++        appInfo.setStaff(id);
++    }
++    public int getSavedStaff(){
++        return appInfo.getStaff();
++    }
++    public void saveClient(int id){appInfo.setClient(id);}
++    public int getSavedClient(){return appInfo.getClient();}
++    public void saveService(String service){appInfo.setService(service);}
++    public String getSavedService(){return appInfo.getService();}
++    public void saveDuration(LocalTime duration){appInfo.setDuration(duration);}
++    public LocalTime getSavedDuration(){return appInfo.getDuration();}
++    public void showAvailableApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list) throws IOException {
++        appSchedData.clear();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/appointment/AppSelectView.fxml"));
++        AnchorPane page = (AnchorPane) loader.load();
++        Scene scene = new Scene(page);
++        primaryStage.setScene(scene);
++        AppSelectViewController controller = loader.getController();
++        controller.setMainApp(this,schedules,list);
++        primaryStage.show();
++    }
++    public void showAvailableAppUp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException {
++        appSchedData.clear();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/appointment/AppSelectView2.fxml"));
++        AnchorPane page = (AnchorPane) loader.load();
++        Scene scene = new Scene(page);
++        primaryStage.setScene(scene);
++        AppSelectViewController2 controller = loader.getController();
++        controller.setMainApp(this,schedules,list,a);
++        primaryStage.show();
++    }
++
++    //schedule mangament
++    public void showScheduleManagmentLayout(Staff s) throws IOException {
++        //System.out.println(s);
++        Stage updateWindow = new Stage();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("/it/unicas/clinic/address/view/schedule/ScheduleManagementLayout.fxml"));
++        AnchorPane layout = (AnchorPane) loader.load();
++        ScheduleManagementLayoutController controller = loader.getController();
++        controller.setMainApp(this, s);
++        //controller.setStage(updateWindow);
++
++        updateWindow.initModality(Modality.WINDOW_MODAL);
++        updateWindow.initOwner(primaryStage);
++
++        updateWindow.setScene(new Scene(layout));
++        // Aggiungi un listener per la chiusura della finestra. Quando si chiude devo svuotare la lista degli schedule
++        updateWindow.setOnCloseRequest(event -> {
++            scheduleData.clear();
++        });
++        updateWindow.showAndWait();
++    }
++
++    public void showScheduleInsertDialog(Staff s) {
++        try {
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class.getResource("view/schedule/ScheduleAddingLayout.fxml"));
++            AnchorPane page = (AnchorPane) loader.load();
++            Stage dialogStage = new Stage();
++            dialogStage.setTitle("Add Schedule");
++            dialogStage.initModality(Modality.WINDOW_MODAL);
++            dialogStage.initOwner(primaryStage);
++            Scene scene = new Scene(page);
++            dialogStage.setScene(scene);
++
++            //Controller
++            ScheduleAddingLayoutController controller = loader.getController();
++            controller.setMainApp(this, s);
++            controller.setDialogStage(dialogStage);
++
++            // Set the dialog icon.
++            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++            dialogStage.showAndWait();
++
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    public void showScheduleUpdateDialog(Schedule s, Staff staff){
++        try {
++            FXMLLoader loader = new FXMLLoader();
++            loader.setLocation(Main.class.getResource("view/schedule/ScheduleUpdateLayout.fxml"));
++            AnchorPane page = (AnchorPane) loader.load();
++            Stage dialogStage = new Stage();
++            dialogStage.setTitle("Update Schedule");
++            dialogStage.initModality(Modality.WINDOW_MODAL);
++            dialogStage.initOwner(primaryStage);
++            Scene scene = new Scene(page);
++            dialogStage.setScene(scene);
++
++            //Controller
++            ScheduleUpdateLayoutController controller = loader.getController();
++            controller.setMainApp(this, staff);
++            controller.setField(s);
++            controller.setDialogStage(dialogStage);
++
++            // Set the dialog icon.
++            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
++            dialogStage.showAndWait();
++
++        } catch (IOException e) {
++            throw new RuntimeException(e);
++        }
++    }
++    public void changePassword() throws IOException, SQLException {
++        Stage changePasswordWindow = new Stage();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/login/ChangePassword.fxml"));
++
++        AnchorPane anchorPane = loader.load();
++        ChangePasswordController controller = loader.getController();
++        controller.setMainApp(this);
++        controller.setStage(changePasswordWindow);
++        controller.setId(user_id);
++
++        changePasswordWindow.initModality(Modality.WINDOW_MODAL);
++        changePasswordWindow.initOwner(primaryStage);
++
++        changePasswordWindow.setScene(new Scene(anchorPane));
++        changePasswordWindow.showAndWait();
++
++    }
++
++    public void changeUsername() throws IOException{
++        Stage changeUsernameWindow = new Stage();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/login/ChangeUsername.fxml"));
++
++        AnchorPane anchorPane = loader.load();
++        ChangeUsernameController controller = loader.getController();
++        controller.setMainApp(this);
++        controller.setStage(changeUsernameWindow);
++        controller.setId(user_id);
++
++        changeUsernameWindow.initModality(Modality.WINDOW_MODAL);
++        changeUsernameWindow.initOwner(primaryStage);
++
++        changeUsernameWindow.setScene(new Scene(anchorPane));
++        changeUsernameWindow.showAndWait();
++
++
++    }
++
++    public void setId(int id) {user_id = id;}
++
++    public void EditStaffCredential(int id) throws IOException {
++        Stage editStaffWindow = new Stage();
++        FXMLLoader loader = new FXMLLoader();
++        loader.setLocation(Main.class.getResource("view/credential/EditStaffCredential.fxml"));
++        AnchorPane anchorPane = loader.load();
++        EditStaffCredentialController controller = loader.getController();
++        controller.setMainApp(this);
++        controller.setStage(editStaffWindow);
++        controller.setManagerId(user_id);
++        controller.setId(id);
++
++        editStaffWindow.initModality(Modality.WINDOW_MODAL);
++        editStaffWindow.initOwner(primaryStage);
++
++        editStaffWindow.setScene(new Scene(anchorPane));
++        editStaffWindow.showAndWait();
++    }
++
+ 
+     public static void main(String[] args) {
+         launch(args);
+     }
++
++
++
++
+ }
+\ No newline at end of file
+Index: src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package it.unicas.clinic.address.model.dao.mysql;\r\n\r\npublic class DAOMySQLSettings {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java b/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java
+--- a/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java	(revision 617620debcbc1782b1661217cafdf1c72c4a7fd5)
++++ b/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java	(date 1733397275175)
+@@ -1,4 +1,153 @@
+ package it.unicas.clinic.address.model.dao.mysql;
+ 
++import java.sql.Connection;
++import java.sql.DriverManager;
++import java.sql.SQLException;
++import java.sql.Statement;
++import java.sql.*;
++
++/**
++ * Database settings
++ */
+ public class DAOMySQLSettings {
+-}
++    public final static String DRIVERNAME = "com.mysql.cj.jdbc.Driver";
++    public final static String HOST = "localhost";
++    public final static String USERNAME = "staff";
++    public final static String PWD = "staffPassword!";
++    public final static String SCHEMA = "clinic";
++    public final static String PARAMETERS = "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
++
++
++    //String url = "jdbc:mysql://localhost:3306/amici?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
++
++
++    //private String driverName = "com.mysql.cj.jdbc.Driver";
++
++    //Default SQL settings fields
++    private String host = "localhost";
++    private String userName = "staff_manager";
++    private String pwd = "PasswordBella123";
++    private String schema = "clinic";
++
++    /**
++     * Getter of host
++     */
++    public String getHost() {
++        return host;
++    }
++
++    /**
++     * Getter of userName
++     */
++    public String getUserName() {
++        return userName;
++    }
++
++    /**
++     * Getter of pwd
++     */
++    public String getPwd() {
++        return pwd;
++    }
++
++    /**
++     * Getter of schema
++     */
++    public String getSchema() {
++        return schema;
++    }
++
++    /**
++     * Setter of host:
++     * it makes it equal to the one passed by argument
++     * @param host: wanted database host
++     */
++    public void setHost(String host) {
++        this.host = host;
++    }
++
++    /**
++     * Setter of userName:
++     * it makes it equal to the one passed by argument
++     * @param userName: wanted username
++     */
++    public void setUserName(String userName) {
++        this.userName = userName;
++    }
++    /**
++     * Setter of pwd:
++     * it makes it equal to the one passed by argument
++     * @param pwd: wanted database password
++     */
++    public void setPwd(String pwd) {
++        this.pwd = pwd;
++    }
++    /**
++     * Setter of schema:
++     * it makes it equal to the one passed by argument
++     * @param schema: wanted schema
++     */
++    public void setSchema(String schema) {
++        this.schema = schema;
++    }
++
++    static {
++        try {
++            Class.forName(DRIVERNAME);
++        } catch (ClassNotFoundException e) {
++            e.printStackTrace();
++        }
++    }
++
++    private static DAOMySQLSettings currentDAOMySQLSettings = null;
++
++    /**
++     * Getter of the SQL database settings
++     */
++    public static DAOMySQLSettings getCurrentDAOMySQLSettings() {
++        if (currentDAOMySQLSettings == null) {
++            currentDAOMySQLSettings = getDefaultDAOSettings();
++        }
++        return currentDAOMySQLSettings;
++    }
++
++    /**
++     * Set default settings for the database and returns them
++     */
++    public static DAOMySQLSettings getDefaultDAOSettings() {
++        DAOMySQLSettings daoMySQLSettings = new DAOMySQLSettings();
++        daoMySQLSettings.host = HOST;
++        daoMySQLSettings.userName = USERNAME;
++        daoMySQLSettings.schema = SCHEMA;
++        daoMySQLSettings.pwd = PWD;
++        return daoMySQLSettings;
++    }
++
++    /**
++     * Set the database settings equal to the ones passed by argument
++     */
++    public static void setCurrentDAOMySQLSettings(DAOMySQLSettings daoMySQLSettings) {
++        currentDAOMySQLSettings = daoMySQLSettings;
++    }
++
++    /**
++     * Establish a connection to the server based on the default settings.
++     * @throws SQLException: can't get the connection
++     */
++    public static Connection getConnection() throws SQLException {
++        if (currentDAOMySQLSettings == null) {
++            currentDAOMySQLSettings = getDefaultDAOSettings();
++        }
++        return DriverManager.getConnection("jdbc:mysql://localhost:3306/clinic?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC", currentDAOMySQLSettings.userName, currentDAOMySQLSettings.pwd);
++    }
++
++    /**
++     * Close the connection passed by argument.
++     * @param connection: connection to be closed
++     * @throws SQLException: can't close the connection
++     */
++    public static void closeConnection(Connection connection) throws SQLException {
++        connection.close();
++    }
++
++}
+\ No newline at end of file
+Index: src/it/unicas/clinic/address/model/Client.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package it.unicas.clinic.address.model;\r\n\r\npublic class Client {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/it/unicas/clinic/address/model/Client.java b/src/it/unicas/clinic/address/model/Client.java
+--- a/src/it/unicas/clinic/address/model/Client.java	(revision 617620debcbc1782b1661217cafdf1c72c4a7fd5)
++++ b/src/it/unicas/clinic/address/model/Client.java	(date 1733397173261)
+@@ -1,4 +1,60 @@
+ package it.unicas.clinic.address.model;
+ 
++import java.time.LocalDate;
++
+ public class Client {
++
++    private int id;
++    private String name;
++    private String surname;
++    private String email;
++    private String number;
++
++    public LocalDate getCancellationDate() {
++        return cancellationDate;
++    }
++
++    public void setCancellationDate(LocalDate cancellationDate) {
++        this.cancellationDate = cancellationDate;
++    }
++
++    private LocalDate cancellationDate;
++    public Client(){
++        this.id=0;
++        this.name="";
++        this.surname="";
++        this.email="";
++        this.number="";
++        this.cancellationDate=null;
++    }
++    public Client(int id, String name, String surname, String email, String number) {
++        this.id = id;
++        this.name = name;
++        this.surname = surname;
++        this.email = email;
++        this.number = number;
++        this.cancellationDate=null;
++    }
++
++    // getters
++    public int getId() {return id;}
++    public String getName() {return name;}
++    public String getSurname() {return surname;}
++    public String getEmail() {return email;}
++    public String getNumber() {return number;}
++
++    // setters
++    public void setId(int id) {this.id = id;}
++    public void setName(String name) {this.name = name;}
++    public void setSurname(String surname) {this.surname = surname;}
++    public void setEmail(String email) {this.email = email;}
++    public void setNumber(String number) {this.number = number;}
++
++    public String toString() {
++        return "id: " + this.id +
++                " name: " + this.name +
++                " surname: " + this.surname +
++                " email: " + this.email +
++                " Phone number: " + this.number;
++    }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2330873d-9007-4f3b-b323-3e1d87098130\" name=\"Changes\" comment=\"package creation 2\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/javafx_swt.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Clinic.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Clinic.iml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2p9STZX0hYwtxP7fmruoXPpkN04\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Client.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/giaco/OneDrive/Desktop/University 2.0/Software Engineering/java/javafx_tutorial&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.24487896&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"it.unicas.clinic.address\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Client\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"it.unicas.clinic.address.Main\" />\r\n      <module name=\"Clinic\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path &quot;C:\\Users\\giaco\\OneDrive\\Desktop\\University 2.0\\Software Engineering\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib&quot; --add-modules javafx.controls,javafx.fxml\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2330873d-9007-4f3b-b323-3e1d87098130\" name=\"Changes\" comment=\"\" />\r\n      <created>1732176807443</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1732176807443</updated>\r\n      <workItem from=\"1732176808518\" duration=\"2726000\" />\r\n      <workItem from=\"1732193862380\" duration=\"512000\" />\r\n      <workItem from=\"1732194436817\" duration=\"346000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"first commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732177000247</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732177000247</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"second commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732177031510</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732177031510</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"package creation\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732179068675</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732179068675</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"package creation 2\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732179553806</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732179553806</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"first commit\" />\r\n    <MESSAGE value=\"second commit\" />\r\n    <MESSAGE value=\"package creation\" />\r\n    <MESSAGE value=\"package creation 2\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"package creation 2\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/it/unicas/clinic/model/src/Main.java</url>\r\n          <line>11</line>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 617620debcbc1782b1661217cafdf1c72c4a7fd5)
++++ b/.idea/workspace.xml	(date 1733397173275)
+@@ -4,11 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="package creation 2">
+-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Clinic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Clinic.iml" afterDir="false" />
+-    </list>
++    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="test 1 - credential fixes - appointment error" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -38,26 +34,27 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/giaco/OneDrive/Desktop/University 2.0/Software Engineering/java/javafx_tutorial&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.24487896&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.Client.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "git-widget-placeholder": "master",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/giaco/OneDrive/Desktop/University 2.0/Software Engineering/java/javafx_tutorial",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "onboarding.tips.debug.path": "C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java",
++    "project.structure.last.edited": "Libraries",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.24487896",
++    "settings.editor.selected.configurable": "preferences.lookFeel",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+       <recent name="it.unicas.clinic.address" />
+Index: src/it/unicas/clinic/address/utils/DataUtil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package it.unicas.clinic.address.utils;\r\n\r\npublic class DataUtil {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/it/unicas/clinic/address/utils/DataUtil.java b/src/it/unicas/clinic/address/utils/DataUtil.java
+--- a/src/it/unicas/clinic/address/utils/DataUtil.java	(revision 617620debcbc1782b1661217cafdf1c72c4a7fd5)
++++ b/src/it/unicas/clinic/address/utils/DataUtil.java	(date 1733397173285)
+@@ -1,4 +1,387 @@
+ package it.unicas.clinic.address.utils;
+ 
++import it.unicas.clinic.address.model.Appointment;
++import it.unicas.clinic.address.model.Client;
++import it.unicas.clinic.address.model.Schedule;
++import it.unicas.clinic.address.model.Staff;
++import it.unicas.clinic.address.model.dao.AppointmentDAO;
++import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
++import javafx.collections.FXCollections;
++import javafx.collections.ObservableList;
++
++import java.time.DateTimeException;
++import java.time.LocalDate;
++import java.time.LocalTime;
++import java.time.temporal.TemporalAmount;
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * Contain useful classes for data manipulation
++ */
+ public class DataUtil {
+-}
++
++    private static AppointmentDAO appDAO= new AppointmentDAOMySQLImpl().getInstance();
++    /**
++     * Class containing name, surname and whether the user is a manager or not, useful for login operations
++     */
++    public static class User{
++
++        private String name;
++        private String surname;
++        private boolean isManager;
++        int id;
++
++        /**
++         * Getter of name
++         */
++        public String getName() {
++            return name;
++
++        }
++        /**
++         * Setter of name, setting it equal to the one passed by argument
++         * @param name: wanted name
++         */
++        public void setName(String name) {
++            this.name = name;
++        }
++        /**
++         * Getter of surname
++         */
++        public String getSurname() {
++            return surname;
++        }
++        /**
++         * Setter of surname, setting it equal to the one passed by argument
++         * @param surname: wanted surname
++         */
++        public void setSurname(String surname) {
++            this.surname = surname;
++        }
++        /**
++         * Getter of info about being manager or not
++         */
++        public boolean getManager() {
++            return isManager;
++        }
++        /**
++         * Setter of the info about being a manager or not,
++         * setting it equal to the one passed by argument
++         * @param manager: wanted info
++         */
++        public void setManager(boolean manager) {
++            isManager = manager;
++        }
++        public int getId() {
++            return id;
++        }
++        public void setId(int id) {
++            this.id = id;
++        }
++        /**
++         * Constructor: sets name and surname as empty strings and info about
++         * being a manager false
++         */
++        public User() {
++            this.name = "";
++            this.surname = "";
++            this.isManager = false;
++            this.id=0;
++        }
++    }
++
++    /**
++     * Creates a LocalDate variable based on the string passed as argument
++     * @param dateString: string containing format "yyyy-mm-dd"
++     * @return: LocalDate variable
++     */
++    public static LocalDate parseToDate(String dateString) {
++        //Format control
++        if (dateString == null || !dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
++            throw new IllegalArgumentException("Invalid date format. Expected yyyy-MM-dd.");
++        }
++
++        // Split the string into components
++        String[] parts = dateString.split("-");
++        int year = Integer.parseInt(parts[0]);
++        int month = Integer.parseInt(parts[1]);
++        int day = Integer.parseInt(parts[2]);
++        if(month<0 || month>12 || day<0 || day>31) {
++            throw new DateTimeException("Invalid date data!");
++        }
++        // Construct and return the LocalDate object
++        return LocalDate.of(year, month, day);
++    }
++
++    /**
++     * Creates a LocalTime variable based on the string passed as argument
++     * @param timeString: string containing format "hh:mm:ss" or "hh:mm" depending on
++     * modify parameter
++     * @param modify: if true format is "hh:mm",
++     *              if false format is "hh:mm:ss"
++     * @return: LocalTime variable
++     */
++    public static LocalTime parseToTime(String timeString,boolean modify) {
++        //We are building LocalTime from TextField ("hh:mm" format)
++        if (modify) {
++            //Format control
++            if (timeString == null || !timeString.matches("\\d{1,2}:\\d{2}")) {
++                throw new IllegalArgumentException("Invalid time format. Expected HH:mm");
++            }
++
++            // Split the string into components
++            String[] parts = timeString.split(":");
++            int hour = Integer.parseInt(parts[0]);
++            int minute = Integer.parseInt(parts[1]);
++            int second = 0;
++
++            // Construct and return the LocalTime object
++            return LocalTime.of(hour, minute, second);
++
++        }
++        //We already have "hh:mm:ss" format
++        else {
++            if (timeString == null || !timeString.matches("\\d{1,2}:\\d{2}:\\d{2}")) {
++                System.out.print("\n" + timeString + " stringa eccomi qua 2" + "\n");
++
++                throw new IllegalArgumentException("Invalid time format. Expected HH:mm:ss");
++            }
++            // Split the string into components
++            String[] parts = timeString.split(":");
++            int hour = Integer.parseInt(parts[0]);
++            int minute = Integer.parseInt(parts[1]);
++            int second = Integer.parseInt(parts[2]);
++
++            // Construct and return the LocalTime object
++            return LocalTime.of(hour, minute, second);
++        }
++    }
++
++    public static LocalTime parseToDuration (String timeString,boolean modify){
++        //We are building LocalTime from TextField ("hh:mm" format)
++        if (modify) {
++            //Format control
++            if (timeString == null || !timeString.matches("\\d{1,2}|\\d{1,2}:\\d{2}")) {                System.out.println("Salve");
++                throw new IllegalArgumentException("Invalid duration format. Expected hh:mm or mm");
++            }
++            if(timeString.matches("\\d{1,2}")) {
++                // Split the string into components
++
++                int hour = 0;
++                int minute = Integer.parseInt(timeString);
++                int second = 0;
++
++
++                // Construct and return the LocalTime object
++                return LocalTime.of(hour, minute, second);
++            }
++            else{
++                // Split the string into components
++                String[] parts = timeString.split(":");
++                int hour = Integer.parseInt(parts[0]);
++                int minute = Integer.parseInt(parts[1]);
++                int second = 0;
++
++                // Construct and return the LocalTime object
++                return LocalTime.of(hour, minute, second);
++            }
++
++        }
++        //We already have "hh:mm:ss" format
++        else {
++            if (timeString == null || !timeString.matches("\\d{1,2}:\\d{2}:\\d{2}")) {
++                throw new IllegalArgumentException("Invalid time format. Expected HH:mm:ss");
++            }
++            // Split the string into components
++            String[] parts = timeString.split(":");
++            int hour = Integer.parseInt(parts[0]);
++            int minute = Integer.parseInt(parts[1]);
++            int second = Integer.parseInt(parts[2]);
++
++            // Construct and return the LocalTime object
++            return LocalTime.of(hour, minute, second);
++        }
++    }
++
++    /**
++     * Create a Boolean ArrayList representing time slots for the schedule passed by argument.
++     * The element is true if the slot is available, false if not.
++     * @param s: Schedule
++     * @return
++     */
++    public static ArrayList<Boolean> avApp(Schedule s) {
++        ArrayList<Boolean> list= new ArrayList<>();
++        int temp = (int)Math.ceil((s.getStopTime().getHour()*60+s.getStopTime().getMinute()
++                -(s.getStartTime().getHour()*60+s.getStartTime().getMinute()))/30.0);
++        for(int i=0;i<temp;i++){
++            list.add(true);
++        }
++        List<Appointment> appList = appDAO.select(new Appointment(
++         0,null,s.getDay(),null,null,s.getStaffId(),0
++        ));
++        //Check for existing appointment
++        for(Appointment el : appList){
++            int start =(int)Math.ceil((el.getTime().getHour()*60+el.getTime().getMinute()
++                    -(s.getStartTime().getHour()*60+s.getStartTime().getMinute()))/30.0);
++            int end = (int) Math.ceil((el.getDuration().getHour() * 60
++                    + el.getDuration().getMinute()) / 30.0) + start;
++            for(int j=start;j<end;j++){
++                list.set(j,false);
++            }
++        }
++        return list;
++    }
++
++    /**
++     * Filter the Boolean ArrayList in order to only consider lists capable of allocating the requested time slots.
++     * @param list: Boolean ArrayList
++     * @param time: Duration
++     * @return
++     */
++    public static ArrayList<Boolean> avFilter(ArrayList<Boolean> list, LocalTime time){
++        boolean ok=false;
++        int count=0;
++        int slots = (int)Math.ceil((time.getHour()*60+time.getMinute())/30.0);
++        for(int i=0;i< list.size() && count<slots;i++){
++            if(list.get(i))
++                count++;
++            else
++                count=0;
++            System.out.println(count);
++        }
++        if(count==slots)
++            ok=true;
++        if(ok)
++            return list;
++        else
++            return null;
++    }
++
++    /**
++     * Class to store preliminary Appointment information.
++     */
++    public static class AppInfo{
++
++        private String service;
++        private int staff_id;
++        private int client_id;
++        private LocalTime duration;
++
++        public String getService() {
++            return service;
++        }
++
++        public void setService(String service) {
++            this.service = service;
++        }
++
++        public int getStaff() {
++            return staff_id;
++        }
++
++        public void setStaff(int staff_id) {
++            this.staff_id = staff_id;
++        }
++
++        public int getClient() {
++            return client_id;
++        }
++
++        public void setClient(int client_id) {
++            this.client_id = client_id;
++        }
++
++        public LocalTime getDuration() {
++            return duration;
++        }
++
++        public void setDuration(LocalTime duration) {
++            this.duration = duration;
++        }
++        public AppInfo(){
++            this.service="";
++            this.staff_id=0;
++            this.client_id=0;
++            this.duration=null;
++        }
++    }
++
++    /**
++     * Create an ObservableList of LocalTime in order to display all available starting times
++     * of the appointment respecting the specified duration
++     * @param s
++     * @param boolList
++     * @param duration
++     * @return
++     */
++    public static ObservableList<LocalTime> timeSlots(Schedule s,ArrayList<Boolean> boolList,int duration){
++        ObservableList<LocalTime> list = FXCollections.observableArrayList();
++        //Consecutive available time slots
++        int count=0;
++        //Position in the boolean list
++        int index=0;
++        for (Boolean el : boolList) {
++            if(el && count<duration) {
++                System.out.println("Primo");
++                count++;
++            }
++            else if(el && count==duration){
++                System.out.println("Secondo");
++                int index_time=(index-count)*30;
++                int hours = index_time / 60;
++                int minutes = index_time % 60;
++
++                LocalTime timePassed = LocalTime.of(hours,minutes);
++                System.out.println(timePassed);
++                LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
++                        .plusMinutes(timePassed.getMinute());
++                System.out.println(timeStartApp);
++                list.add(timeStartApp);
++            }
++            else if(!el && count==duration) {
++                System.out.println("Terzo");
++                int index_time = (index - count) * 30;
++                int hours = index_time / 60;
++                int minutes = index_time % 60;
++
++                LocalTime timePassed = LocalTime.of(hours, minutes);
++                LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
++                        .plusMinutes(timePassed.getMinute());
++                list.add(timeStartApp);
++                count = 0;
++            }
++            else {
++                System.out.println("Quarto");
++                count = 0;
++            }
++
++            index++;
++            //To consider last available time slot
++            int last = (int)Math.ceil((s.getStopTime().getHour()*60+s.getStopTime().getMinute()
++                    -(s.getStartTime().getHour()*60+s.getStartTime().getMinute()))/30.0);
++            if(index==last && el && count==duration){
++                int index_time=(index-count)*30;
++                int hours = index_time / 60;
++                int minutes = index_time % 60;
++
++                LocalTime timePassed = LocalTime.of(hours,minutes);
++                System.out.println(timePassed);
++                LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
++                        .plusMinutes(timePassed.getMinute());
++                System.out.println(timeStartApp);
++                list.add(timeStartApp);
++            }
++        }
++        return list;
++    }
++    public static void main(String[] args) {
++        LocalDate date=LocalDate.of(2024,12,25);
++        LocalTime start_time=LocalTime.of(8,0,0);
++        LocalTime stop_time=LocalTime.of(16,0,0);
++
++        avApp(new Schedule(date,start_time,stop_time,3));
++    }
++}
++
++
