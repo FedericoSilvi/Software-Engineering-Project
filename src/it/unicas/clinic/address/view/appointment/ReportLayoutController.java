@@ -58,15 +58,16 @@ public class ReportLayoutController {
     @FXML
     private void chooseStaff() throws SQLException, IOException {
         clickStaff=true;
-        //set the choosenStaff fields
+        //set the chosen Staff fields
         mainApp.showAppStaff();
         if (mainApp.getSavedStaff() != 0) {
             System.out.println(mainApp.getSavedStaff());
             choosenStaff = daoStaff.select(mainApp.getSavedStaff());
+            //set labels
+            nameLabel.setText(choosenStaff.getName());
+            surnameLabel.setText(choosenStaff.getSurname());
         }
-        //set labels
-        nameLabel.setText(choosenStaff.getName());
-        surnameLabel.setText(choosenStaff.getSurname());
+        mainApp.getStaffData().clear();
     }
     @FXML
     private void generateTXT() {
