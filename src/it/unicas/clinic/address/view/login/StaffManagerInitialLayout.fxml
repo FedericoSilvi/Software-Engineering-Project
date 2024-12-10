@@ -28,6 +28,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleChangeUsername" text="Change Username" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Report">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleReport" text="Report" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

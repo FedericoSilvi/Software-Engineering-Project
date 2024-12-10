@@ -37,7 +37,6 @@ public class StaffManagementLayoutController {
     private Main mainApp;
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
     private ScheduleDAO daoSchedule= ScheduleDAOMySQLImpl.getInstance();
-
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -71,7 +70,7 @@ public class StaffManagementLayoutController {
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
         if(selectedStaff != null){
             mainApp.showStaffUpdateDialog(selectedStaff);
-            // mainApp.getStaffData().remove(selectedStaff);
+            mainApp.getStaffData().remove(selectedStaff);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -102,7 +101,8 @@ public class StaffManagementLayoutController {
                 try{
                     System.out.println(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
-                    dao.delete(selectedStaff);
+                    //dao.delete(selectedStaff);
+                    dao.softDelete(selectedStaff);
                     //daoSchedule.delete(selectedStaff);
                     mainApp.getStaffData().remove(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);

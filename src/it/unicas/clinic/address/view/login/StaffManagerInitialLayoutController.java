@@ -110,4 +110,6 @@ public class StaffManagerInitialLayoutController {
     private void handleApp(){
         main.initAppView();
     }
+    @FXML
+    private void handleReport() throws IOException {main.openReport();}
 }

@@ -5,6 +5,20 @@ import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
+import it.unicas.clinic.address.model.dao.StaffDAO;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
+import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javax.xml.crypto.Data;
+import java.sql.SQLException;
+import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Client;
+import it.unicas.clinic.address.model.Schedule;
+import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +27,10 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
+import java.util.ArrayList;
+import java.util.List;
 import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +46,9 @@ public class DataUtil {
         appDAO = new AppointmentDAOMySQLImpl().getInstance();
     }
 
+
+    private static AppointmentDAO appDAO= new AppointmentDAOMySQLImpl().getInstance();
+    private static StaffDAO staffDAO = StaffDAOMySQLImpl.getInstance();
     /**
      * Class containing name, surname and whether the user is a manager or not, useful for login operations
      */
@@ -149,6 +170,8 @@ public class DataUtil {
         //We already have "hh:mm:ss" format
         else {
             if (timeString == null || !timeString.matches("\\d{1,2}:\\d{2}:\\d{2}")) {
+                System.out.print("\n" + timeString + " stringa eccomi qua 2" + "\n");
+
                 throw new IllegalArgumentException("Invalid time format. Expected HH:mm:ss");
             }
             // Split the string into components
@@ -379,12 +402,37 @@ public class DataUtil {
         }
         return list;
     }
-    public static void main(String[] args) {
-        LocalDate date=LocalDate.of(2024,12,25);
+
+
+    public static void cleanUpRecord() throws SQLException {
+        //10 year ago, data limite
+        LocalDate tenYearsAgo = LocalDate.now().minusYears(10);
+        //old staff
+        ArrayList<Staff> firedStaff = new ArrayList<>();
+
+        //take all the staff members;
+        List oldStaff = staffDAO.selectFiredBefore(tenYearsAgo);
+        for(Object s : oldStaff){
+            staffDAO.delete(s);
+        }
+
+
+        //take all client
+        List<Client> oldClients = DAOClient.select(tenYearsAgo);
+        for (Client client : oldClients) {
+            DAOClient.delete(client.getId());
+        }
+
+    }
+
+
+    public static void main(String[] args) throws SQLException {
+        /*LocalDate date=LocalDate.of(2024,12,25);
         LocalTime start_time=LocalTime.of(8,0,0);
         LocalTime stop_time=LocalTime.of(16,0,0);
 
-        avApp(new Schedule(date,start_time,stop_time,3));
+        avApp(new Schedule(date,start_time,stop_time,3));*/
+        cleanUpRecord();
     }
 }
 
