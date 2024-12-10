@@ -34,7 +34,10 @@ public class AppClientViewController {
 
     @FXML
     private TableColumn<Client, String> number;
-
+    @FXML
+    private TextField clientName;
+    @FXML
+    private TextField clientSurname;
 
 
     @FXML
@@ -70,7 +73,19 @@ public class AppClientViewController {
         dialogStage.close();
     }
 
-
+    @FXML
+    private void handleFilter() throws SQLException {
+        String name = clientName.getText();
+        String surname = clientSurname.getText();
+        if(name.equals("") && surname.equals("")){
+            ArrayList<Client> list = DAOClient.getClientsList();
+            updateTable(list);
+        }
+        else{
+            ArrayList<Client> list = DAOClient.select(name,surname);
+            updateTable(list);
+        }
+    }
 
 
     public void updateTable(ArrayList<Client> clients) {

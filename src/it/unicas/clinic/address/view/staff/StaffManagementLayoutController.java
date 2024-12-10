@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -26,12 +28,16 @@ public class StaffManagementLayoutController {
     private TableColumn<Staff, String> specColumn;
     @FXML
     private TableColumn<Staff, Integer> idColumn;
-
+    @FXML
+    private TextField staffName;
+    @FXML
+    private TextField staffSurname;
 
     // Reference to the main application.
     private Main mainApp;
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
     private ScheduleDAO daoSchedule= ScheduleDAOMySQLImpl.getInstance();
+
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -144,5 +150,24 @@ public class StaffManagementLayoutController {
 
             alert.showAndWait();
         }
+    }
+    @FXML
+    private void handleFilter(){
+        String name = staffName.getText();
+        String surname = staffSurname.getText();
+        if(!name.equals("") && !surname.equals("")){
+            List<Staff> list= dao.select(new Staff(0,null,null,null));
+            mainApp.getStaffData().clear();
+            mainApp.getStaffData().addAll(list);
+        }
+        else {
+            List<Staff> list = dao.select(new Staff(0, name, surname, null));
+            mainApp.getStaffData().clear();
+            mainApp.getStaffData().addAll(list);
+        }
+    }
+    @FXML
+    private void handleBack(){
+        mainApp.initStaffManager();
     }
 }

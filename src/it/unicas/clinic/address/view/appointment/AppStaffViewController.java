@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,7 +26,10 @@ public class AppStaffViewController {
     private TableColumn<Staff, String> specColumn;
     @FXML
     private TableColumn<Staff, Integer> idColumn;
-
+    @FXML
+    private TextField staffName;
+    @FXML
+    private TextField staffSurname;
 
     // Reference to the main application.
     private Main mainApp;
@@ -68,7 +73,23 @@ public class AppStaffViewController {
         dialogStage.close();
     }
     @FXML
-    private void handleCancel(){
+    private void handleBack(){
+        mainApp.getStaffData().clear();
         dialogStage.close();
+    }
+    @FXML
+    private void handleFilter(){
+        String name = staffName.getText();
+        String surname = staffSurname.getText();
+        if(name.equals("") && surname.equals("")){
+            List<Staff> staffList = dao.select(new Staff(0,null, null, null));
+            mainApp.getStaffData().clear();
+            mainApp.getStaffData().addAll(staffList);
+        }
+        else{
+            List<Staff> list = dao.select(new Staff(0,name,surname,null));
+            mainApp.getStaffData().clear();
+            mainApp.getStaffData().addAll(list);
+        }
     }
 }

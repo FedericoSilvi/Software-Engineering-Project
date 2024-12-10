@@ -1,6 +1,7 @@
 package it.unicas.clinic.address.view.client;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
@@ -17,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ClientOverviewController {
@@ -36,7 +38,10 @@ public class ClientOverviewController {
 
     @FXML
     private TableColumn<Client, String> number;
-
+    @FXML
+    private TextField clientName;
+    @FXML
+    private TextField clientSurname;
 
     //Buttons
     @FXML
@@ -44,6 +49,8 @@ public class ClientOverviewController {
 
     @FXML
     private Button searchButton;
+
+
 
     private AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
 
@@ -154,14 +161,10 @@ public class ClientOverviewController {
                 DAOClient.delete(client.getId());
             }
 
-
-
-
         }
 
         ArrayList<Client> list= DAOClient.getClientsList();
         updateTable(list);
-
     }
 
     @FXML
@@ -173,7 +176,7 @@ public class ClientOverviewController {
     }
 
     @FXML
-    private void onClickShowHistory(){
+    private void onClickShowHistory() throws SQLException, IOException {
         if(isAvailable()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Client");
@@ -187,15 +190,39 @@ public class ClientOverviewController {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == buttonYes){
                 Client c = table.getSelectionModel().getSelectedItem();
-                mainApp.showClientHistory(c.getId());
+                List<Appointment> list = appDao.getHistoryApp(c.getId());
+                if(list==null){
+                    mainApp.errorAlert("Attention",
+                            "Selected client has no past appointments",
+                            "");
+                }
+                else {
+                    if (mainApp.getIsManager())
+                        mainApp.getAppointmentData().addAll(list);
+                    else
+                        mainApp.getAppointmentData().addAll(list);
+                    mainApp.showClientHistory();
+                }
+
             }
         }
     }
 
+    @FXML
+    private void searchClient() throws SQLException {
+        String name = clientName.getText();
+        String surname = clientSurname.getText();
+        ArrayList<Client> list = DAOClient.select(name, surname);
+        System.out.println(list);
+        updateTable(list);
+    }
+
     public void updateTable(ArrayList<Client> clients) {
-        clientData.clear();
-        clientData.addAll(clients);
-        table.setItems(clientData);
+        if(clients!=null) {
+            clientData.clear();
+            clientData.addAll(clients);
+            table.setItems(clientData);
+        }
     }
 
     public void ShowAllClients() throws SQLException {
@@ -224,5 +251,6 @@ public class ClientOverviewController {
         }
         return true;
     }
+
 
 }

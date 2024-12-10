@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.client.ClientOverviewController">
    <children>
-      <TableView fx:id="table" layoutY="23.2" prefHeight="377.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0">
+      <TableView fx:id="table" layoutY="46.4" prefHeight="354.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="155.20001220703125" text="Name" />
           <TableColumn fx:id="surname" prefWidth="188.0" text="Surname" />
@@ -36,22 +37,25 @@
       </ButtonBar>
       <Pane layoutY="-1.0" prefHeight="26.0" prefWidth="600.0">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="7.0" onMouseClicked="#handleExit" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="11.0" layoutY="11.0" onMouseClicked="#handleExit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../resources/house_icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="570.0" layoutY="5.0" onMouseClicked="#OnClickAddClientV2" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../resources/plus-3107.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="545.0" layoutY="4.0" onMouseClicked="#OnClickDeleteClientV2" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../resources/minus_icon.png" />
-               </image>
-            </ImageView>
+            <TextField fx:id="clientName" alignment="CENTER" layoutX="133.0" layoutY="14.0" prefHeight="25.0" prefWidth="142.0" promptText="Client Name" />
+            <TextField fx:id="clientSurname" alignment="CENTER" layoutX="325.0" layoutY="14.0" prefHeight="25.0" prefWidth="142.0" promptText="Client Surname" />
          </children>
       </Pane>
+      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="549.0" layoutY="16.0" onMouseClicked="#OnClickDeleteClientV2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/minus_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="578.0" layoutY="17.0" onMouseClicked="#OnClickAddClientV2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../resources/plus-3107.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="477.0" layoutY="13.0" mnemonicParsing="false" onAction="#searchClient" text="Search" />
    </children>
 </AnchorPane>

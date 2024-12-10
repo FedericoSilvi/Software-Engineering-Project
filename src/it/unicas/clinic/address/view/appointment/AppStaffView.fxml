@@ -5,11 +5,20 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.AppStaffViewController">
     <children>
-        <TableView fx:id="staffTable" layoutX="-2.0" layoutY="31.0" prefHeight="321.0" prefWidth="600.0">
+      <Pane prefHeight="41.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="staffName" alignment="CENTER" layoutX="123.0" layoutY="8.0" promptText="Staff Name" />
+            <TextField fx:id="staffSurname" alignment="CENTER" layoutX="289.0" layoutY="8.0" promptText="Staff Surname" />
+            <Button layoutX="457.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleFilter" text="Search" />
+         </children>
+      </Pane>
+        <TableView fx:id="staffTable" layoutX="-2.0" layoutY="40.0" prefHeight="313.0" prefWidth="600.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="surnameColumn" prefWidth="75.0" text="Surname" />
@@ -23,7 +32,7 @@
         <ButtonBar layoutY="351.0" prefHeight="50.0" prefWidth="600.0">
          <buttons>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleSelect" text="Select" />
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBack" text="Back" />
          </buttons>
          <padding>
             <Insets right="218.0" />
