@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="look fix">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="bug fix with empty list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/utils/DataUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppClientView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppClientView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppClientViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppClientViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppStaffView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppStaffView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppStaffViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppStaffViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientHistoryViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientHistoryViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientOverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/staff/StaffManagementLayout2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/staff/StaffManagementLayout2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/staff/StaffManagementLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/staff/StaffManagementLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,22 +293,7 @@
       <workItem from="1733563020991" duration="3550000" />
       <workItem from="1733743065644" duration="5546000" />
       <workItem from="1733769874311" duration="4966000" />
-    </task>
-    <task id="LOCAL-00048" summary="select with id added">
-      <option name="closed" value="true" />
-      <created>1732900068639</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1732900068639</updated>
-    </task>
-    <task id="LOCAL-00049" summary="bug fixes">
-      <option name="closed" value="true" />
-      <created>1732900076500</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1732900076500</updated>
+      <workItem from="1733821624510" duration="648000" />
     </task>
     <task id="LOCAL-00050" summary="initAppView, showAppInsertDialog, showAppUpdateDialog and errorAlert added">
       <option name="closed" value="true" />
@@ -698,7 +671,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733563500509</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="search implementation">
+      <option name="closed" value="true" />
+      <created>1733821730815</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1733821730815</updated>
+    </task>
+    <task id="LOCAL-00098" summary="bug fix with empty list">
+      <option name="closed" value="true" />
+      <created>1733821749918</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1733821749918</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,8 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixes" />
-    <MESSAGE value="fixes to save user infos" />
     <MESSAGE value="methods to manage appointment management" />
     <MESSAGE value="fields and methods to manage appointment management" />
     <MESSAGE value="preliminary information GUIs" />
@@ -741,7 +728,9 @@
     <MESSAGE value="dsngnd" />
     <MESSAGE value="comments" />
     <MESSAGE value="look fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="look fix" />
+    <MESSAGE value="search implementation" />
+    <MESSAGE value="bug fix with empty list" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fix with empty list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
