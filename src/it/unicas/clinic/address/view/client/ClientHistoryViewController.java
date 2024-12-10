@@ -36,25 +36,19 @@ public class ClientHistoryViewController {
 
     // Reference to the main application.
     private Main mainApp;
-    private AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
     private StaffDAO staffDao = StaffDAOMySQLImpl.getInstance();
 
     public ClientHistoryViewController() throws SQLException {
     }
 
 
-    public void setMainApp(Main mainApp,int id) throws SQLException {
+    public void setMainApp(Main mainApp) throws SQLException, IOException {
         this.mainApp = mainApp;
         // Add observable list data to the table
         appointmentTable.setItems(mainApp.getAppointmentData());
-        if(mainApp.getIsManager())
-            mainApp.getAppointmentData().addAll(dao.getHistoryApp(id));
-        else
-            mainApp.getAppointmentData().addAll(dao.getHistoryApp(id));
-
-    }
+        }
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException, IOException {
         // Column binding with Appointment's properties
         serviceColumn.setCellValueFactory(cellData -> cellData.getValue().serviceProperty());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateProperty());

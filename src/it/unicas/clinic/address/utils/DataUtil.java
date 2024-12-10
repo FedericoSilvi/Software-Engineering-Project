@@ -149,8 +149,6 @@ public class DataUtil {
         //We already have "hh:mm:ss" format
         else {
             if (timeString == null || !timeString.matches("\\d{1,2}:\\d{2}:\\d{2}")) {
-                System.out.print("\n" + timeString + " stringa eccomi qua 2" + "\n");
-
                 throw new IllegalArgumentException("Invalid time format. Expected HH:mm:ss");
             }
             // Split the string into components

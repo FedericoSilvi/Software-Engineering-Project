@@ -314,10 +314,12 @@ public class Main extends Application {
 
     public void loadStaffManagement() throws IOException{
         staffData.clear();
-        loadStaffManagementChoose();
+        //loadStaffManagementChoose();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/staff/StaffManagementLayout2.fxml"));
-        page.setCenter(loader.load());
+        AnchorPane page = (AnchorPane) loader.load();
+        Scene scene = new Scene(page);
+        primaryStage.setScene(scene);
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
         primaryStage.show();
@@ -760,7 +762,7 @@ public class Main extends Application {
         editStaffWindow.showAndWait();
     }
 
-    public void showClientHistory(int id){
+    public void showClientHistory(){
         try{
             appointmentData.clear();
             // Load root layout from fxml file.
@@ -782,7 +784,7 @@ public class Main extends Application {
 
             // Give the controller access to the main app.
             ClientHistoryViewController controller = loader.getController();
-            controller.setMainApp(this,id);
+            controller.setMainApp(this);
 
             //Set and show primary stage
             primaryStage.centerOnScreen();
@@ -794,6 +796,8 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
+
+
 
     public static void main(String[] args) {
         launch(args);
