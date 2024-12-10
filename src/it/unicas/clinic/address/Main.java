@@ -4,6 +4,7 @@ import it.unicas.clinic.address.model.*;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
+import it.unicas.clinic.address.utils.DataUtil;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.client.*;
