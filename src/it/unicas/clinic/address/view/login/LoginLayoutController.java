@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view.login;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
+import it.unicas.clinic.address.utils.DataUtil;
 import it.unicas.clinic.address.utils.DataUtil.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,8 +10,13 @@ import javafx.scene.image.ImageView;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Controller for the Login GUI, which provides text fields to be filled with username and password.

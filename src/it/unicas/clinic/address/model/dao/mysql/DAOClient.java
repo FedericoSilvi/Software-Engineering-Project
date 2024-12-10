@@ -137,7 +137,7 @@ public class DAOClient {
         ArrayList<Client> list = new ArrayList<>();
 
         Connection connection = DAOMySQLSettings.getConnection();
-        String sqlSelect = "SELECT * FROM clinic.client ORDER BY id ASC";
+        String sqlSelect = "SELECT * FROM clinic.client WHERE cancellationDate IS NULL ORDER BY id ASC";
         PreparedStatement preparedstatement = connection.prepareStatement(sqlSelect);
         ResultSet resultset = preparedstatement.executeQuery();
         while (resultset.next()) {

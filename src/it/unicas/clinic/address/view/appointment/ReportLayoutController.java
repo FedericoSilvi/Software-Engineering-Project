@@ -184,10 +184,12 @@ public class ReportLayoutController {
                 return null;
             }
         }
-        /*if(!endDatePeriodTF.getText().isEmpty()){
-            atLeastOneFilter = true;
-            endDate = LocalDate.parse(endDatePeriodTF.getText());
-        }*/
+
+        if((endDatePeriodTF.getText().isEmpty() && !startDatePeriodTF.getText().isEmpty())
+        || (!endDatePeriodTF.getText().isEmpty() && startDatePeriodTF.getText().isEmpty())){
+            mainApp.errorAlert("Error", "Date", "Please insert both dates");
+            return null;
+        }
         if(clickStaff) {
             atLeastOneFilter = true;
             idStaff = choosenStaff.getId();

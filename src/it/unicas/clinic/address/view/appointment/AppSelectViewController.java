@@ -183,7 +183,7 @@ public class AppSelectViewController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            mainApp.showAppInsertDialog();
+            //mainApp.showAppInsertDialog();
             mainApp.initAppView();
         }
     }

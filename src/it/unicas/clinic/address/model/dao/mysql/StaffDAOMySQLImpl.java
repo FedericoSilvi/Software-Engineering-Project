@@ -269,6 +269,8 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
                 throw new StaffException("No staff found with ID " + s.getId());
             }
 
+
+
             logger.info("Successfully set firedDate for staff with ID: " + s.getId());
         } catch (SQLException e) {
             logger.severe("SQL: Error setting firedDate for staff with ID: " + s.getId() + ". " +

@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,40 +107,6 @@ public class ClientOverviewController {
     }
 
     @FXML
-    private void OnClickDeleteClient(ActionEvent event) throws SQLException {
-        if(isAvailable()){
-            //Genero un aller per chiedere conferma
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete Client");
-            alert.setContentText("Are you sure you want to delete this client?");
-            alert.setHeaderText("Are you sure you want to delete this client?");
-
-            ButtonType buttonYes = new ButtonType("Yes");
-            ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            alert.getButtonTypes().setAll(buttonYes, buttonCancel);
-            Optional<ButtonType> result = alert.showAndWait();
-            if(result.get() == buttonYes){
-
-                Client client = table.getSelectionModel().getSelectedItem();
-
-                //Inserire finestra con conferma sull'eliminazione
-                //DAOClient.delete(client.getId());
-                DAOClient.softDelete(client);
-            }
-
-
-
-
-        }
-
-        ArrayList<Client> list= DAOClient.getClientsList();
-        updateTable(list);
-
-    }
-
-    @FXML
     private void OnClickDeleteClientV2(MouseEvent event) throws SQLException {
         if(isAvailable()){
             //Genero un aller per chiedere conferma
@@ -159,7 +126,11 @@ public class ClientOverviewController {
                 Client client = table.getSelectionModel().getSelectedItem();
 
                 //Inserire finestra con conferma sull'eliminazione
-                DAOClient.delete(client.getId());
+                DAOClient.softDelete(client);
+                List <Appointment> appointments=appDao.getfutureAppClient(LocalDate.now(), client.getId());
+                for(Appointment appointment:appointments){
+                    appDao.delete(appointment.getId());
+                }
             }
 
         }

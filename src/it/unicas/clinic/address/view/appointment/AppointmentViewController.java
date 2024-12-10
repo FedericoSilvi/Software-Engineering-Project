@@ -5,13 +5,11 @@ import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
@@ -104,7 +102,7 @@ public class AppointmentViewController {
             if (result.get() == buttonTypeOne){
                 try{
                     //mainApp.getStaffData().forEach(System.out::println);
-                    dao.delete(selectedApp.getId());
+                    dao.solftDelete(selectedApp.getId());
                     mainApp.getAppointmentData().remove(selectedApp);
                     //mainApp.getStaffData().forEach(System.out::println);
 

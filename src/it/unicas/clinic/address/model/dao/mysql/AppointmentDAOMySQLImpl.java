@@ -2,18 +2,14 @@ package it.unicas.clinic.address.model.dao.mysql;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import it.unicas.clinic.address.model.Schedule;
-import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.dao.ScheduleException;
-import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.utils.DataUtil;
 
 
@@ -173,7 +169,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     }
 
     @Override
-    public void delete(int s) throws AppointmentException {
+    public void solftDelete(int s) throws AppointmentException {
         if(s>0) {
             try {
                 Connection connection = DAOMySQLSettings.getConnection();
@@ -190,6 +186,26 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         else
             logger.severe("Id is invalid");
     }
+
+    @Override
+    public void delete(int s) throws AppointmentException {
+        if(s>0) {
+            try {
+                Connection connection = DAOMySQLSettings.getConnection();
+                //String sqlInsert = "delete from appointment where id=?";
+                String sqlInsert = "DELETE FROM appointment WHERE id = ?";
+                PreparedStatement preparedstatement = connection.prepareStatement(sqlInsert);
+                preparedstatement.setInt(1, s);
+                preparedstatement.executeUpdate();
+                connection.close();
+            } catch (SQLException e) {
+                logger.severe("Something went wrong in deleting (selected id might not exist)");
+            }
+        }
+        else
+            logger.severe("Id is invalid");
+    }
+
 
     public Appointment getLastApp() throws SQLException {
         Appointment a = new Appointment(0, null, null,null, null,0,0);
@@ -378,6 +394,100 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
 
         return list;
     }
+
+    //restituisce gli appuntamenti più vecchi di 10 anni dalla data d
+    @Override
+    public List<Appointment> getPastApp(LocalDate d) throws RuntimeException{
+        String query = "SELECT * FROM appointment WHERE  date <= ?";
+        List<Appointment> appList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(d));
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Appointment a = new Appointment(
+                            rs.getInt("id"),
+                            rs.getString("service"),
+                            rs.getDate("date").toLocalDate(),
+                            rs.getTime("time").toLocalTime(),
+                            rs.getTime("duration").toLocalTime(),
+                            rs.getInt("staff_id"),
+                            rs.getInt("client_id"),
+                            rs.getBoolean("cancellation")
+                    );
+                    appList.add(a);
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Error selecting old appointment: " + e.getMessage());
+            throw new RuntimeException("Error selecting old appointment", e);
+        }
+        return appList;
+
+    }
+    @Override
+    public List<Appointment> getfutureAppStaff(LocalDate d, int id) throws RuntimeException{
+        String query = "SELECT * FROM appointment WHERE  date >= ? AND staff_id=?";
+        List<Appointment> appList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(d));
+            stmt.setInt(2, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Appointment a = new Appointment(
+                            rs.getInt("id"),
+                            rs.getString("service"),
+                            rs.getDate("date").toLocalDate(),
+                            rs.getTime("time").toLocalTime(),
+                            rs.getTime("duration").toLocalTime(),
+                            rs.getInt("staff_id"),
+                            rs.getInt("client_id"),
+                            rs.getBoolean("cancellation")
+                    );
+                    appList.add(a);
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Error selecting old appointment: " + e.getMessage());
+            throw new RuntimeException("Error selecting old appointment", e);
+        }
+        return appList;
+
+    }
+
+    @Override
+    public List<Appointment> getfutureAppClient(LocalDate d, int id) throws RuntimeException{
+        String query = "SELECT * FROM appointment WHERE  date >= ? AND client_id=?";
+        List<Appointment> appList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(d));
+            stmt.setInt(2, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Appointment a = new Appointment(
+                            rs.getInt("id"),
+                            rs.getString("service"),
+                            rs.getDate("date").toLocalDate(),
+                            rs.getTime("time").toLocalTime(),
+                            rs.getTime("duration").toLocalTime(),
+                            rs.getInt("staff_id"),
+                            rs.getInt("client_id"),
+                            rs.getBoolean("cancellation")
+                    );
+                    appList.add(a);
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Error selecting future appointment: " + e.getMessage());
+            throw new RuntimeException("Error selecting future appointment", e);
+        }
+        return appList;
+
+    }
+
+
     public static void main(String[] args) throws SQLException {
         /*dao=new AppointmentDAOMySQLImpl();
         List<Appointment> a = dao.getHistoryApp();

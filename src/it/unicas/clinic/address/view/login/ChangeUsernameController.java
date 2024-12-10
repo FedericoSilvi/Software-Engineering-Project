@@ -59,7 +59,7 @@ public class ChangeUsernameController {
     private void changeUsername() throws SQLException {
         //   System.out.println("Vado a cambiare la passwordVisible dello staff con id: " + staff_id);
         String passwordText;
-        if(closedEye.isVisible()){
+        if(!closedEye.isVisible()){
             passwordText = passwordHidden.getText();
         } else {
             passwordText = passwordVisible.getText();
@@ -71,7 +71,7 @@ public class ChangeUsernameController {
 
         if(isInputValid()) {
             //controllo che la passwordVisible sia inserita correttamente
-            if(LoginDAOImplementation.getPassword(staff_id).equals(passwordText)) {
+            if(LoginDAOImplementation.checkPassword(passwordText,LoginDAOImplementation.getPassword(staff_id))) {
                 //Controllo che il nuovo username sia inserito correttamente
                 if(usernameText.equals(confirmUsernameText)) {
                     //Aggiorna username
@@ -135,7 +135,7 @@ public class ChangeUsernameController {
 
     private boolean isInputValid() {
         String errorMessage = "";
-        if(closedEye.isVisible()) {
+        if(!closedEye.isVisible()) {
             if (passwordHidden.getText() == null || passwordHidden.getText().length() == 0) {
                 errorMessage += "Insert the password!\n";
             }
@@ -164,5 +164,9 @@ public class ChangeUsernameController {
 
             return false;
         }
+    }
+    @FXML
+    private void handleCancel(){
+        stage.close();
     }
 }

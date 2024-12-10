@@ -1,6 +1,7 @@
 package it.unicas.clinic.address.view.login;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -118,7 +119,7 @@ public class ChangePasswordController {
 
         if(isInputValid()) {
             //controllo che la vecchia password sia inserita correttamente
-            if(LoginDAOImplementation.getPassword(staff_id).equals(oldPasswordText)) {
+            if(LoginDAOImplementation.checkPassword(oldPasswordText,LoginDAOImplementation.getPassword(staff_id))) {
                 //Controllo che la password nuova sia inserita correttamente
                 if(newPasswordText.equals(confirmPasswordText)) {
                     //Aggiorna password
@@ -269,5 +270,9 @@ public class ChangePasswordController {
 
             return false;
         }
+    }
+    @FXML
+    private void handleCancel(){
+        stage.close();
     }
 }

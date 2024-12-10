@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * Database settings
  */
@@ -150,4 +150,12 @@ public class DAOMySQLSettings {
         connection.close();
     }
 
+    public static String hashPassword(String pass){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.encode(pass);
+    }
+    public static void main(String[] args) throws SQLException {
+        /*DAOMySQLSettings dao = DAOMySQLSettings.getDefaultDAOSettings();
+        System.out.println(dao.hashPassword("123"));*/
+    }
 }

@@ -21,7 +21,9 @@ import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
 import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
 import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
 import it.unicas.clinic.address.view.staff.StaffUpdateLayoutController;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -30,10 +32,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -48,6 +53,7 @@ import java.sql.SQLException;
  */
 
 public class Main extends Application {
+
 
     private Stage primaryStage;
     private BorderPane loginLayout;
@@ -107,6 +113,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException, SQLException {
         DataUtil.cleanUpRecord();
 
+
+
+
+
         this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
@@ -118,6 +128,7 @@ public class Main extends Application {
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 
     /**
@@ -165,6 +176,34 @@ public class Main extends Application {
             // Give the controller access to the main app.
             LoginLayoutController controller = loader.getController();
             controller.setMainApp(this);
+
+
+            // Configura il timeout con PauseTransition
+            PauseTransition timeout = new PauseTransition(Duration.minutes(15));
+            timeout.setOnFinished(e -> {
+                System.out.println("Nessuna interazione per 15 minuti. Chiusura dell'app...");
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Incativity detected");
+                    alert.setContentText("You'll be kicked out");
+                    alert.showAndWait();
+
+                    System.exit(0);
+                });
+            });
+
+            // Metodo per resettare il timeout
+            Runnable resetTimeout = () -> {
+                timeout.stop();
+                timeout.playFromStart(); // Riavvia il timer
+            };
+            // Aggiungi listener per eventi di interazione (mouse e tastiera)
+            scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
+
+            // Avvia il timeout inizialmente
+            timeout.play();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -547,6 +586,7 @@ public class Main extends Application {
 
     public void showAppStaff() throws IOException {
         appointmentData.clear();
+        staffData.clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/appointment/AppStaffView.fxml"));
         AnchorPane p = (AnchorPane) loader.load();

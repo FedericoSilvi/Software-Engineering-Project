@@ -8,7 +8,6 @@ import it.unicas.clinic.address.model.dao.*;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -150,7 +149,7 @@ public class ScheduleManagementLayoutController {
     }
 
     private void rescheduleApp(Appointment app) throws IOException, SQLException {
-            appDao.delete(app.getId());
+            appDao.solftDelete(app.getId());
             //Each element of arrayList is linked to a single schedule of scheduleList
             ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
             ArrayList<Schedule> scheduleList = dao.futureSchedule(app.getStaffId());

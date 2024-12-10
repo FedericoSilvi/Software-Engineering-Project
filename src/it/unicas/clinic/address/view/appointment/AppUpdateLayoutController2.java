@@ -2,28 +2,21 @@ package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.*;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class AppUpdateLayoutController2 {
     @FXML
@@ -80,7 +73,7 @@ public class AppUpdateLayoutController2 {
     @FXML
     private void handleSave() throws SQLException, IOException {
         mainApp.saveService(serviceField.getText());
-        dao.delete(app.getId());
+        dao.solftDelete(app.getId());
         try {
             mainApp.saveDuration(DataUtil.parseToDuration(timeField.getText(), true));
         } catch (DateTimeException e) {

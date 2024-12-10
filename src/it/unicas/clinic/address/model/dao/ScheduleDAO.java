@@ -16,4 +16,6 @@ public interface ScheduleDAO <T>{
     boolean isAvailable(LocalDate day, LocalTime time, int staff_id);
     public Schedule getLastSchedule() throws ScheduleException;
     ArrayList<T> futureSchedule(int staff_id) throws SQLException;
+
+    List<Schedule> getfutureSchedule(LocalDate d, int id) throws RuntimeException;
 }

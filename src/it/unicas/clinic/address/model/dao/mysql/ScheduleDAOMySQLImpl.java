@@ -1,10 +1,9 @@
 package it.unicas.clinic.address.model.dao.mysql;
 
+import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.Schedule;
-import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.ScheduleDAO;
 import it.unicas.clinic.address.model.dao.ScheduleException;
-import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 
 import java.sql.*;
@@ -185,6 +184,7 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
 
     }
 
+
     @Override
     public void delete(Schedule s) throws StaffException {
         if (s == null || !(staffExists(s.getStaffId())) || s.getDay() == null) {
@@ -288,6 +288,34 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
         return list;
     }
+    @Override
+    public List<Schedule> getfutureSchedule(LocalDate d, int id) throws RuntimeException{
+        String query = "SELECT * FROM schedule WHERE  date >= ? AND staff_id=?";
+        List<Schedule> appList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(d));
+            stmt.setInt(2, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Schedule a = new Schedule(
+                            rs.getInt("id"),
+                            rs.getDate("day").toLocalDate(),
+                            rs.getTime("start_time").toLocalTime(),
+                            rs.getTime("stop_time").toLocalTime(),
+                            rs.getInt("staff_id")
+                    );
+                    appList.add(a);
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Error selecting future schedule: " + e.getMessage());
+            throw new RuntimeException("Error selecting future schedule", e);
+        }
+        return appList;
+
+    }
+
 
     public static void main(String args[]) throws StaffException, SQLException{
         dao=ScheduleDAOMySQLImpl.getInstance();

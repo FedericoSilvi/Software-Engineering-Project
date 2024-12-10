@@ -186,7 +186,7 @@ public class AppSelectViewController2 {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            mainApp.showAppUpdateDialog(app);
+            //mainApp.showAppUpdateDialog(app);
             mainApp.initAppView();
         }
     }

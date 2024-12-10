@@ -118,6 +118,9 @@ public class Schedule {
 
         // Verifica che la data sia valida (deve essere una data futura)
         LocalDate day = schedule.getDay();
+
+
+
         if (day.isBefore(LocalDate.now())) {
             return false; // La data non può essere nel passato
         }
@@ -126,6 +129,10 @@ public class Schedule {
         // Controlla che l'ora di inizio sia prima dell'ora di fine
         if (!startTime.isBefore(endTime)) {
             return false; // L'ora di inizio deve essere precedente all'ora di fine
+        }
+        //se il giorno è oggi, gli orari devono essere futuri
+        if(day.equals(LocalDate.now()) && (startTime.isBefore(LocalTime.now()) || endTime.isBefore(LocalTime.now()))) {
+            return false;
         }
 
         // Se tutti i controlli sono passati, l'oggetto Schedule è valido

@@ -1,17 +1,22 @@
 package it.unicas.clinic.address.view.staff;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.ScheduleDAO;
 import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +41,7 @@ public class StaffManagementLayoutController {
     // Reference to the main application.
     private Main mainApp;
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
+    private AppointmentDAO daoApp = AppointmentDAOMySQLImpl.getInstance();
     private ScheduleDAO daoSchedule= ScheduleDAOMySQLImpl.getInstance();
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
@@ -83,7 +89,7 @@ public class StaffManagementLayoutController {
         }
     }
     @FXML
-    private void handleDeleteStaff() {
+    private void handleDeleteStaff() throws SQLException {
 
         int selectedIndex = staffTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0){
@@ -103,6 +109,15 @@ public class StaffManagementLayoutController {
                     //mainApp.getStaffData().forEach(System.out::println);
                     //dao.delete(selectedStaff);
                     dao.softDelete(selectedStaff);
+                    //delete future app
+                    List< Appointment> futureApp= daoApp.getfutureAppStaff(LocalDate.now(), selectedStaff.getId());
+                    for(Appointment a : futureApp)
+                        daoApp.delete(a.getId());
+                    // delete future schedule
+                    List<Schedule> futureSchedule = daoSchedule.futureSchedule(selectedStaff.getId());
+                    for(Schedule s: futureSchedule)
+                        daoSchedule.delete(s);
+
                     //daoSchedule.delete(selectedStaff);
                     mainApp.getStaffData().remove(selectedStaff);
                     //mainApp.getStaffData().forEach(System.out::println);
