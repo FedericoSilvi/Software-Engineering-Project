@@ -108,7 +108,8 @@
          <bottom>
             <ButtonBar prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
-                <Button mnemonicParsing="false" onAction="#handleClose" text="Button" />
+                <Button mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                  <Button mnemonicParsing="false" onAction="#handleFilter" text="Filter" />
               </buttons>
             </ButtonBar>
          </bottom>

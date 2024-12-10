@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.mysql.cj.protocol.x.XServerCapabilities;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
@@ -74,7 +75,9 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                 stmt.setInt(index++, s.getId());  //set ID
             }
             if(s.getService()!=null && !s.getService().isEmpty()){
-                stmt.setString(index++, s.getService());
+                String service = s.getService();
+                service = service + "%";
+                stmt.setString(index++, service);
             }
             if (s.getDate() != null) {
                 stmt.setDate(index++, Date.valueOf(s.getDate()));  // set the day
@@ -93,6 +96,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     // create an object with the result
+
                     Appointment a1 = new Appointment(
                             rs.getInt("id"),
                             rs.getString("service"),

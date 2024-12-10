@@ -64,13 +64,6 @@
                     <MenuItem mnemonicParsing="false" text="Show" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Filter By">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#filterByStaff" text="Staff Member" />
-                        <MenuItem mnemonicParsing="false" onAction="#filterByClient" text="Client" />
-                        <MenuItem mnemonicParsing="false" onAction="#filterByService" text="Service" />
-                    </items>
-                  </Menu>
               </menus>
             </MenuBar>
          </top>
@@ -78,6 +71,7 @@
             <ButtonBar prefHeight="7.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
                 <Button mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                  <Button mnemonicParsing="false" onAction="#handleFilter" text="Filter" />
               </buttons>
             </ButtonBar>
          </bottom>

@@ -99,7 +99,7 @@ public class StaffMemberInitialLayoutController {
     }
 
     @FXML
-    private void handleShowWeeklyView() throws IOException {
-        main.showWeeklyView();
+    private void handleCalendarView() throws IOException, SQLException {
+        main.showMonthlyView();
     }
 }

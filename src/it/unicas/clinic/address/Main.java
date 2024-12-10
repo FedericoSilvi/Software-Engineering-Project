@@ -6,7 +6,7 @@ import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.appointment.calendarView.DailyViewController;
-import it.unicas.clinic.address.view.appointment.calendarView.FilterByController;
+import it.unicas.clinic.address.view.appointment.calendarView.FilterByForStaffMemberController;
 import it.unicas.clinic.address.view.appointment.calendarView.MonthlyViewController;
 import it.unicas.clinic.address.view.appointment.calendarView.WeeklyViewController;
 import it.unicas.clinic.address.view.client.*;
@@ -38,9 +38,7 @@ import it.unicas.clinic.address.model.Client;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.desktop.SystemSleepEvent;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -562,7 +560,7 @@ public class Main extends Application {
         controller.setMainApp(this);
         controller.setDialogStage(dialogStage);
 
-        dialogStage.show();
+        dialogStage.showAndWait();
     }
     public void showAppClient() throws IOException, SQLException {
         appointmentData.clear();
@@ -580,7 +578,7 @@ public class Main extends Application {
         controller.ShowAllClients();
         controller.setDialogStage(dialogStage);
 
-        dialogStage.show();
+        dialogStage.showAndWait();
     }
     public void saveStaff(int id){
         appInfo.setStaff(id);
@@ -750,7 +748,7 @@ public class Main extends Application {
         editStaffWindow.showAndWait();
     }
 
-    public void showMonthlyView() throws IOException {
+    public void showMonthlyView() throws IOException, SQLException {
         Stage monthlyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/appointment/calendarView/MonthlyView.fxml"));
@@ -820,17 +818,50 @@ public class Main extends Application {
 
     }
 
-    public void filterCalendarView(MonthlyViewController con) throws IOException {
+    public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(Main.class.getResource("view/appointment/calendarView/FilterBy.fxml"));
+        loader.setLocation(Main.class.getResource("view/appointment/FilterBy2.fxml"));
         AnchorPane anchorPane = loader.load();
 
-        FilterByController controller = loader.getController();
+        FilterBy2Controller controller = loader.getController();
         controller.setMainApp(this);
-        controller.setStage(filterCalendarWindow);
-        controller.setMonthlyViewController(con);
+        controller.setDialogStage(filterCalendarWindow);
+        if(conM != null) {
+            controller.setMvController(conM);
+        } else if(conW != null) {
+            controller.setWvController(conW);
+        } else if(conD != null) {
+            controller.setDvController(conD);
+        }
+
+
+
+        filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
+        filterCalendarWindow.initOwner(primaryStage);
+        filterCalendarWindow.setScene(new Scene(anchorPane));
+        filterCalendarWindow.showAndWait();
+    }
+
+    public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+        Stage filterCalendarWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/FilterByForStaffMember.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        FilterByForStaffMemberController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setDialogStage(filterCalendarWindow);
+        if(conM != null) {
+            controller.setMvController(conM);
+        } else if(conW != null) {
+            controller.setWvController(conW);
+        } else if(conD != null) {
+            controller.setDvController(conD);
+        }
+
 
 
         filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
