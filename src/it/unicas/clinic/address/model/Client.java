@@ -35,6 +35,14 @@ public class Client {
         this.number = number;
         this.cancellationDate=null;
     }
+    public Client(int id, String name, String surname, String email, String number, LocalDate cancellation) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.number = number;
+        this.cancellationDate=cancellation;
+    }
 
     // getters
     public int getId() {return id;}

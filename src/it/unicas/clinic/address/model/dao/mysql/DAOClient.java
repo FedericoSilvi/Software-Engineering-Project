@@ -233,4 +233,36 @@ public class DAOClient {
         }
         return clientList;
     }
+
+    public static ArrayList<Client> select (String name, String surname) throws SQLException {
+        ArrayList<Client> list = new ArrayList<>();
+        Connection connection = DAOMySQLSettings.getConnection();
+        int index=1;
+        String sqlSelect = "SELECT * FROM client WHERE ";
+        if(!name.equals("")) {
+            sqlSelect = sqlSelect + "name like ?";
+        }
+        if(!surname.equals("")) {
+            sqlSelect = sqlSelect + "surname like ?";
+        }
+        PreparedStatement preparedstatement = connection.prepareStatement(sqlSelect);
+        if(!name.equals(""))
+            preparedstatement.setString(index++, name);
+        if(!surname.equals(""))
+            preparedstatement.setString(index++, surname);
+
+        ResultSet result = preparedstatement.executeQuery();
+        while(result.next()){
+            Client c1 = new Client(result.getInt("id"),
+                    result.getString("name"),
+                    result.getString("surname"),
+                    result.getString("email"),
+                    result.getString("number"));
+            list.add(c1);
+        }
+        if(list.isEmpty())
+            return null;
+        else
+            return list;
+    }
 }

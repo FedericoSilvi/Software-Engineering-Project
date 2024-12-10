@@ -48,6 +48,15 @@ public class Staff {
         //this.id= new SimpleIntegerProperty(0);
 
     }
+    public Staff(int id,String name, String surname, String specialties, LocalDate firedDate){
+        this.id=new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.surname = new SimpleStringProperty(surname);
+        this.specialties = new SimpleStringProperty(specialties);
+        this.firedDate=firedDate;
+        //this.id= new SimpleIntegerProperty(0);
+
+    }
 
     public Staff() {
         this.id = new SimpleIntegerProperty(0);

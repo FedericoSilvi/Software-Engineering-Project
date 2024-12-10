@@ -40,7 +40,6 @@ import java.util.List;
  */
 public class DataUtil {
 
-    private static AppointmentDAO appDAO;
 
     static {
         appDAO = new AppointmentDAOMySQLImpl().getInstance();
@@ -422,6 +421,7 @@ public class DataUtil {
         for (Client client : oldClients) {
             DAOClient.delete(client.getId());
         }
+
 
     }
 

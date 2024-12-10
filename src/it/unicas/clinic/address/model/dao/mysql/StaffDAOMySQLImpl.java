@@ -112,7 +112,7 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
             s = new Staff(0, null, null, null);
         }
 
-        String sqlSelect = "SELECT * FROM staff WHERE 1=1";
+        String sqlSelect = "SELECT * FROM staff WHERE firedDate is null";
 
         // Add dynamicly the condition of the fields not null
         if (s.getId() > 0) {
@@ -246,5 +246,59 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
             else
                 return null;
         }
+    }
+
+    @Override
+    public void softDelete(Staff s) throws StaffException {
+        if (s.getId() <= 0) {
+            throw new StaffException("Invalid staff ID.");
+        }
+        String sqlUpdateFiredDate = "UPDATE staff SET firedDate = ? WHERE id = ?";
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(sqlUpdateFiredDate)) {
+
+            // Set the firing data
+            LocalDate today = LocalDate.now();
+            preparedStatement.setDate(1, Date.valueOf(today));
+            preparedStatement.setInt(2, s.getId());
+
+            // to the update
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new StaffException("No staff found with ID " + s.getId());
+            }
+
+            logger.info("Successfully set firedDate for staff with ID: " + s.getId());
+        } catch (SQLException e) {
+            logger.severe("SQL: Error setting firedDate for staff with ID: " + s.getId() + ". " +
+                    "Error: " + e.getMessage());
+            throw new StaffException("SQL: Error setting firedDate for staff with ID: " + s.getId());
+        }
+    }
+    @Override
+    public List<Staff> selectFiredBefore(LocalDate date) {
+        String query = "SELECT * FROM staff WHERE firedDate IS NOT NULL AND firedDate <= ?";
+        List<Staff> staffList = new ArrayList<>();
+        try (Connection con = DAOMySQLSettings.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setDate(1, java.sql.Date.valueOf(date));
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Staff staff = new Staff(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getString("specialties"),
+                            rs.getDate("firedDate").toLocalDate()
+                    );
+                    staffList.add(staff);
+                }
+            }
+        } catch (SQLException e) {
+            logger.severe("Error selecting old staff: " + e.getMessage());
+            throw new RuntimeException("Error selecting old staff", e);
+        }
+        return staffList;
     }
 }
