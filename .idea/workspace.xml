@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="bug fix with empty list">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppClientView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppClientView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="bug fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -294,14 +291,7 @@
       <workItem from="1733743065644" duration="5546000" />
       <workItem from="1733769874311" duration="4966000" />
       <workItem from="1733821624510" duration="648000" />
-    </task>
-    <task id="LOCAL-00050" summary="initAppView, showAppInsertDialog, showAppUpdateDialog and errorAlert added">
-      <option name="closed" value="true" />
-      <created>1732900121903</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1732900121903</updated>
+      <workItem from="1733825124389" duration="616000" />
     </task>
     <task id="LOCAL-00051" summary="isAvailable added">
       <option name="closed" value="true" />
@@ -687,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733821749918</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="bug fix">
+      <option name="closed" value="true" />
+      <created>1733826841358</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1733826841358</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +703,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="methods to manage appointment management" />
     <MESSAGE value="fields and methods to manage appointment management" />
     <MESSAGE value="preliminary information GUIs" />
     <MESSAGE value="Client choice GUI" />
@@ -730,7 +727,8 @@
     <MESSAGE value="look fix" />
     <MESSAGE value="search implementation" />
     <MESSAGE value="bug fix with empty list" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fix with empty list" />
+    <MESSAGE value="bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
