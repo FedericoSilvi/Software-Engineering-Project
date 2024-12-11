@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.calendarView.WeeklyViewController">
+   <children>
+      <ScrollPane layoutX="110.0" layoutY="66.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <TableView fx:id="appointmentTable" prefHeight="516.0" prefWidth="584.0">
+              <columns>
+                <TableColumn prefWidth="59.19998246431351" text="Hour" />
+                <TableColumn fx:id="mondayColumn" prefWidth="71.20000839233398" text="Monday" />
+                  <TableColumn fx:id="tuesdayColumn" prefWidth="72.79998779296875" text="Tuesday" />
+                  <TableColumn fx:id="wednesdayColumn" prefWidth="76.80000305175781" text="Wednesday" />
+                  <TableColumn fx:id="thursdayColumn" prefWidth="79.20001220703125" text="Thursday" />
+                  <TableColumn fx:id="fridayColumn" prefWidth="70.4000244140625" text="Friday" />
+                  <TableColumn fx:id="saturdayColumn" prefWidth="76.79998779296875" text="Saturday" />
+                  <TableColumn fx:id="sundayColumn" minWidth="0.0" prefWidth="83.99993896484375" text="Sunday" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
