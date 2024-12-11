@@ -227,7 +227,7 @@ public class Main extends Application {
             primaryStage.show();
 
             // Configura il timeout con PauseTransition
-            PauseTransition timeout = new PauseTransition(Duration.minutes(1));
+            /*PauseTransition timeout = new PauseTransition(Duration.minutes(1));
             timeout.setOnFinished(e -> {
                 System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
                 Platform.runLater(() -> {
@@ -250,7 +250,7 @@ public class Main extends Application {
             scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
 
             // Avvia il timeout inizialmente
-            timeout.play();
+            timeout.play();*/
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -291,7 +291,7 @@ public class Main extends Application {
             primaryStage.show();
 
             // Configura il timeout con PauseTransition
-            PauseTransition timeout = new PauseTransition(Duration.minutes(1));
+            /*PauseTransition timeout = new PauseTransition(Duration.minutes(1));
             timeout.setOnFinished(e -> {
                 System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
                 Platform.runLater(() -> {
@@ -314,7 +314,7 @@ public class Main extends Application {
             scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
 
             // Avvia il timeout inizialmente
-            timeout.play();
+            timeout.play();*/
 
 
         } catch (IOException e) {
@@ -659,7 +659,7 @@ public class Main extends Application {
         controller.ShowAllClients();
         controller.setDialogStage(dialogStage);
 
-        dialogStage.show();
+        dialogStage.showAndWait();
     }
     public void saveStaff(int id){
         appInfo.setStaff(id);
@@ -848,7 +848,7 @@ public class Main extends Application {
 
     public void showClientHistory(){
         try{
-            appointmentData.clear();
+            //appointmentData.clear();
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class
@@ -1020,6 +1020,34 @@ public class Main extends Application {
         filterCalendarWindow.initOwner(primaryStage);
         filterCalendarWindow.setScene(new Scene(anchorPane));
         filterCalendarWindow.showAndWait();
+    }
+
+    public void showCalendarAppView(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/appointment/calendarView/AppCalendarView.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Update Schedule");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Controller
+            AppCalendarViewController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDialogStage(dialogStage);
+
+            // Set the dialog icon.
+            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {

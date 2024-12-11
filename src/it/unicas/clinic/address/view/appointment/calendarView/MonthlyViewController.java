@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MonthlyViewController {
 
@@ -159,13 +160,11 @@ public class MonthlyViewController {
             }
         }
     }
-
     public void filter() throws SQLException {
         for(int i  = 0 ; i < counter ; i ++) {
             labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
             labelList.get(i).setOnMouseClicked(null);
         }
-
         LocalDate firstDay = LocalDate.of(date.getYear(), date.getMonth(), 1);
 
         boolean first = true;
@@ -188,12 +187,15 @@ public class MonthlyViewController {
                     first = false;
                 }
 
-                ArrayList<Appointment> list = (ArrayList<Appointment>) dao.select(new Appointment(null,service, firstDay, null, null, staffId, clientId));
-               // if(AppointmentDAOMySQLImpl.filterByDate(firstDay, clientId, staffId, service))
+                List<Appointment> list =  dao.select(new Appointment(null,service, firstDay, null, null, staffId, clientId));
+                System.out.println(clientId);
+                System.out.println(list);
+                // if(AppointmentDAOMySQLImpl.filterByDate(firstDay, clientId, staffId, service))
                 if(list.size() >= 1){
                     labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
                     LocalDate finalFirstDay = firstDay;
                     labelList.get(counter).setOnMouseClicked(event -> {
+                        System.out.println("ENTRATO");
                         showAppointment(finalFirstDay.getDayOfMonth(), month, finalFirstDay.getYear());
                     });
                 }
@@ -205,38 +207,32 @@ public class MonthlyViewController {
                 firstDay = firstDay.plusDays(1);
             }
         }
-        clientId = 0;
-        staffId = 0;
-        service = null;
     }
 
     private void showAppointment(int day, int month, int year) {
-        // Aggiungere un pulsante per filtrare gli appointment tramite data
-        // e aprire la finestra da qui, chiamando la funzione subito dopo
-        AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
-        mainApp.initAppView();
+       // Aggiungere un pulsante per filtrare gli appointment tramite data
+       // e aprire la finestra da qui, chiamando la funzione subito dopo
+       AppointmentDAO dao = AppointmentDAOMySQLImpl.getInstance();
+
         mainApp.getAppointmentData().clear();
 
-        String day2 = "";
-        String ymd = "";
-        if(day < 10) {
-            String temp = "" + day;
-            day2 = "0" + day;
-            ymd = year + "-" + month + "-" + day2;
-        } else {
-            ymd = year + "-" + month + "-" + day;
+       String day2 = "";
+       String ymd = "";
+       if (day < 10) {
+           String temp = "" + day;
+           day2 = "0" + day;
+           ymd = year + "-" + month + "-" + day2;
+       } else {
+           ymd = year + "-" + month + "-" + day;
 
-        }
+       }
 
-        if(mainApp.getIsManager()) {
-            mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, LocalDate.parse(ymd), null,null, null, 0)));
-
-        } else {
-            mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, LocalDate.parse(ymd), null,null, mainApp.getUser_id(), 0)));
-        }
-
-
-
+       if (mainApp.getIsManager()) {
+           mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,service, LocalDate.parse(ymd), null, null, staffId, clientId)));
+       } else {
+           mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,service, LocalDate.parse(ymd), null, null, mainApp.getUser_id(), clientId)));
+       }
+        mainApp.showCalendarAppView();
     }
 
     @FXML

@@ -52,6 +52,8 @@ public class StaffMemberInitialLayoutController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
             main.initLogin();
+            main.setIsManager(null);
+            main.setUser_id(0);
         }
     }
     //Methods to highlight sections only when mouse passes on them

@@ -99,8 +99,9 @@ public class FilterBy2Controller {
         if (mainApp.getSavedClient() != 0) {
             System.out.println(mainApp.getSavedClient());
             Client c = DAOClient.select(mainApp.getSavedClient());
+            System.out.println(c);
             choosenClient = DAOClient.filterClient(c.getName(), c.getSurname(), c.getEmail());
-
+            System.out.println(choosenClient);
             clientNameLabel.setText(choosenClient.get(0).getName());
             clientSurnameLabel.setText(choosenClient.get(0).getSurname());
 
@@ -115,7 +116,9 @@ public class FilterBy2Controller {
         service = serviceTF.getText();
 
         if(mvController != null){
+            System.out.println("MV CONTROLLER NOT NULL");
             if(choosenClient != null) {
+                System.out.println("ENTRATO NELL'IF DI CLIENT");
                 mvController.setClientId(choosenClient.get(0).getId());
             }
 

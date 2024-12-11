@@ -74,7 +74,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                 stmt.setInt(index++, s.getId());  //set ID
             }
             if(s.getService()!=null && !s.getService().isEmpty()){
-                stmt.setString(index++, s.getService());
+                stmt.setString(index++, s.getService()+"%");
             }
             if (s.getDate() != null) {
                 stmt.setDate(index++, Date.valueOf(s.getDate()));  // set the day
@@ -86,7 +86,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                 stmt.setInt(index++, s.getStaffId());  // set final time
             }
             if (s.getClientId() > 0) {
-                stmt.setInt(index++, s.getClientId());  // set staffId
+                stmt.setInt(index, s.getClientId());  // set staffId
             }
 
             // execute the query
@@ -115,7 +115,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             logger.severe("SQL Error: " + e.getMessage());
             throw new AppointmentException("SQL: In select(): An error occurred while fetching appointment data");
         }
-
+        System.out.println("Lista: "+list);
         return list;
     }
 
@@ -517,7 +517,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         ResultSet result = preparedStatement.executeQuery();
 
         boolean flag;
-
+        System.out.println(result);
         if(result.next()){
             flag = true;
         }

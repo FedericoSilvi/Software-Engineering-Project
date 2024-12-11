@@ -1,25 +1,20 @@
-package it.unicas.clinic.address.view.client;
+package it.unicas.clinic.address.view.appointment.calendarView;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
-import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
-import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
-public class ClientHistoryViewController {
+public class AppCalendarViewController {
     @FXML
     private TableView<Appointment> appointmentTable;
     @FXML
@@ -31,49 +26,46 @@ public class ClientHistoryViewController {
     @FXML
     private TableColumn<Appointment, LocalTime> durationColumn;
     @FXML
-    private TableColumn<Appointment, String> staffColumn;
-
+    private TableColumn<Appointment, Integer> idColumn;
+    @FXML
+    private TableColumn<Appointment, Integer> staffIdColumn;
+    @FXML
+    private TableColumn<Appointment, Integer> clientIdColumn;
 
     // Reference to the main application.
     private Main mainApp;
-    private StaffDAO staffDao = StaffDAOMySQLImpl.getInstance();
+    private AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
+    private Stage dialogueStage;
 
-    public ClientHistoryViewController() throws SQLException {
+    public AppCalendarViewController() throws SQLException {
     }
 
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogueStage = dialogStage;
+    }
 
-    public void setMainApp(Main mainApp) throws SQLException, IOException {
+    public void setMainApp(Main mainApp) throws SQLException {
         this.mainApp = mainApp;
         // Add observable list data to the table
         appointmentTable.setItems(mainApp.getAppointmentData());
-        }
+    }
     @FXML
-    public void initialize() throws SQLException, IOException {
+    public void initialize() {
         // Column binding with Appointment's properties
         serviceColumn.setCellValueFactory(cellData -> cellData.getValue().serviceProperty());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
         timeColumn.setCellValueFactory(cellData -> cellData.getValue().timeProperty());
         durationColumn.setCellValueFactory(cellData -> cellData.getValue().durationProperty());
-        staffColumn.setCellValueFactory(cellData -> {
-            int staffId = cellData.getValue().getStaffId();
-            String staffName = null;
-            try {
-                staffName = staffDao.select(staffId).getName()+ " " +staffDao.select(staffId).getSurname();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            return new SimpleStringProperty(staffName);
-        });
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject()); // IntegerProperty richiede asObject()
+        staffIdColumn.setCellValueFactory(cellData -> cellData.getValue().staffIdProperty().asObject());
+        clientIdColumn.setCellValueFactory(cellData -> cellData.getValue().clientIdProperty().asObject());
     }
 
-    /**
-     * Return to the client list view
-     * @throws SQLException
-     * @throws IOException
-     */
-    @FXML
-    public void handleClose() throws SQLException, IOException {
-        mainApp.showClientView();
-        mainApp.getAppointmentData().clear();
+
+
+
+
+    public void handleHome(){
+       dialogueStage.close();
     }
 }
