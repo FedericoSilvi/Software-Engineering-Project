@@ -493,23 +493,23 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         String sqlSelect;
         PreparedStatement preparedStatement;
         if(clientId != 0){
-            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND client_id = ?";
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND client_id = ? AND cancellation IS NULL";
             preparedStatement = connection.prepareStatement(sqlSelect);
             preparedStatement.setDate(1, Date.valueOf(date));
             preparedStatement.setInt(2, clientId);
         } else if(staffId != 0){
-            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND staff_id = ?";
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND staff_id = ? AND cancellation IS NULL";
             preparedStatement = connection.prepareStatement(sqlSelect);
             preparedStatement.setDate(1, Date.valueOf(date));
             preparedStatement.setInt(2, staffId);
         } else if(service != null){
-            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND service = ?";
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND service = ? AND cancellation IS NULL";
             preparedStatement = connection.prepareStatement(sqlSelect);
             preparedStatement.setDate(1, Date.valueOf(date));
             preparedStatement.setString(2, service);
         }
         else{
-            sqlSelect = "select * from appointment where date = ?";
+            sqlSelect = "select * from appointment where date = ? AND cancellation IS NULL";
             preparedStatement = connection.prepareStatement(sqlSelect);
             preparedStatement.setDate(1, Date.valueOf(date));
         }

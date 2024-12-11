@@ -155,7 +155,7 @@ public class DAOMySQLSettings {
         return encoder.encode(pass);
     }
     public static void main(String[] args) throws SQLException {
-        /*DAOMySQLSettings dao = DAOMySQLSettings.getDefaultDAOSettings();
-        System.out.println(dao.hashPassword("123"));*/
+        DAOMySQLSettings dao = DAOMySQLSettings.getDefaultDAOSettings();
+        System.out.println(dao.hashPassword("456"));
     }
 }
