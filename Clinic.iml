@@ -11,7 +11,7 @@
     <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
     <orderEntry type="library" name="fasterxml.jackson.jakarta.rs.base" level="project" />
-    <orderEntry type="library" name="javafx-swt" level="project" />
     <orderEntry type="library" name="springframework.security.spring.core" level="project" />
+    <orderEntry type="library" name="javafx-swt" level="project" />
   </component>
 </module>

@@ -488,6 +488,49 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     }
 
 
+    public static boolean filterByDate(LocalDate date, int clientId, int staffId, String service) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+        String sqlSelect;
+        PreparedStatement preparedStatement;
+        if(clientId != 0){
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND client_id = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setInt(2, clientId);
+        } else if(staffId != 0){
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND staff_id = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setInt(2, staffId);
+        } else if(service != null){
+            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND service = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+            preparedStatement.setString(2, service);
+        }
+        else{
+            sqlSelect = "select * from appointment where date = ?";
+            preparedStatement = connection.prepareStatement(sqlSelect);
+            preparedStatement.setDate(1, Date.valueOf(date));
+        }
+
+        ResultSet result = preparedStatement.executeQuery();
+
+        boolean flag;
+
+        if(result.next()){
+            flag = true;
+        }
+        else {
+            flag = false;
+        }
+
+        connection.close();
+
+        return flag;
+
+    }
+
     public static void main(String[] args) throws SQLException {
         /*dao=new AppointmentDAOMySQLImpl();
         List<Appointment> a = dao.getHistoryApp();

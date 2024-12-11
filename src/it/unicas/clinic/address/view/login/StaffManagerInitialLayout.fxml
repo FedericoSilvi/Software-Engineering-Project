@@ -89,7 +89,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Pane onMouseClicked="#handleCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <ImageView fx:id="calendarBackground" fitHeight="176.0" fitWidth="300.0" layoutY="12.0" onMouseEntered="#handleCalendarHighlight" onMouseExited="#handleCalendarDownlight" opacity="0.25" pickOnBounds="true">
                      <image>

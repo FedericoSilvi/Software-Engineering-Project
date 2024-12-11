@@ -152,6 +152,7 @@ public class LoginDAOImplementation {
     }
 
     public int getId(){return this.staff_id;}
+
     public static boolean checkPassword(String plainPassword, String hashedPassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(plainPassword, hashedPassword);

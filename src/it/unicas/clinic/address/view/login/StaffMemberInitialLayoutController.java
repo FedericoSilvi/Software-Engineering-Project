@@ -97,4 +97,8 @@ public class StaffMemberInitialLayoutController {
     private void handleApp(){
         main.initAppView();
     }
+    @FXML
+    private void handleCalendar() throws SQLException, IOException {
+        main.showMonthlyView();
+    }
 }

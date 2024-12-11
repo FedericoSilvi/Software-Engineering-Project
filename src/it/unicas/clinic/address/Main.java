@@ -39,7 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import it.unicas.clinic.address.view.appointment.calendarView.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -177,33 +177,6 @@ public class Main extends Application {
             LoginLayoutController controller = loader.getController();
             controller.setMainApp(this);
 
-
-            // Configura il timeout con PauseTransition
-            PauseTransition timeout = new PauseTransition(Duration.minutes(15));
-            timeout.setOnFinished(e -> {
-                System.out.println("Nessuna interazione per 15 minuti. Chiusura dell'app...");
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Incativity detected");
-                    alert.setContentText("You'll be kicked out");
-                    alert.showAndWait();
-
-                    System.exit(0);
-                });
-            });
-
-            // Metodo per resettare il timeout
-            Runnable resetTimeout = () -> {
-                timeout.stop();
-                timeout.playFromStart(); // Riavvia il timer
-            };
-            // Aggiungi listener per eventi di interazione (mouse e tastiera)
-            scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
-            scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
-
-            // Avvia il timeout inizialmente
-            timeout.play();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -239,6 +212,34 @@ public class Main extends Application {
             primaryStage.centerOnScreen();
             primaryStage.setResizable(false);
             primaryStage.show();
+
+            // Configura il timeout con PauseTransition
+            PauseTransition timeout = new PauseTransition(Duration.minutes(1));
+            timeout.setOnFinished(e -> {
+                System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Incativity detected");
+                    alert.setContentText("You'll be kicked out");
+                    alert.showAndWait();
+                    initLogin();
+
+                });
+            });
+
+            // Metodo per resettare il timeout
+            Runnable resetTimeout = () -> {
+                timeout.stop();
+                timeout.playFromStart(); // Riavvia il timer
+            };
+            // Aggiungi listener per eventi di interazione (mouse e tastiera)
+            scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
+
+            // Avvia il timeout inizialmente
+            timeout.play();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -276,6 +277,34 @@ public class Main extends Application {
             primaryStage.centerOnScreen();
             primaryStage.setResizable(false);
             primaryStage.show();
+
+            // Configura il timeout con PauseTransition
+            PauseTransition timeout = new PauseTransition(Duration.minutes(1));
+            timeout.setOnFinished(e -> {
+                System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Incativity detected");
+                    alert.setContentText("You'll be kicked out");
+                    alert.showAndWait();
+                    initLogin();
+                });
+            });
+
+            // Metodo per resettare il timeout
+            Runnable resetTimeout = () -> {
+                timeout.stop();
+                timeout.playFromStart(); // Riavvia il timer
+            };
+            // Aggiungi listener per eventi di interazione (mouse e tastiera)
+            scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
+
+            // Avvia il timeout inizialmente
+            timeout.play();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -856,6 +885,129 @@ public class Main extends Application {
         controller.setDialogStage(dialogStage);
 
         dialogStage.show();
+    }
+
+
+    public void showMonthlyView() throws IOException, SQLException {
+        Stage monthlyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/MonthlyView.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        MonthlyViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(monthlyViewWindow);
+
+        monthlyViewWindow.initModality(Modality.WINDOW_MODAL);
+        monthlyViewWindow.initOwner(primaryStage);
+
+        monthlyViewWindow.setScene(new Scene(anchorPane));
+        monthlyViewWindow.show();
+    }
+
+    public void showWeeklyView() throws IOException {
+        Stage weeklyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/WeeklyView2.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        WeeklyViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(weeklyViewWindow);
+
+        weeklyViewWindow.initModality(Modality.WINDOW_MODAL);
+        weeklyViewWindow.initOwner(primaryStage);
+        weeklyViewWindow.setScene(new Scene(anchorPane));
+        weeklyViewWindow.show();
+
+    }
+
+    public void showDailyView() throws IOException {
+        Stage dailyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/DailyView.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        DailyViewController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(dailyViewWindow);
+
+        dailyViewWindow.initModality(Modality.WINDOW_MODAL);
+        dailyViewWindow.initOwner(primaryStage);
+        dailyViewWindow.setScene(new Scene(anchorPane));
+        dailyViewWindow.show();
+    }
+
+    public void searchAppointment() throws IOException {
+        Stage searchAppointmentWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/SearchAppointment.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        SearchAppointmentController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(searchAppointmentWindow);
+
+        searchAppointmentWindow.initModality(Modality.WINDOW_MODAL);
+        searchAppointmentWindow.initOwner(primaryStage);
+
+        searchAppointmentWindow.setScene(new Scene(anchorPane));
+        searchAppointmentWindow.showAndWait();
+
+    }
+
+    public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+        Stage filterCalendarWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/FilterBy2.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        FilterBy2Controller controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setDialogStage(filterCalendarWindow);
+        if(conM != null) {
+            controller.setMvController(conM);
+        } else if(conW != null) {
+            controller.setWvController(conW);
+        } else if(conD != null) {
+            controller.setDvController(conD);
+        }
+
+
+
+        filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
+        filterCalendarWindow.initOwner(primaryStage);
+        filterCalendarWindow.setScene(new Scene(anchorPane));
+        filterCalendarWindow.showAndWait();
+    }
+
+    public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+        Stage filterCalendarWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/FilterByForStaffMember.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        FilterByForStaffMemberController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setDialogStage(filterCalendarWindow);
+        if(conM != null) {
+            controller.setMvController(conM);
+        } else if(conW != null) {
+            controller.setWvController(conW);
+        } else if(conD != null) {
+            controller.setDvController(conD);
+        }
+
+
+
+        filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
+        filterCalendarWindow.initOwner(primaryStage);
+        filterCalendarWindow.setScene(new Scene(anchorPane));
+        filterCalendarWindow.showAndWait();
     }
 
     public static void main(String[] args) {

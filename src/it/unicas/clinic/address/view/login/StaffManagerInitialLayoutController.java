@@ -112,4 +112,8 @@ public class StaffManagerInitialLayoutController {
     }
     @FXML
     private void handleReport() throws IOException {main.openReport();}
+    @FXML
+    private void handleCalendar() throws SQLException, IOException {
+        main.showMonthlyView();
+    }
 }
