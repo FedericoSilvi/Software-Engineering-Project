@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="Merge3 con Giacomo">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,15 +299,7 @@
       <workItem from="1733847733247" duration="5323000" />
       <workItem from="1733912236135" duration="1882000" />
       <workItem from="1733914428798" duration="78000" />
-      <workItem from="1733914518433" duration="904000" />
-    </task>
-    <task id="LOCAL-00053" summary="select with id addeed">
-      <option name="closed" value="true" />
-      <created>1732900226906</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1732900226906</updated>
+      <workItem from="1733914518433" duration="1908000" />
     </task>
     <task id="LOCAL-00054" summary="appointment window activated">
       <option name="closed" value="true" />
@@ -693,7 +685,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733914556707</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="bug fix">
+      <option name="closed" value="true" />
+      <created>1733915583714</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1733915583714</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,10 +733,10 @@
     <MESSAGE value="look fix" />
     <MESSAGE value="search implementation" />
     <MESSAGE value="bug fix with empty list" />
-    <MESSAGE value="bug fix" />
     <MESSAGE value="-Password Hashing&#10;-Timer kick out mechanism" />
     <MESSAGE value="Merge3 con Giacomo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge3 con Giacomo" />
+    <MESSAGE value="bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

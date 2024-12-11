@@ -55,6 +55,8 @@ import java.sql.SQLException;
 public class Main extends Application {
 
 
+    private static Main mainApp;
+
     private Stage primaryStage;
     private BorderPane loginLayout;
     private BorderPane staffInitialLayout;
@@ -111,6 +113,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException {
+        mainApp=this;
         DataUtil.cleanUpRecord();
 
 
@@ -129,6 +132,16 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+    }
+
+    public static void restart() {
+        Stage stage = mainApp.primaryStage; // Recupera il primaryStage
+        stage.close(); // Chiudi la finestra attuale
+        try {
+            mainApp.start(new Stage()); // Avvia un nuovo Stage
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -223,8 +236,7 @@ public class Main extends Application {
                     alert.setHeaderText("Incativity detected");
                     alert.setContentText("You'll be kicked out");
                     alert.showAndWait();
-                    initLogin();
-
+                    restart();
                 });
             });
 
@@ -288,7 +300,7 @@ public class Main extends Application {
                     alert.setHeaderText("Incativity detected");
                     alert.setContentText("You'll be kicked out");
                     alert.showAndWait();
-                    initLogin();
+                    restart();
                 });
             });
 
