@@ -72,7 +72,7 @@ public class Main extends Application {
     public ObservableList<Schedule> getScheduleData() {
         return scheduleData;
     }
-    private PauseTransition timer;
+    private PauseTransition timer=null;
 
     public int getUser_id() {
         return user_id;
@@ -227,31 +227,6 @@ public class Main extends Application {
             primaryStage.setResizable(false);
             primaryStage.show();
 
-            // Configura il timeout con PauseTransition
-            /*PauseTransition timeout = new PauseTransition(Duration.minutes(1));
-            timeout.setOnFinished(e -> {
-                System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Incativity detected");
-                    alert.setContentText("You'll be kicked out");
-                    alert.showAndWait();
-                    restart();
-                });
-            });
-
-            // Metodo per resettare il timeout
-            Runnable resetTimeout = () -> {
-                timeout.stop();
-                timeout.playFromStart(); // Riavvia il timer
-            };
-            // Aggiungi listener per eventi di interazione (mouse e tastiera)
-            scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
-            scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
-
-            // Avvia il timeout inizialmente
-            timeout.play();*/
             setTimer(scene);
 
         } catch (IOException e) {
@@ -321,8 +296,9 @@ public class Main extends Application {
 
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
-            dialogStage.showAndWait();
+            setTimer(scene);
 
+            dialogStage.showAndWait();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -353,7 +329,9 @@ public class Main extends Application {
 
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            setTimer(scene);
             dialogStage.showAndWait();
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -372,6 +350,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         ChooseOwnerLayoutController controller = loader.getController();
         controller.setMain(this);
+        setTimer(scene);
     }
 
     public void loadStaffManagement() throws IOException{
@@ -385,6 +364,7 @@ public class Main extends Application {
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
         primaryStage.show();
+        setTimer(scene);
     }
 
 
@@ -406,6 +386,7 @@ public class Main extends Application {
 
 
         searchWindow.setScene(new Scene(layout));
+        setTimer(searchWindow.getScene());
         searchWindow.showAndWait();
     }
 
@@ -422,6 +403,7 @@ public class Main extends Application {
         addWindow.initOwner(primaryStage);
 
         addWindow.setScene(new Scene(layout));
+        setTimer(addWindow.getScene());
         addWindow.show();
     }
 
@@ -441,6 +423,7 @@ public class Main extends Application {
         updateWindow.initOwner(primaryStage);
 
         updateWindow.setScene(new Scene(layout));
+        setTimer(updateWindow.getScene());
         updateWindow.showAndWait();
     }
 
@@ -484,6 +467,7 @@ public class Main extends Application {
             primaryStage.centerOnScreen();
             primaryStage.setResizable(false);
             primaryStage.show();
+            setTimer(scene);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -511,6 +495,7 @@ public class Main extends Application {
 
                 // Set the dialog icon.
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+                setTimer(scene);
                 dialogStage.showAndWait();
 
             } catch (IOException e) {
@@ -537,6 +522,7 @@ public class Main extends Application {
 
                 // Set the dialog icon.
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+                setTimer(scene);
                 dialogStage.showAndWait();
 
             } catch (IOException e) {
@@ -579,6 +565,7 @@ public class Main extends Application {
             }
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            setTimer(scene);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -619,7 +606,7 @@ public class Main extends Application {
         AppStaffViewController controller = loader.getController();
         controller.setMainApp(this);
         controller.setDialogStage(dialogStage);
-
+        setTimer(scene);
         dialogStage.showAndWait();
     }
     public void showAppClient() throws IOException, SQLException {
@@ -637,7 +624,7 @@ public class Main extends Application {
         controller.setMainApp(this);
         controller.ShowAllClients();
         controller.setDialogStage(dialogStage);
-
+        setTimer(scene);
         dialogStage.showAndWait();
     }
     public void saveStaff(int id){
@@ -661,6 +648,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         AppSelectViewController controller = loader.getController();
         controller.setMainApp(this,schedules,list);
+        setTimer(scene);
         primaryStage.show();
     }
     public void showAvailableAppUp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException {
@@ -672,6 +660,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         AppSelectViewController2 controller = loader.getController();
         controller.setMainApp(this,schedules,list,a);
+        setTimer(scene);
         primaryStage.show();
     }
 
@@ -695,6 +684,7 @@ public class Main extends Application {
         updateWindow.setOnCloseRequest(event -> {
             scheduleData.clear();
         });
+        setTimer(updateWindow.getScene());
         updateWindow.showAndWait();
     }
 
@@ -717,6 +707,7 @@ public class Main extends Application {
 
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            setTimer(scene);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -744,6 +735,7 @@ public class Main extends Application {
 
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            setTimer(scene);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -762,6 +754,7 @@ public class Main extends Application {
         rescheduleWindow.setScene(scene);
         AppSelectViewController3 controller = loader.getController();
         controller.setMainApp(this,schedules,list,a,rescheduleWindow);
+        setTimer(scene);
         rescheduleWindow.showAndWait();
     }
 
@@ -781,6 +774,7 @@ public class Main extends Application {
         changePasswordWindow.initOwner(primaryStage);
 
         changePasswordWindow.setScene(new Scene(anchorPane));
+        setTimer(changePasswordWindow.getScene());
         changePasswordWindow.showAndWait();
 
     }
@@ -800,6 +794,7 @@ public class Main extends Application {
         changeUsernameWindow.initOwner(primaryStage);
 
         changeUsernameWindow.setScene(new Scene(anchorPane));
+        setTimer(changeUsernameWindow.getScene());
         changeUsernameWindow.showAndWait();
 
 
@@ -852,6 +847,7 @@ public class Main extends Application {
             //Set and show primary stage
             primaryStage.centerOnScreen();
             primaryStage.setResizable(false);
+            setTimer(scene);
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -874,7 +870,7 @@ public class Main extends Application {
         ReportLayoutController controller = loader.getController();
         controller.setMainApp(this);
         controller.setDialogStage(dialogStage);
-
+        setTimer(scene);
         dialogStage.show();
     }
 
@@ -893,6 +889,7 @@ public class Main extends Application {
         monthlyViewWindow.initOwner(primaryStage);
 
         monthlyViewWindow.setScene(new Scene(anchorPane));
+        setTimer(monthlyViewWindow.getScene());
         monthlyViewWindow.show();
     }
 
@@ -910,6 +907,7 @@ public class Main extends Application {
         weeklyViewWindow.initModality(Modality.WINDOW_MODAL);
         weeklyViewWindow.initOwner(primaryStage);
         weeklyViewWindow.setScene(new Scene(anchorPane));
+        setTimer(weeklyViewWindow.getScene());
         weeklyViewWindow.show();
 
     }
@@ -927,6 +925,7 @@ public class Main extends Application {
         dailyViewWindow.initModality(Modality.WINDOW_MODAL);
         dailyViewWindow.initOwner(primaryStage);
         dailyViewWindow.setScene(new Scene(anchorPane));
+        setTimer(dailyViewWindow.getScene());
         dailyViewWindow.show();
     }
 
@@ -972,6 +971,7 @@ public class Main extends Application {
         filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
         filterCalendarWindow.initOwner(primaryStage);
         filterCalendarWindow.setScene(new Scene(anchorPane));
+        setTimer(filterCalendarWindow.getScene());
         filterCalendarWindow.showAndWait();
     }
 
@@ -998,6 +998,7 @@ public class Main extends Application {
         filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
         filterCalendarWindow.initOwner(primaryStage);
         filterCalendarWindow.setScene(new Scene(anchorPane));
+        setTimer(filterCalendarWindow.getScene());
         filterCalendarWindow.showAndWait();
     }
 
@@ -1020,6 +1021,7 @@ public class Main extends Application {
 
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            setTimer(scene);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -1031,6 +1033,8 @@ public class Main extends Application {
 
     public void setTimer(Scene scene){
         // Configura il timeout con PauseTransition
+        if(timer!=null)
+            timer.stop();
         timer = new PauseTransition(Duration.minutes(0.1));
         timer.setOnFinished(e -> {
             System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
