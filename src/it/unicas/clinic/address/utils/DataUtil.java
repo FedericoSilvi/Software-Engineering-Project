@@ -8,8 +8,14 @@ import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 
 import java.sql.SQLException;
 
@@ -419,6 +425,7 @@ public class DataUtil {
 
 
     }
+
 
 
     public static void main(String[] args) throws SQLException {

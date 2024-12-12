@@ -25,6 +25,16 @@ public class Appointment {
 
     private Boolean cancellation;
 
+    public Boolean getNotice() {
+        return notice;
+    }
+
+    public void setNotice(Boolean notice) {
+        this.notice = notice;
+    }
+
+    private Boolean notice;
+
 
     /**
      * Constructor to build an appointment passing all its attributes
@@ -53,6 +63,7 @@ public class Appointment {
         else
             this.clientId = new SimpleIntegerProperty(0);
         cancellation=null;
+        notice=null;
     }
     public Appointment(Integer id, String service, LocalDate date, LocalTime time, LocalTime duration,Integer staffId, Integer clientId, Boolean cancellation) {
         if(id!=null)
@@ -75,6 +86,33 @@ public class Appointment {
             this.cancellation = cancellation;
         else
             this.cancellation = null;
+        this.notice=null;
+    }
+    public Appointment(Integer id, String service, LocalDate date, LocalTime time, LocalTime duration,Integer staffId, Integer clientId, Boolean cancellation, Boolean notice) {
+        if(id!=null)
+            this.id = new SimpleIntegerProperty(id);
+        else
+            this.id = new SimpleIntegerProperty(0);
+        this.service = new SimpleStringProperty(service);
+        this.date = new SimpleObjectProperty<>(date);
+        this.time = new SimpleObjectProperty<>(time);
+        this.duration = new SimpleObjectProperty<>(duration);
+        if(staffId!=null)
+            this.staffId = new SimpleIntegerProperty(staffId);
+        else
+            this.staffId = new SimpleIntegerProperty(0);
+        if(clientId!=null)
+            this.clientId = new SimpleIntegerProperty(clientId);
+        else
+            this.clientId = new SimpleIntegerProperty(0);
+        if(cancellation!=null)
+            this.cancellation = cancellation;
+        else
+            this.cancellation = null;
+        if(notice!=null)
+            this.notice = notice;
+        else
+            this.notice = null;
     }
 
     /**
@@ -99,6 +137,7 @@ public class Appointment {
         else
             this.clientId = new SimpleIntegerProperty(0);
         cancellation=null;
+        notice=null;
     }
 
     //getters and setters
@@ -200,7 +239,9 @@ public class Appointment {
                 +"date: "+date.get()+"\n"
                 +"time: "+time.get()+"\n"
                 +"staffId: "+staffId.get()+"\n"
-                +"clientId: "+clientId.get()+"\n";
+                +"clientId: "+clientId.get()+"\n"
+                +"cancellation: "+cancellation+"\n"
+                +"notice: "+notice+"\n";
     }
 
 }

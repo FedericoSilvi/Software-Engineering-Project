@@ -100,7 +100,9 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                             rs.getTime("time").toLocalTime(),
                             rs.getTime("duration").toLocalTime(),
                             rs.getInt("staff_id"),
-                            rs.getInt("client_id")
+                            rs.getInt("client_id"),
+                            rs.getBoolean("cancellation"),
+                            rs.getBoolean("notice")
                     );
                     list.add(a1);  // add the object in the list
                 }
@@ -375,7 +377,8 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                             rs.getTime("duration").toLocalTime(),
                             rs.getInt("staff_id"),
                             rs.getInt("client_id"),
-                            rs.getBoolean("cancellation")
+                            rs.getBoolean("cancellation"),
+                            rs.getBoolean("notice")
                     );
                     //System.out.println(a1);
                     list.add(a1); // add the object in the list
@@ -529,6 +532,44 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
 
         return flag;
 
+    }
+
+    @Override
+    public ArrayList<Appointment> getTomorrowApp() throws SQLException {
+        ArrayList<Appointment> apps = new ArrayList<>();
+        Connection connection = DAOMySQLSettings.getConnection();
+        String command = "select * from appointment where date=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(command);
+        preparedStatement.setDate(1, Date.valueOf(LocalDate.now().plusDays(1)));
+        ResultSet result = preparedStatement.executeQuery();
+        while(result.next()){
+            Appointment a = new Appointment(
+                    result.getInt("id"),
+                    result.getString("service"),
+                    result.getDate("date").toLocalDate(),
+                    result.getTime("time").toLocalTime(),
+                    result.getTime("duration").toLocalTime(),
+                    result.getInt("staff_id"),
+                    result.getInt("client_id"),
+                    result.getBoolean("cancellation"),
+                    result.getBoolean("notice")
+            );
+            apps.add(a);
+        }
+        connection.close();
+        if(apps.isEmpty())
+            return null;
+        else
+            return apps;
+    }
+    @Override
+    public void setNotice(Appointment appointment) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+        String command = "UPDATE appointment SET notice = TRUE WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(command);
+        preparedStatement.setInt(1, appointment.getId());
+        preparedStatement.executeUpdate();
+        connection.close();
     }
 
     public static void main(String[] args) throws SQLException {

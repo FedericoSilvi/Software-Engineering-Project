@@ -247,9 +247,9 @@ public class DAOClient {
         }
         PreparedStatement preparedstatement = connection.prepareStatement(sqlSelect);
         if(!name.equals(""))
-            preparedstatement.setString(index++, name);
+            preparedstatement.setString(index++,"%" + name + "%");
         if(!surname.equals(""))
-            preparedstatement.setString(index++, surname);
+            preparedstatement.setString(index++, "%" + surname + "%");
 
         ResultSet result = preparedstatement.executeQuery();
         while(result.next()){

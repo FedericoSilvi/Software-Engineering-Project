@@ -152,6 +152,8 @@ public class LoginLayoutController {
                  else {
                      main.initStaff();
                  }
+                 main.sendClientNotification();
+
              }
 
            //  main.getId(StaffDAO.);

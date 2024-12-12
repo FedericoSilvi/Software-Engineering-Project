@@ -72,6 +72,7 @@ public class Main extends Application {
     public ObservableList<Schedule> getScheduleData() {
         return scheduleData;
     }
+    private PauseTransition timer;
 
     public int getUser_id() {
         return user_id;
@@ -251,6 +252,7 @@ public class Main extends Application {
 
             // Avvia il timeout inizialmente
             timeout.play();*/
+            setTimer(scene);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -290,31 +292,8 @@ public class Main extends Application {
             primaryStage.setResizable(false);
             primaryStage.show();
 
-            // Configura il timeout con PauseTransition
-            /*PauseTransition timeout = new PauseTransition(Duration.minutes(1));
-            timeout.setOnFinished(e -> {
-                System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Incativity detected");
-                    alert.setContentText("You'll be kicked out");
-                    alert.showAndWait();
-                    restart();
-                });
-            });
+            setTimer(scene);
 
-            // Metodo per resettare il timeout
-            Runnable resetTimeout = () -> {
-                timeout.stop();
-                timeout.playFromStart(); // Riavvia il timer
-            };
-            // Aggiungi listener per eventi di interazione (mouse e tastiera)
-            scene.addEventFilter(MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
-            scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
-
-            // Avvia il timeout inizialmente
-            timeout.play();*/
 
 
         } catch (IOException e) {
@@ -474,7 +453,7 @@ public class Main extends Application {
         controller.ShowAllClients();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
+        setTimer(primaryStage.getScene());
     }
 
     public void initAppView(){
@@ -1049,6 +1028,48 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
+
+    public void setTimer(Scene scene){
+        // Configura il timeout con PauseTransition
+        timer = new PauseTransition(Duration.minutes(0.1));
+        timer.setOnFinished(e -> {
+            System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Attention");
+                alert.setHeaderText("Incativity detected");
+                alert.setContentText("You'll be kicked out");
+                alert.showAndWait();
+                restart();
+            });
+        });
+
+        // Metodo per resettare il timeout
+        Runnable resetTimeout = () -> {
+            timer.stop();
+            timer.playFromStart(); // Riavvia il timer
+        };
+        // Aggiungi listener per eventi di interazione (mouse e tastiera)
+        scene.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_MOVED, e -> resetTimeout.run());
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> resetTimeout.run());
+
+        // Avvia il timeout inizialmente
+        timer.play();
+    }
+
+    public void sendClientNotification() throws SQLException {
+        AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
+        ArrayList<Appointment> apps = appDao.getTomorrowApp();
+        for(Appointment app : apps){
+            Client c = DAOClient.select(app.getClientId());
+            String email = c.getEmail();
+            Email mailSender = new Email(email);
+            mailSender.sendEmail(app);
+            System.out.println("APP: "+app);
+        }
+
+    }
+
 
     public static void main(String[] args) {
         launch(args);

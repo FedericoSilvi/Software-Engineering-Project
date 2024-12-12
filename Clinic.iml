@@ -13,5 +13,6 @@
     <orderEntry type="library" name="fasterxml.jackson.jakarta.rs.base" level="project" />
     <orderEntry type="library" name="springframework.security.spring.core" level="project" />
     <orderEntry type="library" name="javafx-swt" level="project" />
+    <orderEntry type="library" name="sun.mail.javax" level="project" />
   </component>
 </module>

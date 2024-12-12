@@ -28,4 +28,8 @@ public interface AppointmentDAO <T>{
     List<Appointment> getfutureAppStaff(LocalDate d, int id) throws RuntimeException;
 
     List<Appointment> getfutureAppClient(LocalDate d, int id) throws RuntimeException;
+
+    ArrayList<Appointment> getTomorrowApp() throws SQLException;
+
+    void setNotice(Appointment appointment) throws SQLException;
 }
