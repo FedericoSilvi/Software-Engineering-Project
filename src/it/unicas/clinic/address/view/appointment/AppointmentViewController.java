@@ -70,9 +70,14 @@ public class AppointmentViewController {
     @FXML
     private void handleUpdateApp(){
         Appointment selectedApp = appointmentTable.getSelectionModel().getSelectedItem();
-        if(selectedApp != null){
+        if(selectedApp != null && selectedApp.getDate().isAfter(LocalDate.now())){
             mainApp.showAppUpdateDialog(selectedApp);
             //mainApp.getAppointmentData().remove(selectedApp);
+        }
+        else if(selectedApp != null && !selectedApp.getDate().isAfter(LocalDate.now())){
+            mainApp.warningAlert("Attention",
+                    "You can't update a past appointment",
+            "Please select a valid appointment");
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -88,8 +93,8 @@ public class AppointmentViewController {
     private void handleDeleteApp() {
 
         int selectedIndex = appointmentTable.getSelectionModel().getSelectedIndex();
-        if(selectedIndex >= 0){
-            Appointment selectedApp = appointmentTable.getSelectionModel().getSelectedItem();
+        Appointment selectedApp = appointmentTable.getSelectionModel().getSelectedItem();
+        if(selectedApp != null && selectedApp.getDate().isAfter(LocalDate.now()) ){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Delete an Appointment");
@@ -102,6 +107,10 @@ public class AppointmentViewController {
             if (result.get() == buttonTypeOne){
                 try{
                     //mainApp.getStaffData().forEach(System.out::println);
+                    if(selectedApp.getDate().isAfter(LocalDate.now())){
+                        System.out.println("\n \n ENTRATO NELL'IF \n \n ");
+                        mainApp.sendClientCancellation(selectedApp);
+                    }
                     dao.solftDelete(selectedApp.getId());
                     mainApp.getAppointmentData().remove(selectedApp);
                     //mainApp.getStaffData().forEach(System.out::println);
@@ -114,11 +123,19 @@ public class AppointmentViewController {
                     errorAlert.setContentText("An error occurred while trying to delete the appointment.");
                     errorAlert.showAndWait();
 
+                } catch (SQLException e) {
+                    mainApp.errorAlert("Mail error",
+                            "Couldn't send email to client",
+                            "");
                 }
 
             }
         }
-
+        else if(selectedApp != null && !selectedApp.getDate().isAfter(LocalDate.now()) ){
+            mainApp.warningAlert("Attention",
+                    "You can't delete a past appointment",
+                    "Please select a valid appointment");
+        }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());

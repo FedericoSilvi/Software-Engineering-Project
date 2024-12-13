@@ -171,8 +171,8 @@ public class AppSelectViewController2 {
     @FXML
     public void handleCancel(){
         appDAO.insert(app);
-        mainApp.showAppInsertDialog();
         mainApp.initAppView();
+        mainApp.showAppInsertDialog();
     }
     private void handleEmpty(){
         Alert alert = new Alert(Alert.AlertType.ERROR);

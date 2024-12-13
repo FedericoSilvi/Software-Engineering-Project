@@ -590,6 +590,13 @@ public class Main extends Application {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    public void infoAlert(String title, String header, String content){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
     public void showAppStaff() throws IOException {
         appointmentData.clear();
@@ -743,7 +750,7 @@ public class Main extends Application {
         }
     }
 
-    public void showRescheduleApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException {
+    public void showRescheduleApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException, SQLException {
         appSchedData.clear();
         Stage rescheduleWindow = new Stage();
         rescheduleWindow.initModality(Modality.APPLICATION_MODAL);
@@ -1035,7 +1042,7 @@ public class Main extends Application {
         // Configura il timeout con PauseTransition
         if(timer!=null)
             timer.stop();
-        timer = new PauseTransition(Duration.minutes(0.1));
+        timer = new PauseTransition(Duration.minutes(15));
         timer.setOnFinished(e -> {
             System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
             Platform.runLater(() -> {
@@ -1064,16 +1071,45 @@ public class Main extends Application {
     public void sendClientNotification() throws SQLException {
         AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
         ArrayList<Appointment> apps = appDao.getTomorrowApp();
-        for(Appointment app : apps){
-            Client c = DAOClient.select(app.getClientId());
-            String email = c.getEmail();
-            Email mailSender = new Email(email);
-            mailSender.sendEmail(app);
-            System.out.println("APP: "+app);
+        if(apps!=null) {
+            for (Appointment app : apps) {
+                Client c = DAOClient.select(app.getClientId());
+                String email = c.getEmail();
+                Email mailSender = new Email(email);
+                if (mailSender.sendEmail(app))
+                    infoAlert("Notification",
+                            "Emails sent successfully",
+                            "Clients have been noticed about upcoming appointments");
+            }
         }
 
     }
 
+    public void sendClientCancellation(Appointment app) throws SQLException {
+
+        Client c = DAOClient.select(app.getClientId());
+        String email = c.getEmail();
+        Email mailSender = new Email(email);
+        if(mailSender.sendCancellation(app))
+            infoAlert("Notification",
+                    "Email sent successfully",
+                    "Client has been noticed about deleted appointment");
+
+
+    }
+
+    public void sendClientReschedule(Appointment app) throws SQLException{
+
+        Client c = DAOClient.select(app.getClientId());
+        String email = c.getEmail();
+        Email mailSender = new Email(email);
+        if(mailSender.sendUpdate(app))
+            infoAlert("Notification",
+                    "Email sent successfully",
+                    "Client has been noticed about appointment reschedule");
+
+
+    }
 
     public static void main(String[] args) {
         launch(args);

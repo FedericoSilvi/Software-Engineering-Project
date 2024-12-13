@@ -168,8 +168,8 @@ public class AppSelectViewController {
     }
     @FXML
     public void handleCancel(){
-        mainApp.showAppInsertDialog();
         mainApp.initAppView();
+        mainApp.showAppInsertDialog();
     }
     private void handleEmpty(){
         Alert alert = new Alert(Alert.AlertType.ERROR);

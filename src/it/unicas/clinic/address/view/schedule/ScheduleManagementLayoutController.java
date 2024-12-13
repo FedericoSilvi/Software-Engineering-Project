@@ -71,12 +71,13 @@ public class ScheduleManagementLayoutController {
     private void handleDeleteSchedule() {
         //check if there is a selected schedule
         int selectedIndex = scheduleTable.getSelectionModel().getSelectedIndex();
-        if(selectedIndex >= 0){
-            Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
+        Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
+
+        if(selectedSchedule != null && selectedSchedule.getDay().isAfter(LocalDate.now())) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Delete a Staff Member");
-            alert.setHeaderText("Do you want to delete this schedule?");
+            alert.setHeaderText("Do you want to delete this schedule? "+selectedSchedule.getDay().toString());
             alert.setContentText("Do you want to delete this schedule?");
             ButtonType buttonTypeOne = new ButtonType("Yes");
             ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -118,6 +119,11 @@ public class ScheduleManagementLayoutController {
                 }
             }
         }
+        else if(selectedSchedule != null && !selectedSchedule.getDay().isAfter(LocalDate.now())) {
+            mainApp.warningAlert("Attention",
+                    "You can't delete past schedule",
+                    "Please select a valid schedule");
+        }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
@@ -131,10 +137,15 @@ public class ScheduleManagementLayoutController {
     private void handleUpdateSchedule() {
         //take the staff del quale dovrò mostrare gli schedule
         Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
-        if(selectedSchedule != null){
+        if(selectedSchedule != null && selectedSchedule.getDay().isAfter(LocalDate.now())) {
             //System.out.println("HO preso lo staff x lo schedule");
             //System.out.println(selectedStaff);
             mainApp.showScheduleUpdateDialog(selectedSchedule, staff);
+        }
+        else if(selectedSchedule != null && !selectedSchedule.getDay().isAfter(LocalDate.now())) {
+            mainApp.warningAlert("Attention",
+                    "You can't update a past schedule",
+                    "Please select a valid schedule");
         }
         else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -178,7 +189,6 @@ public class ScheduleManagementLayoutController {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("No schedules found");
                 alert.setHeaderText("The following appointment will be deleted");
-
                 alert.setContentText("Service: "+app.getService()+"\n"+ "Client: "
                         +DAOClient.select(app.getClientId()).getName()+" "+DAOClient.select(app.getClientId()).getSurname());
 
@@ -188,7 +198,7 @@ public class ScheduleManagementLayoutController {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == buttonTypeOne){
-
+                    mainApp.sendClientCancellation(app);
                 }
             }
             else

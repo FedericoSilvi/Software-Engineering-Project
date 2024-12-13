@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
@@ -66,10 +67,16 @@ public class AppSelectViewController3 {
 
 
 
-    public void setMainApp(Main main,ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a, Stage dialogue) throws IOException {
+    public void setMainApp(Main main,ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a, Stage dialogue) throws IOException, SQLException {
         this.mainApp = main;
         app=a;
         this.dialogue=dialogue;
+        Client c = DAOClient.select(a.getClientId());
+        Staff s = staffDAO.select(a.getStaffId());
+        mainApp.infoAlert("Reschedule",
+                "You have to reschedule the following appointment",
+                "Service: "+a.getService()+", Client: "+c.getName()+" "+c.getSurname()+
+                ", Staff member: "+s.getName()+" "+s.getSurname());
         //sched has both null and not null schedules available for that appointment
         ObservableList<Schedule> sched = FXCollections.observableArrayList(schedules);
         /*for(Schedule schedule : schedules){
@@ -91,7 +98,7 @@ public class AppSelectViewController3 {
                 boolList.add(list.get(i));
         }
         if(temp.isEmpty()) {
-            handleEmpty();
+            handleEmpty(a);
         }
     }
     public void initialize() {
@@ -177,6 +184,7 @@ public class AppSelectViewController3 {
         }
 
         //mainApp.initAppView();
+        mainApp.sendClientReschedule(appDAO.getLastApp());
         dialogue.close();
     }
 
@@ -184,7 +192,7 @@ public class AppSelectViewController3 {
      * Manage the case where the table is empty
      * @throws IOException
      */
-    private void handleEmpty() throws IOException {
+    private void handleEmpty(Appointment app) throws IOException, SQLException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Empty list");
@@ -196,7 +204,7 @@ public class AppSelectViewController3 {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            System.out.println("CHIUDITI vecchio");
+            mainApp.sendClientCancellation(app);
             dialogue.close();
         }
     }

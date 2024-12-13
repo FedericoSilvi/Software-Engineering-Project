@@ -28,7 +28,7 @@ public class Email {
         properties.put("mail.smtp.port", "587");
     }
 
-    public void sendEmail(Appointment appointment) {
+    public boolean sendEmail(Appointment appointment) {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
             // Create session with authentication
@@ -60,7 +60,88 @@ public class Email {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            return true;
         }
+        else
+            return false;
     }
+    public boolean sendCancellation(Appointment appointment) {
+        System.out.println("NOTICE :"+appointment.getNotice());
+        if(appointment.getNotice()==null) {
+            // Create session with authentication
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(sender, password);
+                }
+            });
+
+            try {
+                // Create email message
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(sender));
+                message.setRecipients(
+                        Message.RecipientType.TO, InternetAddress.parse(receiver));
+                message.setSubject("Appointment Cancellation");
+                message.setText("Dear " + DAOClient.getClient(appointment.getClientId()).getName() + ",\n" +
+                        "We are sorry to inform you that the appointment for " + appointment.getDate().toString() +
+                        " has been deleted.\n" +
+                        "Please contact the clinic center in order to reschedule it. ");
+
+                // Send the email
+                Transport.send(message);
+                appointmentDAO.setNotice(appointment);
+                System.out.println("Email sent successfully!");
+
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean sendUpdate(Appointment appointment) {
+        System.out.println("NOTICE :"+appointment.getNotice());
+        if(appointment.getNotice()==null) {
+            // Create session with authentication
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(sender, password);
+                }
+            });
+
+            try {
+                // Create email message
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(sender));
+                message.setRecipients(
+                        Message.RecipientType.TO, InternetAddress.parse(receiver));
+                message.setSubject("Appointment Reschedule");
+                message.setText("Dear " + DAOClient.getClient(appointment.getClientId()).getName() + ",\n" +
+                        "We are sorry to inform you that the appointment: " + appointment.getService()+
+                        " has been rescheduled to the following date:"+ appointment.getDate().toString() +".\n" +
+                        "Please contact the clinic center if you want to reschedule it. ");
+
+                // Send the email
+                Transport.send(message);
+                appointmentDAO.setNotice(appointment);
+                System.out.println("Email sent successfully!");
+
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return true;
+        }
+        else
+            return false;
+    }
+
 
 }

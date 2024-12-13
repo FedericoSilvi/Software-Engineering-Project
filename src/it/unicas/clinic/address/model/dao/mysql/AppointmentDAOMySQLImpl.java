@@ -11,6 +11,7 @@ import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.utils.DataUtil;
+import org.springframework.cglib.core.Local;
 
 
 public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
@@ -39,7 +40,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         if(s.getId()<=0 && s.getService()==null && s.getDate()==null && s.getTime()==null & s.getStaffId()==0 && s.getClientId()==0){
             s= new Appointment(0,null,null,null,null,0,0);
         }
-        String sqlSelect = "SELECT * FROM appointment WHERE cancellation IS NULL";
+        String sqlSelect = "SELECT * FROM appointment WHERE cancellation IS NULL ";
 
         // Add dynamicly the condition of the fields not null
         if (s.getId() > 0) {
@@ -235,7 +236,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         ArrayList<Appointment> appointments = new ArrayList<>();
         Connection connection = DAOMySQLSettings.getConnection();
         //Define command
-        String searchApp="select * from appointment where staff_id=? and date=?";
+        String searchApp="select * from appointment where staff_id=? and date=? and cancellation is null";
         PreparedStatement preparedStatement = connection.prepareStatement(searchApp);
         preparedStatement.setInt(1, s.getStaffId());
         preparedStatement.setDate(2,Date.valueOf(s.getDay()));
