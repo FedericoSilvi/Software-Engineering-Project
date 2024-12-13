@@ -229,7 +229,8 @@ public class DailyViewController {
 
     @FXML
     private void handleFilter() throws IOException {
-        mainApp.filterCalendarViewForManager(null, null, this);
+        //mainApp.filterCalendarViewForManager(null, null, this);
+        mainApp.filterCalendarViewForMember(null, null, this);
     }
 
     @FXML

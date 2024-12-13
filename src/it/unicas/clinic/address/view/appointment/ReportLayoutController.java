@@ -13,6 +13,7 @@ import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -145,7 +146,11 @@ public class ReportLayoutController {
                 printWriter.println("Number of appointments: " + list_report.size());
                 printWriter.println("Number of cancellation: " + canc);
 
-
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Report");
+                alert.setHeaderText("Success");
+                alert.setContentText("The report is been generated !");
+                alert.showAndWait();
                 choosenStaff=null;
                 //set null field for staff: so if you want to do two consecutive report must reselect the staff
                 nameLabel.setText("Name");

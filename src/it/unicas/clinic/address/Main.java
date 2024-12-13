@@ -199,11 +199,13 @@ public class Main extends Application {
      */
     public void initStaff(){
         try{
-
+            System.out.println("NORMALE");
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
+            //loader.setLocation(Main.class
+            //        .getResource("view/login/StaffMemberInitialLayout.fxml"));
             loader.setLocation(Main.class
-                    .getResource("view/login/StaffMemberInitialLayout.fxml"));
+                            .getResource("view/login/StaffMemberInitialLayout2.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -220,6 +222,7 @@ public class Main extends Application {
             // Give the controller access to the main app.
             StaffMemberInitialLayoutController controller = loader.getController();
             controller.setMainApp(this);
+            controller.setIcon();
 
             //Set and show primary stage
             primaryStage.centerOnScreen();

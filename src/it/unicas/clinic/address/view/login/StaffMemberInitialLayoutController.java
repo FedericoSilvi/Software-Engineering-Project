@@ -1,14 +1,20 @@
 package it.unicas.clinic.address.view.login;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.dao.AppointmentDAO;
+import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,7 +33,11 @@ public class StaffMemberInitialLayoutController {
     private ImageView appointmentBackground;
     @FXML
     private ImageView calendarBackground;
+    @FXML
+    private ImageView todayApp;
 
+
+    private AppointmentDAO appointmentDAO = AppointmentDAOMySQLImpl.getInstance();
     public void setMainApp(Main main) {
         this.main = main;
     }
@@ -55,6 +65,7 @@ public class StaffMemberInitialLayoutController {
             main.setIsManager(null);
             main.setUser_id(0);
         }
+
     }
     //Methods to highlight sections only when mouse passes on them
     @FXML
@@ -103,4 +114,30 @@ public class StaffMemberInitialLayoutController {
     private void handleCalendar() throws SQLException, IOException {
         main.showMonthlyView();
     }
+    @FXML
+    private void notificationArea() throws IOException {
+        main.showDailyView();
+    }
+
+    public void setIcon() {
+        //numero di appuntamenti cancellati oggi
+        int count = 0;
+        //if the staff has some appointmetns for the day than => red circle (busy) otherwise green circle (is free)
+        //take all the appointment for the day (select restituisce gli appuntamenti che non sono stati cancellati
+        List<Appointment> list = appointmentDAO.select(new Appointment(null, null, LocalDate.now(), null, null, main.getUser_id(), null));
+        //se non ci sono appuntamenti oggi=> libero (green)
+        if (list.isEmpty()) {
+            System.out.println("No appointments found");
+            Image image = new Image("file:/C:\\Users\\marco\\Desktop\\Clinic\\src\\resources\\green_circle.png");
+            todayApp.setImage(image);
+            return;
+        }
+        else{
+            System.out.println("No appointments found");
+            Image image = new Image("file:/C:\\Users\\marco\\Desktop\\Clinic\\src\\resources\\red_circle.png");
+            todayApp.setImage(image);
+            return;
+        }
+    }
+
 }
