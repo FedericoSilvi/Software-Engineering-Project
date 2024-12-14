@@ -66,51 +66,7 @@ public class MonthlyViewController {
 
     @FXML
     private void initialize() throws Exception {
-    /*    date = LocalDate.now();
 
-        boolean first = true;
-
-        LocalDate firstDay = LocalDate.of(date.getYear(), date.getMonth(), 1);
-
-        int day = firstDay.getDayOfWeek().getValue();
-
-        int month = firstDay.getMonth().getValue();
-
-
-        for(int i = 1 ; i <= rows ; i++) {
-            for(int j = 0 ; j < cols ; j++) {
-                if(firstDay.getMonth().getValue() != month)
-                {
-                    break;
-                }
-                if(first) {
-                    j = day - 1;
-                    first = false;
-                }
-
-                labelList.add(new Label(firstDay.getDayOfMonth() + ""));
-                labelList.get(counter).setAlignment(Pos.CENTER);
-
-                if(!mainApp.getIsManager()) {
-                    staffId = mainApp.getUser_id();
-                }
-
-                if(AppointmentDAOMySQLImpl.filterByDate(firstDay, clientId, staffId, service)){
-                    labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
-                    LocalDate finalFirstDay = firstDay;
-                    labelList.get(counter).setOnMouseClicked(event -> {
-                        showAppointment(finalFirstDay.getDayOfMonth(), month, finalFirstDay.getYear());
-                    });
-                }
-
-                gridPane.setHalignment(gridPane, HPos.CENTER);
-                gridPane.setValignment(gridPane, VPos.CENTER);
-                gridPane.add(labelList.get(counter), j, i);
-
-                counter ++;
-                firstDay = firstDay.plusDays(1);
-            }
-        }*/
     }
 
     private void init2() throws SQLException {

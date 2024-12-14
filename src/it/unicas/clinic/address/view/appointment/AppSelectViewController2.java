@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Email;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
@@ -164,6 +165,15 @@ public class AppSelectViewController2 {
                     mainApp.getUser_id(), mainApp.getSavedClient()));
             mainApp.getAppointmentData().add(new Appointment(app.getId(),mainApp.getSavedService(), date,time,mainApp.getSavedDuration(),
                     mainApp.getUser_id(), mainApp.getSavedClient()));
+        }
+
+        Appointment a = appDAO.getLastApp();
+        String email = DAOClient.getClient(a.getClientId()).getEmail();
+        Email mailSender = new Email(email);
+        if(mailSender.sendUpdate(a)) {
+            mainApp.infoAlert("Notification",
+                    "Email sent successfully",
+                    "Client has been noticed about appointment update");
         }
 
         mainApp.initAppView();

@@ -38,9 +38,11 @@ public class StaffMemberInitialLayoutController {
 
 
     private AppointmentDAO appointmentDAO = AppointmentDAOMySQLImpl.getInstance();
+    private boolean found;
     public void setMainApp(Main main) {
         this.main = main;
     }
+
 
     @FXML
     private void initialize(){
@@ -116,7 +118,14 @@ public class StaffMemberInitialLayoutController {
     }
     @FXML
     private void notificationArea() throws IOException {
-        main.showDailyView();
+        if(found) {
+            main.showDailyView();
+        }
+        else{
+            main.infoAlert("Attention",
+                    "You have no appointments today",
+                    "");
+        }
     }
 
     public void setIcon() {
@@ -127,15 +136,15 @@ public class StaffMemberInitialLayoutController {
         List<Appointment> list = appointmentDAO.select(new Appointment(null, null, LocalDate.now(), null, null, main.getUser_id(), null));
         //se non ci sono appuntamenti oggi=> libero (green)
         if (list.isEmpty()) {
-            System.out.println("No appointments found");
-            Image image = new Image("file:/C:\\Users\\marco\\Desktop\\Clinic\\src\\resources\\green_circle.png");
+            Image image = new Image("it/unicas/clinic/address/view/login/green_circle.png");
             todayApp.setImage(image);
+            found=false;
             return;
         }
         else{
-            System.out.println("No appointments found");
-            Image image = new Image("file:/C:\\Users\\marco\\Desktop\\Clinic\\src\\resources\\red_circle.png");
+            Image image = new Image("it/unicas/clinic/address/view/login/red_circle.png");
             todayApp.setImage(image);
+            found=true;
             return;
         }
     }

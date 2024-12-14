@@ -1,0 +1,38 @@
+*****************************************************************************************************************
+Filter by: 
+Service: NO
+START PERIOD: NO
+STAFF: NO
+*****************************************************************************************************************
+ID,SERVICE,DATE,TIME,DURATION,STAFF ID,STAFF NAME,STAFF SURNAME,CLIENT ID,CLIENT NAME,CLIENT SURNAME,CANCELLATION
+*****************************************************************************************************************
+39,ciao3,2024-12-25,15:00,00:50,1,Federico,Silvi,1,Gigino,Gigetto,YES
+43,prova,2024-12-25,09:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+44,prova2,2024-12-25,11:00,00:30,1,Federico,Silvi,3,Nino,Frassica,YES
+45,bfgn,2024-12-12,08:30,00:30,1,Federico,Silvi,3,Nino,Frassica,NO
+46,fddfn,2024-12-12,10:30,00:30,1,Federico,Silvi,1,Gigino,Gigetto,NO
+47,boh,2024-12-24,08:30,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+48,boh,2024-12-12,11:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,NO
+49,mlvnv,2024-12-26,09:30,00:30,1,Federico,Silvi,3,Nino,Frassica,YES
+50,passato,2024-12-01,08:00,00:30,1,Federico,Silvi,3,Nino,Frassica,NO
+51,provaMail,2024-12-13,09:00,01:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+52,provamail2,2024-12-25,10:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+53,provaMail2,2024-12-25,08:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+54,provaCanc,2024-12-25,09:30,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+55,provaMail,2024-12-25,10:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+56,mlvnv,2024-12-25,09:30,00:30,1,Federico,Silvi,3,Nino,Frassica,YES
+57,provaCancSched,2024-12-26,09:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+58,mlvnv,2024-12-25,10:00,00:30,1,Federico,Silvi,3,Nino,Frassica,YES
+59,kdgnm,2024-12-26,09:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+60,mlvnv,2024-12-25,10:30,00:30,1,Federico,Silvi,3,Nino,Frassica,YES
+61,provaCancSched,2024-12-25,12:30,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+62,papapap,2024-12-26,10:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+63,papapap,2024-12-25,13:30,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+64,ciao3,2024-12-13,08:00,00:50,1,Federico,Silvi,1,Gigino,Gigetto,YES
+65,PROVA,2024-12-14,09:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,YES
+66,provaDaily,2024-12-13,08:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,NO
+67,provaDaily2,2024-12-13,10:00,00:30,1,Federico,Silvi,1,Gigino,Gigetto,NO
+68,dcg,2024-12-14,10:00,00:30,4,Marco,Caruso,1,Gigino,Gigetto,NO
+*****************************************************************************************************************
+Number of appointments: 27
+Number of cancellation: 20

@@ -67,7 +67,8 @@ public class Email {
     }
     public boolean sendCancellation(Appointment appointment) {
         System.out.println("NOTICE :"+appointment.getNotice());
-        if(appointment.getNotice()==null) {
+        if(appointment.getNotice()==null || !appointment.getNotice()) {
+            System.out.println("SONO DENTRO");
             // Create session with authentication
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override
@@ -129,7 +130,7 @@ public class Email {
 
                 // Send the email
                 Transport.send(message);
-                appointmentDAO.setNotice(appointment);
+                //appointmentDAO.setNotice(appointment);
                 System.out.println("Email sent successfully!");
 
             } catch (MessagingException e) {

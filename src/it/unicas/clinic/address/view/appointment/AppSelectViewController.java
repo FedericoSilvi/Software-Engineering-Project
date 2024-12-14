@@ -2,6 +2,7 @@ package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Email;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;

@@ -99,7 +99,7 @@ public class ReportLayoutController {
             if(!atLeastOneFilter) {
                 //System.out.println("NON HO SELEZIONATO NULLA");
                 mainApp.warningAlert("Report", "No filter added", "You haven't added any filter. The report" +
-                        "will contain all the appointments");
+                        " will contain all the appointments");
             }
             //create the extended appointment
             List<AppointmentReport> list_report = new ArrayList<>();
@@ -149,7 +149,7 @@ public class ReportLayoutController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Report");
                 alert.setHeaderText("Success");
-                alert.setContentText("The report is been generated !");
+                alert.setContentText("The report has been generated !");
                 alert.showAndWait();
                 choosenStaff=null;
                 //set null field for staff: so if you want to do two consecutive report must reselect the staff
