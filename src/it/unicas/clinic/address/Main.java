@@ -9,6 +9,7 @@ import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.client.*;
 import it.unicas.clinic.address.view.credential.EditStaffCredentialController;
+import it.unicas.clinic.address.view.credential.InitCredentialController;
 import it.unicas.clinic.address.view.login.ChangePasswordController;
 import it.unicas.clinic.address.view.login.ChangeUsernameController;
 import it.unicas.clinic.address.view.login.LoginLayoutController;
@@ -206,7 +207,7 @@ public class Main extends Application {
             //loader.setLocation(Main.class
             //        .getResource("view/login/StaffMemberInitialLayout.fxml"));
             loader.setLocation(Main.class
-                            .getResource("view/login/StaffMemberInitialLayout2.fxml"));
+                    .getResource("view/login/StaffMemberInitialLayout2.fxml"));
             staffInitialLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -925,6 +926,23 @@ public class Main extends Application {
     public void showDailyView() throws IOException {
         Stage dailyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/DailyView2.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        DailyView2Controller controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStage(dailyViewWindow);
+
+        dailyViewWindow.initModality(Modality.WINDOW_MODAL);
+        dailyViewWindow.initOwner(primaryStage);
+        dailyViewWindow.setScene(new Scene(anchorPane));
+        setTimer(dailyViewWindow.getScene());
+        dailyViewWindow.show();
+    }
+
+    public void showDailyView2() throws IOException {
+        Stage dailyViewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/appointment/calendarView/DailyView.fxml"));
         AnchorPane anchorPane = loader.load();
 
@@ -958,7 +976,7 @@ public class Main extends Application {
 
     }
 
-    public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+    public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
@@ -985,7 +1003,7 @@ public class Main extends Application {
         filterCalendarWindow.showAndWait();
     }
 
-    public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+    public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
@@ -1011,6 +1029,35 @@ public class Main extends Application {
         setTimer(filterCalendarWindow.getScene());
         filterCalendarWindow.showAndWait();
     }
+
+    public void filterCalendarViewForMember2(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+        Stage filterCalendarWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/FilterByForStaffMember.fxml"));
+        AnchorPane anchorPane = loader.load();
+
+        FilterByForStaffMemberController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setDialogStage(filterCalendarWindow);
+        if(conM != null) {
+            controller.setMvController(conM);
+        } else if(conW != null) {
+            controller.setWvController(conW);
+        } else if(conD != null) {
+            controller.setDvController1(conD);
+        }
+
+
+
+        filterCalendarWindow.initModality(Modality.WINDOW_MODAL);
+        filterCalendarWindow.initOwner(primaryStage);
+        filterCalendarWindow.setScene(new Scene(anchorPane));
+        setTimer(filterCalendarWindow.getScene());
+        filterCalendarWindow.showAndWait();
+    }
+
+
 
     public void showCalendarAppView(){
         try {
@@ -1074,18 +1121,25 @@ public class Main extends Application {
     public void sendClientNotification() throws SQLException {
         AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
         ArrayList<Appointment> apps = appDao.getTomorrowApp();
-        if(apps!=null) {
+        if (apps != null) {
             for (Appointment app : apps) {
                 Client c = DAOClient.select(app.getClientId());
                 String email = c.getEmail();
                 Email mailSender = new Email(email);
-                if (mailSender.sendEmail(app))
-                    infoAlert("Notification",
-                            "Emails sent successfully",
-                            "Clients have been noticed about upcoming appointments");
+                try {
+                    if (mailSender.sendEmail(app)) {
+                        infoAlert("Notification",
+                                "Emails sent successfully",
+                                "Clients have been noticed about upcoming appointments");
+                    }
+                } catch (IOException e) {
+                    mainApp.errorAlert("Error",
+                            "Can not add information to the log",
+                            "");
+                }
             }
-        }
 
+        }
     }
 
     public void sendClientCancellation(Appointment app) throws SQLException {
@@ -1093,12 +1147,17 @@ public class Main extends Application {
         Client c = DAOClient.select(app.getClientId());
         String email = c.getEmail();
         Email mailSender = new Email(email);
-        if(mailSender.sendCancellation(app))
-            infoAlert("Notification",
-                    "Email sent successfully",
-                    "Client has been noticed about deleted appointment");
-
-
+        try {
+            if (mailSender.sendCancellation(app)) {
+                infoAlert("Notification",
+                        "Email sent successfully",
+                        "Client has been noticed about deleted appointment");
+            }
+        }catch(IOException e){
+            mainApp.infoAlert("Error",
+                    "Can not add information to the log",
+                    "");
+        }
     }
 
     public void sendClientReschedule(Appointment app) throws SQLException{
@@ -1106,11 +1165,40 @@ public class Main extends Application {
         Client c = DAOClient.select(app.getClientId());
         String email = c.getEmail();
         Email mailSender = new Email(email);
-        if(mailSender.sendUpdate(app))
-            infoAlert("Notification",
-                    "Email sent successfully",
-                    "Client has been noticed about appointment reschedule");
+        try{
+            if(mailSender.sendUpdate(app)) {
+                infoAlert("Notification",
+                        "Email sent successfully",
+                        "Client has been noticed about appointment reschedule");
+            }
+        }catch(IOException e){
+            mainApp.infoAlert("Error",
+                    "Can not add information to the log",
+                    "");
+        }
+    }
 
+    public void initCredential(Stage owner, StaffAddingLayoutController con ) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/credential/InitCredential.fxml"));
+        AnchorPane anchorPane = loader.load();
+        Stage dialogStage = new Stage();
+
+        InitCredentialController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStaffAddingLayoutController(con);
+
+
+
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(owner);
+
+        controller.setStage(dialogStage);
+
+        Scene scene = new Scene(anchorPane);
+        dialogStage.setScene(scene);
+
+        dialogStage.showAndWait();
 
     }
 
@@ -1120,7 +1208,7 @@ public class Main extends Application {
 
 
 
-        //check for staff or client to delete from the db.
+    //check for staff or client to delete from the db.
 
 
 }

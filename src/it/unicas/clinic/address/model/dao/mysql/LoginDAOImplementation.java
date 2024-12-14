@@ -151,6 +151,21 @@ public class LoginDAOImplementation {
         connection.close();
     }
 
+    public static void insertCredential(String username, String password, int owner, int id) throws SQLException {
+        Connection connection = DAOMySQLSettings.getConnection();
+
+        String sqlInsert = "INSERT INTO credential VALUES(?,?,?,?)";
+        PreparedStatement ps = connection.prepareStatement(sqlInsert);
+        ps.setString(1, username);
+        ps.setString(2, DAOMySQLSettings.hashPassword(password));
+        ps.setInt(3, owner);
+        ps.setInt(4, id);
+
+        ps.executeUpdate();
+
+        connection.close();
+    }
+
     public int getId(){return this.staff_id;}
 
     public static boolean checkPassword(String plainPassword, String hashedPassword) {

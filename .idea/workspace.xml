@@ -4,7 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 try 2" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 bug fix">
+      <change afterPath="$PROJECT_DIR$/EmailLog.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Credential.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/credential/InitCredential.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/credential/InitCredentialController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/left_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/right_arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Email.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/LoginDAOImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/StaffDAOMySQLImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/FilterBy2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/FilterBy2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/ReportLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/ReportLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/AppCalendarViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/AppCalendarViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/FilterByForStaffMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/FilterByForStaffMemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyView2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyView2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/credential/EditStaffCredentialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/credential/EditStaffCredentialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffManagerInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffManagerInitialLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffManagerInitialLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayout2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayout2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/staff/StaffAddingLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/staff/StaffAddingLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/copyright.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/copyright.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,36 +71,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AppointmentDAOMySQLImpl.executor": "Run",
-    "Application.Client.executor": "Run",
-    "Application.DAOClient.executor": "Run",
-    "Application.DAOMySQLSettings.executor": "Run",
-    "Application.DataUtil.executor": "Run",
-    "Application.ScheduleDAOMySQLImpl.executor": "Run",
-    "Application.StaffDAOMySQLImpl.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "merge4v2",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/fedes/Desktop/Progetto/SoftwareEngineeringProject_2024-2025_Group3_Caruso_Napolitano_Silvi",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.24487896",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AppointmentDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DAOClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DAOMySQLSettings.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DataUtil.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ScheduleDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StaffDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;merge4v2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fedes/Desktop/SoftwareEngineeringProject_2024-2025_Group3_Caruso_Napolitano_Silvi&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.24487896&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\schedule" />
@@ -310,14 +343,9 @@
       <workItem from="1734081511793" duration="380000" />
       <workItem from="1734085638273" duration="249000" />
       <workItem from="1734157517732" duration="1603000" />
-    </task>
-    <task id="LOCAL-00061" summary="BOH">
-      <option name="closed" value="true" />
-      <created>1733070020299</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1733070020299</updated>
+      <workItem from="1734167431452" duration="3923000" />
+      <workItem from="1734181153259" duration="599000" />
+      <workItem from="1734183364282" duration="2722000" />
     </task>
     <task id="LOCAL-00062" summary="duration add">
       <option name="closed" value="true" />
@@ -703,7 +731,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734166284054</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="merge 4 try 2">
+      <option name="closed" value="true" />
+      <created>1734167584386</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1734167584386</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +757,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge" />
     <MESSAGE value="merge 3" />
     <MESSAGE value="merge numero due 2" />
     <MESSAGE value="merge 2" />
@@ -746,7 +781,8 @@
     <MESSAGE value="merge 4 try 1" />
     <MESSAGE value="merge 4 v1 bug fix" />
     <MESSAGE value="merge 4 try 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge 4 try 2" />
+    <MESSAGE value="merge 4 bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge 4 bug fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

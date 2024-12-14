@@ -18,28 +18,19 @@ import java.util.ArrayList;
 
 public class WeeklyViewController {
     private Main mainApp;
+
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         init2();
     }
 
     private void  init2() {
-        for(int i = 0; i < 24; i++) {
-            hours.add(LocalTime.of(i, 0));
-            hours.add(LocalTime.of(i, 30));
-        }
-
-        for (int i = 0; i < hours.size(); i++) {
-            Label hourLabel = new Label(hours.get(i).toString());
-            gridPane.add(hourLabel, 0, i + 1); // +1 perché la prima riga sarà per i giorni
-        }
-
         int day = today.getDayOfWeek().getValue();
-        int x = day - 1;
+        x = day - 1;
 
         int counter = 0;
 
-        LocalDate start = today.minusDays(x);
+        start = today.minusDays(x);
 
         if(mainApp.getIsManager()){
             staffId = 0;
@@ -74,32 +65,6 @@ public class WeeklyViewController {
             }
             start = start.plusDays(1);
         }
-
-
-       /* mondayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-        tuesdayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-        wednesdayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-        thursdayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-        fridayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-        saturdayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-        sundayColumn.setCellValueFactory(new PropertyValueFactory<>("service"));
-
-        int day = today.getDayOfWeek().getValue();
-        int x = day - 1;
-
-        LocalDate start = today.minusDays(x);
-        System.out.println(start);
-
-
-
-        ArrayList<Appointment> list = (ArrayList<Appointment>) dao.select(new Appointment(0, null, null, null, null, null, null));
-
-        appointments.clear();
-        appointments.addAll(list);
-
-        appointmentTable.setItems(appointments);
-
-      //  appointmentTable;*/
     }
 
     private Stage stage;
@@ -134,39 +99,40 @@ public class WeeklyViewController {
 
     private ArrayList<LocalTime> hours = new ArrayList<>();
 
+    private LocalDate start;
+
+    private LocalDate end;
+
+    private int x;
+
     @FXML
     private GridPane gridPane = new GridPane();
 
-
-  /*  @FXML
-    private TableView<Appointment> appointmentTable;
-
     @FXML
-    private TableColumn hoursColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> mondayColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> tuesdayColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> wednesdayColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> thursdayColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> fridayColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> saturdayColumn;
-
-    @FXML
-    private TableColumn<Appointment,String> sundayColumn;*/
+    private Label weekLabel;
 
     @FXML
     private void initialize() {
+
+        for(int i = 0; i < 24; i++) {
+            hours.add(LocalTime.of(i, 0));
+            hours.add(LocalTime.of(i, 30));
+        }
+
+        for (int i = 0; i < hours.size(); i++) {
+            Label hourLabel = new Label(hours.get(i).toString());
+            gridPane.add(hourLabel, 0, i);
+        }
+
+
+        int day = today.getDayOfWeek().getValue();
+        x = day - 1;
+
+        start = today.minusDays(x);
+        end = start.plusDays(6);
+
+        weekLabel.setText(start + " --- " + end);
+
     }
 
     public void filter() {
@@ -181,9 +147,8 @@ public class WeeklyViewController {
         labelList.removeAll(labelList);
 
         int day = today.getDayOfWeek().getValue();
-        int x = day - 1;
 
-        LocalDate start = today.minusDays(x);
+        start = today.minusDays(x);
 
         for(int row = 1; row <= 7; row ++) {
             for(int i = 0; i < hours.size(); i++) {
@@ -221,7 +186,7 @@ public class WeeklyViewController {
         // Aggiungere un pulsante per filtrare gli appointment tramite data
         // e aprire la finestra da qui, chiamando la funzione subito dopo
         AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
-        mainApp.showCalendarAppView();
+        mainApp.initAppView();
         mainApp.getAppointmentData().clear();
 
         String day2 = "";
@@ -253,7 +218,47 @@ public class WeeklyViewController {
 
     @FXML
     private void handleFilter() throws IOException {
-        mainApp.filterCalendarViewForManager(null, this, null);
+        if(mainApp.getIsManager()) {
+            mainApp.filterCalendarViewForManager(null, this, null);
+        } else {
+            mainApp.filterCalendarViewForMember(null, this, null);
+        }
+    }
+
+    @FXML
+    private void handleRightArrow() throws IOException {
+        today = today.plusDays(7);
+
+        for(int i = 0 ; i < labelList.size() ; i ++) {
+            labelList.get(i).setText("");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setOnMouseClicked(null);
+        }
+
+        labelList.removeAll(labelList);
+        start = today.minusDays(x);
+        end = start.plusDays(6);
+
+        weekLabel.setText(start + " --- " + end);
+        init2();
+    }
+
+    @FXML
+    private void handleLeftArrow() throws IOException {
+        today = today.minusDays(7);
+
+        for(int i = 0 ; i < labelList.size() ; i ++) {
+            labelList.get(i).setText("");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setOnMouseClicked(null);
+        }
+
+        labelList.removeAll(labelList);
+        start = today.minusDays(x);
+        end = start.plusDays(6);
+
+        weekLabel.setText(start + " --- " + end);
+        init2();
     }
 
 

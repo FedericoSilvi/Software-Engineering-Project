@@ -26,7 +26,7 @@ public class DAOMySQLSettings {
     //Default SQL settings fields
     private String host = "localhost";
     private String userName = "staff_manager";
-    private String pwd = "PasswordBella123";
+    private String pwd = "PasswordBella123!";
     private String schema = "clinic";
 
     /**

@@ -119,7 +119,7 @@ public class StaffMemberInitialLayoutController {
     @FXML
     private void notificationArea() throws IOException {
         if(found) {
-            main.showDailyView();
+            main.showDailyView2();
         }
         else{
             main.infoAlert("Attention",

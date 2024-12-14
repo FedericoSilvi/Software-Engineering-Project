@@ -6,7 +6,13 @@ import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -28,7 +34,7 @@ public class Email {
         properties.put("mail.smtp.port", "587");
     }
 
-    public boolean sendEmail(Appointment appointment) {
+    public boolean sendEmail(Appointment appointment) throws SQLException, IOException {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
             // Create session with authentication
@@ -60,12 +66,14 @@ public class Email {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            writeLog(0,appointment);
             return true;
         }
         else
             return false;
+
     }
-    public boolean sendCancellation(Appointment appointment) {
+    public boolean sendCancellation(Appointment appointment) throws SQLException, IOException {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null || !appointment.getNotice()) {
             System.out.println("SONO DENTRO");
@@ -99,13 +107,14 @@ public class Email {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            writeLog(1,appointment);
             return true;
         }
         else
             return false;
     }
 
-    public boolean sendUpdate(Appointment appointment) {
+    public boolean sendUpdate(Appointment appointment) throws SQLException, IOException {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
             // Create session with authentication
@@ -138,10 +147,38 @@ public class Email {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            writeLog(2,appointment);
             return true;
         }
         else
             return false;
+    }
+    private void writeLog(int choice, Appointment app) throws IOException, SQLException {
+
+        FileWriter fileWriter = new FileWriter("EmailLog.txt", true); // true per abilitare l'append
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        Client c = DAOClient.select(app.getClientId());
+        if(choice==0){
+            printWriter.println("Reminder email has been sent to " + c.getName()+ " "+ c.getSurname()+
+                    " on date: "+ LocalDate.now()+", at time:"+
+                    LocalTime.now()+
+                    ", regarding appointment with id: "+app.getId());
+        }
+        else if(choice==1){
+            System.out.println("DENTRO CANCELLATION");
+            printWriter.println("Cancellation email has been sent to " + c.getName()+ " "+ c.getSurname()+
+                    " on date: "+ LocalDate.now()+", at time:"+
+            LocalTime.now()+
+                    ", regarding appointment with id: "+app.getId());
+        }
+        else if(choice==2){
+            printWriter.println("Update email has been sent to " + c.getName()+ " "+ c.getSurname()+
+                    " on date: "+ LocalDate.now()+", at time:"+
+                    LocalTime.now()+
+                    ", regarding appointment with id: "+app.getId());
+        }
+        printWriter.close();
     }
 
 

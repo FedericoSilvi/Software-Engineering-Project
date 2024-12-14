@@ -1,6 +1,9 @@
 package it.unicas.clinic.address.view.login;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.Staff;
+import it.unicas.clinic.address.model.dao.StaffDAO;
+import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -21,6 +24,12 @@ import java.util.Optional;
 public class StaffManagerInitialLayoutController {
 
     private Main main;
+
+    boolean clickStaff = false;
+
+    private Staff chosenStaff = null;
+
+    private static StaffDAO daoStaff = StaffDAOMySQLImpl.getInstance();
 
     @FXML
     private ImageView clientBackground;
@@ -116,4 +125,19 @@ public class StaffManagerInitialLayoutController {
     private void handleCalendar() throws SQLException, IOException {
         main.showMonthlyView();
     }
+    @FXML
+    private void handleEditStaffCredential() throws IOException, SQLException {
+        clickStaff=true;
+
+        int staffId;
+
+        main.showAppStaff();
+        if (main.getSavedStaff() != 0) {
+            chosenStaff = daoStaff.select(main.getSavedStaff());
+        }
+
+
+        main.EditStaffCredential(chosenStaff.getId());
+    }
+
 }

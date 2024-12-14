@@ -63,10 +63,16 @@ public class FilterByForStaffMemberController {
         this.wvController = wvController;
     }
 
-    DailyViewController dvController;
+    DailyView2Controller dvController;
 
-    public void setDvController(DailyViewController dvController) {
+    public void setDvController(DailyView2Controller dvController) {
         this.dvController = dvController;
+    }
+
+    DailyViewController dvController1;
+
+    public void setDvController1(DailyViewController dvController1) {
+        this.dvController1 = dvController1;
     }
 
 
@@ -136,6 +142,20 @@ public class FilterByForStaffMemberController {
             }
 
             dvController.filter();
+        } else if(dvController1 != null){
+            if(choosenClient != null) {
+                dvController1.setClientId(choosenClient.get(0).getId());
+            }
+
+            if(choosenStaff != null) {
+                dvController1.setStaffId(choosenStaff.getId());
+            }
+
+            if(service != null || service != "") {
+                dvController1.setService(service);
+            }
+
+            dvController1.filter();
         }
 
 

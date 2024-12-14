@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class DailyViewController {
+public class DailyView2Controller {
     private Main mainApp;
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
@@ -24,17 +24,6 @@ public class DailyViewController {
 
     private void init2() {
         dayLabel.setText(today.toString());
-
-        for(int i = 0; i < 24; i++) {
-            hours.add(LocalTime.of(i, 0));
-            hours.add(LocalTime.of(i, 30));
-        }
-
-
-        for (int i = 0; i < hours.size(); i++) {
-            javafx.scene.control.Label hourLabel = new javafx.scene.control.Label(hours.get(i).toString());
-            gridPane.add(hourLabel, 0, i + 1);
-        }
 
         int counter = 0;
 
@@ -110,8 +99,6 @@ public class DailyViewController {
 
     @FXML
     private void initialize() {
-  /*      dayLabel.setText(today.toString());
-
         for(int i = 0; i < 24; i++) {
             hours.add(LocalTime.of(i, 0));
             hours.add(LocalTime.of(i, 30));
@@ -120,35 +107,9 @@ public class DailyViewController {
 
         for (int i = 0; i < hours.size(); i++) {
             javafx.scene.control.Label hourLabel = new javafx.scene.control.Label(hours.get(i).toString());
-            gridPane.add(hourLabel, 0, i + 1);
+            gridPane.add(hourLabel, 0, i);
         }
 
-        int counter = 0;
-
-        for(int i = 0; i < hours.size(); i++) {
-            ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, null, today, hours.get(i), null, null, null));
-            if(list2.size() > 0) {
-                for(int k = 0; k < list2.size(); k++) {
-                    LocalTime duration = list2.get(k).getDuration();
-                    int n = (duration.getHour() * 60 + duration.getMinute())/30;
-
-                    for(int j = 1; j <= n; j++) {
-                        Label label = new Label(list2.get(k).getService());
-                        labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
-
-                        int tempIndex = i;
-                        labelList.get(counter).setOnMouseClicked(event -> {
-                            showAppointment(today.getDayOfMonth(), today.getMonthValue(), today.getYear(), hours.get(tempIndex));
-                        });
-                        gridPane.add(label, 1, i + j);
-
-                        counter ++;
-                    }
-                }
-
-            }
-        }*/
     }
 
     public void filter() {
@@ -229,8 +190,44 @@ public class DailyViewController {
 
     @FXML
     private void handleFilter() throws IOException {
-        //mainApp.filterCalendarViewForManager(null, null, this);
-        mainApp.filterCalendarViewForMember2(null, null, this);
+        if(mainApp.getIsManager()) {
+            mainApp.filterCalendarViewForManager(null, null, this);
+        } else {
+            mainApp.filterCalendarViewForMember(null, null, this);
+        }
+    }
+
+    @FXML
+    private void handleRightArrow() {
+        today = today.plusDays(1);
+
+        for(int i = 0 ; i < labelList.size(); i++) {
+            labelList.get(i).setText("");
+            labelList.get(i).setStyle("-fx-background-color: transparent;");
+            labelList.get(i).setOnMouseClicked(null);
+        }
+
+        labelList.removeAll(labelList);
+
+        dayLabel.setText(today.getDayOfMonth() + "");
+        init2();
+    }
+
+    @FXML
+    private void handleLeftArrow() {
+        today = today.minusDays(1);
+
+        for(int i = 0 ; i < labelList.size(); i++) {
+            labelList.get(i).setText("");
+            labelList.get(i).setStyle("-fx-background-color: transparent;");
+            labelList.get(i).setOnMouseClicked(null);
+        }
+
+        labelList.removeAll(labelList);
+
+        dayLabel.setText(today.getDayOfMonth() + "");
+        init2();
+
     }
 
     @FXML
