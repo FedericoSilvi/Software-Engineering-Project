@@ -5,6 +5,7 @@ import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
@@ -43,7 +44,7 @@ public class DailyView2Controller {
                     for(int j = 1; j <= n; j++) {
                         Label label = new Label(list2.get(k).getService());
                         labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
 
                         int tempIndex = i;
                         labelList.get(counter).setOnMouseClicked(event -> {
@@ -133,7 +134,7 @@ public class DailyView2Controller {
                     for(int j = 1; j <= n; j++) {
                         Label label = new Label(list2.get(k).getService());
                         labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
 
                         int tempIndex = i;
                         labelList.get(counter).setOnMouseClicked(event -> {

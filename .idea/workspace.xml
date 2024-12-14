@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 bug fix">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 bug fix 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/FilterBy2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/FilterBy2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/AppCalendarView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/AppCalendarView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/FilterByForStaffMember.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/FilterByForStaffMember.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/RootViewLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/RootViewLayoutController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyView2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyView3.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -318,15 +329,7 @@
       <workItem from="1734157517732" duration="1603000" />
       <workItem from="1734167431452" duration="3923000" />
       <workItem from="1734181153259" duration="599000" />
-      <workItem from="1734183364282" duration="5270000" />
-    </task>
-    <task id="LOCAL-00063" summary="home button">
-      <option name="closed" value="true" />
-      <created>1733070121564</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1733070121564</updated>
+      <workItem from="1734183364282" duration="8778000" />
     </task>
     <task id="LOCAL-00064" summary="duration add">
       <option name="closed" value="true" />
@@ -712,7 +715,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734186094520</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="merge 4 bug fix 2">
+      <option name="closed" value="true" />
+      <created>1734189905692</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1734189905692</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -730,7 +741,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge 3" />
     <MESSAGE value="merge numero due 2" />
     <MESSAGE value="merge 2" />
     <MESSAGE value="Function to find corresponding appointments given a schedule" />
@@ -755,7 +765,8 @@
     <MESSAGE value="merge 4 v1 bug fix" />
     <MESSAGE value="merge 4 try 2" />
     <MESSAGE value="merge 4 bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge 4 bug fix" />
+    <MESSAGE value="merge 4 bug fix 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge 4 bug fix 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

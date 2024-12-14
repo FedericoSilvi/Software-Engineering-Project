@@ -135,7 +135,7 @@ public class MonthlyViewController {
                 }
 
                 if(!AppointmentDAOMySQLImpl.getInstance().select(new Appointment(0, service, firstDay, null, null, staffId,clientId)).isEmpty()){
-                    labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                    labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
                     LocalDate finalFirstDay = firstDay;
                     labelList.get(counter).setOnMouseClicked(event -> {
                         showAppointment(finalFirstDay.getDayOfMonth(), month, finalFirstDay.getYear());
@@ -154,56 +154,14 @@ public class MonthlyViewController {
     public void filter() throws SQLException {
         for(int i  = 0 ; i < counter ; i ++) {
             labelList.get(i).setText("");
-            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
             labelList.get(i).setOnMouseClicked(null);
         }
 
         init2();
+        gridPane.setGridLinesVisible(true);
 
 
-
-//        labelList.remove(labelList);
-
- /*       LocalDate firstDay = LocalDate.of(year, month, 1);
-
-        boolean first = true;
-
-        int day = firstDay.getDayOfWeek().getValue();
-
-
-        counter = 0;
-
-        for(int i = 1 ; i <= rows ; i++) {
-            for(int j = 0 ; j < cols ; j++) {
-                if(firstDay.getMonth().getValue() != month)
-                {
-                    break;
-                }
-                if(first) {
-                    j = day - 1;
-                    first = false;
-                }
-
-                List<Appointment> list =  dao.select(new Appointment(null,service, firstDay, null, null, staffId, clientId));
-                System.out.println(clientId);
-                System.out.println(list);
-                // if(AppointmentDAOMySQLImpl.filterByDate(firstDay, clientId, staffId, service))
-                if(list.size() >= 1){
-                    labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
-                    LocalDate finalFirstDay = firstDay;
-                    labelList.get(counter).setOnMouseClicked(event -> {
-                        System.out.println("ENTRATO");
-                        showAppointment(finalFirstDay.getDayOfMonth(), month, finalFirstDay.getYear());
-                    });
-                }
-
-                gridPane.setHalignment(gridPane, HPos.CENTER);
-                gridPane.setValignment(gridPane, VPos.CENTER);
-
-                counter ++;
-                firstDay = firstDay.plusDays(1);
-            }
-        }*/
     }
 
     private void showAppointment(int day, int month, int year) {
@@ -258,24 +216,19 @@ public class MonthlyViewController {
         }
 
         for(int i = 0; i < labelList.size(); i++) {
-        //    labelList.get(i).setText("");
+            //labelList.get(i).setText("");
             labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
             labelList.get(i).setOnMouseClicked(null);
         }
 
         gridPane.getChildren().clear();
 
-   /*     gridPane.add(new Label("Monday"), 0, 0);
-        gridPane.add(new Label("Tuesday"), 1, 0);
-        gridPane.add(new Label("Wednesday"), 2, 0);
-        gridPane.add(new Label("Thursday"), 3, 0);
-        gridPane.add(new Label("Friday"), 4, 0);
-        gridPane.add(new Label("Saturday"), 5, 0);
-        gridPane.add(new Label("Sunday"), 6, 0);*/
 
         dateLabel.setText(Month.of(month) + " " + year);
 
         init2();
+        gridPane.setGridLinesVisible(true);
+
     }
 
     @FXML
@@ -295,27 +248,12 @@ public class MonthlyViewController {
 
         gridPane.getChildren().clear();
 
-    /*    for(int i = 0; i < 7; i++) {
-            int x = i + 1;
-            LocalDate day = LocalDate.of(year, month, x);
-            gridPane.add(new Label(day.getDayOfWeek(), 0, i);
-        }*/
-
-      /*  Label label = new Label("Monday");
-        label.setAlignment(Pos.CENTER);
-        gridPane.add( label, 0, 0);
-        gridPane.add(new Label("Tuesday"), 1, 0);
-        gridPane.add(new Label("Wednesday"), 2, 0);
-        gridPane.add(new Label("Thursday"), 3, 0);
-        gridPane.add(new Label("Friday"), 4, 0);
-        gridPane.add(new Label("Saturday"), 5, 0);
-        gridPane.add(new Label("Sunday"), 6, 0);*/
-
-     //   labelList.remove(labelList);
 
         dateLabel.setText(Month.of(month) + " " + year);
 
         init2();
+        gridPane.setGridLinesVisible(true);
+
     }
 
     @FXML

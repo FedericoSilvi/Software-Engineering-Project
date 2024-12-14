@@ -908,7 +908,7 @@ public class Main extends Application {
         Stage weeklyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(Main.class.getResource("view/appointment/calendarView/WeeklyView2.fxml"));
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/WeeklyView.fxml"));
         AnchorPane anchorPane = loader.load();
 
         WeeklyViewController controller = loader.getController();

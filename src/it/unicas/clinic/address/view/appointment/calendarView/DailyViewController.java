@@ -5,6 +5,7 @@ import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
@@ -54,7 +55,7 @@ public class DailyViewController {
                     for(int j = 1; j <= n; j++) {
                         Label label = new Label(list2.get(k).getService());
                         labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
 
                         int tempIndex = i;
                         labelList.get(counter).setOnMouseClicked(event -> {
@@ -105,50 +106,12 @@ public class DailyViewController {
     @FXML
     private GridPane gridPane;
 
+
     @FXML
     private Label dayLabel;
 
     @FXML
     private void initialize() {
-  /*      dayLabel.setText(today.toString());
-
-        for(int i = 0; i < 24; i++) {
-            hours.add(LocalTime.of(i, 0));
-            hours.add(LocalTime.of(i, 30));
-        }
-
-
-        for (int i = 0; i < hours.size(); i++) {
-            javafx.scene.control.Label hourLabel = new javafx.scene.control.Label(hours.get(i).toString());
-            gridPane.add(hourLabel, 0, i + 1);
-        }
-
-        int counter = 0;
-
-        for(int i = 0; i < hours.size(); i++) {
-            ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, null, today, hours.get(i), null, null, null));
-            if(list2.size() > 0) {
-                for(int k = 0; k < list2.size(); k++) {
-                    LocalTime duration = list2.get(k).getDuration();
-                    int n = (duration.getHour() * 60 + duration.getMinute())/30;
-
-                    for(int j = 1; j <= n; j++) {
-                        Label label = new Label(list2.get(k).getService());
-                        labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
-
-                        int tempIndex = i;
-                        labelList.get(counter).setOnMouseClicked(event -> {
-                            showAppointment(today.getDayOfMonth(), today.getMonthValue(), today.getYear(), hours.get(tempIndex));
-                        });
-                        gridPane.add(label, 1, i + j);
-
-                        counter ++;
-                    }
-                }
-
-            }
-        }*/
     }
 
     public void filter() {
@@ -172,7 +135,7 @@ public class DailyViewController {
                     for(int j = 1; j <= n; j++) {
                         Label label = new Label(list2.get(k).getService());
                         labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
 
                         int tempIndex = i;
                         labelList.get(counter).setOnMouseClicked(event -> {

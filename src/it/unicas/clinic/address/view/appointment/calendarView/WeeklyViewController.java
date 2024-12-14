@@ -46,7 +46,7 @@ public class WeeklyViewController {
 
                         for(int j = 1; j <= n; j++) {
                             Label label = new Label(list2.get(k).getService());
-                            label.setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                            label.setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
                             labelList.add(label);
 
                             LocalDate tempDate = start;
@@ -158,7 +158,7 @@ public class WeeklyViewController {
 
                         for(int j = 1; j <= n; j++) {
                             Label label = new Label(list2.get(k).getService());
-                            label.setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+                            label.setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
                             labelList.add(label);
 
                             LocalDate tempDate = start;
@@ -228,7 +228,7 @@ public class WeeklyViewController {
 
         for(int i = 0 ; i < labelList.size() ; i ++) {
             labelList.get(i).setText("");
-            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
             labelList.get(i).setOnMouseClicked(null);
         }
 
@@ -246,7 +246,7 @@ public class WeeklyViewController {
 
         for(int i = 0 ; i < labelList.size() ; i ++) {
             labelList.get(i).setText("");
-            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
             labelList.get(i).setOnMouseClicked(null);
         }
 
