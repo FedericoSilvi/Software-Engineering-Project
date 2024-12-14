@@ -120,10 +120,14 @@ public class FilterBy2Controller {
                 System.out.println("ENTRATO NELL'IF DI CLIENT");
                 mvController.setClientId(choosenClient.get(0).getId());
             }
+            else
+                mvController.setClientId(0);
 
             if(choosenStaff != null) {
                 mvController.setStaffId(choosenStaff.getId());
             }
+            else
+                mvController.setStaffId(0);
 
             if(service != null || service != "") {
                 mvController.setService(service);
@@ -134,10 +138,14 @@ public class FilterBy2Controller {
             if(choosenClient != null) {
                 wvController.setClientId(choosenClient.get(0).getId());
             }
+            else
+                wvController.setClientId(0);
 
             if(choosenStaff != null) {
                 wvController.setStaffId(choosenStaff.getId());
             }
+            else
+                wvController.setStaffId(0);
 
             if(service != null || service != "") {
                 wvController.setService(service);
@@ -148,10 +156,14 @@ public class FilterBy2Controller {
             if(choosenClient != null) {
                 dvController.setClientId(choosenClient.get(0).getId());
             }
+            else
+                dvController.setClientId(0);
 
             if(choosenStaff != null) {
                 dvController.setStaffId(choosenStaff.getId());
             }
+            else
+                dvController.setStaffId(0);
 
             if(service != null || service != "") {
                 dvController.setService(service);

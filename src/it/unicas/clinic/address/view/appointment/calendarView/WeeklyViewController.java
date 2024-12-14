@@ -32,15 +32,13 @@ public class WeeklyViewController {
 
         start = today.minusDays(x);
 
-        if(mainApp.getIsManager()){
-            staffId = 0;
-        } else {
+        if(!mainApp.getIsManager()){
             staffId = mainApp.getUser_id();
         }
 
         for(int row = 1; row <= 7; row ++) {
             for(int i = 0; i < hours.size(); i++) {
-                ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, null, start, hours.get(i), null, staffId, null));
+                ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, service, start, hours.get(i), null, staffId, clientId));
                 if(list2.size() > 0) {
                     for(int k = 0; k < list2.size(); k++) {
                         LocalTime duration = list2.get(k).getDuration();
@@ -176,9 +174,9 @@ public class WeeklyViewController {
             }
             start = start.plusDays(1);
         }
-        clientId = 0;
+        /*clientId = 0;
         staffId = 0;
-        service = null;
+        service = null;*/
 
     }
 
@@ -186,7 +184,6 @@ public class WeeklyViewController {
         // Aggiungere un pulsante per filtrare gli appointment tramite data
         // e aprire la finestra da qui, chiamando la funzione subito dopo
         AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
-        mainApp.initAppView();
         mainApp.getAppointmentData().clear();
 
         String day2 = "";
@@ -199,8 +196,8 @@ public class WeeklyViewController {
             ymd = year + "-" + month + "-" + day;
 
         }
-
-        mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,null, LocalDate.parse(ymd), hour,null, null, 0)));
+        mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,service, LocalDate.parse(ymd), hour,null, staffId, clientId)));
+        mainApp.showCalendarAppView();
 
     }
 
