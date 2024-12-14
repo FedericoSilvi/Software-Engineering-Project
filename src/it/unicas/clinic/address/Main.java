@@ -1,14 +1,12 @@
 package it.unicas.clinic.address;
 
 import it.unicas.clinic.address.model.*;
-import it.unicas.clinic.address.model.dao.AppointmentDAO;
-import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.utils.DataUtil;
 import it.unicas.clinic.address.utils.DataUtil.AppInfo;
 import it.unicas.clinic.address.view.appointment.*;
 import it.unicas.clinic.address.view.client.*;
 import it.unicas.clinic.address.view.credential.EditStaffCredentialController;
+import it.unicas.clinic.address.view.credential.InitCredentialController;
 import it.unicas.clinic.address.view.login.ChangePasswordController;
 import it.unicas.clinic.address.view.login.ChangeUsernameController;
 import it.unicas.clinic.address.view.login.LoginLayoutController;
@@ -21,9 +19,7 @@ import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
 import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
 import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
 import it.unicas.clinic.address.view.staff.StaffUpdateLayoutController;
-import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -32,16 +28,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import it.unicas.clinic.address.view.appointment.calendarView.*;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -938,10 +930,10 @@ public class Main extends Application {
     public void showDailyView() throws IOException {
         Stage dailyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/appointment/calendarView/DailyView.fxml"));
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/DailyView2.fxml"));
         AnchorPane anchorPane = loader.load();
 
-        DailyViewController controller = loader.getController();
+        DailyView2Controller controller = loader.getController();
         controller.setMainApp(this);
         controller.setStage(dailyViewWindow);
 
@@ -970,7 +962,7 @@ public class Main extends Application {
 
     }
 
-    public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+    public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
@@ -996,7 +988,7 @@ public class Main extends Application {
         filterCalendarWindow.showAndWait();
     }
 
-    public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
+    public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
@@ -1048,6 +1040,30 @@ public class Main extends Application {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void initCredential(Stage owner, StaffAddingLayoutController con ) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/credential/InitCredential.fxml"));
+        AnchorPane anchorPane = loader.load();
+        Stage dialogStage = new Stage();
+
+        InitCredentialController controller = loader.getController();
+        controller.setMainApp(this);
+        controller.setStaffAddingLayoutController(con);
+
+
+
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(owner);
+
+        controller.setStage(dialogStage);
+
+        Scene scene = new Scene(anchorPane);
+        dialogStage.setScene(scene);
+
+        dialogStage.showAndWait();
+
     }
 
     public static void main(String[] args) {

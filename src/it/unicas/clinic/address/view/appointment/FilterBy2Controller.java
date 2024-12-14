@@ -8,7 +8,7 @@ import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
-import it.unicas.clinic.address.view.appointment.calendarView.DailyViewController;
+import it.unicas.clinic.address.view.appointment.calendarView.DailyView2Controller;
 import it.unicas.clinic.address.view.appointment.calendarView.MonthlyViewController;
 import it.unicas.clinic.address.view.appointment.calendarView.WeeklyViewController;
 import javafx.fxml.FXML;
@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FilterBy2Controller {
@@ -68,9 +67,9 @@ public class FilterBy2Controller {
         this.wvController = wvController;
     }
 
-    DailyViewController dvController;
+    DailyView2Controller dvController;
 
-    public void setDvController(DailyViewController dvController) {
+    public void setDvController(DailyView2Controller dvController) {
         this.dvController = dvController;
     }
 

@@ -33,6 +33,11 @@
                 <MenuItem mnemonicParsing="false" onAction="#handleReport" text="Report" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleEditStaffCredential" text="Edit Staff Credential" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/AppointmentDAOMySQLImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/AppointmentDAOMySQLImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/FilterBy2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/FilterBy2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/dao/mysql/DAOMySQLSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientHistoryViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientHistoryViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +29,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "MelloTop"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/FedericoSilvi/SoftwareEngineeringProject_2024-2025_Group3_Caruso_Napolitano_Silvi.git",
+    "accountId": "033f3bc5-ddcb-4845-b313-9626b0a55016"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -46,36 +55,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AppointmentDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DAOClient.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DAOMySQLSettings.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DataUtil.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ScheduleDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.StaffDAOMySQLImpl.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;merge3v2&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fedes/Desktop/javafx-sdk-23.0.1/lib/javafx.web.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.24487896&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AppointmentDAOMySQLImpl.executor": "Run",
+    "Application.Client.executor": "Run",
+    "Application.DAOClient.executor": "Run",
+    "Application.DAOMySQLSettings.executor": "Run",
+    "Application.DataUtil.executor": "Run",
+    "Application.ScheduleDAOMySQLImpl.executor": "Run",
+    "Application.StaffDAOMySQLImpl.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "merge3v2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/giaco/OneDrive/Desktop/University 2.0/Software Engineering/merge3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/fedes/Desktop/University/Magistrale/Primo Anno/Software Engineering/Progetto/Clinic/src/it/unicas/clinic/address/view/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.24487896",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fedes\Desktop\University\Magistrale\Primo Anno\Software Engineering\Progetto\Clinic\src\it\unicas\clinic\address\view\schedule" />
@@ -309,6 +318,7 @@
       <workItem from="1733930782097" duration="221000" />
       <workItem from="1733931035276" duration="464000" />
       <workItem from="1733931508302" duration="5883000" />
+      <workItem from="1734084109750" duration="260000" />
     </task>
     <task id="LOCAL-00055" summary="update bug fix">
       <option name="closed" value="true" />

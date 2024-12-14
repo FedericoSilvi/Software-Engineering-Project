@@ -1,6 +1,7 @@
 package it.unicas.clinic.address.view.credential;
 
 import it.unicas.clinic.address.Main;
+import it.unicas.clinic.address.model.dao.mysql.DAOMySQLSettings;
 import it.unicas.clinic.address.model.dao.mysql.LoginDAOImplementation;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -115,7 +116,7 @@ public class EditStaffCredentialController {
             confirmPassword = confirmNewPasswordVisible.getText();
         }
 
-        if(managerPassword.equals(LoginDAOImplementation.getPassword(staffManager_id))){
+        if(LoginDAOImplementation.checkPassword(managerPassword, LoginDAOImplementation.getPassword(staffManager_id))){
             if(newPassword.equals(confirmPassword)){
                 LoginDAOImplementation.changeUsername(staff_id, newUsername);
                 LoginDAOImplementation.changePassword(staff_id, newPassword);
@@ -136,6 +137,9 @@ public class EditStaffCredentialController {
             alert.setTitle("Incorrect Password");
             alert.setHeaderText("Wrong Password!");
             alert.setContentText(" Try again!");
+
+            System.out.println("Password Inserita: " + managerPassword);
+            System.out.println("Password vera: " + LoginDAOImplementation.getPassword(staffManager_id));
 
             alert.showAndWait();
         }

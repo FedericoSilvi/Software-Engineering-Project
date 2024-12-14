@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class DAOMySQLSettings {
     public final static String DRIVERNAME = "com.mysql.cj.jdbc.Driver";
     public final static String HOST = "localhost";
-    public final static String USERNAME = "staff_manager";
-    public final static String PWD = "PasswordBella123";
+    public final static String USERNAME = "staff";
+    public final static String PWD = "staffPassword!";
     public final static String SCHEMA = "clinic";
     public final static String PARAMETERS = "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
@@ -25,8 +25,8 @@ public class DAOMySQLSettings {
 
     //Default SQL settings fields
     private String host = "localhost";
-    private String userName = "staff_manager";
-    private String pwd = "PasswordBella123";
+    private String userName = "staff";
+    private String pwd = "staffPassword!";
     private String schema = "clinic";
 
     /**

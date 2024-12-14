@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,68 +62,38 @@ public class MonthlyViewController {
     int rows = 6;
     int cols = 7;
 
+    private int month;
+
+    private int year;
+
     @FXML
     private GridPane gridPane;
 
     @FXML
+    private Label dateLabel;
+
+    @FXML
     private void initialize() throws Exception {
-    /*    date = LocalDate.now();
+        date = LocalDate.now();
 
-        boolean first = true;
+        month = date.getMonth().getValue();
 
-        LocalDate firstDay = LocalDate.of(date.getYear(), date.getMonth(), 1);
+        year = date.getYear();
 
-        int day = firstDay.getDayOfWeek().getValue();
+        dateLabel.setText(Month.of(month) + " " + year);
 
-        int month = firstDay.getMonth().getValue();
+  //      LocalDate firstDay = LocalDate.of(year, month, 1);
 
-
-        for(int i = 1 ; i <= rows ; i++) {
-            for(int j = 0 ; j < cols ; j++) {
-                if(firstDay.getMonth().getValue() != month)
-                {
-                    break;
-                }
-                if(first) {
-                    j = day - 1;
-                    first = false;
-                }
-
-                labelList.add(new Label(firstDay.getDayOfMonth() + ""));
-                labelList.get(counter).setAlignment(Pos.CENTER);
-
-                if(!mainApp.getIsManager()) {
-                    staffId = mainApp.getUser_id();
-                }
-
-                if(AppointmentDAOMySQLImpl.filterByDate(firstDay, clientId, staffId, service)){
-                    labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
-                    LocalDate finalFirstDay = firstDay;
-                    labelList.get(counter).setOnMouseClicked(event -> {
-                        showAppointment(finalFirstDay.getDayOfMonth(), month, finalFirstDay.getYear());
-                    });
-                }
-
-                gridPane.setHalignment(gridPane, HPos.CENTER);
-                gridPane.setValignment(gridPane, VPos.CENTER);
-                gridPane.add(labelList.get(counter), j, i);
-
-                counter ++;
-                firstDay = firstDay.plusDays(1);
-            }
-        }*/
     }
 
     private void init2() throws SQLException {
-        date = LocalDate.now();
+
 
         boolean first = true;
 
-        LocalDate firstDay = LocalDate.of(date.getYear(), date.getMonth(), 1);
+        LocalDate firstDay = LocalDate.of(year, month, 1);
 
         int day = firstDay.getDayOfWeek().getValue();
-
-        int month = firstDay.getMonth().getValue();
 
 
         for(int i = 1 ; i <= rows ; i++) {
@@ -165,13 +136,11 @@ public class MonthlyViewController {
             labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
             labelList.get(i).setOnMouseClicked(null);
         }
-        LocalDate firstDay = LocalDate.of(date.getYear(), date.getMonth(), 1);
+        LocalDate firstDay = LocalDate.of(year, month, 1);
 
         boolean first = true;
 
         int day = firstDay.getDayOfWeek().getValue();
-
-        int month = firstDay.getMonth().getValue();
 
 
         counter = 0;
@@ -217,15 +186,22 @@ public class MonthlyViewController {
         mainApp.getAppointmentData().clear();
 
        String day2 = "";
-       String ymd = "";
-       if (day < 10) {
-           String temp = "" + day;
-           day2 = "0" + day;
-           ymd = year + "-" + month + "-" + day2;
-       } else {
-           ymd = year + "-" + month + "-" + day;
+       String month2 = "";
 
+       if (day < 10 || month < 10) {
+           if(day < 10) {
+               day2 = "0" + day;
+           } else {
+               day2 = String.valueOf(day);
+           }
+           if(month < 10) {
+               month2 = "0" + month;
+           } else {
+               month2 = String.valueOf(month);
+           }
        }
+       String ymd = year + "-" + month2 + "-" + day2;
+
 
        if (mainApp.getIsManager()) {
            mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,service, LocalDate.parse(ymd), null, null, staffId, clientId)));
@@ -255,6 +231,48 @@ public class MonthlyViewController {
         } else {
             mainApp.filterCalendarViewForMember(this, null, null);
         }
+    }
+
+    @FXML
+    private void handleRightArrow() throws SQLException {
+        month ++;
+
+        if(month == 13) {
+            month = 1;
+            year++;
+        }
+
+        for(int i = 0; i < labelList.size(); i++) {
+            labelList.get(i).setText("");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setOnMouseClicked(null);
+        }
+
+        labelList.remove(labelList);
+
+        dateLabel.setText(Month.of(month) + " " + year);
+        init2();
+    }
+
+    @FXML
+    private void handleLeftArrow() throws SQLException {
+        month --;
+
+        if(month == 0) {
+            month = 12;
+            year--;
+        }
+
+        for(int i = 0; i < labelList.size(); i++) {
+            labelList.get(i).setText("");
+            labelList.get(i).setStyle("-fx-background-color: transparent; -fx-padding: 10px; -fx-text-fill: black; -fx-font-size: 16px;");
+            labelList.get(i).setOnMouseClicked(null);
+        }
+
+        labelList.remove(labelList);
+
+        dateLabel.setText(Month.of(month) + " " + year);
+        init2();
     }
 
     @FXML

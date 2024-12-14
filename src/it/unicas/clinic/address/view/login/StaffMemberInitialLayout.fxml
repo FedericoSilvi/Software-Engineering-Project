@@ -77,7 +77,7 @@
                                 <Image url="@../../../../../../resources/login_icons/calendar-icon.jpg" />
                             </image>
                         </ImageView>
-                        <Label layoutX="-47.0" layoutY="77.0" onMouseEntered="#handleCalendarHighlight" opacity="0.75" text="Calendar">
+                        <Label layoutX="-47.0" layoutY="77.0" onMouseClicked="#handleCalendar" onMouseEntered="#handleCalendarHighlight" opacity="0.75" text="Calendar">
                             <font>
                                 <Font size="24.0" />
                             </font>

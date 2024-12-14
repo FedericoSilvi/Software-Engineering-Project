@@ -84,6 +84,7 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         String sqlDelete = "DELETE FROM staff WHERE id = ? ";
         try (Connection con = DAOMySQLSettings.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(sqlDelete)) {
+            System.out.println("ID: " + s.getId());
             preparedStatement.setInt(1, s.getId());
             int rowAffected=preparedStatement.executeUpdate();
             logger.info("Query executed successfully: " + sqlDelete);

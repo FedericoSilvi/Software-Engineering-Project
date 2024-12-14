@@ -63,9 +63,9 @@ public class FilterByForStaffMemberController {
         this.wvController = wvController;
     }
 
-    DailyViewController dvController;
+    DailyView2Controller dvController;
 
-    public void setDvController(DailyViewController dvController) {
+    public void setDvController(DailyView2Controller dvController) {
         this.dvController = dvController;
     }
 
