@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 try 1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Email.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppointmentViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/ReportLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/ReportLayoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/MonthlyViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/WeeklyViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffMemberInitialLayoutController.java" afterDir="false" />
-    </list>
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 v1 bug fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +53,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "merge4v1",
+    "git-widget-placeholder": "merge4v2",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fedes/Desktop/javafx-sdk-23.0.1/lib/javafx.web.jar",
     "node.js.detected.package.eslint": "true",
@@ -321,14 +310,6 @@
       <workItem from="1734081511793" duration="380000" />
       <workItem from="1734085638273" duration="249000" />
       <workItem from="1734157517732" duration="1603000" />
-    </task>
-    <task id="LOCAL-00059" summary="boh^2">
-      <option name="closed" value="true" />
-      <created>1732900362425</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1732900362425</updated>
     </task>
     <task id="LOCAL-00060" summary="Home button">
       <option name="closed" value="true" />
@@ -714,7 +695,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734162603578</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="merge 4 v1 bug fix">
+      <option name="closed" value="true" />
+      <created>1734166052937</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1734166052937</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +721,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new icons" />
     <MESSAGE value="update right implementation with bug fixes" />
     <MESSAGE value="merge" />
     <MESSAGE value="merge 3" />
@@ -757,7 +745,8 @@
     <MESSAGE value="mail notification sending" />
     <MESSAGE value="bug fixes" />
     <MESSAGE value="merge 4 try 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge 4 try 1" />
+    <MESSAGE value="merge 4 v1 bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge 4 v1 bug fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
