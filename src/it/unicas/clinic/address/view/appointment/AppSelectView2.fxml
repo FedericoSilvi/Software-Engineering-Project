@@ -80,7 +80,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
                                 <Button layoutX="38.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleAddApp" text="Update" />
-                                <Button layoutX="166.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                                <Button layoutX="168.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCancel" text="Back" />
                             </children>
                         </AnchorPane>
                     </items>

@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.calendarView.FilterByForStaffMemberController">
     <children>
@@ -85,5 +87,14 @@
                 <Insets right="100.0" />
             </padding>
         </BorderPane>
+      <Pane prefHeight="74.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="230.0" layoutY="14.0" text="Calendar Filter">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

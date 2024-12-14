@@ -48,8 +48,6 @@ public class ClientOverviewController {
     @FXML
     private Button updateButton;
 
-    @FXML
-    private Button searchButton;
 
 
 

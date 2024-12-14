@@ -27,12 +27,11 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="360.0">
         <buttons>
             <Button mnemonicParsing="false" onAction="#onClickShowHistory" text="History" />
-            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#OnClickSearchClient" text="Search Client" />
             <Button mnemonicParsing="false" onAction="#OnClickShowAllClients" text="Show All Clients" />
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#OnClickUpdateClient" text="Update Client" />
         </buttons>
          <padding>
-            <Insets right="82.0" />
+            <Insets right="135.0" />
          </padding>
       </ButtonBar>
       <Pane layoutY="-1.0" prefHeight="26.0" prefWidth="600.0">
@@ -44,18 +43,22 @@
             </ImageView>
             <TextField fx:id="clientName" alignment="CENTER" layoutX="133.0" layoutY="14.0" prefHeight="25.0" prefWidth="142.0" promptText="Client Name" />
             <TextField fx:id="clientSurname" alignment="CENTER" layoutX="325.0" layoutY="14.0" prefHeight="25.0" prefWidth="142.0" promptText="Client Surname" />
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="492.0" layoutY="18.0" onMouseClicked="#searchClient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/search.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="528.0" layoutY="16.0" onMouseClicked="#OnClickDeleteClientV2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/minus_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="562.0" layoutY="17.0" onMouseClicked="#OnClickAddClientV2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/plus-3107.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="549.0" layoutY="16.0" onMouseClicked="#OnClickDeleteClientV2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../resources/minus_icon.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="578.0" layoutY="17.0" onMouseClicked="#OnClickAddClientV2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../resources/plus-3107.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="477.0" layoutY="13.0" mnemonicParsing="false" onAction="#searchClient" text="Search" />
    </children>
 </AnchorPane>

@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.AppClientViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.AppClientViewController">
     <children>
       <Pane prefHeight="40.0" prefWidth="600.0">
          <children>
             <TextField fx:id="clientName" alignment="CENTER" layoutX="107.0" layoutY="8.0" promptText="Client Name" />
             <TextField fx:id="clientSurname" alignment="CENTER" layoutX="319.0" layoutY="8.0" promptText="Client Surname" />
-            <Button layoutX="491.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleFilter" text="Button" />
+            <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="499.0" layoutY="11.0" onMouseClicked="#handleFilter" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/search.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
         <TableView fx:id="table" layoutY="36.8" prefHeight="363.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">

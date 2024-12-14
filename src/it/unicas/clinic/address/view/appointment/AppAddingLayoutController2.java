@@ -12,10 +12,7 @@ import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import javax.xml.crypto.Data;
@@ -30,6 +27,17 @@ public class AppAddingLayoutController2 {
     private TextField serviceField;
     @FXML
     private TextField timeField;
+    @FXML
+    private Label staffName;
+    @FXML
+    private Label clientName;
+
+
+
+    @FXML
+    private Label staffSurname;
+    @FXML
+    private Label clientSurname;
 
 
     private Main mainApp;
@@ -41,6 +49,8 @@ public class AppAddingLayoutController2 {
     private StaffDAO staffDao = StaffDAOMySQLImpl.getInstance();
     private ScheduleDAO scheduleDao = ScheduleDAOMySQLImpl.getInstance();
     private Staff selectedStaff;
+    private Client selectedClient;
+
 
     @FXML
     private void initialize() {
@@ -68,6 +78,8 @@ public class AppAddingLayoutController2 {
         mainApp.showAppStaff();
         if (mainApp.getSavedStaff() != 0) {
             selectedStaff = staffDao.select(mainApp.getSavedStaff());
+            staffName.setText(selectedStaff.getName());
+            staffSurname.setText(selectedStaff.getSurname());
         }
     }
     @FXML
@@ -132,6 +144,11 @@ public class AppAddingLayoutController2 {
     @FXML
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();
+        if (mainApp.getSavedClient() != 0) {
+            selectedClient = DAOClient.select(mainApp.getSavedClient());
+            clientName.setText(selectedClient.getName());
+            clientSurname.setText(selectedClient.getSurname());
+        }
     }
 
 

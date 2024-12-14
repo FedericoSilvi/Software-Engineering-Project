@@ -957,24 +957,6 @@ public class Main extends Application {
         dailyViewWindow.show();
     }
 
-    public void searchAppointment() throws IOException {
-        Stage searchAppointmentWindow = new Stage();
-        FXMLLoader loader = new FXMLLoader();
-
-        loader.setLocation(Main.class.getResource("view/appointment/SearchAppointment.fxml"));
-        AnchorPane anchorPane = loader.load();
-
-        SearchAppointmentController controller = loader.getController();
-        controller.setMainApp(this);
-        controller.setStage(searchAppointmentWindow);
-
-        searchAppointmentWindow.initModality(Modality.WINDOW_MODAL);
-        searchAppointmentWindow.initOwner(primaryStage);
-
-        searchAppointmentWindow.setScene(new Scene(anchorPane));
-        searchAppointmentWindow.showAndWait();
-
-    }
 
     public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();

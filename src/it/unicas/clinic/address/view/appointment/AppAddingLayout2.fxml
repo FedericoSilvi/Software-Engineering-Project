@@ -10,19 +10,24 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.AppAddingLayoutController2">
     <children>
-        <BorderPane prefHeight="400.0" prefWidth="600.0">
+        <BorderPane layoutY="50.0" prefHeight="350.0" prefWidth="600.0">
             <bottom>
                 <SplitPane prefHeight="52.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                     <items>
                         <ButtonBar prefHeight="40.0" prefWidth="200.0">
                             <buttons>
                                 <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" text="Add Appointment" />
-                                <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                                <Button mnemonicParsing="false" onAction="#handleCancel" text="Back" />
                             </buttons>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
                         </ButtonBar>
                     </items>
                 </SplitPane>
@@ -47,19 +52,6 @@
                             </GridPane.margin></TextField>
                         <Label alignment="CENTER" prefHeight="18.0" prefWidth="301.0" text="Staff " GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="18.0" prefWidth="311.0" text="Client " GridPane.rowIndex="2" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleStaffSelect" text="Select" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <GridPane.margin>
-                        <Insets left="140.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#handleClientSelect" text="Select" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="140.0" />
-                     </GridPane.margin>
-                  </Button>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="277.0" text="Duration" GridPane.rowIndex="3" />
                   <TextField fx:id="timeField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <opaqueInsets>
@@ -69,9 +61,48 @@
                         <Insets right="20.0" />
                      </GridPane.margin>
                   </TextField>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="staffName" alignment="CENTER" prefHeight="18.0" prefWidth="110.0" text="Name" GridPane.columnIndex="1" />
+                        <Label fx:id="staffSurname" alignment="CENTER" prefHeight="18.0" prefWidth="113.0" text="Surname" GridPane.columnIndex="2" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleStaffSelect" text="Select" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="clientSurname" text="Surname" GridPane.columnIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#handleClientSelect" text="Select" />
+                        <Label fx:id="clientName" text="Name" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
                     </children>
                 </GridPane>
             </center>
         </BorderPane>
+      <Pane prefHeight="50.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="213.0" layoutY="9.0" text="Add Appointment">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

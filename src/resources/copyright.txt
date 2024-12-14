@@ -29,3 +29,6 @@ Copyright by https://www.flaticon.com/free-icon/button_14035769?term=circle&page
 
 -red_circle
 Copyright by https://www.flaticon.com/free-icon/circle_14035711?term=circle&page=1&position=27&origin=search&related_id=14035711
+
+-search
+Copyright by https://www.flaticon.com/free-icon/search_149852?term=search&page=1&position=3&origin=search&related_id=149852
