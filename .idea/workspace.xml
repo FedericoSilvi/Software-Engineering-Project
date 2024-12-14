@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 v1 bug fix" />
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="merge 4 try 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +55,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "merge4v2",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/fedes/Desktop/javafx-sdk-23.0.1/lib/javafx.web.jar",
+    "last_opened_file_path": "C:/Users/fedes/Desktop/Progetto/SoftwareEngineeringProject_2024-2025_Group3_Caruso_Napolitano_Silvi",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -310,14 +310,6 @@
       <workItem from="1734081511793" duration="380000" />
       <workItem from="1734085638273" duration="249000" />
       <workItem from="1734157517732" duration="1603000" />
-    </task>
-    <task id="LOCAL-00060" summary="Home button">
-      <option name="closed" value="true" />
-      <created>1733069965238</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1733069965238</updated>
     </task>
     <task id="LOCAL-00061" summary="BOH">
       <option name="closed" value="true" />
@@ -703,7 +695,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734166052937</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="merge 4 try 2">
+      <option name="closed" value="true" />
+      <created>1734166284054</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1734166284054</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +721,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update right implementation with bug fixes" />
     <MESSAGE value="merge" />
     <MESSAGE value="merge 3" />
     <MESSAGE value="merge numero due 2" />
@@ -746,7 +745,8 @@
     <MESSAGE value="bug fixes" />
     <MESSAGE value="merge 4 try 1" />
     <MESSAGE value="merge 4 v1 bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge 4 v1 bug fix" />
+    <MESSAGE value="merge 4 try 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge 4 try 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
