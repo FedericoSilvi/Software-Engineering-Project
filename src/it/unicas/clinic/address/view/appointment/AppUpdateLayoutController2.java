@@ -2,14 +2,17 @@ package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
+import it.unicas.clinic.address.model.Client;
 import it.unicas.clinic.address.model.Schedule;
 import it.unicas.clinic.address.model.Staff;
 import it.unicas.clinic.address.model.dao.*;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
+import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.ScheduleDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
 import it.unicas.clinic.address.utils.DataUtil;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,6 +26,14 @@ public class AppUpdateLayoutController2 {
     private TextField serviceField;
     @FXML
     private TextField timeField;
+    @FXML
+    private Label staffName;
+    @FXML
+    private Label staffSurname;
+    @FXML
+    private Label clientName;
+    @FXML
+    private Label clientSurname;
 
 
     private Main mainApp;
@@ -34,6 +45,7 @@ public class AppUpdateLayoutController2 {
     private StaffDAO staffDao = StaffDAOMySQLImpl.getInstance();
     private ScheduleDAO scheduleDao = ScheduleDAOMySQLImpl.getInstance();
     private Staff selectedStaff;
+    private Client selectedClient;
 
     @FXML
     private void initialize() {
@@ -67,6 +79,8 @@ public class AppUpdateLayoutController2 {
         mainApp.showAppStaff();
         if (mainApp.getSavedStaff() != 0) {
             selectedStaff = staffDao.select(mainApp.getSavedStaff());
+            staffName.setText(selectedStaff.getName());
+            staffSurname.setText(selectedStaff.getSurname());
         }
     }
 
@@ -110,6 +124,11 @@ public class AppUpdateLayoutController2 {
     @FXML
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();
+        if (mainApp.getSavedClient() != 0) {
+            selectedClient = DAOClient.select(mainApp.getSavedClient());
+            clientName.setText(selectedClient.getName());
+            clientSurname.setText(selectedClient.getSurname());
+        }
     }
     private void appInsert() throws IOException, SQLException {
         //Each element of arrayList is linked to a single schedule of scheduleList

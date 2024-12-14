@@ -30,6 +30,10 @@ public class AppAddingLayoutController3 {
 
     @FXML
     private Label staffL;
+    @FXML
+    private Label clientName;
+    @FXML
+    private Label clientSurname;
 
 
     private Main mainApp;
@@ -41,6 +45,7 @@ public class AppAddingLayoutController3 {
     private StaffDAO staffDao= StaffDAOMySQLImpl.getInstance();
     private ScheduleDAO scheduleDao = ScheduleDAOMySQLImpl.getInstance();
     private Staff selectedStaff;
+    private Client selectedClient;
 
     @FXML
     private void initialize(){
@@ -129,6 +134,11 @@ public class AppAddingLayoutController3 {
     @FXML
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();
+        if (mainApp.getSavedClient() != 0) {
+            selectedClient = DAOClient.select(mainApp.getSavedClient());
+            clientName.setText(selectedClient.getName());
+            clientSurname.setText(selectedClient.getSurname());
+        }
     }
 
 
