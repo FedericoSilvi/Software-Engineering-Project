@@ -6,6 +6,9 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Implements the Appointment table from the database.
+ */
 public class Appointment {
     private IntegerProperty id;
     private StringProperty service;
@@ -36,15 +39,7 @@ public class Appointment {
     private Boolean notice;
 
 
-    /**
-     * Constructor to build an appointment passing all its attributes
-     * @param id: appointment id
-     * @param service: service description string
-     * @param date: day of the appointment (yyyy-mm-dd format)
-     * @param time: appointment hour (?hh-mm format?)
-     * @param staffId: id of corresponding staff member
-     * @param clientId: id of corresponding client
-     */
+
     public Appointment(Integer id, String service, LocalDate date, LocalTime time, LocalTime duration,Integer staffId, Integer clientId) {
         if(id!=null)
             this.id = new SimpleIntegerProperty(id);
@@ -115,14 +110,6 @@ public class Appointment {
             this.notice = null;
     }
 
-    /**
-     * Constructor to build an appointment passing all its attributes except the appointment id
-     * @param service: service description string
-     * @param date: day of the appointment (yyyy-mm-dd format)
-     * @param time: appointment hour (?hh-mm format?)
-     * @param staffId: id of corresponding staff member
-     * @param clientId: id of corresponding client
-     */
     public Appointment(String service, LocalDate date, LocalTime time, LocalTime duration, Integer staffId, Integer clientId) {
         this.service = new SimpleStringProperty(service);
         this.date = new SimpleObjectProperty<>(date);

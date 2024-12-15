@@ -11,10 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Contain the operations regarding the login operations with SQL database
  */
-
 public class LoginDAOImplementation {
 
     private String username;
@@ -109,6 +109,12 @@ public class LoginDAOImplementation {
         }
     }
 
+    /**
+     * Returns a String with the password from database.
+     * @param id: staff id.
+     * @return
+     * @throws SQLException
+     */
     public static String getPassword(int id) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
 
@@ -126,6 +132,12 @@ public class LoginDAOImplementation {
         return password;
     }
 
+    /**
+     * Change the password of a particular staff member.
+     * @param id: staff id.
+     * @param password: new password.
+     * @throws SQLException
+     */
     public static void changePassword(int id, String password) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
 
@@ -139,6 +151,12 @@ public class LoginDAOImplementation {
 
     }
 
+    /**
+     * Change the username of a particular staff member.
+     * @param id: staff id.
+     * @param username: new username.
+     * @throws SQLException
+     */
     public static void changeUsername(int id, String username) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
 
@@ -151,6 +169,14 @@ public class LoginDAOImplementation {
         connection.close();
     }
 
+    /**
+     * Insert new Credential inside the database.
+     * @param username: new username.
+     * @param password: new password.
+     * @param owner: whether the new staff is a manager or not.
+     * @param id: staff id.
+     * @throws SQLException
+     */
     public static void insertCredential(String username, String password, int owner, int id) throws SQLException {
         Connection connection = DAOMySQLSettings.getConnection();
 
@@ -168,6 +194,12 @@ public class LoginDAOImplementation {
 
     public int getId(){return this.staff_id;}
 
+    /**
+     * Returns true if the plainPassword equals the hashedPassword, else returns false.
+     * @param plainPassword: normal password.
+     * @param hashedPassword: hashed password (from database).
+     * @return
+     */
     public static boolean checkPassword(String plainPassword, String hashedPassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(plainPassword, hashedPassword);

@@ -2,11 +2,9 @@ package it.unicas.clinic.address.view.appointment;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Appointment;
-import it.unicas.clinic.address.model.Email;
 import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.StaffException;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
-import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -111,7 +109,7 @@ public class AppointmentViewController {
                     if(selectedApp.getDate().isAfter(LocalDate.now())){
                         mainApp.sendClientCancellation(selectedApp);
                     }
-                    dao.solftDelete(selectedApp.getId());
+                    dao.softDelete(selectedApp.getId());
                     mainApp.getAppointmentData().remove(selectedApp);
 
                 }catch (StaffException e){

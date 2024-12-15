@@ -5,6 +5,9 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Implements the Schedule table from the database.
+ */
 public class Schedule {
     private  IntegerProperty id;
     private  ObjectProperty<LocalDate> day;

@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Extends Appointment with name and surname of Client and Staff associated with the specific appointment.
+ */
 public class AppointmentReport extends Appointment {
     private String staffName;
     private String staffSurname;

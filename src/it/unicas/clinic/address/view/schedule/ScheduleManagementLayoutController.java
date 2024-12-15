@@ -160,7 +160,7 @@ public class ScheduleManagementLayoutController {
     }
 
     private void rescheduleApp(Appointment app) throws IOException, SQLException {
-            appDao.solftDelete(app.getId());
+            appDao.softDelete(app.getId());
             //Each element of arrayList is linked to a single schedule of scheduleList
             ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
             ArrayList<Schedule> scheduleList = dao.futureSchedule(app.getStaffId());

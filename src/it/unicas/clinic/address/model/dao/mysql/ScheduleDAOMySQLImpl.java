@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Contains the implementation of the interaction between application and database for Schedule table.
+ */
 public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
     private static ScheduleDAO dao = null;
     private static Logger logger = null;
@@ -213,7 +216,6 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
     }
 
-    //method to check if a staffId exists (needs for CRUD on Schedule). Return false if not exists.
     private boolean staffExists(int staffId) throws ScheduleException {
         String sqlCheckStaff = "SELECT COUNT(*) FROM staff WHERE id = ?";
         try (Connection con = DAOMySQLSettings.getConnection();
@@ -255,6 +257,13 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         return s;
     }
 
+    /**
+     * Returns true if the specified staff has a schedule in the specified day and at specified time.
+     * @param day: specific day.
+     * @param time: specific time.
+     * @param staff_id: staff id.
+     * @return
+     */
     @Override
     public  boolean isAvailable(LocalDate day, LocalTime time, int staff_id){
         if(day==null || time==null || staff_id==0){
@@ -270,6 +279,13 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
         return true;
     }
+
+    /**
+     * Returns an ArrayList of all future schedules (reference to today date) of a specific staff member.
+     * @param staff_id: staff id.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Schedule> futureSchedule(int staff_id) throws SQLException {
         if(staff_id<=0)
@@ -288,6 +304,14 @@ public class ScheduleDAOMySQLImpl implements ScheduleDAO<Schedule> {
         }
         return list;
     }
+
+    /**
+     * Returns a List of future Schedule with reference to the date passed by argument.
+     * @param d: specific date.
+     * @param id: staff id.
+     * @return
+     * @throws RuntimeException
+     */
     @Override
     public List<Schedule> getfutureSchedule(LocalDate d, int id) throws RuntimeException{
         String query = "SELECT * FROM schedule WHERE  date >= ? AND staff_id=?";

@@ -12,7 +12,7 @@ public interface AppointmentDAO <T>{
     List<T> select(T s) throws AppointmentException;
     void update(T s) throws AppointmentException;
     void insert(T s) throws AppointmentException;
-    void solftDelete(int s) throws AppointmentException;
+    void softDelete(int s) throws AppointmentException;
 
     void delete(int s) throws AppointmentException;
 

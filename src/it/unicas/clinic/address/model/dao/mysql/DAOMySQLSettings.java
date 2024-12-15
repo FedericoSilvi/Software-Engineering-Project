@@ -150,6 +150,11 @@ public class DAOMySQLSettings {
         connection.close();
     }
 
+    /**
+     * Returns a String corresponding to the hashed version of the password passed by argument.
+     * @param pass: normal password.
+     * @return
+     */
     public static String hashPassword(String pass){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(pass);

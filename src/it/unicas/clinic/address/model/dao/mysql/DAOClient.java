@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains the implementation of the interaction between application and database for Client table.
+ */
 public class DAOClient {
 
     public static void check() throws SQLException {
@@ -43,8 +46,8 @@ public class DAOClient {
     }
 
     /**
-     * "Hard delete"
-     * @param id
+     * Effectively deletes the Client form the database.
+     * @param id: client id.
      * @throws SQLException
      */
     public static void delete(int id) throws SQLException {
@@ -55,6 +58,13 @@ public class DAOClient {
         preparedstatement.execute();
         connection.close();
     }
+
+    /**
+     * Sets the cancellationDate equal to the current date.
+     * In this way the application can't see the soft-deleted appointments.
+     * @param c: client to be "deleted".
+     * @throws SQLException
+     */
     public static void softDelete(Client c) throws SQLException {
         if (c.getId() <= 0) {
             throw new StaffException("Invalid client ID.");
@@ -93,7 +103,6 @@ public class DAOClient {
         connection.close();
     }
 
-    // TEMPORANEO: DA SOSTITUIRE CON FILTER CLIENT
     public static Client getClient(int id) throws SQLException {
         Client client = null;
         Connection connection = DAOMySQLSettings.getConnection();
@@ -107,6 +116,14 @@ public class DAOClient {
         return client;
     }
 
+    /**
+     * Returns an ArrayList of Client matching the strings passed by argument.
+     * @param name: name of the client.
+     * @param surname: surname of the client.
+     * @param email: email of the client.
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Client> filterClient(String name, String surname, String email) throws SQLException {
         ArrayList<Client> clients = new ArrayList<>();
         Connection connection = DAOMySQLSettings.getConnection();
@@ -175,6 +192,12 @@ public class DAOClient {
 
     }
 
+    /**
+     * Returns the Client with id equals to the id passed argument.
+     * @param id: client id.
+     * @return
+     * @throws SQLException
+     */
     public static Client select(int id) throws SQLException {
         if(id<=0){
             return null;
@@ -234,6 +257,13 @@ public class DAOClient {
         return clientList;
     }
 
+    /**
+     * Returns an ArrayList of Client matching the strings passed by argument.
+     * @param name: client name.
+     * @param surname: client surname.
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Client> select (String name, String surname) throws SQLException {
         ArrayList<Client> list = new ArrayList<>();
         Connection connection = DAOMySQLSettings.getConnection();

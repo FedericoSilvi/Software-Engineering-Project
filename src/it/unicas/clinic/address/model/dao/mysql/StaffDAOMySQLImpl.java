@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Contains the implementation of the interaction between application and database for Staff table.
+ */
 public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
     private static StaffDAO dao = null;
@@ -28,6 +31,7 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         }
         return dao;
     }
+
     @Override
     public void update(Staff s) throws StaffException {
         verifyStaff(s);
@@ -75,7 +79,11 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         }
     }
 
-
+    /**
+     * Effectively deletes the specified staff from database.
+     * @param s: specific staff.
+     * @throws StaffException
+     */
     @Override
     public void delete(Staff s) throws StaffException {
         if(s == null || s.getId() <= 0){
@@ -99,6 +107,11 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         }
     }
 
+    /**
+     * Returns a List of Staff similar to the one passed by argument.
+     * @param s: specific staff.
+     * @return
+     */
     @Override
     public List<Staff> select(Staff s) {
         // if the object is null, create a Stuff with default value (0, null, null, null, null)
@@ -225,6 +238,14 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         connection.close();
         return s;
     }
+
+    /**
+     * Returns the Staff corresponding to the specified id.
+     * If the id doesn't exist it returns null.
+     * @param id: staff id.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public  Staff select(int id) throws SQLException {
         if(id<=0){
@@ -249,6 +270,12 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         }
     }
 
+    /**
+     * Sets the firedDate equal to the current date.
+     * In this way the application
+     * @param s: specific staff.
+     * @throws StaffException
+     */
     @Override
     public void softDelete(Staff s) throws StaffException {
         if (s.getId() <= 0) {
@@ -279,6 +306,12 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
             throw new StaffException("SQL: Error setting firedDate for staff with ID: " + s.getId());
         }
     }
+
+    /**
+     * Returns a List of soft-deleted Staff before a specific date.
+     * @param date: specific date.
+     * @return
+     */
     @Override
     public List<Staff> selectFiredBefore(LocalDate date) {
         String query = "SELECT * FROM staff WHERE firedDate IS NOT NULL AND firedDate <= ?";

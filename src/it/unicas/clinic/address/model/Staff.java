@@ -9,7 +9,7 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
 /**
- * Model class for Staff
+ * Implements the Staff table from the database.
  */
 public class Staff {
     //the same field of the table Staff in the db

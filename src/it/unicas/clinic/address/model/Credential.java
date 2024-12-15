@@ -1,5 +1,8 @@
 package it.unicas.clinic.address.model;
 
+/**
+ * Implements the Credential table from the database.
+ */
 public class Credential {
     private String username;
     private String password;

@@ -16,6 +16,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Implements the class Email in order to send emails to the client.
+ */
 public class Email {
     // Email Configuration
     String sender = "projectclinic123@gmail.com";
@@ -34,6 +37,13 @@ public class Email {
         properties.put("mail.smtp.port", "587");
     }
 
+    /**
+     * Returns true if the notification mail is sent successfully, else returns false.
+     * @param appointment: appointment to be noticed to the client.
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
     public boolean sendEmail(Appointment appointment) throws SQLException, IOException {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
@@ -73,6 +83,14 @@ public class Email {
             return false;
 
     }
+
+    /**
+     * Returns true if the cancellation mail is sent successfully, else returns false.
+     * @param appointment: deleted appointment.
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
     public boolean sendCancellation(Appointment appointment) throws SQLException, IOException {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null || !appointment.getNotice()) {
@@ -114,6 +132,13 @@ public class Email {
             return false;
     }
 
+    /**
+     * Returns true if the update/reschedule mail is sent successfully, else returns false.
+     * @param appointment: updated/rescheduled appointment.
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
     public boolean sendUpdate(Appointment appointment) throws SQLException, IOException {
         System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
@@ -153,6 +178,7 @@ public class Email {
         else
             return false;
     }
+
     private void writeLog(int choice, Appointment app) throws IOException, SQLException {
 
         FileWriter fileWriter = new FileWriter("EmailLog.txt", true); // true per abilitare l'append

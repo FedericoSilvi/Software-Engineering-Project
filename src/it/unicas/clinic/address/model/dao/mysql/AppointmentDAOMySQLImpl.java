@@ -11,9 +11,10 @@ import it.unicas.clinic.address.model.dao.AppointmentDAO;
 import it.unicas.clinic.address.model.dao.AppointmentException;
 import it.unicas.clinic.address.model.Appointment;
 import it.unicas.clinic.address.utils.DataUtil;
-import org.springframework.cglib.core.Local;
 
-
+/**
+ * Contains the implementation of the interaction between application and database for Appointment table.
+ */
 public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
 
     private static AppointmentDAO dao = null;
@@ -29,6 +30,12 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         return dao;
     }
 
+    /**
+     * Returns a List of Appointments similar to the one passed by argument.
+     * @param s: passed argument.
+     * @return
+     * @throws AppointmentException
+     */
     @Override
     public List<Appointment> select(Appointment s) throws AppointmentException {
         // If passed appointment is null create new one with null fields
@@ -171,8 +178,14 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             logger.severe("Inserted appointment is null");
     }
 
+    /**
+     * Set the cancellation field TRUE inside the database.
+     * Thanks to the cancellation field the app can't see the appointments subject to soft deletion.
+     * @param s: appointment to be "deleted"
+     * @throws AppointmentException
+     */
     @Override
-    public void solftDelete(int s) throws AppointmentException {
+    public void softDelete(int s) throws AppointmentException {
         if(s>0) {
             try {
                 Connection connection = DAOMySQLSettings.getConnection();
@@ -190,6 +203,11 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             logger.severe("Id is invalid");
     }
 
+    /**
+     * Effectively deletes the appointment from the database.
+     * @param s: appointment to be deleted.
+     * @throws AppointmentException
+     */
     @Override
     public void delete(int s) throws AppointmentException {
         if(s>0) {
@@ -209,7 +227,12 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             logger.severe("Id is invalid");
     }
 
-
+    /**
+     * Returns the last appointment added to the database.
+     * If the database is empty, return NULL.
+     * @return
+     * @throws SQLException
+     */
     public Appointment getLastApp() throws SQLException {
         Appointment a = new Appointment(0, null, null,null, null,0,0);
         Connection connection = DAOMySQLSettings.getConnection();
@@ -232,6 +255,12 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         return a;
     }
 
+    /**
+     * Returns an ArrayList of Appointment associated with a particular schedule.
+     * @param s: schedule.
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Appointment> getSchedApp(Schedule s) throws SQLException {
         ArrayList<Appointment> appointments = new ArrayList<>();
         Connection connection = DAOMySQLSettings.getConnection();
@@ -263,6 +292,12 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             return appointments;
     }
 
+    /**
+     * Returns a List of all past Appointment of a specific client.
+     * @param client_id: id of the client.
+     * @return
+     * @throws SQLException
+     */
     public List<Appointment> getHistoryApp(int client_id) throws SQLException {
         List<Appointment> appointments = new ArrayList<>();
         if(client_id<=0)
@@ -291,6 +326,15 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             return appointments;
     }
 
+    /**
+     * Returns a List of Appointments similar to the one passed by arguments.
+     * The two LocalDate variables sets the time window in which the search is executed.
+     * @param s: appointment.
+     * @param startDate: start of time window.
+     * @param endDate: end of time window.
+     * @return
+     * @throws AppointmentException
+     */
     @Override
     public List<Appointment> select(Appointment s, LocalDate startDate, LocalDate endDate) throws AppointmentException {
         // If passed appointment is null, create a new one with null fields
@@ -399,7 +443,12 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
         return list;
     }
 
-    //restituisce gli appuntamenti più vecchi di 10 anni dalla data d
+    /**
+     * Returns a List of Appointment before the date passed by argument.
+     * @param d: date.
+     * @return
+     * @throws RuntimeException
+     */
     @Override
     public List<Appointment> getPastApp(LocalDate d) throws RuntimeException{
         String query = "SELECT * FROM appointment WHERE  date <= ?";
@@ -491,49 +540,6 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
 
     }
 
-
-    public static boolean filterByDate(LocalDate date, int clientId, int staffId, String service) throws SQLException {
-        Connection connection = DAOMySQLSettings.getConnection();
-        String sqlSelect;
-        PreparedStatement preparedStatement;
-        if(clientId != 0){
-            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND client_id = ? AND cancellation IS NULL";
-            preparedStatement = connection.prepareStatement(sqlSelect);
-            preparedStatement.setDate(1, Date.valueOf(date));
-            preparedStatement.setInt(2, clientId);
-        } else if(staffId != 0){
-            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND staff_id = ? AND cancellation IS NULL";
-            preparedStatement = connection.prepareStatement(sqlSelect);
-            preparedStatement.setDate(1, Date.valueOf(date));
-            preparedStatement.setInt(2, staffId);
-        } else if(service != null){
-            sqlSelect = "SELECT * FROM appointment WHERE date = ? AND service = ? AND cancellation IS NULL";
-            preparedStatement = connection.prepareStatement(sqlSelect);
-            preparedStatement.setDate(1, Date.valueOf(date));
-            preparedStatement.setString(2, service);
-        }
-        else{
-            sqlSelect = "select * from appointment where date = ? AND cancellation IS NULL";
-            preparedStatement = connection.prepareStatement(sqlSelect);
-            preparedStatement.setDate(1, Date.valueOf(date));
-        }
-
-        ResultSet result = preparedStatement.executeQuery();
-
-        boolean flag;
-        System.out.println(result);
-        if(result.next()){
-            flag = true;
-        }
-        else {
-            flag = false;
-        }
-
-        connection.close();
-
-        return flag;
-
-    }
 
     @Override
     public ArrayList<Appointment> getTomorrowApp() throws SQLException {

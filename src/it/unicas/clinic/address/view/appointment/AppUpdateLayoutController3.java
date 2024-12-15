@@ -74,7 +74,7 @@ public class AppUpdateLayoutController3 {
     }
     @FXML
     private void handleSave() throws SQLException, IOException {
-        dao.solftDelete(app.getId());
+        dao.softDelete(app.getId());
         mainApp.saveService(serviceField.getText());
         try{
             mainApp.saveDuration(DataUtil.parseToDuration(timeField.getText(),true));

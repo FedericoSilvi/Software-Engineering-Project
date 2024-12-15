@@ -2,6 +2,9 @@ package it.unicas.clinic.address.model;
 
 import java.time.LocalDate;
 
+/**
+ * Implements the Client table from the database.
+ */
 public class Client {
 
     private int id;
