@@ -24,12 +24,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TableView fx:id="dateTable" onMouseClicked="#showTime" prefHeight="200.0" prefWidth="200.0">
+                <TableView fx:id="dateTable" onMouseClicked="#showTime" prefHeight="200.0" prefWidth="200.0" stylesheets="@medical_theme.css">
                     <columns>
                         <TableColumn fx:id="dateColumn" prefWidth="151.20001220703125" text="Date" />
                     </columns>
                 </TableView>
-                <TableView fx:id="timeTable" onMouseClicked="#showDetail" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                <TableView fx:id="timeTable" onMouseClicked="#showDetail" prefHeight="200.0" prefWidth="200.0" stylesheets="@medical_theme.css" GridPane.columnIndex="1">
                     <columns>
                         <TableColumn fx:id="timeColumn" prefWidth="195.20001220703125" text="Time" />
                     </columns>
@@ -68,9 +68,9 @@
                                 </GridPane>
                                 <Pane layoutX="14.0" layoutY="7.0" prefHeight="65.0" prefWidth="222.0">
                                     <children>
-                                        <Label layoutX="79.0" layoutY="15.0" text="Recap">
+                                        <Label layoutX="77.0" layoutY="15.0" text="Recap">
                                             <font>
-                                                <Font size="24.0" />
+                                                <Font name="System Bold" size="24.0" />
                                             </font>
                                         </Label>
                                     </children>
@@ -79,7 +79,7 @@
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <Button layoutX="87.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleAddApp" text="Reschedule" />
+                                <Button layoutX="77.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleAddApp" stylesheets="@medical_theme.css" text="Reschedule" />
                             </children>
                         </AnchorPane>
                     </items>

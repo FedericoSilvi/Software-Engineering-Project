@@ -21,7 +21,7 @@
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <ButtonBar prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <ButtonBar prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <buttons>
                   <AnchorPane maxHeight="30.0" maxWidth="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="200.0">
                      <children>
@@ -32,8 +32,8 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Button mnemonicParsing="false" onAction="#handleFilter" text="Filter" />
-                  <Button mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                  <Button mnemonicParsing="false" onAction="#handleFilter" stylesheets="@../medical_theme.css" text="Filter" />
+                  <Button mnemonicParsing="false" onAction="#handleClose" stylesheets="@../medical_theme.css" text="Close" />
                   <AnchorPane maxHeight="30.0" maxWidth="30.0" minWidth="0.0" prefHeight="30.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="6.0" onMouseClicked="#handleRightArrow" pickOnBounds="true" preserveRatio="true">
@@ -139,10 +139,10 @@
                               </Menu>
                            </menus>
                         </MenuBar>
-                        <Label fx:id="weekLabel" alignment="CENTER" layoutX="286.0" layoutY="36.0" prefHeight="20.0" prefWidth="600.0" text="Label" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                        <Label fx:id="weekLabel" alignment="CENTER" layoutX="286.0" layoutY="36.0" prefHeight="20.0" prefWidth="600.0" stylesheets="@../label_theme.css" text="Label" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
                      </children>
                   </AnchorPane>
-                  <GridPane gridLinesVisible="true" layoutY="58.0" prefHeight="43.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="13.0">
+                  <GridPane gridLinesVisible="true" layoutY="58.0" prefHeight="43.0" prefWidth="587.0" stylesheets="@../medical_theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="13.0">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -157,35 +157,35 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="114.0" text="Hours">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="114.0" stylesheets="@../label_theme.css" text="Hours">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" text="Monday" GridPane.columnIndex="1">
+                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" stylesheets="@../label_theme.css" text="Monday" GridPane.columnIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" text="Tuesday" GridPane.columnIndex="2">
+                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" stylesheets="@../label_theme.css" text="Tuesday" GridPane.columnIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" text="Wednesday" GridPane.columnIndex="3">
+                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" stylesheets="@../label_theme.css" text="Wednesday" GridPane.columnIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" text="Thursday" GridPane.columnIndex="4">
+                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" stylesheets="@../label_theme.css" text="Thursday" GridPane.columnIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="87.0" text="Friday" GridPane.columnIndex="5">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="87.0" stylesheets="@../label_theme.css" text="Friday" GridPane.columnIndex="5">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" text="Saturday" GridPane.columnIndex="6">
+                        <Label alignment="CENTER" prefHeight="263.0" prefWidth="86.0" stylesheets="@../label_theme.css" text="Saturday" GridPane.columnIndex="6">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="70.0" text="Sunday" GridPane.columnIndex="7">
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="70.0" stylesheets="@../label_theme.css" text="Sunday" GridPane.columnIndex="7">
                            <font>
                               <Font size="14.0" />
                            </font></Label>

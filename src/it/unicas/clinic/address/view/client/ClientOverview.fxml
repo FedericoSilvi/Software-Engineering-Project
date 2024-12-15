@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.client.ClientOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../medical_theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.client.ClientOverviewController">
    <children>
       <TableView fx:id="table" layoutY="46.4" prefHeight="354.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
         <columns>
@@ -31,7 +31,7 @@
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#OnClickUpdateClient" text="Update Client" />
         </buttons>
          <padding>
-            <Insets right="135.0" />
+            <Insets right="90.0" />
          </padding>
       </ButtonBar>
       <Pane layoutY="-1.0" prefHeight="26.0" prefWidth="600.0">

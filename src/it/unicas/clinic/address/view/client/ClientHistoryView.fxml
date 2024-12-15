@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.client.ClientHistoryViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../medical_theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.client.ClientHistoryViewController">
     <children>
         <TableView fx:id="appointmentTable" layoutX="-2.0" layoutY="1.0" prefHeight="352.0" prefWidth="600.0">
             <columns>

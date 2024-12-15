@@ -11,12 +11,12 @@
       <TextField fx:id="dayField" layoutX="225.0" layoutY="78.0" />
       <TextField fx:id="startHourField" layoutX="225.0" layoutY="145.0" />
       <TextField fx:id="endHourField" layoutX="225.0" layoutY="209.0" />
-      <Label layoutX="144.0" layoutY="82.0" text="Day" />
-      <Label layoutX="127.0" layoutY="149.0" text="Start hour" />
-      <Label layoutX="130.0" layoutY="213.0" text="End hour" />
-      <Button layoutX="154.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleSave" text="Add Schedule" />
-      <Button layoutX="274.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-      <Label layoutX="176.0" layoutY="14.0" text="Add Schedule">
+      <Label layoutX="144.0" layoutY="82.0" stylesheets="@../label_theme.css" text="Day" />
+      <Label layoutX="127.0" layoutY="149.0" stylesheets="@../label_theme.css" text="Start hour" />
+      <Label layoutX="130.0" layoutY="213.0" stylesheets="@../label_theme.css" text="End hour" />
+      <Button layoutX="144.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleSave" stylesheets="@../medical_theme.css" text="Add Schedule" />
+      <Button layoutX="274.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleCancel" stylesheets="@../medical_theme.css" text="Cancel" />
+      <Label layoutX="176.0" layoutY="14.0" stylesheets="@../label_theme.css" text="Add Schedule">
          <font>
             <Font size="22.0" />
          </font>

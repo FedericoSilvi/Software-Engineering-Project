@@ -26,34 +26,34 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="250.0" text="Name" textAlignment="CENTER" />
-            <Label alignment="CENTER" prefHeight="64.0" prefWidth="250.0" text="Surname" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="73.0" prefWidth="250.0" text="Email" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="70.0" prefWidth="250.0" text="Phone number" GridPane.rowIndex="3" />
-            <TextField fx:id="nameText" alignment="CENTER" promptText="Insert name" GridPane.columnIndex="1">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="250.0" stylesheets="@../label_theme.css" text="Name" textAlignment="CENTER" />
+            <Label alignment="CENTER" prefHeight="64.0" prefWidth="250.0" stylesheets="@../label_theme.css" text="Surname" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="73.0" prefWidth="250.0" stylesheets="@../label_theme.css" text="Email" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="250.0" stylesheets="@../label_theme.css" text="Phone number" GridPane.rowIndex="3" />
+            <TextField fx:id="nameText" alignment="CENTER" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="surnameText" alignment="CENTER" promptText="Insert surname" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="surnameText" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="emailText" alignment="CENTER" promptText="Insert email" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="emailText" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="phoneNumberText" alignment="CENTER" promptText="Insert phone number" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="phoneNumberText" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </TextField>
          </children>
       </GridPane>
-      <ButtonBar layoutY="222.4" prefHeight="34.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="222.0">
+      <ButtonBar layoutY="216.8" prefHeight="39.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#OnClickAddClient" text="Add Client" />
+          <Button mnemonicParsing="false" onAction="#OnClickAddClient" stylesheets="@../medical_theme.css" text="Add Client" />
         </buttons>
          <padding>
             <Insets right="210.0" />
@@ -61,7 +61,7 @@
       </ButtonBar>
       <Pane prefHeight="46.0" prefWidth="500.0">
          <children>
-            <Label layoutX="199.0" layoutY="7.0" text="Add Client">
+            <Label layoutX="199.0" layoutY="7.0" stylesheets="@../label_theme.css" text="Add Client">
                <font>
                   <Font size="22.0" />
                </font>

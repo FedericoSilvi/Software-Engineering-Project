@@ -22,8 +22,8 @@
                     <items>
                         <ButtonBar prefHeight="40.0" prefWidth="200.0">
                             <buttons>
-                                <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" text="Add Appointment" />
-                                <Button mnemonicParsing="false" onAction="#handleCancel" text="Back" />
+                                <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" stylesheets="@medical_theme.css" text="Add Appointment" />
+                                <Button mnemonicParsing="false" onAction="#handleCancel" stylesheets="@medical_theme.css" text="Back" />
                             </buttons>
                      <padding>
                         <Insets right="20.0" />
@@ -45,14 +45,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="298.0" text="Service" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="298.0" text="Service">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                         <TextField fx:id="serviceField" alignment="CENTER" prefHeight="26.0" prefWidth="262.0" GridPane.columnIndex="1">
                             <GridPane.margin>
                                 <Insets right="20.0" />
                             </GridPane.margin></TextField>
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="301.0" text="Staff " GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="311.0" text="Client " GridPane.rowIndex="2" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="277.0" text="Duration" GridPane.rowIndex="3" />
                   <TextField fx:id="timeField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <opaqueInsets>
                         <Insets />
@@ -73,7 +73,7 @@
                      <children>
                         <Label fx:id="staffName" alignment="CENTER" prefHeight="18.0" prefWidth="110.0" text="Name" GridPane.columnIndex="1" />
                         <Label fx:id="staffSurname" alignment="CENTER" prefHeight="18.0" prefWidth="113.0" text="Surname" GridPane.columnIndex="2" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleStaffSelect" text="Select" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleStaffSelect" stylesheets="@medical_theme.css" text="Select" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -87,19 +87,34 @@
                     </rowConstraints>
                      <children>
                         <Label fx:id="clientSurname" text="Surname" GridPane.columnIndex="2" />
-                        <Button mnemonicParsing="false" onAction="#handleClientSelect" text="Select" />
+                        <Button mnemonicParsing="false" onAction="#handleClientSelect" stylesheets="@medical_theme.css" text="Select" />
                         <Label fx:id="clientName" text="Name" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="38.0" prefHeight="18.0" prefWidth="298.0" text="Staff" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="38.0" prefHeight="18.0" prefWidth="298.0" text="Client" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="38.0" prefHeight="18.0" prefWidth="298.0" text="Duration" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                     </children>
                 </GridPane>
             </center>
         </BorderPane>
       <Pane prefHeight="50.0" prefWidth="600.0">
          <children>
-            <Label layoutX="213.0" layoutY="9.0" text="Add Appointment">
+            <Label alignment="CENTER" layoutX="151.0" layoutY="9.0" prefHeight="18.0" prefWidth="298.0" text="Add Appointment">
                <font>
-                  <Font size="22.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Label>
          </children>

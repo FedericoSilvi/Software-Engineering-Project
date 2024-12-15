@@ -18,7 +18,7 @@
     <children>
       <Pane prefHeight="44.0" prefWidth="600.0">
          <children>
-            <Label layoutX="197.0" layoutY="6.0" text="Update Appointment">
+            <Label layoutX="190.0" layoutY="6.0" stylesheets="@label_theme.css" text="Update Appointment">
                <font>
                   <Font size="22.0" />
                </font>
@@ -31,8 +31,8 @@
                     <items>
                         <ButtonBar prefHeight="40.0" prefWidth="200.0">
                             <buttons>
-                                <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" text="Update" />
-                                <Button mnemonicParsing="false" onAction="#handleCancel" text="Back" />
+                                <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" stylesheets="@medical_theme.css" text="Update" />
+                                <Button mnemonicParsing="false" onAction="#handleCancel" stylesheets="@medical_theme.css" text="Back" />
                             </buttons>
                      <padding>
                         <Insets right="20.0" />
@@ -54,14 +54,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="298.0" text="Service" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="298.0" stylesheets="@label_theme.css" text="Service" />
                         <TextField fx:id="serviceField" alignment="CENTER" prefHeight="26.0" prefWidth="262.0" GridPane.columnIndex="1">
                             <GridPane.margin>
                                 <Insets right="20.0" />
                             </GridPane.margin></TextField>
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="301.0" text="Staff " GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="311.0" text="Client " GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="277.0" text="Duration" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="301.0" stylesheets="@label_theme.css" text="Staff " GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="311.0" stylesheets="@label_theme.css" text="Client " GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="277.0" stylesheets="@label_theme.css" text="Duration" GridPane.rowIndex="3" />
                         <TextField fx:id="timeField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <opaqueInsets>
                                 <Insets />
@@ -81,7 +81,7 @@
                     </rowConstraints>
                      <children>
                         <Label fx:id="staffName" text="Name" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#handleStaffSelect" text="Select" />
+                        <Button mnemonicParsing="false" onAction="#handleStaffSelect" stylesheets="@medical_theme.css" text="Select" />
                         <Label fx:id="staffSurname" text="Surname" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
@@ -96,7 +96,7 @@
                      </rowConstraints>
                      <children>
                         <Label fx:id="clientName" text="Name" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#handleClientSelect" text="Select" />
+                        <Button mnemonicParsing="false" onAction="#handleClientSelect" stylesheets="@medical_theme.css" text="Select" />
                         <Label fx:id="clientSurname" text="Surname" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>

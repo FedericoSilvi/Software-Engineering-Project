@@ -53,8 +53,8 @@
                      </image>
                   </ImageView>
                   <Text layoutX="27.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" />
-                  <Button contentDisplay="CENTER" layoutX="100.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#handleLogin" style="-fx-background-radius: 0;" text="Login" textAlignment="CENTER" />
-                  <Button contentDisplay="CENTER" layoutX="213.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#handleExit" style="-fx-background-radius: 0;" text="Exit" />
+                  <Button contentDisplay="CENTER" layoutX="83.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#handleLogin" style="-fx-background-radius: 0;" stylesheets="@../medical_theme.css" text="Login" textAlignment="CENTER" />
+                  <Button contentDisplay="CENTER" layoutX="202.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#handleExit" style="-fx-background-radius: 0;" stylesheets="@../medical_theme.css" text="Exit" />
                   <Label fx:id="forgottenPassword" layoutX="112.0" layoutY="127.0" onMouseClicked="#handleForgottenPassword" prefHeight="17.0" prefWidth="124.0" text="Forgotten Password?" />
                </children>
             </Pane>

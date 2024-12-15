@@ -22,8 +22,8 @@
                <items>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" text="Add" />
-                      <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                        <Button mnemonicParsing="false" onAction="#handleSave" prefHeight="26.0" prefWidth="468.0" stylesheets="@../medical_theme.css" text="Add" />
+                      <Button mnemonicParsing="false" onAction="#handleCancel" stylesheets="@../medical_theme.css" text="Cancel" />
                     </buttons>
                      <padding>
                         <Insets right="20.0" />
@@ -44,20 +44,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="314.0" text="Name" />
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="314.0" text="Surname" GridPane.rowIndex="1" />
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="309.0" text="Speciality" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="314.0" stylesheets="@../label_theme.css" text="Name" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="314.0" stylesheets="@../label_theme.css" text="Surname" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="309.0" stylesheets="@../label_theme.css" text="Speciality" GridPane.rowIndex="2" />
                   <TextField fx:id="nameField" alignment="CENTER" GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets left="20.0" right="30.0" />
                      </GridPane.margin></TextField>
                   <TextField fx:id="surnameField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets left="20.0" right="30.0" />
                      </GridPane.margin></TextField>
                   <TextField fx:id="specField" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
-                        <Insets right="20.0" />
+                        <Insets left="20.0" right="30.0" />
                      </GridPane.margin></TextField>
                </children>
             </GridPane>
@@ -65,7 +65,7 @@
       </BorderPane>
       <Pane prefHeight="50.0" prefWidth="600.0">
          <children>
-            <Label layoutX="255.0" layoutY="9.0" text="Add Staff">
+            <Label layoutX="255.0" layoutY="9.0" stylesheets="@../label_theme.css" text="Add Staff">
                <font>
                   <Font size="22.0" />
                </font>

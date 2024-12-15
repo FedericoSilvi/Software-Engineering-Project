@@ -27,7 +27,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="250.0" text="Service">
+                        <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="250.0" stylesheets="@../label_theme.css" text="Service">
                             <GridPane.margin>
                                 <Insets />
                             </GridPane.margin>
@@ -35,7 +35,7 @@
                                 <Insets right="100.0" />
                             </padding>
                         </Label>
-                        <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="266.0" text="Client" GridPane.rowIndex="1">
+                        <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="266.0" stylesheets="@../label_theme.css" text="Client" GridPane.rowIndex="1">
                             <padding>
                                 <Insets right="100.0" />
                             </padding>
@@ -65,7 +65,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                      <children>
-                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choosenClient" text="Choose" />
+                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choosenClient" stylesheets="@../medical_theme.css" text="Choose" />
                                 <Label fx:id="clientNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="108.0" text="Name" GridPane.columnIndex="1" />
                                 <Label fx:id="clientSurnameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="130.0" text="Surname" GridPane.columnIndex="2" />
                      </children>
@@ -79,7 +79,7 @@
             <bottom>
                 <ButtonBar prefHeight="40.0" prefWidth="614.0" BorderPane.alignment="CENTER">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#filter" prefHeight="26.0" prefWidth="352.0" text="Filter" />
+                        <Button mnemonicParsing="false" onAction="#filter" prefHeight="26.0" prefWidth="352.0" stylesheets="@../medical_theme.css" text="Filter" />
                     </buttons>
                 </ButtonBar>
             </bottom>
@@ -89,7 +89,7 @@
         </BorderPane>
       <Pane prefHeight="74.0" prefWidth="600.0">
          <children>
-            <Label layoutX="230.0" layoutY="14.0" text="Calendar Filter">
+            <Label layoutX="230.0" layoutY="14.0" stylesheets="@../label_theme.css" text="Calendar Filter">
                <font>
                   <Font size="22.0" />
                </font>

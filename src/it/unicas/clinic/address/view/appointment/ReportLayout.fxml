@@ -29,12 +29,12 @@
               </rowConstraints>
                <children>
                   <TextField fx:id="serviceTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="266.0" text="Service:" GridPane.rowIndex="1">
+                  <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="266.0" stylesheets="@label_theme.css" text="Service:" GridPane.rowIndex="1">
                      <padding>
                         <Insets right="100.0" />
                      </padding>
                   </Label>
-                  <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="256.0" text="Staff:" GridPane.rowIndex="2">
+                  <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="256.0" stylesheets="@label_theme.css" text="Staff:" GridPane.rowIndex="2">
                      <padding>
                         <Insets right="100.0" />
                      </padding>
@@ -49,7 +49,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#chooseStaff" text="Select" />
+                        <Button mnemonicParsing="false" onAction="#chooseStaff" stylesheets="@medical_theme.css" text="Select" />
                         <Label fx:id="nameLabel" alignment="CENTER" prefHeight="18.0" prefWidth="137.0" text="Name" GridPane.columnIndex="1" />
                         <Label fx:id="surnameLabel" alignment="CENTER" prefHeight="18.0" prefWidth="130.0" text="Surname" GridPane.columnIndex="2" />
                      </children>
@@ -75,7 +75,7 @@
                         </TextField>
                      </children>
                   </GridPane>
-                  <Label text="Date: Start-End" />
+                  <Label stylesheets="@label_theme.css" text="Date: Start-End" />
                </children>
                <padding>
                   <Insets left="70.0" top="20.0" />
@@ -85,7 +85,7 @@
          <bottom>
             <ButtonBar prefHeight="40.0" prefWidth="614.0" BorderPane.alignment="CENTER">
                <buttons>
-                  <Button mnemonicParsing="false" onAction="#generateTXT" prefHeight="26.0" prefWidth="352.0" text="Generate" />
+                  <Button mnemonicParsing="false" onAction="#generateTXT" prefHeight="26.0" prefWidth="352.0" stylesheets="@medical_theme.css" text="Generate" />
                </buttons>
             </ButtonBar>
          </bottom>
@@ -95,7 +95,7 @@
       </BorderPane>
       <Pane prefHeight="46.0" prefWidth="600.0">
          <children>
-            <Label layoutX="217.0" layoutY="7.0" text="Feature Selection">
+            <Label layoutX="211.0" layoutY="7.0" stylesheets="@label_theme.css" text="Feature Selection">
                <font>
                   <Font size="22.0" />
                </font>
