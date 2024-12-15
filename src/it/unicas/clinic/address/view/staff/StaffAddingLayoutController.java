@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller of the GUI that manages the staff adding window
+ */
 public class StaffAddingLayoutController {
 
     @FXML
@@ -41,11 +44,7 @@ public class StaffAddingLayoutController {
     private void initialize() {
     }
 
-    /**
-     * Sets the stage of this dialog.
-     *
-     * @param dialogStage
-     */
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
         this.verifyLen = verifyLen;
@@ -54,26 +53,20 @@ public class StaffAddingLayoutController {
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
 
-    /**
-     * Returns true if the user clicked OK, false otherwise.
-     *
-     * @return
-     */
+
     public boolean isOkClicked() {
         return okClicked;
     }
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main: singleton MainApp.
+     */
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
-    /*public void setStaff(){
-        this.staff = new Staff(0, null, null, null);
-        this.staff.setName(nameField.getText());
-        this.staff.setSurname(surnameField.getText());
-        this.staff.setSpecialties(specField.getText());
 
-    }*/
-
+    //Effectively adds the staff to the database
     @FXML
     private void handleSave() throws IOException, StaffException {
         this.staff = new Staff(nameField.getText(), surnameField.getText(), specField.getText());

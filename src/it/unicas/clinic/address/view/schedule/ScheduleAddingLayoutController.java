@@ -21,6 +21,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Controller of the GUI that manages the schedule adding window
+ */
 public class ScheduleAddingLayoutController {
     @FXML
     private TextField dayField;
@@ -41,12 +44,19 @@ public class ScheduleAddingLayoutController {
         // Set the dialog icon.
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main: singleton main
+     * @param s: staff
+     */
     public void setMainApp(Main main, Staff s) {
         this.staff = s;
         this.staff.setId(s.getId());//in questo modo ho l'id dello staff che ho selezionato nella finestra precedente
         this.mainApp = main;
     }
 
+    //Effectively adds the schedule in the database (it previously checks the fields)
     @FXML
     private void handleSave(){
             try {

@@ -13,6 +13,9 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller of the GUI that manages the staff edit credential window
+ */
 public class EditStaffCredentialController {
 
     private Main mainApp;

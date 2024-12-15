@@ -10,7 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 
-
+/**
+ * Controller of the GUI that manages the staff update window
+ */
 public class StaffUpdateLayoutController {
     @FXML
     private TextField nameField;
@@ -26,6 +28,10 @@ public class StaffUpdateLayoutController {
     @FXML
     private void initialize() {
     }
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -34,12 +40,14 @@ public class StaffUpdateLayoutController {
         // Set the dialog icon.
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
+    //Shows information of the existing staff
     public void setField(Staff s){
         staff=s;
         nameField.setText(s.getName());
         surnameField.setText(s.getSurname());
         specField.setText(s.getSpecialties());
     }
+    //Effectively updates the staff in the database
     @FXML
     private void handleUpdate() {
         staff.setName(nameField.getText());

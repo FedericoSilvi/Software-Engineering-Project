@@ -40,6 +40,10 @@ public class StaffManagerInitialLayoutController {
     @FXML
     private ImageView calendarBackground;
 
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * @param main: application
+     */
     public void setMainApp(Main main) {
         this.main = main;
     }
@@ -47,6 +51,7 @@ public class StaffManagerInitialLayoutController {
     @FXML
     private void initialize(){
     }
+    //Return to the login view
     @FXML
     private void handleLogout(){
         //Alert to return in the login GUI
@@ -98,33 +103,41 @@ public class StaffManagerInitialLayoutController {
     private void handleCalendarDownlight(){
         calendarBackground.setOpacity(0.25);
     }
+
+    //Pops up the Staff management table
     @FXML
     private void handleStaffManagerView() throws IOException {
         main.loadStaffManagement();
     }
+    //Pops up the Client management table
     @FXML
     private void handleClientView() throws SQLException, IOException {
         main.showClientView();
     }
+    //Pops up the Password change window
     @FXML
     private void handleChangePassword() throws SQLException, IOException {
         main.changePassword();
     }
-
+    //Pops up the Username change window
     @FXML
     private void handleChangeUsername() throws SQLException, IOException {
         main.changeUsername();
     }
+    //Pops up the Appointment management table
     @FXML
     private void handleApp(){
         main.initAppView();
     }
+    //Pops up the Report window
     @FXML
     private void handleReport() throws IOException {main.openReport();}
+    //Pops up the Calendar view
     @FXML
     private void handleCalendar() throws SQLException, IOException {
         main.showMonthlyView();
     }
+    //Pops up the credential edit window (only for staff manager)
     @FXML
     private void handleEditStaffCredential() throws IOException, SQLException {
         clickStaff=true;

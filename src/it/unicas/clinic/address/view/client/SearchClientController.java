@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class SearchClientController {
 
     public ClientOverviewController clientOverviewController;

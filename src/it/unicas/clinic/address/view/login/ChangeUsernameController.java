@@ -8,11 +8,23 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller of the GUI that manages the staff username change window
+ */
 public class ChangeUsernameController {
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     * @throws SQLException
+     * @throws IOException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -55,6 +67,7 @@ public class ChangeUsernameController {
 
     }
 
+    //Effectively changes the username in the database
     @FXML
     private void changeUsername() throws SQLException {
         //   System.out.println("Vado a cambiare la passwordVisible dello staff con id: " + staff_id);
@@ -111,6 +124,7 @@ public class ChangeUsernameController {
 
     }
 
+    //Makes the password visible
     @FXML
     private void onClickShowPassword(){
         closedEye.setVisible(true);
@@ -123,6 +137,7 @@ public class ChangeUsernameController {
 
     }
 
+    //Makes the password not visible
     @FXML
     private void onClickHidePassword(){
         closedEye.setVisible(false);
@@ -133,6 +148,7 @@ public class ChangeUsernameController {
         passwordVisible.setVisible(false);
     }
 
+    //Checks all the fields
     private boolean isInputValid() {
         String errorMessage = "";
         if(!closedEye.isVisible()) {

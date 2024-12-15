@@ -65,6 +65,7 @@ public class LoginLayoutController {
         password="";
     }
 
+    //Makes the password visible
     @FXML
     private void handleShowPassword() {
         /*
@@ -78,6 +79,8 @@ public class LoginLayoutController {
         closedEye.setVisible(true);
         openedEye.setVisible(false);
     }
+
+    //Makes the password not visible
     @FXML
     private void handleHidePassword() {
         /*
@@ -91,11 +94,15 @@ public class LoginLayoutController {
         closedEye.setVisible(false);
         openedEye.setVisible(true);
     }
+
+    //Close window
     @FXML
     private void handleExit(){
         //Recall the fucntion in mainApp
         main.handleExit();
     }
+
+    //Checks the credentials and loads proper home Views for staff manager/member
     @FXML
     private void handleLogin() throws SQLException {
         //Get inserted username
@@ -174,6 +181,7 @@ public class LoginLayoutController {
              }
          }
     }
+
     @FXML
     private void handleEnter(KeyEvent event) throws SQLException {
         if(event.getCode()==KeyCode.ENTER){

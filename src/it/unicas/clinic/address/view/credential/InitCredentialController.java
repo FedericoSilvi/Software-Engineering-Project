@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller of the GUI that manages the insertion of new staff credentials
+ */
 public class InitCredentialController {
 
     private Main mainApp;

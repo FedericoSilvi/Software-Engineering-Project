@@ -11,11 +11,22 @@ import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Controller of the GUI that manages the password change window
+ */
 public class ChangePasswordController {
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     * @throws SQLException
+     * @throws IOException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -87,9 +98,9 @@ public class ChangePasswordController {
         oldPasswordHidden.setVisible(true);
     }
 
+    //Effectively changes the password in the database
     @FXML
     private void changePassword(ActionEvent event) throws SQLException {
-        //   System.out.println("Vado a cambiare la password dello staff con id: " + staff_id);
 
         String oldPasswordText;
         String newPasswordText;
@@ -159,6 +170,7 @@ public class ChangePasswordController {
 
     }
 
+    //Makes the old password visible
     @FXML
     private void onClickShowPassword1() {
         closedEye1.setVisible(true);
@@ -169,6 +181,7 @@ public class ChangePasswordController {
         newPasswordHidden.setVisible(false);
     }
 
+    //Makes the old password not visible
     @FXML
     private void onClickHidePassword1() {
         closedEye1.setVisible(false);
@@ -179,6 +192,8 @@ public class ChangePasswordController {
         newPasswordHidden.setText(newPasswordVisible.getText());
 
     }
+
+    //Makes the new password visible
     @FXML
     private void onClickShowPassword2() {
         closedEye2.setVisible(true);
@@ -189,6 +204,7 @@ public class ChangePasswordController {
         confirmPasswordHidden.setVisible(false);
     }
 
+    //Makes the new password not visible
     @FXML
     private void onClickHidePassword2() {
         closedEye2.setVisible(false);
@@ -199,6 +215,7 @@ public class ChangePasswordController {
         confirmPasswordHidden.setText(confirmPasswordVisible.getText());
     }
 
+    //Makes the confirmation password visible
     @FXML
     private void onClickShowPassword3() {
         closedEye3.setVisible(true);
@@ -209,6 +226,7 @@ public class ChangePasswordController {
         oldPasswordHidden.setVisible(false);
     }
 
+    //Makes the confirmation password not  visible
     @FXML
     private void onClickHidePassword3() {
         closedEye3.setVisible(false);
@@ -225,6 +243,7 @@ public class ChangePasswordController {
         stage.close();
     }
 
+    //Checks all the fields
     private boolean isInputValid() {
         String errorMessage = "";
         if(openedEye3.isVisible()){

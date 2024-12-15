@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Controller of the GUI that manages the schedule update window
+ */
 public class ScheduleUpdateLayoutController {
     @FXML
     private TextField dayField;
@@ -31,6 +34,12 @@ public class ScheduleUpdateLayoutController {
     private Staff staff;
     private Schedule schedule;
     private ScheduleDAO dao= ScheduleDAOMySQLImpl.getInstance();
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton main
+     * @param staff: staff
+     */
     public void setMainApp(Main mainApp, Staff staff) {
         this.staff = staff;
         this.mainApp = mainApp;
@@ -41,6 +50,7 @@ public class ScheduleUpdateLayoutController {
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
 
+    //Effectively updates the schedule in the database and forces rescheduling
     @FXML
     private void handleUpdate(){
         try {
@@ -87,7 +97,7 @@ public class ScheduleUpdateLayoutController {
         dialogStage.close();
     }
 
-
+    //Shows information about existing schedule
     public void setField(Schedule s) {
         schedule = s;
         dayField.setText(s.getDay().toString());

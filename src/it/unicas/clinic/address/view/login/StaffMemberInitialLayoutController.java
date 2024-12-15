@@ -39,6 +39,11 @@ public class StaffMemberInitialLayoutController {
 
     private AppointmentDAO appointmentDAO = AppointmentDAOMySQLImpl.getInstance();
     private boolean found;
+
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * @param main: application
+     */
     public void setMainApp(Main main) {
         this.main = main;
     }
@@ -47,6 +52,8 @@ public class StaffMemberInitialLayoutController {
     @FXML
     private void initialize(){
     }
+
+    //Return to login view
     @FXML
     private void handleLogout(){
 
@@ -94,28 +101,33 @@ public class StaffMemberInitialLayoutController {
     private void handleCalendarDownlight(){
         calendarBackground.setOpacity(0.25);
     }
+
+    //Pops up the Client management table
     @FXML
     private void handleClientView() throws SQLException, IOException {
         main.showClientView();
     }
-
+    //Pops up the Password change window
     @FXML
     private void handleChangePassword() throws SQLException, IOException {
         main.changePassword();
     }
-
+    //Pops up the Username change window
     @FXML
     private void handleChangeUsername() throws IOException {
         main.changeUsername();
     }
+    //Pops up the Appointment management table
     @FXML
     private void handleApp(){
         main.initAppView();
     }
+    //Pops up the Calendar view
     @FXML
     private void handleCalendar() throws SQLException, IOException {
         main.showMonthlyView();
     }
+    //Pops up the notification area (daily appointment of logged-in user)
     @FXML
     private void notificationArea() throws IOException {
         if(found) {
@@ -127,7 +139,7 @@ public class StaffMemberInitialLayoutController {
                     "");
         }
     }
-
+    //Set icon to notify the presence of daily appointments
     public void setIcon() {
         //numero di appuntamenti cancellati oggi
         int count = 0;

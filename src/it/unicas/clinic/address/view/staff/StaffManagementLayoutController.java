@@ -20,7 +20,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Controller of the GUI that manages the general Staff table
+ */
 public class StaffManagementLayoutController {
 
     @FXML
@@ -43,6 +45,11 @@ public class StaffManagementLayoutController {
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
     private AppointmentDAO daoApp = AppointmentDAOMySQLImpl.getInstance();
     private ScheduleDAO daoSchedule= ScheduleDAOMySQLImpl.getInstance();
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -62,15 +69,18 @@ public class StaffManagementLayoutController {
     }
 
 
+    //Reset the filter
     @FXML
     private void showStaff(){
         //StaffDAOMySQLImpl.getInstance().select(new Staff(0,null, null, null));
         mainApp.getStaffData().addAll(dao.select(new Staff(0,null, null, null)));
     }
+    //Pops up the staff adding window
     @FXML
     private void handleInsertStaff() {
         mainApp.showStaffInsertDialog();
     }
+    //Pops up the staff update window
     @FXML
     private void handleUpdateStaff(){
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
@@ -88,6 +98,7 @@ public class StaffManagementLayoutController {
             alert.showAndWait();
         }
     }
+    //Soft deletes the staff in the database
     @FXML
     private void handleDeleteStaff() throws SQLException {
 
@@ -146,7 +157,7 @@ public class StaffManagementLayoutController {
             alert.showAndWait();
         }
     }
-    //handle Schedule button
+    //Pops up the schedule table
     @FXML
     private void handleSchedule() throws IOException {
         //take the staff del quale dovrò mostrare gli schedule
@@ -166,6 +177,7 @@ public class StaffManagementLayoutController {
             alert.showAndWait();
         }
     }
+    //Applies filter
     @FXML
     private void handleFilter(){
         String name = staffName.getText();
@@ -181,6 +193,7 @@ public class StaffManagementLayoutController {
             mainApp.getStaffData().addAll(list);
         }
     }
+    //Close the window
     @FXML
     private void handleBack(){
         mainApp.initStaffManager();

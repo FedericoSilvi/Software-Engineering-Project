@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that manages client update
+ */
 public class UpdateClientController {
 
     private Main mainApp;

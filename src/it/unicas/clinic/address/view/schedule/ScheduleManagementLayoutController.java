@@ -20,6 +20,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI that manages the general schedule table
+ */
 public class ScheduleManagementLayoutController {
     @FXML
     private TableView<Schedule> scheduleTable;
@@ -40,6 +43,11 @@ public class ScheduleManagementLayoutController {
     private Schedule schedule;
     private Staff staff; //staff selezionato nella StaffManagementLayout, del quale mostrare gli schedule
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton main
+     * @param s: staff
+     */
     public void setMainApp(Main mainApp, Staff s) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -62,11 +70,13 @@ public class ScheduleManagementLayoutController {
 
 
     }
+    //Pops up the insert schedule window
     @FXML
     private void handleInsertSchedule() {
         mainApp.showScheduleInsertDialog(staff);
 
     }
+    //Effectively deletes the schedule in the database and forces rescheduling
     @FXML
     private void handleDeleteSchedule() {
         //check if there is a selected schedule
@@ -133,6 +143,7 @@ public class ScheduleManagementLayoutController {
             alert.showAndWait();
         }
     }
+    //Pops up the update schedule window
     @FXML
     private void handleUpdateSchedule() {
         //take the staff del quale dovrò mostrare gli schedule
@@ -158,7 +169,7 @@ public class ScheduleManagementLayoutController {
         }
 
     }
-
+    //Helping function to force rescheduling
     private void rescheduleApp(Appointment app) throws IOException, SQLException {
             appDao.softDelete(app.getId());
             //Each element of arrayList is linked to a single schedule of scheduleList
