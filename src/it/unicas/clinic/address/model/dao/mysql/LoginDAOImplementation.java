@@ -61,7 +61,7 @@ public class LoginDAOImplementation {
     /**
      * Search for the credentials contained in the Class. If found, search for the
      * corresponding user and return it, else return null
-     * @throws SQLException: cannot execute the wanted queries
+     * @throws SQLException
      */
     public User searchUser() throws SQLException {
         //Open connection

@@ -57,7 +57,6 @@ public class Main extends Application {
 
 
     private static Main mainApp;
-
     private Stage primaryStage;
     private BorderPane loginLayout;
     private BorderPane staffInitialLayout;
@@ -70,6 +69,7 @@ public class Main extends Application {
     private Boolean isManager;
     private int user_id;
     private ObservableList<Schedule> scheduleData = FXCollections.observableArrayList();
+
     public ObservableList<Schedule> getScheduleData() {
         return scheduleData;
     }
@@ -118,10 +118,6 @@ public class Main extends Application {
         mainApp=this;
         DataUtil.cleanUpRecord();
 
-
-
-
-
         this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
@@ -132,10 +128,15 @@ public class Main extends Application {
         initLogin();
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         primaryStage.show();
 
     }
 
+    /**
+     * Method to restart application.
+     * Used when the user is kicked out from the system due to inactivity (15 min)
+     */
     public static void restart() {
         Stage stage = mainApp.primaryStage; // Recupera il primaryStage
         stage.close(); // Chiudi la finestra attuale
@@ -280,6 +281,9 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Load the GUI in order to add the data for a new staff member
+     */
     public void showStaffInsertDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -299,7 +303,7 @@ public class Main extends Application {
             //controller.setStaff();
 
             // Set the dialog icon.
-            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             setTimer(scene);
 
             dialogStage.showAndWait();
@@ -312,7 +316,10 @@ public class Main extends Application {
     }
 
 
-
+    /**
+     * Load the GUI in order to add the data for a new staff member
+     * @param s: the staff member you want to update
+     */
     public void showStaffUpdateDialog(Staff s){
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -332,7 +339,7 @@ public class Main extends Application {
             controller.setField(s);
 
             // Set the dialog icon.
-            //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
+            dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             setTimer(scene);
             dialogStage.showAndWait();
 
@@ -343,20 +350,11 @@ public class Main extends Application {
 
     }
 
-    public void loadStaffManagementChoose() throws IOException{
-        primaryStage.getIcons().add(new Image("file:resources/clinic-icon-3.png"));
-        this.primaryStage.setTitle("Clinic");
-        FXMLLoader loader = new FXMLLoader();
-        this.primaryStage.setTitle("Clinic");
-        loader.setLocation(Main.class.getResource("view/staff/ChooseOwnerLayout.fxml"));
-        page =  loader.load();
-        Scene scene = new Scene(page);
-        primaryStage.setScene(scene);
-        ChooseOwnerLayoutController controller = loader.getController();
-        controller.setMain(this);
-        setTimer(scene);
-    }
 
+    /**
+     * Load a GUI in order to list all staff members
+     * @throws IOException
+     */
     public void loadStaffManagement() throws IOException{
         staffData.clear();
         //loadStaffManagementChoose();
@@ -367,11 +365,10 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
+        primaryStage.setTitle("Clinic");
         primaryStage.show();
         setTimer(scene);
     }
-
-
 
     public void searchClientLayout(ClientOverviewController clientController) throws IOException {
         Stage searchWindow = new Stage();
@@ -394,6 +391,11 @@ public class Main extends Application {
         searchWindow.showAndWait();
     }
 
+    /**
+     * Load a GUI in order to add a new Client
+     * @param clientController
+     * @throws IOException
+     */
     public void addClientLayout(ClientOverviewController clientController) throws IOException {
         Stage addWindow = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/it/unicas/clinic/address/view/client/AddClient.fxml"));
@@ -408,9 +410,17 @@ public class Main extends Application {
 
         addWindow.setScene(new Scene(layout));
         setTimer(addWindow.getScene());
+        addWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        addWindow.setTitle("Add Client");
         addWindow.show();
     }
 
+    /**
+     * Load a GUI in order to update an existing Client
+     * @param clientController
+     * @param client: the client you want to update
+     * @throws IOException
+     */
     public void updateClientLayout(ClientOverviewController clientController, Client client) throws IOException {
         Stage updateWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -428,9 +438,16 @@ public class Main extends Application {
 
         updateWindow.setScene(new Scene(layout));
         setTimer(updateWindow.getScene());
+        updateWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        updateWindow.setTitle("Update Client");
         updateWindow.showAndWait();
     }
 
+    /**
+     * Load a GUI in order to list all clients
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showClientView() throws IOException, SQLException {
         this.primaryStage.setTitle("Clinic");
         FXMLLoader loader = new FXMLLoader();
@@ -443,6 +460,9 @@ public class Main extends Application {
         setTimer(primaryStage.getScene());
     }
 
+    /**
+     * Load a GUI in order to list all appointments
+     */
     public void initAppView(){
         try{
             appointmentData.clear();
@@ -470,6 +490,7 @@ public class Main extends Application {
             //Set and show primary stage
             primaryStage.centerOnScreen();
             primaryStage.setResizable(false);
+            primaryStage.setTitle("Clinic");
             primaryStage.show();
             setTimer(scene);
         } catch (IOException e) {
@@ -478,6 +499,10 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Load a GUI in order to add a new Appointment
+     */
     public void showAppInsertDialog() {
         if(isManager) {
             try {
@@ -500,6 +525,7 @@ public class Main extends Application {
                 // Set the dialog icon.
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
                 setTimer(scene);
+                dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
                 dialogStage.showAndWait();
 
             } catch (IOException e) {
@@ -527,6 +553,7 @@ public class Main extends Application {
                 // Set the dialog icon.
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
                 setTimer(scene);
+                dialogStage.getIcons().add(new Image("resources/login_icons/edit.png"));
                 dialogStage.showAndWait();
 
             } catch (IOException e) {
@@ -538,6 +565,11 @@ public class Main extends Application {
         }
 
     }
+
+    /**
+     * Load a GUI in order to update an existing appointment
+     * @param a: the appointment you want to update
+     */
     public void showAppUpdateDialog(Appointment a){
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -580,6 +612,12 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Load an error Alert in order to display information
+     * @param title: alert title
+     * @param header: alert header
+     * @param content: alert content
+     */
     public void errorAlert(String title, String header, String content){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -587,6 +625,12 @@ public class Main extends Application {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    /**
+     * Load a warning Alert in order to display information
+     * @param title: alert title
+     * @param header: alert header
+     * @param content: alert content
+     */
     public void warningAlert(String title, String header, String content){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -594,6 +638,12 @@ public class Main extends Application {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    /**
+     * Load an information Alert in order to display information
+     * @param title: alert title
+     * @param header: alert header
+     * @param content: alert content
+     */
     public void infoAlert(String title, String header, String content){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -602,6 +652,10 @@ public class Main extends Application {
         alert.showAndWait();
     }
 
+    /**
+     * Load a GUI in order to choose a staff member
+     * @throws IOException
+     */
     public void showAppStaff() throws IOException {
         appointmentData.clear();
         staffData.clear();
@@ -609,7 +663,7 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("view/appointment/AppStaffView.fxml"));
         AnchorPane p = (AnchorPane) loader.load();
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Add Appointment");
+        dialogStage.setTitle("Choose Staff Member");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
         Scene scene = new Scene(p);
@@ -618,15 +672,22 @@ public class Main extends Application {
         controller.setMainApp(this);
         controller.setDialogStage(dialogStage);
         setTimer(scene);
+        dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         dialogStage.showAndWait();
     }
+
+    /**
+     * Load a GUI in order to choose a client
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showAppClient() throws IOException, SQLException {
         appointmentData.clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/appointment/AppClientView.fxml"));
         AnchorPane p = (AnchorPane) loader.load();
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Add Appointment");
+        dialogStage.setTitle("Choose Client");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(primaryStage);
         Scene scene = new Scene(p);
@@ -636,20 +697,66 @@ public class Main extends Application {
         controller.ShowAllClients();
         controller.setDialogStage(dialogStage);
         setTimer(scene);
+        dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         dialogStage.showAndWait();
     }
+
+    /**
+     * Save the id of chosen staff for appointment
+     * @param id: id of the selected staff
+     */
     public void saveStaff(int id){
         appInfo.setStaff(id);
     }
+
+    /**
+     * Get the id of selected staff for appointment
+     * @return
+     */
     public int getSavedStaff(){
         return appInfo.getStaff();
     }
+
+    /**
+     * Save the id of chosen client for appointment
+     * @param id: id of the selected staff
+     */
     public void saveClient(int id){appInfo.setClient(id);}
+    /**
+     * Get the id of selected client for appointment
+     * @return
+     */
     public int getSavedClient(){return appInfo.getClient();}
+
+    /**
+     * Save the service of the creating appointment
+     * @param service: the service of the appointment that id being craeted
+     */
     public void saveService(String service){appInfo.setService(service);}
+
+    /**
+     * Get the service of the creating appointment
+     * @return
+     */
     public String getSavedService(){return appInfo.getService();}
+
+    /**
+     * Save the duration of the creating appointment
+     * @param duration: the duration of the appointment that's being created
+     */
     public void saveDuration(LocalTime duration){appInfo.setDuration(duration);}
+    /**
+     * Get the duration of the creating appointment
+     * @return
+     */
     public LocalTime getSavedDuration(){return appInfo.getDuration();}
+
+    /**
+     * Load a GUI in order to list all dates and time slots available for the appointment
+     * @param schedules: all existing schedules
+     * @param list: boolean list for time slots
+     * @throws IOException
+     */
     public void showAvailableApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list) throws IOException {
         appSchedData.clear();
         FXMLLoader loader = new FXMLLoader();
@@ -660,8 +767,17 @@ public class Main extends Application {
         AppSelectViewController controller = loader.getController();
         controller.setMainApp(this,schedules,list);
         setTimer(scene);
+        primaryStage.setTitle("Schedule Appointment");
         primaryStage.show();
     }
+
+    /**
+     * Load a GUI in order to list all dates and time slots available for the appointment you want to update
+     * @param schedules: all existing schedules
+     * @param list: boolean list for time slots
+     * @param a: the appointment you want to update
+     * @throws IOException
+     */
     public void showAvailableAppUp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException {
         appSchedData.clear();
         FXMLLoader loader = new FXMLLoader();
@@ -675,7 +791,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    //schedule mangament
+    /**
+     * Load a GUI in order to list all schedules associated to the selected staff
+     * @param s: selected staff
+     * @throws IOException
+     */
     public void showScheduleManagmentLayout(Staff s) throws IOException {
         //System.out.println(s);
         scheduleData.clear();
@@ -695,10 +815,16 @@ public class Main extends Application {
         updateWindow.setOnCloseRequest(event -> {
             scheduleData.clear();
         });
+        updateWindow.setTitle("Schedule Management");
+        updateWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         setTimer(updateWindow.getScene());
         updateWindow.showAndWait();
     }
 
+    /**
+     * Load a GUI in order to add a schedule to the selected staff
+     * @param s: selected staff
+     */
     public void showScheduleInsertDialog(Staff s) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -719,6 +845,8 @@ public class Main extends Application {
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
             setTimer(scene);
+            dialogStage.setTitle("Add Schedule");
+            dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -726,6 +854,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Load a GUI in order to uodate an existing schedule
+     * @param s
+     * @param staff
+     */
     public void showScheduleUpdateDialog(Schedule s, Staff staff){
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -747,6 +880,7 @@ public class Main extends Application {
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
             setTimer(scene);
+            dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -754,6 +888,14 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Load a GUI in order to force reschedule of appointments when deleting/updating schedule
+     * @param schedules: list of schedules
+     * @param list: time slots
+     * @param a: appointment
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showRescheduleApp(ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a) throws IOException, SQLException {
         appSchedData.clear();
         Stage rescheduleWindow = new Stage();
@@ -766,10 +908,16 @@ public class Main extends Application {
         AppSelectViewController3 controller = loader.getController();
         controller.setMainApp(this,schedules,list,a,rescheduleWindow);
         setTimer(scene);
+        rescheduleWindow.setTitle("Reschedule Appointment");
+        rescheduleWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         rescheduleWindow.showAndWait();
     }
 
-
+    /**
+     * Load a GUI in order to change password of the logged-in user
+     * @throws IOException
+     * @throws SQLException
+     */
     public void changePassword() throws IOException, SQLException {
         Stage changePasswordWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -786,10 +934,16 @@ public class Main extends Application {
 
         changePasswordWindow.setScene(new Scene(anchorPane));
         setTimer(changePasswordWindow.getScene());
+        changePasswordWindow.setTitle("Change Password");
+        changePasswordWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         changePasswordWindow.showAndWait();
 
     }
 
+    /**
+     * Load a GUI in order to change username of the logged-in user
+     * @throws IOException
+     */
     public void changeUsername() throws IOException{
         Stage changeUsernameWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -806,13 +960,18 @@ public class Main extends Application {
 
         changeUsernameWindow.setScene(new Scene(anchorPane));
         setTimer(changeUsernameWindow.getScene());
+        changeUsernameWindow.setTitle("Change Username");
+        changeUsernameWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         changeUsernameWindow.showAndWait();
-
-
     }
 
     public void setId(int id) {user_id = id;}
 
+    /**
+     * Load a GUI in order to edit staff member credential
+     * @param id: id of the staff member
+     * @throws IOException
+     */
     public void EditStaffCredential(int id) throws IOException {
         Stage editStaffWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -828,9 +987,14 @@ public class Main extends Application {
         editStaffWindow.initOwner(primaryStage);
 
         editStaffWindow.setScene(new Scene(anchorPane));
+        editStaffWindow.setTitle("Edit Staff Credentials");
+        editStaffWindow.getIcons().add(new Image("resource/login_icons/clinic-icon.png"));
         editStaffWindow.showAndWait();
     }
 
+    /**
+     * Load a GUI in order to show client history
+     */
     public void showClientHistory(){
         try{
             //appointmentData.clear();
@@ -859,6 +1023,7 @@ public class Main extends Application {
             primaryStage.centerOnScreen();
             primaryStage.setResizable(false);
             setTimer(scene);
+            primaryStage.setTitle("Client History");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -867,6 +1032,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Load a GUI in order to create a report file
+     * @throws IOException
+     */
     public void openReport() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/appointment/ReportLayout.fxml"));
@@ -882,10 +1051,16 @@ public class Main extends Application {
         controller.setMainApp(this);
         controller.setDialogStage(dialogStage);
         setTimer(scene);
+        dialogStage.setTitle("Report");
+        dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         dialogStage.show();
     }
 
-
+    /**
+     * Load a GUI in order to show monthly appointments
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showMonthlyView() throws IOException, SQLException {
         Stage monthlyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -901,9 +1076,15 @@ public class Main extends Application {
 
         monthlyViewWindow.setScene(new Scene(anchorPane));
         setTimer(monthlyViewWindow.getScene());
+        monthlyViewWindow.setTitle("Monthly Calendar");
+        monthlyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         monthlyViewWindow.show();
     }
-
+    /**
+     * Load a GUI in order to show weekly appointments
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showWeeklyView() throws IOException {
         Stage weeklyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -919,10 +1100,16 @@ public class Main extends Application {
         weeklyViewWindow.initOwner(primaryStage);
         weeklyViewWindow.setScene(new Scene(anchorPane));
         setTimer(weeklyViewWindow.getScene());
+        weeklyViewWindow.setTitle("Weekly Calendar");
+        weeklyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         weeklyViewWindow.show();
 
     }
-
+    /**
+     * Load a GUI in order to show daily appointments
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showDailyView() throws IOException {
         Stage dailyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -937,9 +1124,16 @@ public class Main extends Application {
         dailyViewWindow.initOwner(primaryStage);
         dailyViewWindow.setScene(new Scene(anchorPane));
         setTimer(dailyViewWindow.getScene());
+        dailyViewWindow.setTitle("Daily Calendar");
+        dailyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         dailyViewWindow.show();
     }
 
+    /**
+     * Load a GUI in order to show daily appointments of the logged-in user
+     * @throws IOException
+     * @throws SQLException
+     */
     public void showDailyView2() throws IOException {
         Stage dailyViewWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -954,10 +1148,18 @@ public class Main extends Application {
         dailyViewWindow.initOwner(primaryStage);
         dailyViewWindow.setScene(new Scene(anchorPane));
         setTimer(dailyViewWindow.getScene());
+        dailyViewWindow.setTitle("Daily Calendar");
+        dailyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         dailyViewWindow.show();
     }
 
-
+    /**
+     * Load a GUI in order to filter the shown appointments in the calendar for the staff manager
+     * @param conM
+     * @param conW
+     * @param conD
+     * @throws IOException
+     */
     public void filterCalendarViewForManager(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -982,9 +1184,18 @@ public class Main extends Application {
         filterCalendarWindow.initOwner(primaryStage);
         filterCalendarWindow.setScene(new Scene(anchorPane));
         setTimer(filterCalendarWindow.getScene());
+        filterCalendarWindow.setTitle("Calendar View");
+        filterCalendarWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         filterCalendarWindow.showAndWait();
     }
 
+    /**
+     * Load a GUI in order to filter the shown appointments in the calendar for the logged-in user
+     * @param conM
+     * @param conW
+     * @param conD
+     * @throws IOException
+     */
     public void filterCalendarViewForMember(MonthlyViewController conM, WeeklyViewController conW, DailyView2Controller conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -1009,9 +1220,17 @@ public class Main extends Application {
         filterCalendarWindow.initOwner(primaryStage);
         filterCalendarWindow.setScene(new Scene(anchorPane));
         setTimer(filterCalendarWindow.getScene());
+        filterCalendarWindow.setTitle("Calendar Filter");
+        filterCalendarWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         filterCalendarWindow.showAndWait();
     }
-
+    /**
+     * Load a GUI in order to filter the shown appointments in the calendar for the logged-in user
+     * @param conM
+     * @param conW
+     * @param conD
+     * @throws IOException
+     */
     public void filterCalendarViewForMember2(MonthlyViewController conM, WeeklyViewController conW, DailyViewController conD) throws IOException {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -1040,7 +1259,9 @@ public class Main extends Application {
     }
 
 
-
+    /**
+     * Load a GUI in order to see the appointments in a selected time slot
+     */
     public void showCalendarAppView(){
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -1061,6 +1282,8 @@ public class Main extends Application {
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
             setTimer(scene);
+            dialogStage.setTitle("Appointments");
+            dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -1070,6 +1293,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Sets the timer with a specified scene
+     * @param scene: specific scene
+     */
     public void setTimer(Scene scene){
         // Configura il timeout con PauseTransition
         if(timer!=null)
@@ -1100,6 +1327,10 @@ public class Main extends Application {
         timer.play();
     }
 
+    /**
+     * Send email to client in order to remind the client about appointments (24 hrs before)
+     * @throws SQLException
+     */
     public void sendClientNotification() throws SQLException {
         AppointmentDAO appDao = AppointmentDAOMySQLImpl.getInstance();
         ArrayList<Appointment> apps = appDao.getTomorrowApp();
@@ -1124,6 +1355,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Send email to client in order to notice the client about deleted appointments
+     * @param app: deleted appointment
+     * @throws SQLException
+     */
     public void sendClientCancellation(Appointment app) throws SQLException {
 
         Client c = DAOClient.select(app.getClientId());
@@ -1142,6 +1378,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Send email to client in order to notice the client about updated appointments
+     * @param app: updated appointment
+     * @throws SQLException
+     */
     public void sendClientReschedule(Appointment app) throws SQLException{
 
         Client c = DAOClient.select(app.getClientId());
@@ -1160,6 +1401,12 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Load a GUI in order to insert credentials for a freshly created staff member
+     * @param owner
+     * @param con
+     * @throws IOException
+     */
     public void initCredential(Stage owner, StaffAddingLayoutController con ) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/credential/InitCredential.fxml"));
@@ -1179,7 +1426,8 @@ public class Main extends Application {
 
         Scene scene = new Scene(anchorPane);
         dialogStage.setScene(scene);
-
+        dialogStage.setTitle("Insert Credentials");
+        dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         dialogStage.showAndWait();
 
     }
@@ -1187,10 +1435,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
-    //check for staff or client to delete from the db.
-
 
 }

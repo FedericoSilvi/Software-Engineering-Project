@@ -132,7 +132,7 @@ public class DAOMySQLSettings {
 
     /**
      * Establish a connection to the server based on the default settings.
-     * @throws SQLException: can't get the connection
+     * @throws SQLException
      */
     public static Connection getConnection() throws SQLException {
         if (currentDAOMySQLSettings == null) {
@@ -144,7 +144,7 @@ public class DAOMySQLSettings {
     /**
      * Close the connection passed by argument.
      * @param connection: connection to be closed
-     * @throws SQLException: can't close the connection
+     * @throws SQLException
      */
     public static void closeConnection(Connection connection) throws SQLException {
         connection.close();

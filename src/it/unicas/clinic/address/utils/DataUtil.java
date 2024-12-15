@@ -112,7 +112,7 @@ public class DataUtil {
     /**
      * Creates a LocalDate variable based on the string passed as argument
      * @param dateString: string containing format "yyyy-mm-dd"
-     * @return: LocalDate variable
+     * @return
      */
     public static LocalDate parseToDate(String dateString) {
         //Format control
@@ -138,7 +138,7 @@ public class DataUtil {
      * modify parameter
      * @param modify: if true format is "hh:mm",
      *              if false format is "hh:mm:ss"
-     * @return: LocalTime variable
+     * @return
      */
     public static LocalTime parseToTime(String timeString,boolean modify) {
         //We are building LocalTime from TextField ("hh:mm" format)
