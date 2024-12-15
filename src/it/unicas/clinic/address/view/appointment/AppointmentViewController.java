@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI that manages the appointments.
+ */
 public class AppointmentViewController {
     @FXML
     private TableView<Appointment> appointmentTable;
@@ -38,7 +41,11 @@ public class AppointmentViewController {
     public AppointmentViewController() throws SQLException {
     }
 
-
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main mainApp) throws SQLException {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -61,12 +68,13 @@ public class AppointmentViewController {
         clientIdColumn.setCellValueFactory(cellData -> cellData.getValue().clientIdProperty().asObject());
     }
 
-
+    //Calls for the insert appointment GUI
     @FXML
     private void handleInsertApp() {
         mainApp.showAppInsertDialog();
     }
 
+    //Calls for the update appointment GUI
     @FXML
     private void handleUpdateApp(){
         Appointment selectedApp = appointmentTable.getSelectionModel().getSelectedItem();
@@ -89,6 +97,8 @@ public class AppointmentViewController {
             alert.showAndWait();
         }
     }
+
+    //Deletes the selected appointment
     @FXML
     private void handleDeleteApp() {
 
@@ -143,6 +153,10 @@ public class AppointmentViewController {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Go back to home View.
+     */
     public void handleHome(){
        if(mainApp.getIsManager())
            mainApp.initStaffManager();

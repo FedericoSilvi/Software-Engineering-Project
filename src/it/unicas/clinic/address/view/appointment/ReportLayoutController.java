@@ -28,6 +28,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller of the GUI that manages the report generation.
+ */
 public class ReportLayoutController {
     private static AppointmentDAO daoApp= AppointmentDAOMySQLImpl.getInstance();
     private static StaffDAO daoStaff = StaffDAOMySQLImpl.getInstance();
@@ -53,9 +56,15 @@ public class ReportLayoutController {
     LocalDate startDate = null;
     LocalDate endDate = null;
     int idStaff = 0;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
+    //Saves the selected staff inside local variables
     @FXML
     private void chooseStaff() throws SQLException, IOException {
         clickStaff=true;
@@ -70,6 +79,7 @@ public class ReportLayoutController {
         }
         mainApp.getStaffData().clear();
     }
+    //Generates the txt file for the report
     @FXML
     private void generateTXT() {
         int canc=0;
@@ -169,6 +179,8 @@ public class ReportLayoutController {
 
 
     }
+
+    //Gets the appointments to insert inside the report
     private List<Appointment> getApp(){
         service=null;
         startDate = null;
@@ -247,20 +259,7 @@ public class ReportLayoutController {
 
 
     public static void main(String[] args) {
-        // selct all. OK
-        //System.out.println(daoApp.select(new Appointment(0, null, null, null, null, null, null)));
-        // select by service "Operazione 1" OK
-        //System.out.println(daoApp.select(new Appointment(0, "Operazione1", null, null, null, null, null)));
-        // select by data OK FOR SINGLE DAY + Service
-        //System.out.println(daoApp.select(new Appointment(0, "Operazione1", LocalDate.parse("2024-12-25"), null, null, null, null)));
-        // select by data (PERIOD) + Service OK
-        //System.out.println(daoApp.select(new Appointment(0, "Operazione1", null, null, null, null, null),
-        //       LocalDate.parse("2024-12-01"), LocalDate.parse("2024-12-31")));
 
-        // select by staff id OK
-        //System.out.println(daoApp.select(new Appointment(0, "Operazione1", LocalDate.parse("2024-12-25"), null, null, 1, null)));
-        //System.out.println(daoApp.select(new Appointment(0, null, null, null, null, 0, null),
-         //       null, null));
     }
 
     public void setDialogStage(Stage dialogStage) {

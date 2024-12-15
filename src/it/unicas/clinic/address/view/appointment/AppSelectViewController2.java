@@ -29,6 +29,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI that manages the effective insertion of the appointment after update.
+ */
 public class AppSelectViewController2 {
 
     @FXML
@@ -63,7 +66,11 @@ public class AppSelectViewController2 {
     Appointment app;
 
 
-
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main main,ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a){
         this.mainApp = main;
         app=a;
@@ -146,6 +153,12 @@ public class AppSelectViewController2 {
         clientL.setText(DAOClient.getClient(mainApp.getSavedClient()).getName()+"\n"+
                 DAOClient.getClient(mainApp.getSavedClient()).getSurname());
     }
+
+    /**
+     * Add the appointment in selected date and time.
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
     public void handleAddApp() throws SQLException, IOException {
         if(app.getId()==0||date==null||time==null){
@@ -178,12 +191,18 @@ public class AppSelectViewController2 {
 
         mainApp.initAppView();
     }
+
+    /**
+     * Return to the main View.
+     */
     @FXML
     public void handleCancel(){
         appDAO.insert(app);
         mainApp.initAppView();
         mainApp.showAppInsertDialog();
     }
+
+    // Check if there are any schedules
     private void handleEmpty(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

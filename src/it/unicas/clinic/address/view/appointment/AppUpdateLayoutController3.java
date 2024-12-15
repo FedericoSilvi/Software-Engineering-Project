@@ -20,6 +20,9 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that manages the update of an existing appointment being the staff member
+ */
 public class AppUpdateLayoutController3 {
     @FXML
     private TextField serviceField;
@@ -48,11 +51,7 @@ public class AppUpdateLayoutController3 {
     @FXML
     private void initialize(){
     }
-    /**
-     * Sets the stage of this dialog.
-     *
-     * @param dialogStage
-     */
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
         this.verifyLen = verifyLen;
@@ -60,11 +59,19 @@ public class AppUpdateLayoutController3 {
         // Set the dialog icon.
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main
+     */
     public void setMainApp(Main main) throws SQLException {
         this.mainApp = main;
         Staff s = staffDao.select(mainApp.getUser_id());
         staffL.setText(s.getName()+" "+s.getSurname());
     }
+    /**
+     * Sets the information of the existing appointments
+     * @param a: existing appointment.
+     */
     public void setField(Appointment a){
         app=a;
         serviceField.setText(a.getService());
@@ -72,6 +79,7 @@ public class AppUpdateLayoutController3 {
         mainApp.saveStaff(app.getStaffId());
         mainApp.saveClient(app.getClientId());
     }
+    // Checks if all fields are filled and calls the function to show all available time slots.
     @FXML
     private void handleSave() throws SQLException, IOException {
         dao.softDelete(app.getId());
@@ -136,6 +144,7 @@ public class AppUpdateLayoutController3 {
     private void handleCancel(){
         dialogStage.close();
     }
+    //Saves the selected client inside local variables
     @FXML
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();

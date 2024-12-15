@@ -22,6 +22,9 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI to add an appointment being a staff manager.
+ */
 public class AppAddingLayoutController2 {
     @FXML
     private TextField serviceField;
@@ -56,11 +59,7 @@ public class AppAddingLayoutController2 {
     private void initialize() {
     }
 
-    /**
-     * Sets the stage of this dialog.
-     *
-     * @param dialogStage
-     */
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
         this.verifyLen = verifyLen;
@@ -68,11 +67,15 @@ public class AppAddingLayoutController2 {
         // Set the dialog icon.
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
-
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
-
+    //Saves the selected staff into local variables.
     @FXML
     private void handleStaffSelect() throws IOException, SQLException {
         mainApp.showAppStaff();
@@ -82,6 +85,7 @@ public class AppAddingLayoutController2 {
             staffSurname.setText(selectedStaff.getSurname());
         }
     }
+    // Checks if all fields are filled and calls the function to show all available time slots.
     @FXML
     private void handleSave() throws SQLException, IOException {
         mainApp.saveService(serviceField.getText());
@@ -140,7 +144,7 @@ public class AppAddingLayoutController2 {
     private void handleCancel() {
         dialogStage.close();
     }
-
+    //Saves the selected client into local variables.
     @FXML
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();

@@ -21,6 +21,9 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that manages the update of an existing appointment being the staff manager
+ */
 public class AppUpdateLayoutController2 {
     @FXML
     private TextField serviceField;
@@ -51,11 +54,7 @@ public class AppUpdateLayoutController2 {
     private void initialize() {
     }
 
-    /**
-     * Sets the stage of this dialog.
-     *
-     * @param dialogStage
-     */
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
         this.verifyLen = verifyLen;
@@ -64,9 +63,18 @@ public class AppUpdateLayoutController2 {
         //this.dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
     }
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main
+     */
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
+
+    /**
+     * Sets the information of the existing appointments
+     * @param a: existing appointment.
+     */
     public void setField(Appointment a){
         app=a;
         serviceField.setText(a.getService());
@@ -74,6 +82,7 @@ public class AppUpdateLayoutController2 {
         mainApp.saveStaff(app.getStaffId());
         mainApp.saveClient(app.getClientId());
     }
+    //Saves the selected staff inside local variables
     @FXML
     private void handleStaffSelect() throws IOException, SQLException {
         mainApp.showAppStaff();
@@ -83,7 +92,7 @@ public class AppUpdateLayoutController2 {
             staffSurname.setText(selectedStaff.getSurname());
         }
     }
-
+    // Checks if all fields are filled and calls the function to show all available time slots.
     @FXML
     private void handleSave() throws SQLException, IOException {
         mainApp.saveService(serviceField.getText());
@@ -120,7 +129,7 @@ public class AppUpdateLayoutController2 {
     private void handleCancel() {
         dialogStage.close();
     }
-
+    //Saves the selected client inside local variables.
     @FXML
     private void handleClientSelect() throws IOException, SQLException {
         mainApp.showAppClient();
@@ -130,6 +139,7 @@ public class AppUpdateLayoutController2 {
             clientSurname.setText(selectedClient.getSurname());
         }
     }
+    //Helping function to prepare available dates and time slots.
     private void appInsert() throws IOException, SQLException {
         //Each element of arrayList is linked to a single schedule of scheduleList
         ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();

@@ -17,6 +17,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI in order to choose the client for the appointment.
+ */
 public class AppClientViewController {
 
     // Table
@@ -51,6 +54,12 @@ public class AppClientViewController {
     private ObservableList<Client> clientData = FXCollections.observableArrayList();
     private Stage dialogStage;
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -58,7 +67,7 @@ public class AppClientViewController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
-
+    //Saves the selected client in the mainApp.
     @FXML
     private void handleSelect(){
         if(isAvailable()){
@@ -73,6 +82,7 @@ public class AppClientViewController {
         dialogStage.close();
     }
 
+    //Implements the filter for the client
     @FXML
     private void handleFilter() throws SQLException {
         String name = clientName.getText();
@@ -94,6 +104,7 @@ public class AppClientViewController {
         table.setItems(clientData);
     }
 
+    //Reset filter
     public void ShowAllClients() throws SQLException {
         ArrayList<Client> clients = DAOClient.getClientsList();
 

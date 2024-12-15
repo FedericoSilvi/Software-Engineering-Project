@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that manages the calendar filter as a staff manager
+ */
 public class FilterBy2Controller {
     private static AppointmentDAO daoApp= AppointmentDAOMySQLImpl.getInstance();
     private static StaffDAO daoStaff = StaffDAOMySQLImpl.getInstance();
@@ -51,6 +54,10 @@ public class FilterBy2Controller {
     private Stage dialogStage;
     String service=null;
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -73,6 +80,7 @@ public class FilterBy2Controller {
         this.dvController = dvController;
     }
 
+    //Saves the selected staff information inside local variables
     @FXML
     private void chooseStaff() throws SQLException, IOException {
         clickStaff=true;
@@ -88,7 +96,7 @@ public class FilterBy2Controller {
         }
 
     }
-
+    //Saves the selected client information inside local variables
     @FXML
     private void choosenClient() throws SQLException, IOException {
         clickClient=true;
@@ -109,7 +117,7 @@ public class FilterBy2Controller {
         //set labels
 
     }
-
+    //Apply the filter on the calendar view
     @FXML
     private void filter() throws SQLException {
         service = serviceTF.getText();

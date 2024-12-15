@@ -18,6 +18,11 @@ import java.util.ArrayList;
 
 public class DailyView2Controller {
     private Main mainApp;
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         init2();

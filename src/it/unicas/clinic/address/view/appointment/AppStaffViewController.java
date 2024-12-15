@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Controller of the GUI to select the staff while creating an appointment
+ */
 public class AppStaffViewController {
 
     @FXML
@@ -36,6 +38,10 @@ public class AppStaffViewController {
     private StaffDAO dao=StaffDAOMySQLImpl.getInstance();
     private Stage dialogStage;
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -56,6 +62,7 @@ public class AppStaffViewController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+    //Saves the selected staff in main.
     @FXML
     private void handleSelect(){
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
@@ -72,6 +79,7 @@ public class AppStaffViewController {
         mainApp.getStaffData().clear();
         dialogStage.close();
     }
+    //Close the window
     @FXML
     private void handleBack(){
         mainApp.getStaffData().clear();

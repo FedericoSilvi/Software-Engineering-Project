@@ -30,6 +30,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI that manages the effective insertion of the appointment after forced rescheduling.
+ */
 public class AppSelectViewController3 {
 
     @FXML
@@ -66,7 +69,11 @@ public class AppSelectViewController3 {
 
 
 
-
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param main: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main main,ArrayList<Schedule> schedules,ArrayList<ArrayList<Boolean>> list,Appointment a, Stage dialogue) throws IOException, SQLException {
         this.mainApp = main;
         app=a;
@@ -188,7 +195,7 @@ public class AppSelectViewController3 {
         dialogue.close();
     }
 
-    /**
+    /*
      * Manage the case where the table is empty
      * @throws IOException
      */

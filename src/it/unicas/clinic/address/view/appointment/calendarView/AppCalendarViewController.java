@@ -44,6 +44,11 @@ public class AppCalendarViewController {
         this.dialogueStage = dialogStage;
     }
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main mainApp) throws SQLException {
         this.mainApp = mainApp;
         // Add observable list data to the table
@@ -60,10 +65,6 @@ public class AppCalendarViewController {
         staffIdColumn.setCellValueFactory(cellData -> cellData.getValue().staffIdProperty().asObject());
         clientIdColumn.setCellValueFactory(cellData -> cellData.getValue().clientIdProperty().asObject());
     }
-
-
-
-
 
     public void handleHome(){
        dialogueStage.close();
