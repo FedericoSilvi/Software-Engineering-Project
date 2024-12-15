@@ -16,13 +16,61 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that shows daily appointment in the notification area of staff member
+ */
 public class DailyViewController {
     private Main mainApp;
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    private AppointmentDAO dao = AppointmentDAOMySQLImpl.getInstance();
+
+    private LocalDate today = LocalDate.now();
+
+    private int clientId = 0;
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    private int staffId = 0;
+
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
+    }
+
+    private String service = null;
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    private ArrayList<Label> labelList = new ArrayList<>();
+
+    private ArrayList<LocalTime> hours = new ArrayList<>();
+
+    @FXML
+    private GridPane gridPane;
+
+
+    @FXML
+    private Label dayLabel;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         init2();
     }
 
+    //Creates the days' grid and highlights all the days with at least one appointment (no filter)
     private void init2() {
         dayLabel.setText(today.toString());
 
@@ -71,49 +119,13 @@ public class DailyViewController {
         }
     }
 
-    private Stage stage;
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    private AppointmentDAO dao = AppointmentDAOMySQLImpl.getInstance();
-
-    private LocalDate today = LocalDate.now();
-
-    private int clientId = 0;
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    private int staffId = 0;
-
-    public void setStaffId(int staffId) {
-        this.staffId = staffId;
-    }
-
-    private String service = null;
-
-    public void setService(String service) {
-        this.service = service;
-    }
-
-    private ArrayList<Label> labelList = new ArrayList<>();
-
-    private ArrayList<LocalTime> hours = new ArrayList<>();
-
-    @FXML
-    private GridPane gridPane;
-
-
-    @FXML
-    private Label dayLabel;
 
     @FXML
     private void initialize() {
     }
 
+    //Highlights only the days with appointments that satisfy the conditions set in the filter.
     public void filter() {
         for(int i = 0; i < labelList.size(); i++) {
             labelList.get(i).setStyle("-fx-background-color: transparent;");
@@ -154,7 +166,7 @@ public class DailyViewController {
         staffId = 0;
         service = null;*/
     }
-
+    //Helping function to select the appointments in a specific day.
     private void showAppointment(int day, int month, int year, LocalTime hour) {
         // Aggiungere un pulsante per filtrare gli appointment tramite data
         // e aprire la finestra da qui, chiamando la funzione subito dopo
@@ -189,13 +201,13 @@ public class DailyViewController {
         mainApp.showMonthlyView();
         stage.close();
     }
-
+    //Pops up the filter window
     @FXML
     private void handleFilter() throws IOException {
         //mainApp.filterCalendarViewForManager(null, null, this);
         mainApp.filterCalendarViewForMember2(null, null, this);
     }
-
+    //Close calendar
     @FXML
     private void handleClose() {
         stage.close();

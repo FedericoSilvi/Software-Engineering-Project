@@ -1,4 +1,4 @@
-package it.unicas.clinic.address.view.appointment;
+package it.unicas.clinic.address.view.appointment.calendarView;
 
 import it.unicas.clinic.address.Main;
 import it.unicas.clinic.address.model.Client;
@@ -8,9 +8,6 @@ import it.unicas.clinic.address.model.dao.StaffDAO;
 import it.unicas.clinic.address.model.dao.mysql.AppointmentDAOMySQLImpl;
 import it.unicas.clinic.address.model.dao.mysql.DAOClient;
 import it.unicas.clinic.address.model.dao.mysql.StaffDAOMySQLImpl;
-import it.unicas.clinic.address.view.appointment.calendarView.DailyView2Controller;
-import it.unicas.clinic.address.view.appointment.calendarView.MonthlyViewController;
-import it.unicas.clinic.address.view.appointment.calendarView.WeeklyViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Controller of the GUI that manages the calendar filter as a staff manager
  */
-public class FilterBy2Controller {
+public class FilterByForStaffManagerController {
     private static AppointmentDAO daoApp= AppointmentDAOMySQLImpl.getInstance();
     private static StaffDAO daoStaff = StaffDAOMySQLImpl.getInstance();
     @FXML

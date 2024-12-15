@@ -14,6 +14,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+
+/**
+ * Controller of the GUI that shows appointments in a specific date in the calendar view.
+ */
 public class AppCalendarViewController {
     @FXML
     private TableView<Appointment> appointmentTable;

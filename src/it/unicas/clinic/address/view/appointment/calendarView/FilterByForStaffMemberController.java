@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that manages the calendar filter as a staff member
+ */
 public class FilterByForStaffMemberController {
     private boolean clickClient=false;
     private boolean atLeastOneFilter=false;
@@ -47,6 +50,10 @@ public class FilterByForStaffMemberController {
     private Stage dialogStage;
     String service=null;
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -75,7 +82,7 @@ public class FilterByForStaffMemberController {
         this.dvController1 = dvController1;
     }
 
-
+    //Saves the selected staff information inside local variables
     @FXML
     private void choosenClient() throws SQLException, IOException {
         clickClient=true;
@@ -95,7 +102,7 @@ public class FilterByForStaffMemberController {
         //set labels
 
     }
-
+    //Apply the filter on the calendar view
     @FXML
     private void filter() throws SQLException {
         service = serviceTF.getText();

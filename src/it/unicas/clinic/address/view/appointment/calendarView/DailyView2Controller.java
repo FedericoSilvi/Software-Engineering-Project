@@ -18,53 +18,6 @@ import java.util.ArrayList;
 
 public class DailyView2Controller {
     private Main mainApp;
-    /**
-     * Link the local copy of MainApp with the singleton.
-     * @param mainApp: singleton MainApp.
-     * @throws SQLException
-     */
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-        init2();
-    }
-
-    private void init2() {
-        dayLabel.setText(today.toString());
-
-        int counter = 0;
-
-        if(mainApp.getIsManager()) {
-            staffId = 0;
-        } else {
-            staffId = mainApp.getUser_id();
-        }
-
-        for(int i = 0; i < hours.size(); i++) {
-            ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, service, today, hours.get(i), null, staffId, clientId));
-            if(list2.size() > 0) {
-                for(int k = 0; k < list2.size(); k++) {
-                    LocalTime duration = list2.get(k).getDuration();
-                    int n = (duration.getHour() * 60 + duration.getMinute())/30;
-
-                    for(int j = 1; j <= n; j++) {
-                        Label label = new Label(list2.get(k).getService());
-                        labelList.add(label);
-                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
-
-                        int tempIndex = i;
-                        labelList.get(counter).setOnMouseClicked(event -> {
-                            showAppointment(today.getDayOfMonth(), today.getMonthValue(), today.getYear(), hours.get(tempIndex));
-                        });
-                        gridPane.add(label, 1, i + j);
-
-                        counter ++;
-                    }
-                }
-
-            }
-        }
-    }
-
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -103,6 +56,57 @@ public class DailyView2Controller {
     @FXML
     private Label dayLabel;
 
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+        init2();
+    }
+
+    //Creates the days' grid and highlights all the days with at least one appointment (no filter)
+    private void init2() {
+        dayLabel.setText(today.toString());
+
+        int counter = 0;
+
+        if(mainApp.getIsManager()) {
+            staffId = 0;
+        } else {
+            staffId = mainApp.getUser_id();
+        }
+
+        for(int i = 0; i < hours.size(); i++) {
+            ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, service, today, hours.get(i), null, staffId, clientId));
+            if(list2.size() > 0) {
+                for(int k = 0; k < list2.size(); k++) {
+                    LocalTime duration = list2.get(k).getDuration();
+                    int n = (duration.getHour() * 60 + duration.getMinute())/30;
+
+                    for(int j = 1; j <= n; j++) {
+                        Label label = new Label(list2.get(k).getService());
+                        labelList.add(label);
+                        labelList.get(counter).setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
+
+                        int tempIndex = i;
+                        labelList.get(counter).setOnMouseClicked(event -> {
+                            showAppointment(today.getDayOfMonth(), today.getMonthValue(), today.getYear(), hours.get(tempIndex));
+                        });
+                        gridPane.add(label, 1, i + j);
+
+                        counter ++;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+
     @FXML
     private void initialize() {
         for(int i = 0; i < 24; i++) {
@@ -118,6 +122,7 @@ public class DailyView2Controller {
 
     }
 
+    //Highlights only the days with appointments that satisfy the conditions set in the filter.
     public void filter() {
         for(int i = 0; i < labelList.size(); i++) {
             labelList.get(i).setStyle("-fx-background-color: transparent;");
@@ -159,6 +164,7 @@ public class DailyView2Controller {
         service = null;*/
     }
 
+    //Helping function to select the appointments in a specific day.
     private void showAppointment(int day, int month, int year, LocalTime hour) {
         // Aggiungere un pulsante per filtrare gli appointment tramite data
         // e aprire la finestra da qui, chiamando la funzione subito dopo
@@ -194,6 +200,7 @@ public class DailyView2Controller {
         stage.close();
     }
 
+    //Pops up the filter window
     @FXML
     private void handleFilter() throws IOException {
         if(mainApp.getIsManager()) {
@@ -202,7 +209,7 @@ public class DailyView2Controller {
             mainApp.filterCalendarViewForMember(null, null, this);
         }
     }
-
+    //Change to next day
     @FXML
     private void handleRightArrow() {
         today = today.plusDays(1);
@@ -218,7 +225,7 @@ public class DailyView2Controller {
         dayLabel.setText(today.getDayOfMonth() + "");
         init2();
     }
-
+    // Change to previous day
     @FXML
     private void handleLeftArrow() {
         today = today.minusDays(1);
@@ -235,7 +242,7 @@ public class DailyView2Controller {
         init2();
 
     }
-
+    //Close calendar
     @FXML
     private void handleClose() {
         stage.close();

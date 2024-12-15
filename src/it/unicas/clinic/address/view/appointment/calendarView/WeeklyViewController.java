@@ -18,53 +18,6 @@ import java.util.ArrayList;
 
 public class WeeklyViewController {
     private Main mainApp;
-
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-        init2();
-    }
-
-    private void  init2() {
-        int day = today.getDayOfWeek().getValue();
-        x = day - 1;
-
-        int counter = 0;
-
-        start = today.minusDays(x);
-
-        if(!mainApp.getIsManager()){
-            staffId = mainApp.getUser_id();
-        }
-
-        for(int row = 1; row <= 7; row ++) {
-            for(int i = 0; i < hours.size(); i++) {
-                ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, service, start, hours.get(i), null, staffId, clientId));
-                if(list2.size() > 0) {
-                    for(int k = 0; k < list2.size(); k++) {
-                        LocalTime duration = list2.get(k).getDuration();
-                        int n = (duration.getHour() * 60 + duration.getMinute())/30;
-
-                        for(int j = 1; j <= n; j++) {
-                            Label label = new Label(list2.get(k).getService());
-                            label.setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
-                            labelList.add(label);
-
-                            LocalDate tempDate = start;
-                            int tempIndex = i;
-                            labelList.get(counter).setOnMouseClicked(event -> {
-                                showAppointment(tempDate.getDayOfMonth(), tempDate.getMonthValue(), tempDate.getYear(), hours.get(tempIndex));
-                            });
-                            gridPane.add(labelList.get(counter), row, i + j);
-                            counter++;
-                        }
-                    }
-
-                }
-            }
-            start = start.plusDays(1);
-        }
-    }
-
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -109,6 +62,61 @@ public class WeeklyViewController {
     @FXML
     private Label weekLabel;
 
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+        init2();
+    }
+
+    //Creates the days' grid and highlights all the days with at least one appointment (no filter)
+    private void  init2() {
+        int day = today.getDayOfWeek().getValue();
+        x = day - 1;
+
+        int counter = 0;
+
+        start = today.minusDays(x);
+
+        if(!mainApp.getIsManager()){
+            staffId = mainApp.getUser_id();
+        }
+
+        for(int row = 1; row <= 7; row ++) {
+            for(int i = 0; i < hours.size(); i++) {
+                ArrayList<Appointment> list2 = (ArrayList<Appointment>) dao.select(new Appointment(0, service, start, hours.get(i), null, staffId, clientId));
+                if(list2.size() > 0) {
+                    for(int k = 0; k < list2.size(); k++) {
+                        LocalTime duration = list2.get(k).getDuration();
+                        int n = (duration.getHour() * 60 + duration.getMinute())/30;
+
+                        for(int j = 1; j <= n; j++) {
+                            Label label = new Label(list2.get(k).getService());
+                            label.setStyle("-fx-background-color: lightblue; -fx-padding: 5px; -fx-text-fill: black; -fx-font-size: 12px;");
+                            labelList.add(label);
+
+                            LocalDate tempDate = start;
+                            int tempIndex = i;
+                            labelList.get(counter).setOnMouseClicked(event -> {
+                                showAppointment(tempDate.getDayOfMonth(), tempDate.getMonthValue(), tempDate.getYear(), hours.get(tempIndex));
+                            });
+                            gridPane.add(labelList.get(counter), row, i + j);
+                            counter++;
+                        }
+                    }
+
+                }
+            }
+            start = start.plusDays(1);
+        }
+    }
+
+
+
     @FXML
     private void initialize() {
 
@@ -133,6 +141,7 @@ public class WeeklyViewController {
 
     }
 
+    //Highlights only the days with appointments that satisfy the conditions set in the filter.
     public void filter() {
         // copiare quello che c'è in monthly view
 
@@ -180,6 +189,7 @@ public class WeeklyViewController {
 
     }
 
+    //Helping function to select the appointments in a specific day.
     private void showAppointment(int day, int month, int year, LocalTime hour) {
         // Aggiungere un pulsante per filtrare gli appointment tramite data
         // e aprire la finestra da qui, chiamando la funzione subito dopo
@@ -213,6 +223,7 @@ public class WeeklyViewController {
         stage.close();
     }
 
+    //Pops up the filter window
     @FXML
     private void handleFilter() throws IOException {
         if(mainApp.getIsManager()) {
@@ -222,6 +233,7 @@ public class WeeklyViewController {
         }
     }
 
+    //Change to next day
     @FXML
     private void handleRightArrow() throws IOException {
         today = today.plusDays(7);
@@ -240,6 +252,7 @@ public class WeeklyViewController {
         init2();
     }
 
+    // Change to previous day
     @FXML
     private void handleLeftArrow() throws IOException {
         today = today.minusDays(7);
@@ -258,7 +271,7 @@ public class WeeklyViewController {
         init2();
     }
 
-
+    //Close calendar
     @FXML
     private void handleClose() {
         stage.close();

@@ -18,7 +18,6 @@ import it.unicas.clinic.address.view.login.StaffMemberInitialLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleAddingLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleManagementLayoutController;
 import it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController;
-import it.unicas.clinic.address.view.staff.ChooseOwnerLayoutController;
 import it.unicas.clinic.address.view.staff.StaffAddingLayoutController;
 import it.unicas.clinic.address.view.staff.StaffManagementLayoutController;
 import it.unicas.clinic.address.view.staff.StaffUpdateLayoutController;
@@ -34,7 +33,6 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -42,7 +40,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import it.unicas.clinic.address.view.appointment.calendarView.*;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -1164,10 +1161,10 @@ public class Main extends Application {
         Stage filterCalendarWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(Main.class.getResource("view/appointment/FilterBy2.fxml"));
+        loader.setLocation(Main.class.getResource("view/appointment/calendarView/FilterByForStaffManager.fxml"));
         AnchorPane anchorPane = loader.load();
 
-        FilterBy2Controller controller = loader.getController();
+        FilterByForStaffManagerController controller = loader.getController();
         controller.setMainApp(this);
         controller.setDialogStage(filterCalendarWindow);
         if(conM != null) {

@@ -24,11 +24,6 @@ import java.util.List;
 public class MonthlyViewController {
 
     private Main mainApp;
-    public void setMainApp(Main mainApp) throws SQLException {
-        this.mainApp = mainApp;
-        init2();
-    }
-
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -77,20 +72,32 @@ public class MonthlyViewController {
     @FXML
     private Label dateLabel;
 
-     @FXML
-     private Label MondayLabel;
-     @FXML
-     private Label TuesdayLabel;
-     @FXML
-     private Label WednesdayLabel;
-     @FXML
-     private Label ThursdayLabel;
-     @FXML
-     private Label FridayLabel;
-     @FXML
-     private Label SaturdayLabel;
-     @FXML
-     private Label SundayLabel;
+    @FXML
+    private Label MondayLabel;
+    @FXML
+    private Label TuesdayLabel;
+    @FXML
+    private Label WednesdayLabel;
+    @FXML
+    private Label ThursdayLabel;
+    @FXML
+    private Label FridayLabel;
+    @FXML
+    private Label SaturdayLabel;
+    @FXML
+    private Label SundayLabel;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
+    public void setMainApp(Main mainApp) throws SQLException {
+        this.mainApp = mainApp;
+        init2();
+    }
+
+
 
     @FXML
     private void initialize() throws Exception {
@@ -106,6 +113,7 @@ public class MonthlyViewController {
 
     }
 
+    //Creates the days' grid and highlights all the days with at least one appointment (no filter)
     private void init2() throws SQLException {
 
 
@@ -151,6 +159,8 @@ public class MonthlyViewController {
             }
         }
     }
+
+    //Highlights only the days with appointments that satisfy the conditions set in the filter.
     public void filter() throws SQLException {
         for(int i  = 0 ; i < counter ; i ++) {
             labelList.get(i).setText("");
@@ -164,6 +174,7 @@ public class MonthlyViewController {
 
     }
 
+    //Helping function to select the appointments in a specific day.
     private void showAppointment(int day, int month, int year) {
        // Aggiungere un pulsante per filtrare gli appointment tramite data
        // e aprire la finestra da qui, chiamando la funzione subito dopo
@@ -192,6 +203,7 @@ public class MonthlyViewController {
         stage.close();
     }
 
+    //Pops up the filter window
     @FXML
     private void handleFilter() throws IOException {
 
@@ -206,6 +218,7 @@ public class MonthlyViewController {
         }
     }
 
+    //Change to next day
     @FXML
     private void handleRightArrow() throws SQLException {
         month ++;
@@ -231,6 +244,7 @@ public class MonthlyViewController {
 
     }
 
+    // Change to previous day
     @FXML
     private void handleLeftArrow() throws SQLException {
         month --;
@@ -256,6 +270,7 @@ public class MonthlyViewController {
 
     }
 
+    //Close calendar
     @FXML
     private void handleClose() {
         stage.close();
