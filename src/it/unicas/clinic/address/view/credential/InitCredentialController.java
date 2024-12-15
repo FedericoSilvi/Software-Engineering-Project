@@ -10,9 +10,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class InitCredentialController {
+
     private Main mainApp;
 
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     * @throws SQLException
+     * @throws IOException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -80,6 +90,7 @@ public class InitCredentialController {
 
     }
 
+    //Make the password visible
     @FXML
     private void onClickShowPassword1() {
         closedEye1.setVisible(true);
@@ -90,6 +101,7 @@ public class InitCredentialController {
         passwordHiddenTxt.setVisible(false);
     }
 
+    //Make the password not visible
     @FXML
     private void onClickHidePassword1() {
         closedEye1.setVisible(false);
@@ -101,6 +113,7 @@ public class InitCredentialController {
 
     }
 
+    //Make the confirmation password visible
     @FXML
     private void onClickShowPassword2() {
         closedEye2.setVisible(true);
@@ -111,6 +124,7 @@ public class InitCredentialController {
         confirmPasswordHiddenTxt.setVisible(false);
     }
 
+    //Make the confirmation password not visible
     @FXML
     private void onClickHidePassword2() {
         closedEye2.setVisible(false);
@@ -122,8 +136,9 @@ public class InitCredentialController {
 
     }
 
+    //Effectively adds the credential in the database
     @FXML
-    private void handelAddCredential() {
+    private void handleAddCredential() {
         int owner;
         if(ownerCheckBox.isSelected()){
             owner = 1;
@@ -154,6 +169,7 @@ public class InitCredentialController {
 
     }
 
+    //Checks all the fields
     private boolean IsInputValid() {
         String errorMessage = "";
 

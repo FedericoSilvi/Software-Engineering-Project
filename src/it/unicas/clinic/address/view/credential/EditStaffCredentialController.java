@@ -9,11 +9,20 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class EditStaffCredentialController {
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     * @throws SQLException
+     * @throws IOException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -91,6 +100,7 @@ public class EditStaffCredentialController {
 
     }
 
+    //Effectively changes the credentials in the db
     @FXML
     private void OnClickEditCredential() throws SQLException {
         String managerPassword;
@@ -146,6 +156,7 @@ public class EditStaffCredentialController {
 
     }
 
+    //Make the manager password visible
     @FXML
     private void OnClickShowPassword1() {
         openedEye1.setVisible(false);
@@ -156,6 +167,7 @@ public class EditStaffCredentialController {
         staffManagerPasswordHidden.setVisible(false);
     }
 
+    //Make the manager password not visible
     @FXML
     private void OnClickHidePassword1() {
         openedEye1.setVisible(true);
@@ -167,6 +179,7 @@ public class EditStaffCredentialController {
 
     }
 
+    //Make the new password visible
     @FXML
     private void OnClickShowPassword2() {
         openedEye2.setVisible(false);
@@ -177,6 +190,7 @@ public class EditStaffCredentialController {
         newStaffPasswordHidden.setVisible(false);
     }
 
+    //Make the new password not visible
     @FXML
     private void OnClickHidePassword2() {
         openedEye2.setVisible(true);
@@ -188,6 +202,7 @@ public class EditStaffCredentialController {
 
     }
 
+    //Make the confirmation visible
     @FXML
     private void OnClickShowPassword3() {
         openedEye3.setVisible(false);
@@ -198,6 +213,7 @@ public class EditStaffCredentialController {
         confirmNewPasswordHidden.setVisible(false);
     }
 
+    //Make the confirmation not visible
     @FXML
     private void OnClickHidePassword3() {
         openedEye3.setVisible(true);
@@ -209,6 +225,7 @@ public class EditStaffCredentialController {
 
     }
 
+    //Close the window
     @FXML
     private void OnClickCancel() {
         stage.close();

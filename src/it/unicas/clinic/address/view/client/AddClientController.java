@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Controller of the GUI that manages the insertion of a client
+ */
 public class AddClientController {
     public ClientOverviewController clientOverviewController;
 
@@ -25,6 +28,12 @@ public class AddClientController {
     }
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp: singleton MainApp.
+     * @throws SQLException
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -41,6 +50,7 @@ public class AddClientController {
     @FXML
     private TextField phoneNumberText;
 
+    //Check if fields are filled and then insert the client in the database
     @FXML
     private void OnClickAddClient() throws SQLException {
 
@@ -62,6 +72,7 @@ public class AddClientController {
 
     }
 
+    //Checks the fields
     private boolean isInputValid() {
         String errorMessage = "";
         if (nameText.getText() == null || nameText.getText().length() == 0) {

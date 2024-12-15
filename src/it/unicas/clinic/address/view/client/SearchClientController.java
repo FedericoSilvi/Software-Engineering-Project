@@ -43,13 +43,18 @@ public class SearchClientController {
     private Button searchButton;
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
 
     @FXML
     private void OnClickSearchButton(ActionEvent event) throws SQLException {
-       if(isInpiutValid())
+       if(isInputValid())
        {
            ArrayList<Client> list;
            String name = nameText.getText();
@@ -64,7 +69,8 @@ public class SearchClientController {
 
     }
 
-    private boolean isInpiutValid(){
+    //Checks all the fields
+    private boolean isInputValid(){
         if(nameText.getText().isEmpty() && surnameText.getText().isEmpty() && emailText.getText().isEmpty()){
             String errorMessage = "Insert at least one field!";
 

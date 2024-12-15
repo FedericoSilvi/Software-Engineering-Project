@@ -19,6 +19,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI that shows all past appointment of a client
+ */
 public class ClientHistoryViewController {
     @FXML
     private TableView<Appointment> appointmentTable;
@@ -41,7 +44,12 @@ public class ClientHistoryViewController {
     public ClientHistoryViewController() throws SQLException {
     }
 
-
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     * @throws SQLException
+     * @throws IOException
+     */
     public void setMainApp(Main mainApp) throws SQLException, IOException {
         this.mainApp = mainApp;
         // Add observable list data to the table

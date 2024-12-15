@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller of the GUI that manages all Clients
+ */
 public class ClientOverviewController {
 
     // Table
@@ -64,10 +67,16 @@ public class ClientOverviewController {
     private ObservableList<Client> clientData = FXCollections.observableArrayList();
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
 
+    //Reset the filter
     @FXML
     private void OnClickShowAllClients(ActionEvent event) throws SQLException {
         ArrayList<Client> clients = DAOClient.getClientsList();
@@ -89,11 +98,13 @@ public class ClientOverviewController {
         mainApp.addClientLayout(this);
     }
 
+    //Pops up the add client window
     @FXML
     private void OnClickAddClientV2(MouseEvent event) throws IOException {
         mainApp.addClientLayout(this);
     }
 
+    //Pops up the update client window
     @FXML
     private void OnClickUpdateClient(ActionEvent event) throws IOException {
         if(isAvailable()){
@@ -104,6 +115,7 @@ public class ClientOverviewController {
 
     }
 
+    //Deletes the selected client
     @FXML
     private void OnClickDeleteClientV2(MouseEvent event) throws SQLException {
         if(isAvailable()){
@@ -137,6 +149,7 @@ public class ClientOverviewController {
         updateTable(list);
     }
 
+    //Return home
     @FXML
     private void handleExit(){
         if(mainApp.getIsManager())
@@ -145,6 +158,7 @@ public class ClientOverviewController {
             mainApp.initStaff();
     }
 
+    //Pops up history window for selected client
     @FXML
     private void onClickShowHistory() throws SQLException, IOException {
         if(isAvailable()){
@@ -195,6 +209,7 @@ public class ClientOverviewController {
         }
     }
 
+    //Reset the filter
     public void ShowAllClients() throws SQLException {
         ArrayList<Client> clients = DAOClient.getClientsList();
 
@@ -204,6 +219,7 @@ public class ClientOverviewController {
         table.setItems(clientData);
     }
 
+    //Checks the fields
     private boolean isAvailable() {
         String errorMessage = "";
         if(table.getSelectionModel().getSelectedItem() == null) {

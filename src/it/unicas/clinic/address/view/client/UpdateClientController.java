@@ -15,6 +15,11 @@ import java.util.ArrayList;
 public class UpdateClientController {
 
     private Main mainApp;
+
+    /**
+     * Link the local copy of MainApp with the singleton.
+     * @param mainApp
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -39,6 +44,7 @@ public class UpdateClientController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     @FXML
     private TextField nameText;
 
@@ -52,6 +58,7 @@ public class UpdateClientController {
     private TextField numberText;
 
 
+    //Effectively update the client
     @FXML
     public void OnClickUpdate(ActionEvent event) throws SQLException {
 
@@ -73,6 +80,7 @@ public class UpdateClientController {
 
     }
 
+    //Checks all the fields
     private boolean isInputValid(){
         String errorMessage = "";
         if(nameText.getText() == null || nameText.getText().length() == 0) {
