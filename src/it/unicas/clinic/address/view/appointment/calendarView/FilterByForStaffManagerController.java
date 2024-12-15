@@ -84,9 +84,7 @@ public class FilterByForStaffManagerController {
         //set the choosenStaff fields
         mainApp.showAppStaff();
         if (mainApp.getSavedStaff() != 0) {
-            System.out.println(mainApp.getSavedStaff());
             choosenStaff = daoStaff.select(mainApp.getSavedStaff());
-            System.out.println(choosenStaff);
 
             nameLabel.setText(choosenStaff.getName());
             surnameLabel.setText(choosenStaff.getSurname());
@@ -101,11 +99,8 @@ public class FilterByForStaffManagerController {
 
         mainApp.showAppClient();
         if (mainApp.getSavedClient() != 0) {
-            System.out.println(mainApp.getSavedClient());
             Client c = DAOClient.select(mainApp.getSavedClient());
-            System.out.println(c);
             choosenClient = DAOClient.filterClient(c.getName(), c.getSurname(), c.getEmail());
-            System.out.println(choosenClient);
             clientNameLabel.setText(choosenClient.get(0).getName());
             clientSurnameLabel.setText(choosenClient.get(0).getSurname());
 
@@ -120,9 +115,7 @@ public class FilterByForStaffManagerController {
         service = serviceTF.getText();
 
         if(mvController != null){
-            System.out.println("MV CONTROLLER NOT NULL");
             if(choosenClient != null) {
-                System.out.println("ENTRATO NELL'IF DI CLIENT");
                 mvController.setClientId(choosenClient.get(0).getId());
             }
             else

@@ -137,9 +137,6 @@ public class AppSelectViewController3 {
                 return new SimpleObjectProperty<>(timeString);
             });
         }
-        else{
-            System.out.println("Selected date is null");
-        }
     }
 
     /**

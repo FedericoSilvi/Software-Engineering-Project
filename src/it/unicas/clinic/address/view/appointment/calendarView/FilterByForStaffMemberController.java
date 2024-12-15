@@ -90,7 +90,6 @@ public class FilterByForStaffMemberController {
 
         mainApp.showAppClient();
         if (mainApp.getSavedClient() != 0) {
-            System.out.println(mainApp.getSavedClient());
             Client c = DAOClient.select(mainApp.getSavedClient());
             choosenClient = DAOClient.filterClient(c.getName(), c.getSurname(), c.getEmail());
 

@@ -36,7 +36,6 @@ public class AppointmentReport extends Appointment {
         this.staffName = tempStaff.getName();
         this.staffSurname = tempStaff.getSurname();
         Client tempClient = DAOClient.getClient(appointment.getClientId());
-        //System.out.println(tempClient);
         this.clientName = tempClient.getName();
         this.clientSurname = tempClient.getSurname();
     }

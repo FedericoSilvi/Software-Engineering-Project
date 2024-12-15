@@ -115,7 +115,6 @@ public class AppSelectViewController2 {
                     +mainApp.getSavedDuration().getMinute())/30.0);
             //Selecting boolean translation of selectedSchedule
             ArrayList<Boolean> temp = boolList.get(index);
-            System.out.println(temp);
             ObservableList<LocalTime> times = DataUtil.timeSlots(selectedSchedule,temp,slots);
             timeTable.setItems(times);
             timeColumn.setCellValueFactory(cellData -> {
@@ -126,9 +125,6 @@ public class AppSelectViewController2 {
                 // Restituisci come ObjectProperty<String>
                 return new SimpleObjectProperty<>(timeString);
             });
-        }
-        else{
-            System.out.println("Selected date is null");
         }
     }
 

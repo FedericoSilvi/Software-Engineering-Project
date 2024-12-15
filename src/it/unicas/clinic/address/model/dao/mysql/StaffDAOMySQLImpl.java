@@ -92,7 +92,6 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
         String sqlDelete = "DELETE FROM staff WHERE id = ? ";
         try (Connection con = DAOMySQLSettings.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(sqlDelete)) {
-            System.out.println("ID: " + s.getId());
             preparedStatement.setInt(1, s.getId());
             int rowAffected=preparedStatement.executeUpdate();
             logger.info("Query executed successfully: " + sqlDelete);
@@ -204,20 +203,6 @@ public class StaffDAOMySQLImpl implements StaffDAO<Staff> {
 
 
     public static void main(String args[]) throws StaffException, SQLException{
-        dao=StaffDAOMySQLImpl.getInstance();
-        Staff newStaff = new Staff("John", "Doe", "Dermatology");
-
-        // Crea una lista di orari di lavoro
-        //List<Schedule> scheduleList = new ArrayList<>();
-        //scheduleList.add(new Schedule(1, LocalDate.of(2024, 11, 24), LocalTime.of(9, 0), LocalTime.of(17, 0), 0));
-        //scheduleList.add(new Schedule(2, LocalDate.of(2024, 11, 25), LocalTime.of(9, 0), LocalTime.of(17, 0), 0));
-
-        //dao.insert(new Staff("Marco", "Caruso", "Nessuna"));
-        //dao.insert(new Staff("Federico", "Silvi", "massaggi"));
-        List<Staff> selectStuffMassage = dao.select(new Staff(1, null, null, null));
-        //System.out.println(selectStuffMassage);
-
-
     }
 
     public Staff getLastStaff() throws SQLException {

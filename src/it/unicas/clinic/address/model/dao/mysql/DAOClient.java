@@ -23,11 +23,6 @@ public class DAOClient {
         PreparedStatement preparedstatement = connection.prepareStatement(sqlView);
         ResultSet resultset = preparedstatement.executeQuery();
         while (resultset.next()) {
-            System.out.println("ID: " + resultset.getString("id"));
-            System.out.println("Name: " + resultset.getString("name"));
-            System.out.println("Surname: " + resultset.getString("surname"));
-            System.out.println("E-mail: " + resultset.getString("email"));
-            System.out.println("Phone number: " + resultset.getString("number"));
         }
 
         connection.close();
@@ -180,14 +175,6 @@ public class DAOClient {
         PreparedStatement preparedstatement = connection.prepareStatement(sqlSelect);
         ResultSet resultset = preparedstatement.executeQuery();
         while (resultset.next()) {
-            System.out.println("ID: " + resultset.getString("id"));
-            System.out.println("Service: " + resultset.getString("service"));
-            System.out.println("Date: " + resultset.getString("date"));
-            System.out.println("Time: " + resultset.getString("time"));
-            System.out.println("Staff ID:  " + resultset.getString("staff_id"));
-            System.out.println("Client ID:  " + resultset.getString("client_id"));
-
-
         }
 
     }
@@ -222,9 +209,7 @@ public class DAOClient {
         }
     }
     public static void main(String[] args) throws SQLException {
-        //Client c = select(1);
-        //System.out.println(c);
-        //softDelete(new Client(1, "Joe", "Smith", "joesmith@gmail.com", "123456789"));
+
     }
 
     /**

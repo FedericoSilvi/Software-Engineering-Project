@@ -116,15 +116,10 @@ public class StaffManagementLayoutController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne){
                 try{
-                    System.out.println(selectedStaff);
-                    //mainApp.getStaffData().forEach(System.out::println);
-                    //dao.delete(selectedStaff);
                     dao.softDelete(selectedStaff);
-                    //delete future app
                     List< Appointment> futureApp= daoApp.getfutureAppStaff(LocalDate.now(), selectedStaff.getId());
                     for(Appointment a : futureApp)
                         daoApp.delete(a.getId());
-                    // delete future schedule
                     List<Schedule> futureSchedule = daoSchedule.futureSchedule(selectedStaff.getId());
                     for(Schedule s: futureSchedule)
                         daoSchedule.delete(s);
@@ -163,8 +158,6 @@ public class StaffManagementLayoutController {
         //take the staff del quale dovrò mostrare gli schedule
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
         if(selectedStaff != null){
-            //System.out.println("HO preso lo staff x lo schedule");
-            //System.out.println(selectedStaff);
             mainApp.showScheduleManagmentLayout(selectedStaff);
         }
         else{

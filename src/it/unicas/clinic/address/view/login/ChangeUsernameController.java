@@ -70,7 +70,6 @@ public class ChangeUsernameController {
     //Effectively changes the username in the database
     @FXML
     private void changeUsername() throws SQLException {
-        //   System.out.println("Vado a cambiare la passwordVisible dello staff con id: " + staff_id);
         String passwordText;
         if(!closedEye.isVisible()){
             passwordText = passwordHidden.getText();

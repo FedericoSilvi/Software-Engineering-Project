@@ -78,7 +78,6 @@ public class ScheduleAddingLayoutController {
                     try {
                         dao.insert(this.schedule);
                         //devo recuperare l'id associato a questo schedule, quindi recupero l'ultimo
-                        //System.out.println(dao.getLastSchedule());
                         mainApp.getScheduleData().add(dao.getLastSchedule());
                         dialogStage.close();
                     } catch (ScheduleException e) {

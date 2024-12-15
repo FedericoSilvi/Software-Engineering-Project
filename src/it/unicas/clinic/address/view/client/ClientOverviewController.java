@@ -197,7 +197,6 @@ public class ClientOverviewController {
         String name = clientName.getText();
         String surname = clientSurname.getText();
         ArrayList<Client> list = DAOClient.select(name, surname);
-        System.out.println(list);
         updateTable(list);
     }
 

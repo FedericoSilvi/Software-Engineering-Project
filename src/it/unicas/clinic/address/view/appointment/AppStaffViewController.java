@@ -67,9 +67,7 @@ public class AppStaffViewController {
     private void handleSelect(){
         Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
         if(selectedStaff != null){
-            //System.out.println(selectedStaff.getId());
             mainApp.saveStaff(selectedStaff.getId());
-            //mainApp.getStaffData().remove(selectedStaff);
         }
         else{
             mainApp.errorAlert("Error",

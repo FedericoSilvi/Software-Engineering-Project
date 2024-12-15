@@ -105,12 +105,6 @@ public class AppUpdateLayoutController3 {
         }
         else {
 
-
-            System.out.println(mainApp.getSavedService());
-            System.out.println(mainApp.getSavedStaff());
-            System.out.println(mainApp.getSavedClient());
-            System.out.println(mainApp.getSavedDuration());
-
             //Each element of arrayList is linked to a single schedule of scheduleList
             ArrayList<ArrayList<Boolean>> arrayList = new ArrayList<>();
             ArrayList<Schedule> scheduleList= scheduleDao.futureSchedule(mainApp.getUser_id());
@@ -118,23 +112,19 @@ public class AppUpdateLayoutController3 {
             for(Schedule schedule:scheduleList){
                 arrayList.add(DataUtil.avApp(schedule));
             }
-            System.out.println(arrayList);
             //dim saves the position of unavailable schedules
             ArrayList<Integer>dim= new ArrayList<Integer>();
             for(int i=0; i<arrayList.size(); i++){
-                System.out.println("Ci sono!!!");
                 ArrayList<Boolean> temp =DataUtil.avFilter(arrayList.get(i),mainApp.getSavedDuration());
                 if(temp==null) {
                     dim.add(i);
                 }
             }
-            System.out.println(dim);
             //Set null unavailable schedules using dim to find
             //unavailable schedules
             for(int i=0; i<dim.size(); i++){
                 arrayList.set((int)dim.get(i),null);
             }
-            System.out.println(arrayList);
             dialogStage.close();
             mainApp.showAvailableAppUp(scheduleList,arrayList,app);
         }

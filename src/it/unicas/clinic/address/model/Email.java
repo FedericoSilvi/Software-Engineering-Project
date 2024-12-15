@@ -45,7 +45,6 @@ public class Email {
      * @throws IOException
      */
     public boolean sendEmail(Appointment appointment) throws SQLException, IOException {
-        System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
             // Create session with authentication
             Session session = Session.getInstance(properties, new Authenticator() {
@@ -69,7 +68,6 @@ public class Email {
                 // Send the email
                 Transport.send(message);
                 appointmentDAO.setNotice(appointment);
-                System.out.println("Email sent successfully!");
 
             } catch (MessagingException e) {
                 e.printStackTrace();
@@ -92,9 +90,7 @@ public class Email {
      * @throws IOException
      */
     public boolean sendCancellation(Appointment appointment) throws SQLException, IOException {
-        System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null || !appointment.getNotice()) {
-            System.out.println("SONO DENTRO");
             // Create session with authentication
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override
@@ -118,7 +114,6 @@ public class Email {
                 // Send the email
                 Transport.send(message);
                 appointmentDAO.setNotice(appointment);
-                System.out.println("Email sent successfully!");
 
             } catch (MessagingException e) {
                 e.printStackTrace();
@@ -140,7 +135,6 @@ public class Email {
      * @throws IOException
      */
     public boolean sendUpdate(Appointment appointment) throws SQLException, IOException {
-        System.out.println("NOTICE :"+appointment.getNotice());
         if(appointment.getNotice()==null) {
             // Create session with authentication
             Session session = Session.getInstance(properties, new Authenticator() {
@@ -165,7 +159,6 @@ public class Email {
                 // Send the email
                 Transport.send(message);
                 //appointmentDAO.setNotice(appointment);
-                System.out.println("Email sent successfully!");
 
             } catch (MessagingException e) {
                 e.printStackTrace();
@@ -192,7 +185,6 @@ public class Email {
                     ", regarding appointment with id: "+app.getId());
         }
         else if(choice==1){
-            System.out.println("DENTRO CANCELLATION");
             printWriter.println("Cancellation email has been sent to " + c.getName()+ " "+ c.getSurname()+
                     " on date: "+ LocalDate.now()+", at time:"+
             LocalTime.now()+

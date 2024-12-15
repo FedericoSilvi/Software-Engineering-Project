@@ -161,6 +161,5 @@ public class DAOMySQLSettings {
     }
     public static void main(String[] args) throws SQLException {
         DAOMySQLSettings dao = DAOMySQLSettings.getDefaultDAOSettings();
-        System.out.println(dao.hashPassword("456"));
     }
 }

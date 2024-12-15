@@ -125,7 +125,6 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             logger.severe("SQL Error: " + e.getMessage());
             throw new AppointmentException("SQL: In select(): An error occurred while fetching appointment data");
         }
-        System.out.println("Lista: "+list);
         return list;
     }
 
@@ -284,8 +283,6 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
             appointments.add(a1);  // add the object in the list
         }
         connection.close();
-        System.out.println(appointments);
-        System.out.println("\n");
         if(appointments.isEmpty())
             return null;
         else
@@ -425,7 +422,6 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
                             rs.getBoolean("cancellation"),
                             rs.getBoolean("notice")
                     );
-                    //System.out.println(a1);
                     list.add(a1); // add the object in the list
                 }
             }
@@ -580,9 +576,7 @@ public class AppointmentDAOMySQLImpl implements AppointmentDAO<Appointment>{
     }
 
     public static void main(String[] args) throws SQLException {
-        /*dao=new AppointmentDAOMySQLImpl();
-        List<Appointment> a = dao.getHistoryApp();
-        System.out.println(a);*/
+
     }
 
 }

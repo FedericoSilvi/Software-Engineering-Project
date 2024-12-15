@@ -95,16 +95,13 @@ public class ScheduleManagementLayoutController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne) {
                 try{
-                    System.out.println(selectedSchedule);
                     mainApp.getScheduleData().remove(selectedSchedule);
                     ArrayList<Appointment> schedApp = appDao.getSchedApp(selectedSchedule);
                     dao.delete(selectedSchedule);
-                    System.out.println("DIMENSIONE: "+schedApp.size());
                     boolean empty=false;
                     if(schedApp!=null) {
                         //mainApp.getPrimaryStage().close();
                         for (Appointment app : schedApp) {
-                            System.out.println("DENTRO IL FOR");
                             rescheduleApp(app);
                         }
                         dao.delete(selectedSchedule);
@@ -149,8 +146,6 @@ public class ScheduleManagementLayoutController {
         //take the staff del quale dovrò mostrare gli schedule
         Schedule selectedSchedule = scheduleTable.getSelectionModel().getSelectedItem();
         if(selectedSchedule != null && selectedSchedule.getDay().isAfter(LocalDate.now())) {
-            //System.out.println("HO preso lo staff x lo schedule");
-            //System.out.println(selectedStaff);
             mainApp.showScheduleUpdateDialog(selectedSchedule, staff);
         }
         else if(selectedSchedule != null && !selectedSchedule.getDay().isAfter(LocalDate.now())) {

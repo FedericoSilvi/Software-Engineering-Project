@@ -60,7 +60,6 @@ public class ScheduleUpdateLayoutController {
             schedule.setDay(d);
             schedule.setStartTime(startTime);
             schedule.setStopTime(stopTime);
-            System.out.println(!Schedule.isEmpty(schedule));
             if(Schedule.verifySchedule(schedule) /*&& !Schedule.isEmpty(schedule)*/) {
                 try {
                     //update in the list

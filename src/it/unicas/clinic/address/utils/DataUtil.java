@@ -266,7 +266,6 @@ public class DataUtil {
                 count++;
             else
                 count=0;
-            System.out.println(count);
         }
         if(count==slots)
             ok=true;
@@ -341,24 +340,19 @@ public class DataUtil {
         int index=0;
         for (Boolean el : boolList) {
             if(el && count<duration) {
-                System.out.println("Primo");
                 count++;
             }
             else if(el && count==duration){
-                System.out.println("Secondo");
                 int index_time=(index-count)*30;
                 int hours = index_time / 60;
                 int minutes = index_time % 60;
 
                 LocalTime timePassed = LocalTime.of(hours,minutes);
-                System.out.println(timePassed);
                 LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
                         .plusMinutes(timePassed.getMinute());
-                System.out.println(timeStartApp);
                 list.add(timeStartApp);
             }
             else if(!el && count==duration) {
-                System.out.println("Terzo");
                 int index_time = (index - count) * 30;
                 int hours = index_time / 60;
                 int minutes = index_time % 60;
@@ -370,7 +364,6 @@ public class DataUtil {
                 count = 0;
             }
             else {
-                System.out.println("Quarto");
                 count = 0;
             }
 
@@ -384,10 +377,8 @@ public class DataUtil {
                 int minutes = index_time % 60;
 
                 LocalTime timePassed = LocalTime.of(hours,minutes);
-                System.out.println(timePassed);
                 LocalTime timeStartApp = s.getStartTime().plusHours(timePassed.getHour())
                         .plusMinutes(timePassed.getMinute());
-                System.out.println(timeStartApp);
                 list.add(timeStartApp);
             }
         }
@@ -418,7 +409,6 @@ public class DataUtil {
 
         List<Appointment> oldAppoint = appDAO.getPastApp(tenYearsAgo);
         for (Appointment appointment : oldAppoint) {
-            //System.out.println(appointment);
             appDAO.delete(appointment.getId());
         }
 
@@ -429,12 +419,7 @@ public class DataUtil {
 
 
     public static void main(String[] args) throws SQLException {
-        /*LocalDate date=LocalDate.of(2024,12,25);
-        LocalTime start_time=LocalTime.of(8,0,0);
-        LocalTime stop_time=LocalTime.of(16,0,0);
 
-        avApp(new Schedule(date,start_time,stop_time,3));*/
-        cleanUpRecord();
     }
 }
 

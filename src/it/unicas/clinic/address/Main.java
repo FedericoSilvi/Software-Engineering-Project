@@ -126,6 +126,7 @@ public class Main extends Application {
         primaryStage.centerOnScreen();
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }
@@ -184,7 +185,7 @@ public class Main extends Application {
                 event.consume();
                 handleExit();
             });
-
+            primaryStage.setResizable(false);
 
             // Give the controller access to the main app.
             LoginLayoutController controller = loader.getController();
@@ -199,7 +200,6 @@ public class Main extends Application {
      */
     public void initStaff(){
         try{
-            System.out.println("NORMALE");
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             //loader.setLocation(Main.class
@@ -217,6 +217,7 @@ public class Main extends Application {
                 event.consume();
                 handleExit();
             });
+            primaryStage.setResizable(false);
 
 
             // Give the controller access to the main app.
@@ -302,7 +303,7 @@ public class Main extends Application {
             // Set the dialog icon.
             dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             setTimer(scene);
-
+            dialogStage.setResizable(false);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -338,6 +339,7 @@ public class Main extends Application {
             // Set the dialog icon.
             dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
             setTimer(scene);
+            dialogStage.setResizable(false);
             dialogStage.showAndWait();
 
 
@@ -363,6 +365,7 @@ public class Main extends Application {
         StaffManagementLayoutController controller = loader.getController();
         controller.setMainApp(this);
         primaryStage.setTitle("Clinic");
+        primaryStage.setResizable(false);
         primaryStage.show();
         setTimer(scene);
     }
@@ -385,6 +388,7 @@ public class Main extends Application {
 
         searchWindow.setScene(new Scene(layout));
         setTimer(searchWindow.getScene());
+        searchWindow.setResizable(false);
         searchWindow.showAndWait();
     }
 
@@ -409,6 +413,7 @@ public class Main extends Application {
         setTimer(addWindow.getScene());
         addWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         addWindow.setTitle("Add Client");
+        addWindow.setResizable(false);
         addWindow.show();
     }
 
@@ -437,6 +442,7 @@ public class Main extends Application {
         setTimer(updateWindow.getScene());
         updateWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         updateWindow.setTitle("Update Client");
+        updateWindow.setResizable(false);
         updateWindow.showAndWait();
     }
 
@@ -453,6 +459,7 @@ public class Main extends Application {
         ClientOverviewController controller = loader.getController();    controller.setMainApp(this);
         controller.ShowAllClients();
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
         setTimer(primaryStage.getScene());
     }
@@ -523,6 +530,7 @@ public class Main extends Application {
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
                 setTimer(scene);
                 dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+                dialogStage.setResizable(false);
                 dialogStage.showAndWait();
 
             } catch (IOException e) {
@@ -551,6 +559,7 @@ public class Main extends Application {
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
                 setTimer(scene);
                 dialogStage.getIcons().add(new Image("resources/login_icons/edit.png"));
+                dialogStage.setResizable(false);
                 dialogStage.showAndWait();
 
             } catch (IOException e) {
@@ -599,6 +608,7 @@ public class Main extends Application {
             // Set the dialog icon.
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
             setTimer(scene);
+            dialogStage.setResizable(false);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -620,6 +630,7 @@ public class Main extends Application {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.setResizable(false);
         alert.showAndWait();
     }
     /**
@@ -633,6 +644,7 @@ public class Main extends Application {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.setResizable(false);
         alert.showAndWait();
     }
     /**
@@ -646,6 +658,7 @@ public class Main extends Application {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.setResizable(false);
         alert.showAndWait();
     }
 
@@ -670,6 +683,7 @@ public class Main extends Application {
         controller.setDialogStage(dialogStage);
         setTimer(scene);
         dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        dialogStage.setResizable(false);
         dialogStage.showAndWait();
     }
 
@@ -695,6 +709,7 @@ public class Main extends Application {
         controller.setDialogStage(dialogStage);
         setTimer(scene);
         dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        dialogStage.setResizable(false);
         dialogStage.showAndWait();
     }
 
@@ -765,6 +780,7 @@ public class Main extends Application {
         controller.setMainApp(this,schedules,list);
         setTimer(scene);
         primaryStage.setTitle("Schedule Appointment");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -785,6 +801,7 @@ public class Main extends Application {
         AppSelectViewController2 controller = loader.getController();
         controller.setMainApp(this,schedules,list,a);
         setTimer(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -794,7 +811,6 @@ public class Main extends Application {
      * @throws IOException
      */
     public void showScheduleManagmentLayout(Staff s) throws IOException {
-        //System.out.println(s);
         scheduleData.clear();
         Stage updateWindow = new Stage();
         FXMLLoader loader = new FXMLLoader();
@@ -815,6 +831,7 @@ public class Main extends Application {
         updateWindow.setTitle("Schedule Management");
         updateWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         setTimer(updateWindow.getScene());
+        updateWindow.setResizable(false);
         updateWindow.showAndWait();
     }
 
@@ -844,6 +861,7 @@ public class Main extends Application {
             setTimer(scene);
             dialogStage.setTitle("Add Schedule");
             dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+            dialogStage.setResizable(false);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -878,6 +896,7 @@ public class Main extends Application {
             //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
             setTimer(scene);
             dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+            dialogStage.setResizable(false);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -907,6 +926,7 @@ public class Main extends Application {
         setTimer(scene);
         rescheduleWindow.setTitle("Reschedule Appointment");
         rescheduleWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        rescheduleWindow.setResizable(false);
         rescheduleWindow.showAndWait();
     }
 
@@ -933,6 +953,7 @@ public class Main extends Application {
         setTimer(changePasswordWindow.getScene());
         changePasswordWindow.setTitle("Change Password");
         changePasswordWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        changePasswordWindow.setResizable(false);
         changePasswordWindow.showAndWait();
 
     }
@@ -959,6 +980,7 @@ public class Main extends Application {
         setTimer(changeUsernameWindow.getScene());
         changeUsernameWindow.setTitle("Change Username");
         changeUsernameWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        changeUsernameWindow.setResizable(false);
         changeUsernameWindow.showAndWait();
     }
 
@@ -986,6 +1008,7 @@ public class Main extends Application {
         editStaffWindow.setScene(new Scene(anchorPane));
         editStaffWindow.setTitle("Edit Staff Credentials");
         editStaffWindow.getIcons().add(new Image("resource/login_icons/clinic-icon.png"));
+        editStaffWindow.setResizable(false);
         editStaffWindow.showAndWait();
     }
 
@@ -1050,6 +1073,7 @@ public class Main extends Application {
         setTimer(scene);
         dialogStage.setTitle("Report");
         dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        dialogStage.setResizable(false);
         dialogStage.show();
     }
 
@@ -1075,6 +1099,7 @@ public class Main extends Application {
         setTimer(monthlyViewWindow.getScene());
         monthlyViewWindow.setTitle("Monthly Calendar");
         monthlyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        monthlyViewWindow.setResizable(false);
         monthlyViewWindow.show();
     }
     /**
@@ -1099,6 +1124,7 @@ public class Main extends Application {
         setTimer(weeklyViewWindow.getScene());
         weeklyViewWindow.setTitle("Weekly Calendar");
         weeklyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        weeklyViewWindow.setResizable(false);
         weeklyViewWindow.show();
 
     }
@@ -1123,6 +1149,7 @@ public class Main extends Application {
         setTimer(dailyViewWindow.getScene());
         dailyViewWindow.setTitle("Daily Calendar");
         dailyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        dailyViewWindow.setResizable(false);
         dailyViewWindow.show();
     }
 
@@ -1147,6 +1174,7 @@ public class Main extends Application {
         setTimer(dailyViewWindow.getScene());
         dailyViewWindow.setTitle("Daily Calendar");
         dailyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        dailyViewWindow.setResizable(false);
         dailyViewWindow.show();
     }
 
@@ -1183,6 +1211,7 @@ public class Main extends Application {
         setTimer(filterCalendarWindow.getScene());
         filterCalendarWindow.setTitle("Calendar View");
         filterCalendarWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        filterCalendarWindow.setResizable(false);
         filterCalendarWindow.showAndWait();
     }
 
@@ -1219,6 +1248,7 @@ public class Main extends Application {
         setTimer(filterCalendarWindow.getScene());
         filterCalendarWindow.setTitle("Calendar Filter");
         filterCalendarWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        filterCalendarWindow.setResizable(false);
         filterCalendarWindow.showAndWait();
     }
     /**
@@ -1252,6 +1282,7 @@ public class Main extends Application {
         filterCalendarWindow.initOwner(primaryStage);
         filterCalendarWindow.setScene(new Scene(anchorPane));
         setTimer(filterCalendarWindow.getScene());
+        filterCalendarWindow.setResizable(false);
         filterCalendarWindow.showAndWait();
     }
 
@@ -1281,6 +1312,7 @@ public class Main extends Application {
             setTimer(scene);
             dialogStage.setTitle("Appointments");
             dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+            dialogStage.setResizable(false);
             dialogStage.showAndWait();
 
         } catch (IOException e) {
@@ -1300,12 +1332,12 @@ public class Main extends Application {
             timer.stop();
         timer = new PauseTransition(Duration.minutes(15));
         timer.setOnFinished(e -> {
-            System.out.println("Nessuna interazione per 15 minuti. Logout dall'app...");
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Attention");
                 alert.setHeaderText("Incativity detected");
                 alert.setContentText("You'll be kicked out");
+                alert.setResizable(false);
                 alert.showAndWait();
                 restart();
             });
@@ -1425,6 +1457,7 @@ public class Main extends Application {
         dialogStage.setScene(scene);
         dialogStage.setTitle("Insert Credentials");
         dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
+        dialogStage.setResizable(false);
         dialogStage.showAndWait();
 
     }

@@ -151,8 +151,6 @@ public class EditStaffCredentialController {
             alert.setHeaderText("Wrong Password!");
             alert.setContentText(" Try again!");
 
-            System.out.println("Password Inserita: " + managerPassword);
-            System.out.println("Password vera: " + LoginDAOImplementation.getPassword(staffManager_id));
 
             alert.showAndWait();
         }

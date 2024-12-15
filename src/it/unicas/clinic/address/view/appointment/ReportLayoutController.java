@@ -71,7 +71,6 @@ public class ReportLayoutController {
         //set the chosen Staff fields
         mainApp.showAppStaff();
         if (mainApp.getSavedStaff() != 0) {
-            System.out.println(mainApp.getSavedStaff());
             choosenStaff = daoStaff.select(mainApp.getSavedStaff());
             //set labels
             nameLabel.setText(choosenStaff.getName());
@@ -100,14 +99,12 @@ public class ReportLayoutController {
             mainApp.errorAlert("Report", "Date logic", "The end date must be later than the stat date");
             return;
         }
-        //System.out.println(list);
         if(list.isEmpty()){
             mainApp.errorAlert("Report", "Problem with the generation of the report", "" +
                     "The record will not be generate because there are no appointments which match those filters");
         }
         else{
             if(!atLeastOneFilter) {
-                //System.out.println("NON HO SELEZIONATO NULLA");
                 mainApp.warningAlert("Report", "No filter added", "You haven't added any filter. The report" +
                         " will contain all the appointments");
             }
@@ -210,12 +207,10 @@ public class ReportLayoutController {
         if(clickStaff) {
             atLeastOneFilter = true;
             idStaff = choosenStaff.getId();
-            //System.out.println(idStaff);
         }
         //takes all the appointments filter by date, service and staff
         if(!startDatePeriodTF.getText().isEmpty() && !endDatePeriodTF.getText().isEmpty()
         && endDate.isBefore(startDate)) {
-            //System.out.println("SBAGLIATO DATA");
             errorDate = true;
         }
         try{
@@ -252,7 +247,6 @@ public class ReportLayoutController {
         else
             filterString = filterString.concat("_").concat("NO_STAFF");
 
-        System.out.println(filterString);
         return filterString;
     }
 
