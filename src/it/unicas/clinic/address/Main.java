@@ -558,7 +558,7 @@ public class Main extends Application {
                 // Set the dialog icon.
                 //dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
                 setTimer(scene);
-                dialogStage.getIcons().add(new Image("resources/login_icons/edit.png"));
+                dialogStage.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
                 dialogStage.setResizable(false);
                 dialogStage.showAndWait();
 
