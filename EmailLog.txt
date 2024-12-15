@@ -4,3 +4,4 @@
 
 Cancellation email has been sent to Gigino Gigetto regarding appointment with id: 85, date: 2024-12-14, 15:16:43.896348300
 Cancellation email has been sent to Gigino Gigetto on date: 2024-12-14, time:15:19:59.158507600, regarding appointment with id: 86
+Cancellation email has been sent to Nino Frassica on date: 2024-12-15, at time:19:49:21.091734200, regarding appointment with id: 88

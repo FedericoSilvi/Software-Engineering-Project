@@ -21,8 +21,8 @@ import java.util.Properties;
  */
 public class Email {
     // Email Configuration
-    String sender = "projectclinic123@gmail.com";
-    String password = "vbnt xrhr bbdr pppg ";
+    String sender = "unicasmedicalclinic@gmail.com";
+    String password = "nttb rdmm lpbq sxxr";
     String receiver;
     String host = "smtp.gmail.com";
     private AppointmentDAO appointmentDAO = AppointmentDAOMySQLImpl.getInstance();
