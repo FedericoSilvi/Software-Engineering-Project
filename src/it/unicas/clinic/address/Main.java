@@ -1125,6 +1125,7 @@ public class Main extends Application {
         weeklyViewWindow.setTitle("Weekly Calendar");
         weeklyViewWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         weeklyViewWindow.setResizable(false);
+
         weeklyViewWindow.show();
 
     }
