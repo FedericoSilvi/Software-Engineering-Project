@@ -77,8 +77,14 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                           <children>
-                              <Label alignment="CENTER" layoutX="85.0" layoutY="10.0" prefHeight="100.0" prefWidth="75.0" text="Hours" />
-                              <Label fx:id="dayLabel" alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="29.0" prefWidth="549.0" text="Day" GridPane.columnIndex="1" />
+                              <Label alignment="CENTER" layoutX="85.0" layoutY="10.0" prefHeight="100.0" prefWidth="75.0" text="Hours">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                              <Label fx:id="dayLabel" alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="29.0" prefWidth="549.0" text="Day" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                           </children>
                       </GridPane>
                   </content>

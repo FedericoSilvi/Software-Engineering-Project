@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController">
+<AnchorPane prefHeight="320.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.schedule.ScheduleUpdateLayoutController">
     <children>
-        <Label layoutX="107.0" layoutY="83.0" text="Day" />
-        <Label layoutX="107.0" layoutY="151.0" text="Start time" />
-        <Label layoutX="107.0" layoutY="225.0" text="End time" />
-        <TextField fx:id="dayField" layoutX="243.0" layoutY="79.0" />
+        <Label layoutX="107.0" layoutY="96.0" text="Day" />
+        <Label layoutX="91.0" layoutY="151.0" text="Start time" />
+        <Label layoutX="93.0" layoutY="203.0" text="End time" />
+        <TextField fx:id="dayField" layoutX="243.0" layoutY="92.0" />
         <TextField fx:id="startTimeField" layoutX="244.0" layoutY="147.0" />
-        <TextField fx:id="stopTimeField" layoutX="244.0" layoutY="212.0" />
-        <Button layoutX="139.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleUpdate" text="Update" />
-        <Button layoutX="381.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+        <TextField fx:id="stopTimeField" layoutX="244.0" layoutY="199.0" />
+        <Button layoutX="143.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleUpdate" text="Update" />
+        <Button layoutX="292.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Label layoutX="160.0" layoutY="14.0" text="Update Schedule">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

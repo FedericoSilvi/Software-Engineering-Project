@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TableColumn?>
@@ -26,6 +27,9 @@
                 <Button mnemonicParsing="false" onAction="#handleUpdateSchedule" prefHeight="26.0" prefWidth="408.0" text="Update a Schedule" />
                 <Button mnemonicParsing="false" onAction="#handleDeleteSchedule" prefHeight="26.0" text="Delete a Schedule" />
             </buttons>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
         </ButtonBar>
     </children>
 </AnchorPane>

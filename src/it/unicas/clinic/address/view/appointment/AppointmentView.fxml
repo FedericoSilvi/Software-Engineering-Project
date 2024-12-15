@@ -8,15 +8,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.AppointmentViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@medical_theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.appointment.AppointmentViewController">
     <children>
-        <TableView fx:id="appointmentTable" layoutX="-2.0" layoutY="27.0" prefHeight="326.0" prefWidth="600.0">
+        <TableView fx:id="appointmentTable" layoutX="-2.0" layoutY="27.0" prefHeight="326.0" prefWidth="600.0" stylesheets="@medical_theme.css">
             <columns>
                 <TableColumn fx:id="serviceColumn" prefWidth="75.0" text="Service" />
-                <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
-                <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
-            <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
-                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="dateColumn" prefWidth="111.19995880126953" text="Date" />
+                <TableColumn fx:id="timeColumn" prefWidth="91.2000732421875" text="Time" />
+            <TableColumn fx:id="durationColumn" prefWidth="97.5999755859375" text="Duration" />
+                <TableColumn fx:id="idColumn" prefWidth="51.20001220703125" text="ID" />
             <TableColumn fx:id="staffIdColumn" prefWidth="75.0" text="Staff_ID" />
             <TableColumn fx:id="clientIdColumn" prefWidth="75.0" text="Client_ID" />
             </columns>
