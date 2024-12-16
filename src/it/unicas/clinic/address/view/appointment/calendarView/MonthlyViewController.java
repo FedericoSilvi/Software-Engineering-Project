@@ -169,9 +169,6 @@ public class MonthlyViewController {
         }
 
         init2();
-        gridPane.setGridLinesVisible(true);
-
-
     }
 
     //Helping function to select the appointments in a specific day.
@@ -240,8 +237,6 @@ public class MonthlyViewController {
         dateLabel.setText(Month.of(month) + " " + year);
 
         init2();
-        gridPane.setGridLinesVisible(true);
-
     }
 
     // Change to previous day
@@ -266,7 +261,6 @@ public class MonthlyViewController {
         dateLabel.setText(Month.of(month) + " " + year);
 
         init2();
-        gridPane.setGridLinesVisible(true);
 
     }
 

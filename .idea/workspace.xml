@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="documentation add 2">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="email modify">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/model/Email.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,15 +332,8 @@
       <workItem from="1734273953729" duration="10173000" />
       <workItem from="1734286353964" duration="293000" />
       <workItem from="1734286686260" duration="863000" />
-      <workItem from="1734287643860" duration="663000" />
-    </task>
-    <task id="LOCAL-00079" summary="merge 2">
-      <option name="closed" value="true" />
-      <created>1733221058405</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1733221058405</updated>
+      <workItem from="1734287643860" duration="973000" />
+      <workItem from="1734328071669" duration="705000" />
     </task>
     <task id="LOCAL-00080" summary="merge 3">
       <option name="closed" value="true" />
@@ -727,7 +719,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734287522969</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="email modify">
+      <option name="closed" value="true" />
+      <created>1734288669245</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1734288669246</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -745,7 +745,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bug fix with empty list" />
     <MESSAGE value="-Password Hashing&#10;-Timer kick out mechanism" />
     <MESSAGE value="Merge3 con Giacomo" />
     <MESSAGE value="bug fix" />
@@ -770,7 +769,8 @@
     <MESSAGE value="bug fixes" />
     <MESSAGE value="documentation add" />
     <MESSAGE value="documentation add 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="documentation add 2" />
+    <MESSAGE value="email modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="email modify" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
