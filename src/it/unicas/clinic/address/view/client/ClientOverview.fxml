@@ -13,12 +13,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../medical_theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicas.clinic.address.view.client.ClientOverviewController">
    <children>
-      <TableView fx:id="table" layoutY="46.4" prefHeight="354.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+      <TableView fx:id="table" layoutY="46.4" prefHeight="318.0" prefWidth="600.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
         <columns>
-          <TableColumn fx:id="name" prefWidth="155.20001220703125" text="Name" />
-          <TableColumn fx:id="surname" prefWidth="188.0" text="Surname" />
-            <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="number" prefWidth="75.0" text="Number" />
+          <TableColumn fx:id="name" prefWidth="109.60000610351562" text="Name" />
+          <TableColumn fx:id="surname" prefWidth="105.5999755859375" text="Surname" />
+            <TableColumn fx:id="email" prefWidth="246.4000244140625" text="Email" />
+            <TableColumn fx:id="number" prefWidth="133.60003662109375" text="Number" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

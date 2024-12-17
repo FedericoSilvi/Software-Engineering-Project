@@ -50,6 +50,7 @@
     -fx-border-color: #ddd;
     -fx-border-width: 0 0 1px 0;
     -fx-text-fill: #333;
+	
 }
 
 .table-view .cell:hover {

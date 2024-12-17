@@ -3,3 +3,4 @@
 *****************************************************************************************************************
 
 Update email has been sent to Nino Frassica on date: 2024-12-17, at time:10:06:17.791705600, regarding appointment with id: 95
+Cancellation email has been sent to James Moore on date: 2024-12-17, at time:16:30:58.129231400, regarding appointment with id: 115

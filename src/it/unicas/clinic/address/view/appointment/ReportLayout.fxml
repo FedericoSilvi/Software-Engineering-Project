@@ -28,7 +28,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="serviceTF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="serviceTF" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="266.0" stylesheets="@label_theme.css" text="Service:" GridPane.rowIndex="1">
                      <padding>
                         <Insets right="100.0" />
@@ -63,12 +63,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="startDatePeriodTF" prefHeight="26.0" prefWidth="86.0">
+                        <TextField fx:id="startDatePeriodTF" alignment="CENTER" prefHeight="26.0" prefWidth="86.0">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="endDatePeriodTF" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="1">
+                        <TextField fx:id="endDatePeriodTF" alignment="CENTER" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
