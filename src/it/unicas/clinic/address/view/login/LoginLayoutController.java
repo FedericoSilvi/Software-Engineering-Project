@@ -115,7 +115,7 @@ public class LoginLayoutController {
              password= passwordHideField.getText();
          //Insert username and password in the login DAO
          LoginDAOImplementation impl = new LoginDAOImplementation(username,password);
-         //PROVO A PRENDERE LO STAFF ID
+
 
 
          //Initialize data as null

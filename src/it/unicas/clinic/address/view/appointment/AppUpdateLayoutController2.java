@@ -156,6 +156,7 @@ public class AppUpdateLayoutController2 {
             arrayList.set((int) dim.get(i), null);
         }
         dialogStage.close();
+        System.out.println(app.getDate().toString() + app.getTime().toString());
         mainApp.showAvailableAppUp(scheduleList, arrayList,app);
     }
 

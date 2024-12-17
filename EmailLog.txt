@@ -2,3 +2,4 @@
                                             SENT NOTIFICATIONS
 *****************************************************************************************************************
 
+Update email has been sent to Nino Frassica on date: 2024-12-17, at time:10:06:17.791705600, regarding appointment with id: 95

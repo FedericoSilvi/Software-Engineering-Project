@@ -176,13 +176,15 @@ public class AppSelectViewController2 {
                     mainApp.getUser_id(), mainApp.getSavedClient()));
         }
 
-        Appointment a = appDAO.getLastApp();
-        String email = DAOClient.getClient(a.getClientId()).getEmail();
-        Email mailSender = new Email(email);
-        if(mailSender.sendUpdate(a)) {
-            mainApp.infoAlert("Notification",
-                    "Email sent successfully",
-                    "Client has been noticed about appointment update");
+        if(!app.getDate().equals(date) || !app.getTime().equals(time) ) {
+            Appointment a = appDAO.getLastApp();
+            String email = DAOClient.getClient(a.getClientId()).getEmail();
+            Email mailSender = new Email(email);
+            if (mailSender.sendUpdate(a)) {
+                mainApp.infoAlert("Notification",
+                        "Email sent successfully",
+                        "Client has been noticed about appointment update");
+            }
         }
 
         mainApp.initAppView();
@@ -195,7 +197,7 @@ public class AppSelectViewController2 {
     public void handleCancel(){
         appDAO.insert(app);
         mainApp.initAppView();
-        mainApp.showAppInsertDialog();
+        mainApp.showAppUpdateDialog(app);
     }
 
     // Check if there are any schedules
