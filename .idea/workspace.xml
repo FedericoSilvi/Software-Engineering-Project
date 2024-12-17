@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="fix">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="update mail notification fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppSelectViewController2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppUpdateLayoutController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/AppUpdateLayoutController2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/LoginLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/LoginLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,15 +335,7 @@
       <workItem from="1734287643860" duration="973000" />
       <workItem from="1734328071669" duration="705000" />
       <workItem from="1734369553865" duration="797000" />
-      <workItem from="1734421305549" duration="3270000" />
-    </task>
-    <task id="LOCAL-00082" summary="bug fixes">
-      <option name="closed" value="true" />
-      <created>1733223089349</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1733223089349</updated>
+      <workItem from="1734421305549" duration="4552000" />
     </task>
     <task id="LOCAL-00083" summary="bug fixes">
       <option name="closed" value="true" />
@@ -732,7 +721,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734370334129</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="update mail notification fix">
+      <option name="closed" value="true" />
+      <created>1734426471588</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1734426471589</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -750,7 +747,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bug fix" />
     <MESSAGE value="bug fix on merge3" />
     <MESSAGE value="mail notification sending" />
     <MESSAGE value="merge 4 try 1" />
@@ -775,7 +771,8 @@
     <MESSAGE value="email modify" />
     <MESSAGE value="monthly view grid bug fix" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="update mail notification fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="update mail notification fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
