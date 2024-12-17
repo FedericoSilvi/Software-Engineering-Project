@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="database model update in 'Documentation'">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="client overview graphic fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmailLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/EmailLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/ReportLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/ReportLayout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/medical_theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/medical_theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/client/ClientOverview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/medical_theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/medical_theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,15 +337,7 @@
       <workItem from="1734328071669" duration="705000" />
       <workItem from="1734369553865" duration="797000" />
       <workItem from="1734421305549" duration="4552000" />
-      <workItem from="1734446596195" duration="2857000" />
-    </task>
-    <task id="LOCAL-00084" summary="bug fixes">
-      <option name="closed" value="true" />
-      <created>1733223353574</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1733223353574</updated>
+      <workItem from="1734446596195" duration="3609000" />
     </task>
     <task id="LOCAL-00085" summary="merge 2">
       <option name="closed" value="true" />
@@ -735,7 +723,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734446623252</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="client overview graphic fix">
+      <option name="closed" value="true" />
+      <created>1734449708195</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1734449708195</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,7 +749,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mail notification sending" />
     <MESSAGE value="merge 4 try 1" />
     <MESSAGE value="merge 4 v1 bug fix" />
     <MESSAGE value="merge 4 try 2" />
@@ -778,7 +773,8 @@
     <MESSAGE value="fix" />
     <MESSAGE value="update mail notification fix" />
     <MESSAGE value="database model update in 'Documentation'" />
-    <option name="LAST_COMMIT_MESSAGE" value="database model update in 'Documentation'" />
+    <MESSAGE value="client overview graphic fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="client overview graphic fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

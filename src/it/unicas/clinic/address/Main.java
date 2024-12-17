@@ -1007,7 +1007,7 @@ public class Main extends Application {
 
         editStaffWindow.setScene(new Scene(anchorPane));
         editStaffWindow.setTitle("Edit Staff Credentials");
-        editStaffWindow.getIcons().add(new Image("resource/login_icons/clinic-icon.png"));
+        editStaffWindow.getIcons().add(new Image("resources/login_icons/clinic-icon.png"));
         editStaffWindow.setResizable(false);
         editStaffWindow.showAndWait();
     }
