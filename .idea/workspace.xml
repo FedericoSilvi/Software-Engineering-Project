@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="client overview graphic fix">
+    <list default="true" id="2330873d-9007-4f3b-b323-3e1d87098130" name="Changes" comment="path fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyView2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/appointment/calendarView/DailyViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffManagerInitialLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unicas/clinic/address/view/login/StaffManagerInitialLayoutController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,15 +339,11 @@
       <workItem from="1734328071669" duration="705000" />
       <workItem from="1734369553865" duration="797000" />
       <workItem from="1734421305549" duration="4552000" />
-      <workItem from="1734446596195" duration="3609000" />
-    </task>
-    <task id="LOCAL-00085" summary="merge 2">
-      <option name="closed" value="true" />
-      <created>1733323772405</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1733323772405</updated>
+      <workItem from="1734446596195" duration="3723000" />
+      <workItem from="1734462314891" duration="740000" />
+      <workItem from="1734463536612" duration="103000" />
+      <workItem from="1734608607190" duration="93000" />
+      <workItem from="1734608737507" duration="141000" />
     </task>
     <task id="LOCAL-00086" summary="Function to find corresponding appointments given a schedule">
       <option name="closed" value="true" />
@@ -731,7 +729,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734449708195</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="path fix">
+      <option name="closed" value="true" />
+      <created>1734450261014</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1734450261014</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +755,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge 4 try 1" />
     <MESSAGE value="merge 4 v1 bug fix" />
     <MESSAGE value="merge 4 try 2" />
     <MESSAGE value="merge 4 bug fix" />
@@ -774,7 +779,8 @@
     <MESSAGE value="update mail notification fix" />
     <MESSAGE value="database model update in 'Documentation'" />
     <MESSAGE value="client overview graphic fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="client overview graphic fix" />
+    <MESSAGE value="path fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="path fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -147,10 +147,11 @@ public class StaffManagerInitialLayoutController {
         main.showAppStaff();
         if (main.getSavedStaff() != 0) {
             chosenStaff = daoStaff.select(main.getSavedStaff());
+            main.EditStaffCredential(chosenStaff.getId());
         }
 
 
-        main.EditStaffCredential(chosenStaff.getId());
+
     }
 
 }

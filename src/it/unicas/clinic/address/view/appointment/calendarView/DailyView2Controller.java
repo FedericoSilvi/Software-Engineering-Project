@@ -169,7 +169,6 @@ public class DailyView2Controller {
         // Aggiungere un pulsante per filtrare gli appointment tramite data
         // e aprire la finestra da qui, chiamando la funzione subito dopo
         AppointmentDAO dao= AppointmentDAOMySQLImpl.getInstance();
-        mainApp.showCalendarAppView();
         mainApp.getAppointmentData().clear();
 
         String day2 = "";
@@ -184,7 +183,7 @@ public class DailyView2Controller {
         }
 
         mainApp.getAppointmentData().addAll(dao.select(new Appointment(0,service, LocalDate.parse(ymd), hour,null, staffId, clientId)));
-
+        mainApp.showCalendarAppView();
     }
 
     @FXML
